@@ -1,0 +1,5 @@
+:root[theme='dark'] {
+    --dropdown-menu__item-disable_bg: #424242;
+    --dialog-title-color: #606266;
+    --dialog-bg: var(--app_bg);
+}

@@ -1,0 +1,20 @@
+:root[theme='green'] {
+
+    --message--success_bg: #414a3d;
+    --message--success_color: #33810f;
+    --message--success_border-color: #45583c;
+
+    --message--warning_bg: #4e473d;
+    --message--warning_color: #af660b;
+    --message--warning_border-color: #5f513d;
+
+    --message--info_bg: #edf2fc;
+    --message--info_color: #888888;
+    --message--info_border-color: #EBEEF5;
+
+    --message--error_bg: #4f4242;
+    --message--error_color: #8f0404;
+    --message--error_border-color: #624646;
+
+
+}

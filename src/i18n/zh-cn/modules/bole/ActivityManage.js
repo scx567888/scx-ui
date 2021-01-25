@@ -1,0 +1,17 @@
+export default {
+    activityName: '课程名称',
+    remarks: '课程简介',
+    price: '价格',
+    originalPrice: '原价',
+    typeImg: '缩略图',
+    banner: 'banner',
+    notice: '购买须知',
+    courseText: '正文介绍',
+    merchantId: '所属商户',
+    storeId: '所属门店',
+    teacherAccount: '授课教师',
+    activityOrderBy: '排序',
+    thisStatus: '状态',
+    contacts: '联系人',
+    phone: '联系电话',
+}

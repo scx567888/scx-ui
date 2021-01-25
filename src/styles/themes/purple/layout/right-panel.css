@@ -1,0 +1,4 @@
+:root[theme='purple'] {
+    --right-panel_bg: linear-gradient(to bottom right, rgb(255, 153, 153), rgb(78, 197, 212));
+    --right-panel_backdrop-filter: unset;
+}

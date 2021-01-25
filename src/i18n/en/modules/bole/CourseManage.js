@@ -1,0 +1,15 @@
+export default {
+    courseName: 'courseName',
+    remarks: 'remarks',
+    price: 'price',
+    originalPrice: 'originalPrice',
+    typeImg: 'typeImg',
+    banner: 'banner',
+    notice: 'notice',
+    courseText: 'courseText',
+    merchantId: 'merchantId',
+    storeId: 'storeId',
+    teacherAccount: 'teacherAccount',
+    courseOrderBy: 'courseOrderBy',
+    thisStatus: 'status',
+}

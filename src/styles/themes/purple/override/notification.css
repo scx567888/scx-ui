@@ -1,0 +1,6 @@
+:root[theme='purple'] {
+    --notification_bg: #ffffff;
+    --notification_border-color: #EBEEF5;
+    --notification__title_color: #303133;
+    --notification__content_color: #606266;
+}

@@ -1,0 +1,5 @@
+:root[theme='green'] {
+    --popover_bg: #f4f4f5;
+    --popover_color: #606266;
+    --popover_border-color: #dcdfe6;
+}

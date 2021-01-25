@@ -1,0 +1,9 @@
+.scx-width-compress-leave-active,
+.scx-width-compress-enter-active {
+    transition: width 0.2s cubic-bezier(.23, 1, .32, 1);;
+}
+
+.scx-width-compress-enter-from,
+.scx-width-compress-leave-active {
+    width: 0 !important;
+}

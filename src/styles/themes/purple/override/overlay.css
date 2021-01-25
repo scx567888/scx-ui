@@ -1,0 +1,4 @@
+:root[theme='purple'] {
+    --overlay_bg: rgba(0, 0, 0, 0.5);
+    --overlay_backdrop-filter: blur(5px);
+}

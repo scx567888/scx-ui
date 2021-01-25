@@ -1,0 +1,162 @@
+.scx-form-design {
+    display: flex;
+    justify-content: space-between;
+}
+
+.scx-card{
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 12px 0;
+    border-radius: var(--input-border-radius);
+    border: 1px solid var(--input-border);
+    padding: 10px;
+}
+.form-assembly {
+    position: relative;
+    display: grid;
+    height: min-content;
+    justify-content: space-around;
+    align-content: start;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap: 10px;
+    width: 230px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.assembly_item {
+    background: var(--app-hover_bg);
+    color: var(--app_color);
+    border-radius: var(--input-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    cursor: move;
+    font-size: 14px;
+}
+
+.assembly_item:hover {
+    border: 1px dashed var(--app_theme);
+    color: var(--app_theme);
+}
+
+.assembly_item > .scx-icon {
+    margin-right: 5px;
+    transition: 0.3s;
+}
+
+.assembly_item:hover > .scx-icon {
+    fill: var(--app_theme);
+}
+
+
+.form-design {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-design-head{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--input-border);
+}
+
+.form-design-body{
+    min-height: 500px;
+}
+
+
+.form-setting {
+    position: relative;
+    width: 230px;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*展示垃圾桶时的背景*/
+.trash-bg {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    left: 5px;
+    bottom: 5px;
+    background: var(--dialog-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*垃圾桶图标*/
+.trash-bg > .scx-icon {
+    width: 200px;
+    height: unset;
+}
+
+
+
+
+.formItem {
+    margin: 3px 0 3px 0;
+    padding: 3px 3px 0 3px;
+    overflow: hidden;
+    border-radius: 3px;
+    box-sizing: border-box;
+    transition: 300ms ease-out;
+    transform: translate3d(0px, 0px, 0px);
+    border: 1px dashed #3a88ed;
+}
+
+.formItem:hover {
+    border: 1px dashed red;
+}
+
+.place-div {
+    width: 100%;
+    height: 60px;
+    border-top: 3px solid var(--app_theme);
+    background: var(--app-hover_bg);
+    border-radius: var(--input-border-radius);
+}
+
+.place-div > span {
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px
+}
+
+.place-div-icon {
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px
+}
+
+.dragDiv {
+    cursor: move;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.flip-list-move {
+    transition: transform 500ms;
+}

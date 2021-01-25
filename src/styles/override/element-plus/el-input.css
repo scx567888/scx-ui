@@ -1,0 +1,107 @@
+/*!*此处重写 element ui 所有 input 组件 的颜色*!*/
+/*.el-input__inner,*/
+/*.el-textarea__inner {*/
+/*    background: var(--input-bg);*/
+/*    border: 1px solid var(--input-border);*/
+/*    border-radius: var(--input-border-radius);*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-input.is-active .el-input__inner,*/
+/*.el-select .el-input.is-focus .el-input__inner,*/
+/*.el-input__inner:focus,*/
+/*.el-input__inner:hover {*/
+/*    border-color: var(--theme);*/
+/*}*/
+
+
+/*.el-select-dropdown,*/
+/*.el-autocomplete-suggestion {*/
+/*    background: var(--input-bg);*/
+/*    border: 1px solid var(--input-border);*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-select-dropdown__item.hover,*/
+/*.el-select-dropdown__item:hover,*/
+/*.el-autocomplete-suggestion li.hover,*/
+/*.el-autocomplete-suggestion li:hover {*/
+/*    background: var(--app-hover-bg);*/
+/*}*/
+
+/*.el-select-dropdown__item,*/
+/*.el-autocomplete-suggestion li {*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-select-dropdown__item.selected {*/
+/*    color: var(--theme)*/
+/*}*/
+
+/*.el-range-input {*/
+/*    background: var(--input-bg);*/
+/*}*/
+
+/*.el-input-number__decrease,*/
+/*.el-input-number__increase {*/
+/*    background: var(--popover-bg);*/
+/*    color: var(--popover-text);*/
+/*}*/
+
+/*.el-input-number__decrease:hover,*/
+/*.el-input-number__increase:hover {*/
+/*    color: var(--theme);*/
+/*}*/
+
+/*.el-input-number__decrease {*/
+/*    border-right: 1px solid var(--tags-view-item-border);*/
+/*}*/
+
+/*.el-input-number__increase {*/
+/*    border-left: 1px solid var(--tags-view-item-border);*/
+/*}*/
+
+/*.el-input-number__decrease:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled),*/
+/*.el-input-number__increase:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled) {*/
+/*    border-color: var(--theme);*/
+/*}*/
+
+/*.el-input-number__decrease.is-disabled,*/
+/*.el-input-number__increase.is-disabled {*/
+/*    color: var(--default-disable-text);*/
+/*}*/
+
+/*.el-cascader .el-input .el-input__inner:focus,*/
+/*.el-cascader .el-input.is-focus .el-input__inner {*/
+/*    border-color: var(--theme);*/
+/*}*/
+
+/*.el-cascader-menu {*/
+/*    background: var(--input-bg);*/
+/*    border-right: 1px solid var(--input-border);*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-cascader__dropdown {*/
+/*    background: var(--input-border);*/
+/*    border: 1px solid var(--input-border);*/
+/*}*/
+
+/*.el-cascader-node:not(.is-disabled):focus,*/
+/*.el-cascader-node:not(.is-disabled):hover {*/
+/*    background: var(--app-hover-bg);*/
+/*}*/
+
+/*.el-cascader-node.in-active-path,*/
+/*.el-cascader-node.is-active,*/
+/*.el-cascader-node.is-selectable.in-checked-path {*/
+/*    color: var(--theme);*/
+/*}*/
+
+/*.el-pagination__sizes .el-input .el-input__inner:hover {*/
+/*    border-color: var(--theme)*/
+/*}*/
+
+/*.el-select:hover .el-input__inner {*/
+/*    border-color: var(--theme)*/
+/*}*/

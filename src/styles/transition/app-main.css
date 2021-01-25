@@ -1,0 +1,42 @@
+/* 主页切换动画 所有动画保持一个过渡速度 */
+.app-main-fade-enter-active,
+.app-main-fade-leave-active,
+.app-main-enlarge-enter-active,
+.app-main-enlarge-leave-active,
+.app-main-threeDRotate-enter-active,
+.app-main-threeDRotate-leave-active {
+    transition: all var(--app_transition-duration);
+}
+
+/* 横移 */
+.app-main-fade-enter-from {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.app-main-fade-leave-to {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+/* 主页切换动画 enlarge */
+.app-main-enlarge-enter-from {
+    opacity: 0;
+    transform: scale(0.8, 0.8);
+}
+
+.app-main-enlarge-leave-to {
+    opacity: 0;
+    transform: scale(1.2, 1.2);
+}
+
+/* 主页切换动画 3DRotate */
+.app-main-threeDRotate-enter-from {
+    opacity: 0;
+    transform: rotateY(-90deg);
+}
+
+.app-main-threeDRotate-leave-to {
+    opacity: 0;
+    transform: rotateY(90deg);
+}

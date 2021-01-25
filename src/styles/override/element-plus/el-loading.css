@@ -1,0 +1,13 @@
+/*!*element 表格加载界面 减小z-index 防止覆盖自定义的组件*!*/
+/*.el-loading-mask {*/
+/*    background: var(--loading-mask-bg);*/
+/*    z-index: 8;*/
+/*}*/
+
+/*.el-loading-spinner .path {*/
+/*    stroke: var(--theme);*/
+/*}*/
+
+/*.el-loading-spinner .el-loading-text {*/
+/*    color: var(--theme);*/
+/*}*/

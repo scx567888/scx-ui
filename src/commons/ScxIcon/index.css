@@ -1,0 +1,6 @@
+.scx-icon {
+    width: 1em;
+    height: 1em;
+    fill: var(--app_color);
+    overflow: hidden;
+}

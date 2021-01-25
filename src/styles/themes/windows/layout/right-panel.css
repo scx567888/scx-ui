@@ -1,0 +1,4 @@
+:root[theme='windows'] {
+    --right-panel_bg: rgb(210, 210, 210);
+    --right-panel_backdrop-filter: unset;
+}

@@ -1,0 +1,14 @@
+:root {
+    /*左上角logo背景色*/
+    --sidebar-logo_bg: transparent;
+    /*侧边栏背景 (也可以设置为透明)*/
+    --sidebar_bg: transparent;
+    /*左侧菜单展开的背景色*/
+    --sidebar-submenu_bg: #ffffff;
+    /*侧边栏 的 宽度*/
+    --sidebar_width: 200px;
+    /*侧边栏 菜单 的 高度*/
+    --sidebar-menu_height: 40px;
+    /*选中的菜单*/
+    --sidebar-active_bg: var(--app-hover_bg);
+}

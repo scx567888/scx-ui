@@ -1,0 +1,7 @@
+/*主内容容器*/
+.scx-main-content {
+    height: 100%;
+    overflow: auto;
+    background: var(--app-main_bg);
+    background-size: 100% 100%;
+}

@@ -1,0 +1,40 @@
+@import "./layout/app-main.css";
+@import "./layout/navbar.css";
+@import "./layout/right-panel.css";
+@import "./layout/sidebar.css";
+@import "./layout/tags-view.css";
+@import "./override/button.css";
+@import "./override/card.css";
+@import "./override/contextmenu.css";
+@import "./override/dialog.css";
+@import "./override/dropdown.css";
+@import "./override/input.css";
+@import "./override/message.css";
+@import "./override/notification.css";
+@import "./override/overlay.css";
+@import "./override/pagination.css";
+@import "./override/popover.css";
+@import "./override/switch.css";
+@import "./override/table.css";
+
+/*顶级容器*/
+:root[theme='dark'] {
+    /*主题色*/
+    --app_theme: rgb(72, 147, 73);
+    /*背景*/
+    --app_bg: #2b2b2b;
+    /*文字颜色*/
+    --app_color: whitesmoke;
+    /*hover 背景色*/
+    --app-hover_bg: #1f3627;
+    /*边框圆角*/
+    --app_border-color: #626266;
+    /*边框圆角*/
+    --app_border-radius: 2px;
+    /*滚动条背景色*/
+    --app-scrollbar_bg: rgba(72, 147, 73, 0.25);
+    /*滚动条鼠标移入背景色*/
+    --app-scrollbar-hover_bg: rgba(72, 147, 73, 0.5);
+    /*动画速度*/
+    --app_transition-duration: 200ms;
+}

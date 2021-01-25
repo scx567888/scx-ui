@@ -1,0 +1,4 @@
+/*页面上方加载进度条 颜色*/
+#nprogress .bar {
+    background-color: var(--app_theme);
+}

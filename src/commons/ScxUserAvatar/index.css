@@ -1,0 +1,25 @@
+
+.avatar-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.avatar-wrapper > img {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--input-border-radius);
+    background: var(--app-hover_bg);
+}
+
+.avatar-wrapper > svg {
+    cursor: pointer;
+    margin-left: 5px;
+    margin-bottom: -18px;
+    font-size: 12px;
+}

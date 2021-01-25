@@ -1,0 +1,21 @@
+export default {
+    title: 'Login Form',
+    loginUser: 'Login',
+    registerUser: 'Register',
+    logIn: 'LogIn',
+    register: 'Register',
+    username: 'UserName',
+    password: 'Password',
+    registerUsername: 'Length 4 but less than 15 bits',
+    registerPassword: 'Length ≥ 6 but less than 20 bits',
+    registerPasswordAgain: 'Please Re input',
+    userAlreadyExists: 'User Already Exists',
+    registerSuccess: 'Register Success (No permission, please contact the administrator to assign) !!!',
+    validateUsername: 'Username error !!!',
+    validatePassword: 'Password cannot be empty  !!!',
+    validateRegisterUsername: 'Username is too short !!!',
+    validateRegisterPassword: 'Password is too short !!!',
+    validateRegisterPasswordIsNull: 'Please enter the password again !!!',
+    validateRegisterPasswordAgain: 'The two passwords are inconsistent !!!',
+    capsLockOn: 'Caps Lock On'
+}

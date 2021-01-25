@@ -1,0 +1,157 @@
+.scx-sidebar-vertical {
+    display: flex;
+    width: var(--sidebar_width);
+    transition: width var(--app_transition-duration);
+    z-index: 2;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
+    flex-shrink: 0;
+    user-select: none; /*禁止选中*/
+}
+
+/*菜单缩进的宽度*/
+.scx-sidebar-vertical.hideSidebar,
+.scx-sidebar-vertical.hideSidebar .el-menu,
+.el-menu--collapse {
+    width: 54px;
+}
+
+/*左侧导航栏*/
+.sidebar-vertical-container {
+    height: 100%;
+    background: var(--sidebar_bg);
+    background-size: 100% 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+.sidebar-vertical-container:hover {
+    overflow-y: auto;
+}
+
+.sidebar-vertical-container > .el-menu {
+    background: transparent;
+    border: none;
+    width: var(--sidebar_width); /* 使侧边栏的宽度为100% 防止缩进是弹出菜单计算错误   */
+}
+
+
+/*子菜单的背景色*/
+.el-submenu .el-submenu > .el-submenu__title,
+.scx-sidebar-vertical .el-submenu .el-menu-item {
+    background: var(--sidebar-submenu_bg);
+}
+
+/*设置两种图标的样式*/
+.scx-sidebar-vertical .scx-icon {
+    margin-right: 16px;
+    fill: currentColor;
+}
+
+/*设置两种图标的样式*/
+.scx-sidebar-vertical i.sub-el-icon {
+    margin-right: 12px !important;
+    margin-left: -5px !important;
+    color: currentColor;
+    height: 1em;
+}
+
+.el-menu--vertical > .el-menu--popup {
+    background: var(--sidebar-submenu_bg);
+}
+
+/*侧边栏高度 和颜色*/
+.scx-sidebar-vertical .el-menu-item,
+.scx-sidebar-vertical .el-submenu__title,
+    /*侧边栏收起的时候 展示的高度*/
+.el-menu--vertical .el-menu-item,
+.el-menu--vertical .el-submenu__title {
+    height: var(--sidebar-menu_height);
+    line-height: var(--sidebar-menu_height);
+    color: var(--app_color);
+}
+
+.scx-sidebar-vertical .el-submenu .el-menu-item {
+    height: var(--sidebar-menu_height);
+    line-height: var(--sidebar-menu_height);
+    color: var(--app_color);
+}
+
+/*侧边栏展开时的 鼠标移入背景色*/
+.scx-sidebar-vertical .el-menu-item:hover,
+.scx-sidebar-vertical .el-menu-item:focus,
+.scx-sidebar-vertical .el-submenu__title:hover,
+.hideSidebar .scx-sidebar-vertical .is-active,
+.el-menu--vertical .el-menu-item:hover,
+.el-menu--vertical .el-submenu__title:hover {
+    background: var(--app-hover_bg)
+}
+
+/*侧边栏展开时的 左侧的火柴条*/
+.scx-sidebar-vertical .el-menu-item::before,
+.scx-sidebar-vertical .el-submenu__title::before,
+    /*侧边栏缩进时的 左侧的火柴条*/
+.el-menu--vertical .el-menu-item::before,
+.el-menu--vertical .el-submenu__title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 0;
+    width: 100%;
+    transition: all 0.15s;
+}
+
+
+/*侧边栏展开时的 左侧的火柴条 （鼠标移入时） */
+.scx-sidebar-vertical .el-menu-item:hover::before,
+.scx-sidebar-vertical .el-menu-item.is-active::before,
+.scx-sidebar-vertical .el-submenu__title:hover::before,
+.hideSidebar .scx-sidebar-vertical .is-active::before,
+    /*侧边栏缩进时的 左侧的火柴条 （鼠标移入时） */
+.el-menu--vertical .el-menu-item:hover::before,
+.el-menu--vertical .el-menu-item.is-active::before,
+.el-menu--vertical .el-submenu__title:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid var(--app_theme);
+}
+
+/*因为左侧的图标有两种 svg 和 element-ui 自带的 再此进行设置*/
+/*激活状态的图标颜色 (侧边栏收起的时候)*/
+.hideSidebar .scx-sidebar-vertical .is-active svg {
+    fill: var(--app_theme);
+}
+
+/*激活状态的图标颜色 (侧边栏收起的时候)*/
+.hideSidebar .scx-sidebar-vertical .is-active .sub-el-icon {
+    color: var(--app_theme);
+}
+
+/*和展开时的 字体加粗显示*/
+.scx-sidebar-vertical .el-submenu.is-opened > .el-submenu__title,
+.el-menu--vertical .el-submenu.is-opened > .el-submenu__title {
+    font-weight: 600;
+}
+
+/*选中的菜单的父菜单 加粗并着色 */
+.scx-sidebar-vertical .el-submenu.is-active > .el-submenu__title,
+.el-menu--vertical .el-submenu.is-active > .el-submenu__title {
+    font-weight: 600;
+    color: var(--app_theme);
+}
+
+/*选中的菜单*/
+.scx-sidebar-vertical .el-menu-item.is-active,
+.el-menu--vertical .el-menu-item.is-active {
+    background: var(--sidebar-active-bg);
+    font-weight: 600;
+    color: var(--app_theme);
+}

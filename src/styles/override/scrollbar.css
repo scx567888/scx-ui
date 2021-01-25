@@ -1,0 +1,30 @@
+/*element 滚动条 设置颜色使其更醒目 */
+.el-scrollbar__thumb {
+    background-color: var(--app-scrollbar_bg);
+}
+
+/*美化浏览器自带滚动条*/
+::-webkit-scrollbar-thumb:hover,
+.el-scrollbar__thumb:hover {
+    width: 6px;
+    background-color: var(--app-scrollbar-hover_bg);
+}
+
+/*美化浏览器自带滚动条*/
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+/*美化浏览器自带滚动条*/
+::-webkit-scrollbar-thumb {
+    background-color: var(--app-scrollbar_bg);
+    border-radius: var(--app_border-radius);
+    width: 6px;
+}
+
+/*滚动条移上去的背景*/
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    background: var(--app_bg);
+}

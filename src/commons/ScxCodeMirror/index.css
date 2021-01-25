@@ -1,0 +1,9 @@
+.scx-code-mirror {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--app_theme, rgb(72, 147, 73))
+}
+
+.scx-code-mirror .CodeMirror {
+    height: 100%;
+}

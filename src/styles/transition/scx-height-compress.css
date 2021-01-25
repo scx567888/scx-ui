@@ -1,0 +1,9 @@
+.scx-height-compress-leave-active,
+.scx-height-compress-enter-active {
+    transition: height 0.2s cubic-bezier(.23, 1, .32, 1);;
+}
+
+.scx-height-compress-enter-from,
+.scx-height-compress-leave-active {
+    height: 0 !important;
+}

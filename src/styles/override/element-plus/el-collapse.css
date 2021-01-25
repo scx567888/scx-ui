@@ -1,0 +1,22 @@
+/*!*此处重写 element ui 折叠面板 组件 的颜色*!*/
+/*.el-collapse {*/
+/*    border-top: 1px solid var(--input-border);*/
+/*    border-bottom: 1px solid var(--input-border);*/
+/*}*/
+
+/*.el-collapse-item__content {*/
+/*    background: transparent;*/
+/*}*/
+
+/*.el-collapse-item__header {*/
+/*    padding-left: 2%;*/
+/*    background: transparent;*/
+/*    color: var(--dialog-title-color);*/
+/*    font-weight: 700;*/
+/*    border-bottom: 1px solid var(--input-border);*/
+/*}*/
+
+/*.el-collapse-item__wrap {*/
+/*    background: transparent;*/
+/*    border-bottom: 1px solid var(--input-border);*/
+/*}*/

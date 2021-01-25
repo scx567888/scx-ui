@@ -1,0 +1,12 @@
+.el-notification {
+    background: var(--notification_bg);
+    border-color: var(--notification_border-color);
+}
+
+.el-notification__title {
+    color: var(--notification__title_color);
+}
+
+.el-notification__content {
+    color: var(--notification__content_color);
+}

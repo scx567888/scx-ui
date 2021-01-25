@@ -1,0 +1,4 @@
+.el-overlay {
+    background: var(--overlay_bg);
+    backdrop-filter: var(--overlay_backdrop-filter);
+}

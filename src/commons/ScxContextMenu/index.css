@@ -1,0 +1,25 @@
+/*全局右键菜单*/
+.scx-contextmenu {
+    margin: 0;
+    background: var(--dialog_bg);
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: var(--app_border-radius);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--app_color);
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.scx-contextmenu li {
+    margin: 0;
+    padding: 7px 16px;
+    cursor: pointer;
+}
+
+.scx-contextmenu li:hover {
+    background: var(--app-hover_bg);
+    color: var(--app_theme);
+}

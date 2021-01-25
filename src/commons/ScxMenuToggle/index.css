@@ -1,0 +1,25 @@
+/*汉堡图标*/
+.hamburger {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    transition: transform 100ms;
+}
+
+.hamburger.isOpened {
+    transform: rotateY(180deg);
+}
+
+.scx-main-navbar .hamburger-container {
+    line-height: 47px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.scx-main-navbar .hamburger-container:hover {
+    background: rgba(0, 0, 0, 0.025);
+}

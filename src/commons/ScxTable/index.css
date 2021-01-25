@@ -1,0 +1,165 @@
+.scx-table {
+    color: var(--table_color);
+    overflow: auto;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.scx-table-head {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    justify-content: flex-start;
+    height: 42px;
+}
+
+.scx-table-head > div {
+    /*可拖拽图标*/
+    cursor: pointer;
+    text-align: center;
+    background-color: var(--table-head_bg);
+    color: var(--table-head_color);
+    /*父元素高度不够时不进行收缩*/
+    flex-shrink: 0;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+    border-left: 1px solid var(--table_border-color);
+    border-top: 1px solid var(--table_border-color);
+    border-bottom: 1px solid var(--table_border-color);
+}
+
+/*没设置宽度 允许收缩*/
+.scx-table .scx-table-no-width {
+    flex-shrink: 1;
+    min-width: 100px;
+    width: 100%;
+}
+
+/*最后一个元素的边框*/
+.scx-table-head > div:last-child {
+    border-right: 1px solid var(--table_border-color);
+}
+
+.scx-table .scx-table-empty {
+    width: 0;
+}
+
+.scx-table-body {
+    display: flex;
+}
+
+.scx-table-body > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-left: 1px solid var(--table_border-color);
+    border-bottom: 1px solid var(--table_border-color);
+    overflow: hidden;
+}
+
+.scx-table-body > div > span {
+    padding-left: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scx-table-body.a > div {
+    background-color: var(--table-body-a_bg);
+}
+
+.scx-table-body.b > div {
+    background-color: var(--table-body-b_bg);
+}
+
+.scx-table-body > div:last-child {
+    border-right: 1px solid var(--table_border-color);
+}
+
+.scx-table-body:hover > div {
+    background: var(--table-body-hover_bg);
+    /*transition: background-color 50ms ease-in;*/
+}
+
+.scx-table-body.checked > div {
+    background-color: var(--table-body-checked_bg);
+}
+
+.fixed-left {
+    position: sticky;
+    left: 0;
+}
+
+.is-scrolling-middle .fixed-left,
+.is-scrolling-right .fixed-left {
+    box-shadow: 2px 0 2px 0 rgba(42, 42, 43, 0.1);
+}
+
+.fixed-right {
+    position: sticky;
+    right: 0;
+}
+
+.is-scrolling-middle .fixed-right,
+.is-scrolling-left .fixed-right {
+    box-shadow: -2px 0 2px 0 rgba(42, 42, 43, 0.1);
+}
+
+
+.scx-box-selection {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    background-color: var(--app-hover_bg);
+    border: 1px solid var(--app_theme);
+    box-sizing: border-box;
+}
+
+/*排序的小三角形*/
+.sort-group {
+    display: inline-block;
+    padding-left: 5px;
+}
+
+.sort-div-up {
+    width: 0;
+    height: 0;
+    border-width: 0 4px 4px;
+    border-style: solid;
+    border-color: transparent transparent #c0c4cc;
+    margin-bottom: 2px;
+}
+
+.sort-div-down {
+    margin-top: 2px;
+    width: 0;
+    height: 0;
+    border-width: 4px 4px 0;
+    border-style: solid;
+    border-color: #c0c4cc transparent transparent;
+}
+
+.sort-group.asc .sort-div-up {
+    border-color: transparent transparent var(--app_theme);
+}
+
+.sort-group.desc .sort-div-down {
+    border-color: var(--app_theme) transparent transparent;
+}
+
+.scx-table-no-data {
+    width: 100%;
+    height: 60px;
+    border-left: 1px solid var(--table_border-color);
+    border-right: 1px solid var(--table_border-color);
+    border-bottom: 1px solid var(--table_border-color);
+    color: var(--table_color);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}

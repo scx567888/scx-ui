@@ -1,0 +1,4 @@
+:root[theme='windows'] {
+    /*右侧主容器背景色*/
+    --app-main_bg: transparent;
+}

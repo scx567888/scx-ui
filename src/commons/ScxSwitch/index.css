@@ -1,0 +1,85 @@
+.scx-switch {
+    height: 22px;
+    width: 44px;
+    border: none;
+    background: var(--switch-disable_bg, rgba(0, 0, 0, .25));
+    border-radius: 11px;
+    position: relative;
+    vertical-align: middle;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.scx-switch::after {
+    content: '';
+    box-shadow: rgba(0, 35, 11, 0.2) 0 2px 4px 0;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 18px;
+    width: 18px;
+    background: white;
+    border-radius: 9px;
+    transition: all 0.2s ease-in-out;
+}
+
+.scx-switch.scx-switch-checked {
+    background: var(--app_theme, rgb(24, 144, 255));
+}
+
+.scx-switch.scx-switch-checked::after {
+    left: calc(100% - 18px - 2px);
+}
+
+.scx-switch.scx-switch-checked:active::after {
+    width: 22px;
+    margin-left: -4px;
+}
+
+.scx-switch:active::after {
+    width: 22px;
+    margin-left: 0;
+}
+
+.scx-switch:focus {
+    outline: none;
+}
+
+.scx-switch[disabled] {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.scx-switch.scx-switch-checked:active {
+    animation: scx-switch-close-tips 1500ms infinite linear;
+}
+
+.scx-switch:active {
+    animation: scx-switch-open-tips 1500ms infinite linear;
+}
+
+@keyframes scx-switch-close-tips {
+    0% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+    50% {
+
+        box-shadow: 0 0 0 0.2rem rgba(255, 38, 103, 0.5)
+    }
+    100% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+}
+
+@keyframes scx-switch-open-tips {
+    0% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+    50% {
+
+        box-shadow: 0 0 0 0.2rem rgba(17, 141, 47, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+}

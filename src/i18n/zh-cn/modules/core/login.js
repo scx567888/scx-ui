@@ -1,0 +1,21 @@
+export default {
+    title: '系统登录',
+    loginUser: '账号登录',
+    registerUser: '注册账号',
+    logIn: '登录',
+    register: '注册',
+    username: '请输入用户名',
+    password: '请输入密码',
+    registerUsername: '用户名由字母和数字组成  大于4位小于15位',
+    registerPassword: '密码由字母,数字或符号组成  大于等于6位小于20位',
+    registerPasswordAgain: '请再次输入密码',
+    userAlreadyExists: '用户名已被占用',
+    registerSuccess: '注册成功 (无任何权限,请联系管理员进行分配) !!!',
+    validateUsername: '请输入正确的用户名 !!!',
+    validatePassword: '密码不能为空 !!!',
+    validateRegisterUsername: '用户名太短 !!!',
+    validateRegisterPassword: '密码太短 !!!',
+    validateRegisterPasswordIsNull: '请再次输入密码 !!!',
+    validateRegisterPasswordAgain: '两次输入密码不一致 !!!',
+    capsLockOn: '大写锁定打开'
+}

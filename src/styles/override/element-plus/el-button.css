@@ -1,0 +1,140 @@
+/*此处重写 element ui 所有 button 组件*/
+.el-button {
+    border-radius: var(--button_border-radius);
+    background-size: 100% 100%;
+    padding: 10px 20px;
+}
+
+.el-button--mini, .el-button--mini.is-round {
+    padding: 7px 15px;
+}
+
+.el-button:hover {
+    box-shadow: rgba(50, 50, 50, 0.3) 2px 2px 5px;
+}
+
+.el-button:active {
+    transform: scale(0.95);
+    box-shadow: unset;
+}
+
+.el-button--success {
+    background: var(--button--success_bg);
+    color: var(--button--success_color);
+    border-color: var(--button--success_border-color);
+}
+
+.el-button--success.is-plain {
+    background: var(--button--success-plain_bg);
+    color: var(--button--success-plain_color);
+    border-color: var(--button--success-plain_border-color);
+}
+
+.el-button--success:hover {
+    background: var(--button--success-hover_bg);
+    color: var(--button--success-hover_color);
+    border-color: var(--button--success-hover_border-color);
+}
+
+.el-button--success.is-disabled {
+    background: var(--button--success-disable_bg);
+    color: var(--button--success-disable_color);
+    border-color: var(--button--success-disable_border-color);
+}
+
+.el-button--primary {
+    background: var(--button--primary_bg);
+    color: var(--button--primary_color);
+    border-color: var(--button--primary_border-color);
+}
+
+.el-button--primary.is-plain {
+    background: var(--button--primary-plain_bg);
+    color: var(--button--primary-plain_color);
+    border-color: var(--button--primary-plain_border-color);
+}
+
+.el-button--primary:hover {
+    background: var(--button--primary-hover_bg);
+    color: var(--button--primary-hover_color);
+    border-color: var(--button--primary-hover_border-color);
+}
+
+.el-button--primary.is-disabled {
+    background: var(--button--primary-disable_bg);
+    color: var(--button--primary-disable_color);
+    border-color: var(--button--primary-disable_border-color);
+}
+
+.el-button--warning {
+    background: var(--button--warning_bg);
+    color: var(--button--warning_color);
+    border-color: var(--button--warning_border-color);
+}
+
+.el-button--warning.is-plain {
+    background: var(--button--warning-plain_bg);
+    color: var(--button--warning-plain_color);
+    border-color: var(--button--warning-plain_border-color);
+}
+
+.el-button--warning:hover {
+    background: var(--button--warning-hover_bg);
+    color: var(--button--warning-hover_color);
+    border-color: var(--button--warning-hover_border-color);
+}
+
+.el-button--warning.is-disabled {
+    background: var(--button--warning-disable_bg);
+    color: var(--button--warning-disable_color);
+    border-color: var(--button--warning-disable_border-color);
+}
+
+.el-button--default {
+    background: var(--button--default_bg);
+    color: var(--button--default_color);
+    border-color: var(--button--default_border-color);
+}
+
+.el-button--default.is-plain {
+    background: var(--button--default-plain_bg);
+    color: var(--button--default-plain_color);
+    border-color: var(--button--default-plain_border-color);
+}
+
+.el-button--default:hover {
+    background: var(--button--default-hover_bg);
+    color: var(--button--default-hover_color);
+    border-color: var(--button--default-hover_border-color);
+}
+
+.el-button--default.is-disabled {
+    background: var(--button--default-disable_bg);
+    color: var(--button--default-disable_color);
+    border-color: var(--button--default-disable_border-color);
+}
+
+
+.el-button--danger {
+    background: var(--button--danger_bg);
+    color: var(--button--danger_color);
+    border-color: var(--button--danger_border-color);
+}
+
+.el-button--danger.is-plain {
+    background: var(--button--danger-plain_bg);
+    color: var(--button--danger-plain_color);
+    border-color: var(--button--danger-plain_border-color);
+}
+
+.el-button--danger:hover {
+    background: var(--button--danger-hover_bg);
+    color: var(--button--danger-hover_color);
+    border-color: var(--button--danger-hover_border-color);
+}
+
+.el-button--danger.is-disabled {
+    background: var(--button--danger-disable_bg);
+    color: var(--button--danger-disable_color);
+    border-color: var(--button--danger-disable_border-color);
+}

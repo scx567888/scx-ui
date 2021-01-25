@@ -1,0 +1,4 @@
+:root[theme='dark'] {
+    --right-panel_bg: rgba(50, 50, 50, 0.89);
+    --right-panel_backdrop-filter: blur(8px);
+}

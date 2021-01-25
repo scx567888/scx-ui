@@ -1,0 +1,4 @@
+:root[theme='green'] {
+    --right-panel_bg: rgba(39, 121, 17, 0.2);
+    --right-panel_backdrop-filter: blur(8px);
+}

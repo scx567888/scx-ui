@@ -1,0 +1,21 @@
+export default {
+    icon:'input',
+    type: 'input',
+    label: '文本框',
+    col: 24,
+    prop: 'input',
+    showFrom: ['label', 'col', 'prop', 'minlength', 'maxlength', 'showwordlimit', 'placeholder', 'clearable', 'showpassword', 'disabled', 'prefixicon', 'suffixicon', 'prepend', 'append', 'rules'],
+    minlength: 0,
+    maxlength: 100,
+    showwordlimit: true,
+    placeholder: '请输入' + name,
+    clearable: true,
+    showpassword: false,
+    disabled: false,
+    prefixicon: 'el-icon-edit',
+    suffixicon: '',
+    prepend: '',
+    append: '',
+    // 校验
+    rules: [{required: false, message: '请输入' + name, trigger: 'change'},],
+}

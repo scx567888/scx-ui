@@ -1,0 +1,23 @@
+@import './themes/default/index.css';
+@import './themes/dark/index.css';
+@import './themes/purple/index.css';
+@import './themes/red/index.css';
+@import './themes/green/index.css';
+@import './themes/windows/index.css';
+/* vue 动画 */
+@import './transition/index.css';
+/* 重写的样式 包括浏览器代理样式表和 element-ui 的样式覆写 */
+@import './override/index.css';
+
+/*去除浏览器默认样式*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+}
+
+/* 浏览器 选中字体 颜色*/
+::selection {
+    background-color: var(--app_theme);
+    color: var(--app_bg);
+}

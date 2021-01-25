@@ -1,0 +1,4 @@
+:root {
+    --right-panel_bg: rgba(255, 255, 255, 0.4);
+    --right-panel_backdrop-filter: blur(8px);
+}

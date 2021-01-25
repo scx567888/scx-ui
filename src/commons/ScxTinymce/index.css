@@ -1,0 +1,30 @@
+
+.tox-silver-sink {
+    z-index: 4000 !important;
+}
+
+.tinymce-container {
+    position: relative;
+    line-height: normal;
+}
+
+.editor-custom-btn-container {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    z-index: 1000;
+}
+
+.fullscreen .editor-custom-btn-container {
+    z-index: 1201;
+    position: fixed;
+}
+
+.editor-upload-btn {
+    display: inline-block;
+    margin-right: 1px;
+}
+
+.tinymce-upload-icon {
+    fill: whitesmoke;
+}

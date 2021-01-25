@@ -1,0 +1,4 @@
+.el-card {
+    background-color: var(--card_bg);
+    border-color: var(--card_border-color);
+}

@@ -1,0 +1,8 @@
+/*低特效模式 禁用所有动画*/
+:root[low-special-effect='true'] *,
+:root[low-special-effect='true'] *:hover,
+:root[low-special-effect='true'] *:after {
+    backdrop-filter: unset !important;
+    transition: unset !important;
+    animation: unset !important;
+}

@@ -1,0 +1,150 @@
+/*登录主背景*/
+.login-bg {
+    background: radial-gradient(ellipse, transparent, #000000);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    perspective: 340px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: login-bg 60s linear infinite;
+}
+
+@keyframes login-bg {
+    0% {
+        background-color: #050526;
+    }
+    25% {
+        background-color: #002e20;
+    }
+    50% {
+        background-color: #300030;
+    }
+    75% {
+        background-color: #1e0044;
+    }
+    100% {
+        background-color: #050526;
+    }
+
+}
+
+/*登录表单背景*/
+.login-form-bg {
+    padding: 20px 20px 25px 20px;
+    width: 400px;
+    border-radius: 10px;
+    transition: all 0.3s ease-out;
+}
+
+/*鼠标移入使背景明显*/
+.login-form-bg:hover {
+    background: rgb(30, 30, 30);
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.3);
+}
+
+/*登录页所有的图标颜色*/
+.login-form-bg svg {
+    fill: whitesmoke;
+}
+
+/*------------强制设置第三方组件在登录页的样式---------------*/
+/* tabs */
+.login-form-bg .el-tabs__nav-wrap::after {
+    background-color: transparent;
+}
+
+
+.login-form-bg .el-input__inner {
+    background: rgba(0, 0, 0, 0.1) !important;
+    height: 40px;
+    color: whitesmoke !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: hsla(0, 0%, 100%, .1);
+    padding-left: 40px;
+    border-radius: 2px;
+}
+
+.login-form-bg .el-input__inner:hover {
+    border-color: #40a9ff;
+
+}
+
+.login-form-bg .el-input__inner:focus {
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.login-form-bg .el-input__prefix {
+    left: 15px;
+}
+
+.login-form-bg .el-tabs__item {
+    color: rgba(255, 252, 248, 0.85);
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.login-form-bg .el-tabs__item.is-active,
+.login-form-bg .el-tabs__item:hover {
+    color: #1890ff;
+}
+
+/*----------------强制设置第三方组件在登录页的样式----------------*/
+
+/*登录标题*/
+.title-container {
+    margin-bottom: 1%;
+    position: relative;
+}
+
+/*scx logo*/
+.title-container > svg {
+    height: 44px;
+    width: 50px;
+    fill: #1890ff;
+    vertical-align: top;
+    margin-right: 2%;
+    margin-left: 19%;
+    margin-top: 4px;
+    transition: all 0.5s ease-out;
+}
+
+.title-container > svg:hover {
+    fill: #489349;
+}
+
+/*标题文字*/
+.title-container > span {
+    font-size: 33px;
+    color: rgba(255, 252, 248, 0.85);
+    font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+/*设置语言的角标*/
+.title-container .set-language {
+    position: absolute;
+    top: 3px;
+    font-size: 18px;
+    right: 3px;
+    cursor: pointer;
+}
+
+/*右下角标识*/
+.login-footer {
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    color: rgba(120, 120, 120, 0.1);
+    transition: all 0.5s ease-out;
+}
+
+.login-footer:hover {
+    color: rgba(255, 255, 255, 0.5)
+}

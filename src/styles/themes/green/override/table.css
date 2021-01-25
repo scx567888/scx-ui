@@ -1,0 +1,18 @@
+:root[theme='green'] {
+    /*表格边框*/
+    --table_border-color: #ebeef5;
+    /*表格文字*/
+    --table_color: var(--app_color);
+    /*表格头*/
+    --table-head_bg: #fafafa;
+    /*表格头 文字颜色*/
+    --table-head_color: #000000;
+    /*斑马线表格 偶数行 背景色*/
+    --table-body-a_bg: #ffffff;
+    /*斑马线表格 奇数行 背景色*/
+    --table-body-b_bg: #fafafa;
+    /*斑马线表格 选中*/
+    --table-body-checked_bg: rgba(24, 144, 255, 0.2);
+    /*斑马线表格 hover 为了用户体验 在此处不对奇数偶数进行区分*/
+    --table-body-hover_bg: var(--app-hover_bg);
+}

@@ -1,0 +1,23 @@
+export default {
+    search: '搜索',
+    add: '添加',
+    edit: '编辑',
+    delete: '删除',
+    confirmNoSpace: '确定',
+    cancelNoSpace: '取消',
+    operation: '操作',
+    batchDelete: '批量删除',
+    removeDeleteArray: '移除',
+    noDataSelected: '未选中任何数据 !!!',
+    unknown: '-',
+    yes: '是',
+    no: '否',
+    revokeDeleteError: '撤销删除失败 !!!',
+    excelDownloadNow: '导出 Excel (当前页面)',
+    excelDownloadNowFilter: '导出 Excel (当前过滤条件)',
+    excelDownloadAll: '导出 Excel (全部数据)',
+    isWillBeDelete: '这将会删除',
+    allSelectedData: '所有选中数据!!!',
+    and: '并且',
+    cannotRevoke: '不能恢复!!!'
+}

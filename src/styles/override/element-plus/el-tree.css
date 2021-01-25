@@ -1,0 +1,10 @@
+/*!* 树型控件 *!*/
+/*.el-tree {*/
+/*    color: var(--app-text-color);*/
+/*    background: transparent;*/
+/*}*/
+
+/*.el-tree-node__content:hover,*/
+/*.el-tree-node:focus > .el-tree-node__content {*/
+/*    background: var(--app-hover-bg);*/
+/*}*/

@@ -1,0 +1,5 @@
+:root[theme='dark'] {
+    --popover_bg: #3c3c3c;
+    --popover_color: whitesmoke;
+    --popover_border-color: #6b6b6b;
+}

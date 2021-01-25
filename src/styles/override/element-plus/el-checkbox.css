@@ -1,0 +1,16 @@
+/*!*多选框 *!*/
+/*.el-checkbox__inner {*/
+/*    background: var(--default-bg);*/
+/*    border: 1px solid var(--default-border);*/
+/*}*/
+
+/*.el-checkbox__input.is-focus .el-checkbox__inner {*/
+/*    border: 1px solid var(--theme);*/
+/*}*/
+
+/*.el-checkbox__input.is-checked .el-checkbox__inner,*/
+/*.el-checkbox__input.is-indeterminate .el-checkbox__inner {*/
+/*    background: var(--theme);*/
+/*    border-color: var(--theme);*/
+/*}*/
+

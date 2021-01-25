@@ -1,0 +1,23 @@
+.el-message--success {
+    background: var(--message--success_bg);
+    color: var(--message--success_color);
+    border-color: var(--message--success_border-color);
+}
+
+.el-message--warning {
+    background: var(--message--warning_bg);
+    color: var(--message--warning_color);
+    border-color: var(--message--warning_border-color);
+}
+
+.el-message--info {
+    background: var(--message--info_bg);
+    color: var(--message--info_color);
+    border-color: var(--message--info_border-color);
+}
+
+.el-message--error {
+    background: var(--message--error_bg);
+    color: var(--message--error_color);
+    border-color: var(--message--error_border-color);
+}

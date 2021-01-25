@@ -1,0 +1,15 @@
+/* 面包屑动画 */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+    transition: transform var(--app_transition-duration);
+}
+
+.breadcrumb-enter-form,
+.breadcrumb-leave-to {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+.breadcrumb-move {
+    transition: transform var(--app_transition-duration);
+}

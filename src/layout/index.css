@@ -1,0 +1,19 @@
+/*整个大的布局*/
+.scx-basic-layout {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: var(--app_bg);
+    background-size: 100% 100%;
+    color: var(--app_color);
+}
+
+/*排除导航栏 之外的主容器布局*/
+.scx-main {
+    flex-flow: column;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}

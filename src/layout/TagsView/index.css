@@ -1,0 +1,97 @@
+
+.tags-view-wrapper .tags-view-item .el-icon-close {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    line-height: 16px;
+    transform-origin: 100% 50%;
+}
+
+.tags-view-wrapper .tags-view-item .el-icon-close:before {
+    transform: scale(0.6);
+    display: inline-block;
+}
+
+.tags-view-wrapper .tags-view-item .el-icon-close:hover {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+}
+
+.scx-main-tags-view {;
+    /*父元素高度不够时不进行收缩*/
+    flex-shrink: 0;
+    width: 100%;
+    background-color: rgba(109, 29, 162, 0.3);
+    height: 34px;
+    background: var(--tags-view_bg, transparent);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 3px;
+    overflow: hidden;
+}
+
+.scx-main-tags-view .tags-view-wrapper {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    background: transparent;
+    scroll-behavior: smooth;
+}
+
+.scx-main-tags-view .tags-view-wrapper:hover {
+    overflow-x: auto;
+}
+
+.scx-main-tags-view .tags-view-wrapper .tags-view-item {
+    flex-shrink: 0;
+    height: 24px;
+    cursor: pointer;
+    margin-top: 5px;
+    line-height: 24px;
+    border: 1px solid var(--tags-view_border-color);
+    color: var(--tags-view-item_color);
+    background: var(--tags-view-item_bg);
+    padding: 0 8px;
+    font-size: 12px;
+    margin-left: 5px;
+    border-radius: 1px;
+}
+
+.scx-main-tags-view .tags-view-wrapper .tags-view-item:first-of-type {
+    margin-left: 10px;
+}
+
+.scx-main-tags-view .tags-view-wrapper .tags-view-item.active {
+    background: var(--tags-view-actice_bg);
+    color: #fff;
+    border-color: var(--tags-view-actice_border-color);
+}
+
+.scx-main-tags-view .tags-view-wrapper .tags-view-item.active::before {
+    content: "";
+    background: #fff;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 2px;
+}
+
+.scroll-container {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.scroll-container:hover {
+    overflow-x: auto;
+}
+
+.scroll-container .el-scrollbar__bar {
+    bottom: 0;
+}
+
+.scroll-container .el-scrollbar__wrap {
+    height: 49px;
+    overflow: hidden;
+}

@@ -1,0 +1,5 @@
+:root[theme='windows'] {
+    --dropdown-menu__item-disable_bg: #ffffff;
+    --dialog-title-color: #606266;
+    --dialog-bg: var(--app_bg);
+}

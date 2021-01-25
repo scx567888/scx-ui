@@ -1,0 +1,13 @@
+:root {
+    /*多标签页背景色*/
+    --tags-view_bg: #ffffffbf;
+    /*多标签页下方边框颜色*/
+    --tags-view_border-color: #d8dce5;
+    /*小标签的颜色设置*/
+    --tags-view-item_bg: #ffffff;
+    --tags-view-item_border-color: #d8dce5;
+    --tags-view-item_color: var(--app_color);
+    /*激活的小标签*/
+    --tags-view-actice_border-color: var(--app_theme);
+    --tags-view-actice_bg: var(--app_theme);
+}

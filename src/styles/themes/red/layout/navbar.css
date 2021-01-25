@@ -1,0 +1,4 @@
+:root[theme='red'] {
+    /*navbar 条背景色*/
+    --navbar_bg: #ffffffbf;
+}

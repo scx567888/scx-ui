@@ -1,0 +1,5 @@
+:root[theme='red'] {
+    --dialog_bg: #ffffff;
+    --dialog_border-radius: 4px;
+    --dialog-title_color: #000000;
+}

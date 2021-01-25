@@ -1,0 +1,32 @@
+/*!*此处重写 element ui 分页 组件 的颜色*!*/
+
+/*.el-pagination.is-background .el-pager li:not(.active):hover {*/
+/*    color: var(--theme);*/
+/*}*/
+
+/*.el-pagination.is-background .el-pager li:not(.disabled).active {*/
+/*    background: var(--theme);*/
+/*}*/
+
+/*.el-pagination.is-background .btn-next,*/
+/*.el-pagination.is-background .btn-prev,*/
+/*.el-pagination.is-background .el-pager li {*/
+/*    background: var(--default-bg);*/
+/*    color: var(--input-text);*/
+/*    border-radius: var(--input-border-radius);*/
+/*}*/
+
+/*.el-pagination.is-background .btn-next:disabled,*/
+/*.el-pagination.is-background .btn-prev:disabled,*/
+/*.el-pagination.is-background .el-pager li.disabled {*/
+/*    background: var(--default-disable-bg);*/
+/*    color: var(--default-disable-text);*/
+/*}*/
+
+/*.el-pagination__total {*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-pagination__jump {*/
+/*    color: var(--input-text);*/
+/*}*/

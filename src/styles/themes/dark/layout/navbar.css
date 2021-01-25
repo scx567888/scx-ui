@@ -1,0 +1,4 @@
+:root[theme='dark'] {
+    /*navbar 条背景色*/
+    --navbar_bg: rgba(16, 16, 16, 0.75);
+}

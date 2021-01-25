@@ -1,0 +1,4 @@
+:root[theme='red'] {
+    --right-panel_bg: rgba(228, 54, 54, 0.1);
+    --right-panel_backdrop-filter: unset;
+}

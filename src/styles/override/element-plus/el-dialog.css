@@ -1,0 +1,12 @@
+/*此处重写 element ui 的 dialog 组件 的颜色*/
+.el-dialog {
+    background: var(--dialog_bg);
+    border-radius: var(--dialog_border-radius);
+    resize: both;
+    overflow: auto;
+}
+
+.el-dialog__title {
+    color: var(--dialog-title_color);
+}
+

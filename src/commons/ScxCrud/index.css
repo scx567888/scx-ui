@@ -1,0 +1,114 @@
+.scx-crud {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.scx-crud > header {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.scx-crud > main {
+    margin-bottom: 5px;
+}
+
+/*表格头里的元素*/
+.scx-crud .header-item,
+.scx-crud .footer-item {
+    float: left;
+    margin-right: 5px;
+    margin-left: 0 !important;
+}
+
+/*表格表头默认主题的颜色*/
+.scx-crud .scx-dialog .scx-dialog-item-inline .el-form-item__content {
+    width: 624px;
+}
+
+/*重写开关大小*/
+.scx-crud .scx-dialog .el-switch {
+    width: 196px;
+}
+
+/*修复时间选择器 宽度错误*/
+.scx-crud .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 100%;
+}
+
+/*弹出框 为一列时的 css */
+.scx-crud .scx-dialog-inline {
+    width: 400px;
+    margin-left: 50px;
+}
+
+.scx-crud .el-input--suffix .el-input__inner {
+    padding-right: 15px;
+}
+
+/*修复下拉选 宽度错误*/
+.scx-crud .el-input--prefix .el-input__inner {
+    padding-right: 0;
+}
+
+.scx-crud .el-input-number--medium {
+    width: 206px;
+}
+
+.scx-crud .batchDeleteMessage {
+    font-size: 20px;
+    color: #ff775e;
+    margin: 5px 5px 20px 20px;
+    animation: changeshadow 1s ease-in infinite;
+}
+
+
+@keyframes changeshadow {
+    0% {
+        text-shadow: 0 0 4px #ff775e
+    }
+    50% {
+        text-shadow: 0 0 40px #ff775e
+    }
+    100% {
+        text-shadow: 0 0 4px #ff775e
+    }
+}
+
+.scx-crud .scx-dialog-group-item,
+.scx-crud .btn-add-group {
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--app-hover_bg);
+    border: 1px dashed var(--input-border);
+    margin-bottom: 5px;
+}
+
+.scx-crud .tableColumnLink {
+    color: var(--app_theme);
+}
+
+.scx-crud .tableColumnLink:focus,
+.scx-crud .tableColumnLink:hover {
+    color: var(--app-hover_bg);
+    text-decoration: underline;
+}
+
+.scx-crud textarea {
+    font-family: inherit;
+}
+
+/*添加修改页面的 label 使其变宽*/
+.scx-crud .el-form-item__label {
+    font-weight: 700;
+}
+
+.scx-crud .el-overlay {
+    overflow: auto;
+}
+
+/*修复表头和表格宽度不一致 bug*/
+.scx-crud .scx-right-table .el-table th.gutter {
+    display: table-cell !important;
+}

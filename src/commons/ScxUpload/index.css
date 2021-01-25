@@ -1,0 +1,98 @@
+.upload-btn > span {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.upload-btn > span > .scx-icon {
+    fill: whitesmoke;
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: 5px;
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.file-list-item {
+    position: relative;
+    display: flex;
+    border: 1px solid var(--app_border-color);
+    box-sizing: border-box;
+    border-radius: var(--input-border-radius);
+    padding: 6px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--dialog_bg);
+    transition: all 0.1s ease-out;
+    overflow: hidden;
+}
+
+.file-list-item:hover {
+    background: var(--app-hover_bg);
+    border-color: var(--app_theme);
+}
+
+.file-list-item > div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-list-item > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-list-item .file-list-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60px;
+    margin-left: 10px;
+
+}
+
+.file-list-item .file-list-info > span:nth-child(1) {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+    transition: all 0.1s ease-out;
+
+}
+
+.file-list-item .file-list-info > span:nth-child(1):hover {
+    color: var(--app_theme);
+}
+
+.file-list-item .file-list-info > span:nth-child(2) {
+    transition: all 0.1s ease-out;
+    color: var(--app_border-color);
+}
+
+.file-list-item .file-list-info > span:nth-child(2):hover {
+    color: unset;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px 3px 3px 3px;
+    transition: all 0.1s ease-in-out;
+}
+
+.remove-btn:hover {
+    background-color: #f96363;
+}
+.remove-btn:hover>.scx-icon {
+    fill: whitesmoke;
+}

@@ -1,0 +1,49 @@
+/*.el-select-dropdown {*/
+/*    border-radius: var(--input-border-radius);*/
+/*}*/
+
+/*!*下拉菜单*!*/
+/*.el-dropdown-menu {*/
+/*    border-radius: var(--input-border-radius);*/
+/*    background: var(--input-bg);*/
+/*    border: 1px solid var(--input-border);*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-dropdown-menu__item {*/
+/*    color: var(--input-text);*/
+/*}*/
+
+/*.el-dropdown-menu__item.is-disabled {*/
+/*    background: var(--el-dropdown-menu__item-disable_bg);*/
+/*    color: var(--theme);*/
+/*}*/
+
+
+/*.el-dropdown-menu__item:focus,*/
+/*.el-dropdown-menu__item:not(.is-disabled):hover {*/
+/*    background: var(--app-hover-bg);*/
+/*    color: var(--theme)*/
+/*}*/
+
+.el-dropdown-menu__item:focus svg,
+.el-dropdown-menu__item:not(.is-disabled):hover svg {
+    fill: var(--app_theme);
+}
+
+/*.el-dropdown-menu__item--divided:before {*/
+/*    background: var(--input-bg);*/
+/*}*/
+
+/*.el-dropdown-menu__item--divided {*/
+/*    border-top: 1px solid var(--input-border);*/
+/*}*/
+
+/*!*下拉框的小箭头*!*/
+/*.el-popper[x-placement^=bottom] .popper__arrow::after {*/
+/*    border-bottom-color: var(--input-bg);*/
+/*}*/
+
+/*.el-popper[x-placement^=bottom] .popper__arrow {*/
+/*    border-bottom-color: var(--input-border);*/
+/*}*/

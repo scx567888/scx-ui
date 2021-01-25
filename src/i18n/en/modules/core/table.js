@@ -1,0 +1,23 @@
+export default {
+    search: 'Search',
+    add: 'Add',
+    edit: 'Edit',
+    delete: 'Delete',
+    confirmNoSpace: 'Confirm',
+    cancelNoSpace: 'Cancel',
+    operation: 'Operation',
+    batchDelete: 'Batch Delete',
+    removeDeleteArray: 'Remove',
+    noDataSelected: 'No Data Selected !!!',
+    unknown: 'Unknown',
+    yes: 'Yes',
+    no: 'No',
+    revokeDeleteError: 'Revoke Delete Error !!!',
+    excelDownloadNow: 'Download Now Excel',
+    excelDownloadNowFilter: 'Download Excel NowFilter',
+    excelDownloadAll: 'Download All Excel',
+    isWillBeDelete: 'Is Will Be Delete',
+    allSelectedData: 'All Selected Data !!!',
+    and: 'And',
+    cannotRevoke: 'Cannot Revoke!!!'
+}
