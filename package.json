@@ -12,13 +12,13 @@
     "build": "vite build"
   },
   "dependencies": {
-    "element-plus": "^1.0.2-beta.28",
+    "element-plus": "^1.0.2-beta.30",
     "vue": "^3.0.5",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.2",
     "@vue/compiler-sfc": "^3.0.5",
-    "vite": "^2.0.0-beta.46"
+    "vite": "^2.0.0-beta.49"
   }
 }
