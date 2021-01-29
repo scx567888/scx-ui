@@ -276,7 +276,6 @@ export default {
     const crudConfig = reactive({
       editShow: false,//添加 修改 删除 或恢复删除 时 右侧通知消息 显示的字段
       modelName: false,//实体类的名称  用于构建 Api 和国际化
-      module: false,//实体类所属的模块用于构建 Api
       tableInline: true,//添加  或修改 弹出页面是否显示为 两列 默认为两列
       labelWidth: '100px',//添加 和修改页面的 label 的宽度 默认 '100px'
       dialogWidth: '50%',//弹出框的宽度 默认50%
@@ -312,7 +311,7 @@ export default {
     new function initCrudConfig() {
       Object.assign(crudConfig, props.scxCrudConfig);
       crudConfig.editShow = props.scxCrudConfig.editShow ? props.scxCrudConfig.editShow : props.scxCrudItems[0].prop;
-      const baseCrudApi = '/api/' + crudConfig.module + '/' + crudConfig.modelName;
+      const baseCrudApi = '/api/' + crudConfig.modelName;
       crudConfig.listApi = props.scxCrudConfig.listApi ? props.scxCrudConfig.listApi : baseCrudApi + '/list';
       crudConfig.createApi = props.scxCrudConfig.createApi ? props.scxCrudConfig.createApi : baseCrudApi;
       crudConfig.deleteApi = props.scxCrudConfig.deleteApi ? props.scxCrudConfig.deleteApi : baseCrudApi + '/';
