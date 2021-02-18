@@ -6,6 +6,8 @@ export default {
         port: 9999,
     },
     base: '/',
-    alias: {'/@': __dirname + '/src'},
+    resolve: {
+        alias: {'/@': __dirname + '/src'},
+    },
     plugins: [vue(), viteSpriteSvg({iconPrefix: 'scx-icon-', svgRootPath: __dirname + '/src/icons'})]
 }
