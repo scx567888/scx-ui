@@ -2,9 +2,6 @@
     <img src="http://scx.cool/img/scx-ui-logo.svg" width="300px"  alt="scx-logo"/>
 </p>
 <p align="center">
-    <a target="_blank" href="https://dev.azure.com/scx567888/scx-ui/_build/latest?definitionId=2&branchName=master">
-        <img src="https://dev.azure.com/scx567888/scx-ui/_apis/build/status/scx567888.scx-ui?branchName=master"/>
-    </a>
     <a target="_blank" href="https://github.com/scx567888/scx-ui">
         <img src="https://img.shields.io/github/package-json/v/scx567888/scx-ui?color=blueviolet"/>
     </a> 
