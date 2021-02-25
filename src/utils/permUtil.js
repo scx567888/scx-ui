@@ -65,7 +65,7 @@ function getUserInfo() {
 // user logout
 function logout() {
     return new Promise((resolve, reject) => {
-        request.post('/api/core/user/logout', getToken()).then(() => {
+        request.post('/api/user/logout').then(() => {
             removeToken();
             removeUserState();
             resetRouter();

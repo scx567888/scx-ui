@@ -1,11 +1,13 @@
 <template>
   <div>
     <h1>首页</h1>
-    <button @click="getaaa">获取数据 1 websocket</button>
-    <button @click="getbbb">获取数据2 websocket</button>
-    <button @click="getaaa1">获取数据1 http</button>
-    <button @click="getbbb1">获取数据2 http</button>
-    {{ data }}毫秒
+    消息
+    <textarea v-model="message"/>
+    发送的用户
+    <select v-model="selectUser" style="width: 100px">
+      <option v-for="a in allOnlineUser" :value="a.user.username">{{ a.user.nickName }}</option>
+    </select>
+    <button @click="sendData">发送信息</button>
   </div>
 
 </template>
@@ -19,49 +21,37 @@ import request from "../../utils/request";
 export default {
   name: 'Dashboard',
   setup() {
-    const data = ref("");
 
-    function getaaa() {
-      var param = {method: 'reson:ProjectNoteService.save', params: {entity: {limit:10,page:2,username: "哈哈行昂a!!!"}}};
-      var a = new Date();
+    const allOnlineUser = ref([]);
+    const selectUser = ref({});
+
+    const message = ref("");
+
+    function getAllOnlineUser() {
+      request.post("/api/notice/getAllOnlineUser").then(res => {
+        console.log(res)
+        allOnlineUser.value=res.onlineUserList;
+      })
+    }
+    getAllOnlineUser();
+
+    function sendData() {
+      var param = {
+        type:"sendMessage",
+        sendType:"",
+        username: selectUser.value,
+        message: message
+      };
       sendMessage(param, (res) => {
-        data.value = new Date() - a + "";
+        console.log(res)
       });
     }
-
-
-    function getaaa1() {
-      var a = new Date();
-      request.post("/api/reson/ProjectNote/list", {}).then((res) => {
-            data.value = new Date() - a + "";
-          }
-      )
-
-    }
-
-    function getbbb() {
-      var param = {method: 'ProjectNoteService.getCount', params: {name: "哈哈行昂a!!!"}};
-      var a = new Date();
-      sendMessage(param, (res) => {
-        data.value = new Date() - a + "";
-      });
-    }
-
-    function getbbb1() {
-      var a = new Date();
-      request.post("/api/reson/projectNote/count", {}).then((res) => {
-            data.value = new Date() - a + "";
-          }
-      )
-    }
-
 
     return {
-      data,
-      getaaa,
-      getaaa1,
-      getbbb,
-      getbbb1
+      message,
+      sendData,
+      selectUser,
+      allOnlineUser
     }
   }
 }

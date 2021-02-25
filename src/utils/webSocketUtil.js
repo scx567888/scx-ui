@@ -2,6 +2,7 @@ import scxConfig from "../../scx.config.js";
 import {ElMessage, ElNotification} from "element-plus";
 import {ref, watch} from "vue";
 import {getNowTimeStr, getUUID} from "./index";
+import {getToken} from "./permUtil";
 
 let webSocket = null;
 const isOpened = ref(0);
@@ -12,6 +13,11 @@ watch(isOpened, (newVal) => {
     if (newVal === 1) {
         ElMessage.success("连接成功");
         console.log("连接成功");
+        //尝试 将此 websocket 进行认证
+        sendMessage({type: "login", token: getToken()}, (e) => {
+            console.log(e)
+            ElMessage.success("欢迎回来 "+e.message.nickName+" !!!");
+        })
     } else {
         ElMessage.error("连接关闭");
         console.log("连接关闭");
@@ -19,7 +25,7 @@ watch(isOpened, (newVal) => {
 })
 
 function createWebSocket() {
-    const url = 'ws://' + scxConfig.baseApi.split("//")[1] + '/scx';
+    const url = 'ws://' + scxConfig.baseApi.split("//")[1] + '/notice';
     try {
         webSocket = new WebSocket(url);
         webSocket.onopen = () => {
@@ -27,9 +33,15 @@ function createWebSocket() {
         };
         webSocket.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            callBackList[message.id](message.data);
+            try{
+                callBackList[message.callBackId](message);
+            }catch (e){
+
+            }
+
+
             delete callBackList[message.id];
-            showWebSocketMessage(message);
+            showWebSocketMessage(event.data);
         }
         webSocket.onclose = () => {
             isOpened.value = 2;
@@ -49,21 +61,22 @@ function createWebSocket() {
 function sendMessage(message, callback) {
     const callBackId = getUUID();
     callBackList[callBackId] = callback;
-    message.id = callBackId
+    message.callBackId = callBackId
     webSocket.send(JSON.stringify(message));
 }
 
 function showWebSocketMessage(message) {
-    ElNotification({
-        title: message.title,
-        message: h('div', {
-            domProps: {
-                innerHTML: message.content
-            }
-        }),
-        type: 'success',
-        duration: 0
-    })
+    alert(message)
+    // ElNotification({
+    //     title: message.title,
+    //     message: h('div', {
+    //         domProps: {
+    //             innerHTML: message.content
+    //         }
+    //     }),
+    //     type: 'success',
+    //     duration: 0
+    // })
 }
 
 let lockReconnect = false;

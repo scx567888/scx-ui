@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       crudConfig: {
-        modelName: 'ProjectNote',
+        modelName: 'scxlog',
         module: 'reson',
         editShow: 'projectName',
         tableScrollBarHeight: null,
@@ -18,7 +18,7 @@ export default {
       },
       crudItems: [
         {
-          prop: 'projectName', tableWidth: '120px', isFilter: true,
+          prop: 'userIp', tableWidth: '120px', isFilter: true,
           autoComplete: true,
           hasSort: true,
           rules: {required: true, trigger: 'change'}
