@@ -92,9 +92,10 @@
 import {computed, reactive, ref} from 'vue'
 import {useRoute, useRouter} from 'vue-router'
 import {t} from "../../../i18n";
-import {login} from "../../../utils/permUtil";
+import {getToken, login} from "../../../utils/permUtil";
 import request from "../../../utils/request";
 import {ElMessage} from "element-plus";
+import {sendMessage} from "../../../utils/webSocketUtil";
 
 export default {
   name: "login",
@@ -169,6 +170,10 @@ export default {
         if (valid) {
           loginForm.loginBtnLoading = true
           login(loginForm).then(() => {
+            //尝试 将此 websocket 进行认证
+            sendMessage({type: "login", token: getToken()}, (e) => {
+              ElMessage.success("欢迎回来 "+e.message.nickName+" !!!");
+            })
             router.push({path: redirect.value || '/', query: otherQuery.value})
             loginForm.loginBtnLoading = false
           }).catch(error => {

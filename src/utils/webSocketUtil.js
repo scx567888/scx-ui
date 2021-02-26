@@ -38,8 +38,6 @@ function createWebSocket() {
             }catch (e){
 
             }
-
-
             delete callBackList[message.id];
             showWebSocketMessage(event.data);
         }
@@ -66,7 +64,8 @@ function sendMessage(message, callback) {
 }
 
 function showWebSocketMessage(message) {
-    alert(message)
+    ElMessage.success(message)
+    // alert(message)
     // ElNotification({
     //     title: message.title,
     //     message: h('div', {

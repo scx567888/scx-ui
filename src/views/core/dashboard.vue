@@ -5,7 +5,7 @@
     <textarea v-model="message"/>
     发送的用户
     <select v-model="selectUser" style="width: 100px">
-      <option v-for="a in allOnlineUser" :value="a.user.username">{{ a.user.nickName }}</option>
+      <option v-for="a in allOnlineUser" :value="a">{{ a }}</option>
     </select>
     <button @click="sendData">发送信息</button>
   </div>
