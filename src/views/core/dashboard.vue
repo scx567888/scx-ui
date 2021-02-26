@@ -8,6 +8,7 @@
       <option v-for="a in allOnlineUser" :value="a">{{ a }}</option>
     </select>
     <button @click="sendData">发送信息</button>
+    <scx-upload ref="scxUploadRef" :show-preview="true" @uploadSuccess="imageSuccessCBK"/>
   </div>
 
 </template>
@@ -22,6 +23,7 @@ export default {
   name: 'Dashboard',
   setup() {
 
+    const imageSuccessCBK=(e)=>{console.log(e)};
     const allOnlineUser = ref([]);
     const selectUser = ref({});
 
@@ -51,7 +53,8 @@ export default {
       message,
       sendData,
       selectUser,
-      allOnlineUser
+      allOnlineUser,
+      imageSuccessCBK
     }
   }
 }

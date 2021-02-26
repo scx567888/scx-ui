@@ -3,7 +3,7 @@ import request from "../../utils/request";
 import scxConfig from "../../../scx.config";
 
 function validateFile(file) {
-    return request.post(scxConfig.baseApi + '/base/upload/validateFile', file).then(res => res)
+    return request.post(scxConfig.baseApi + '/api/upload/validateFile', file).then(res => res)
 }
 
 // 提交文件方法,将参数转换为FormData, 然后通过 request 发起请求
@@ -12,7 +12,7 @@ function postFile(param) {
     for (let key in param) {
         formData.append(key, param[key])
     }
-    return request.post(scxConfig.baseApi + '/base/upload', formData)
+    return request.post(scxConfig.baseApi + '/api/upload', formData)
 }
 
 
