@@ -204,7 +204,7 @@ export default {
 
     const crudContext = inject('crudContext');
     const optionArray = ref([]);
-    optionArray.value = crudContext ? computed(() => crudContext.optionArray[easyItemConfig.prop]) : props.option;
+
 
     const eModel = computed({
       get() {
@@ -256,9 +256,10 @@ export default {
       } else if (easyItemConfig.type === 'link') {
         easyItemConfig.type = 'input'
       } else if (easyItemConfig.type === 'textarea') {
-        easyItemConfig.type = 'textarea'
+        easyItemConfig.type = 'input'
         easyItemConfig.maxlength = 200
         easyItemConfig.showWordLimit = true
+        easyItemConfig.textareaType = "textarea"
       } else if (easyItemConfig.type === 'password') {
         easyItemConfig.type = 'input'
         easyItemConfig.showPassword = true
@@ -270,6 +271,7 @@ export default {
         }
       }
     }
+    optionArray.value = crudContext ? computed(() => crudContext.optionArray[easyItemConfig.prop]).value : props.option;
 
     //下拉选等的数据
     function getSelectOptionLabel(option) {
@@ -302,6 +304,8 @@ export default {
       // 调用 callback 返回建议列表的数据
       cb(results);
     }
+
+    console.log(optionArray.value)
 
     return {
       easyItemConfig,

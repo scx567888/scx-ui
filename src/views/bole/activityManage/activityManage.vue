@@ -49,19 +49,8 @@ export default {
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/MerchantManage/list',
+          buildUrl: '/api/merchantManage/list',
           labelProp: 'merchantName',
-          valueProp: 'id',
-          rules: {trigger: 'change', required: true,}
-        },
-        {
-          filterWidth: '200px',
-          prop: 'storeId',
-          width: '350px',
-          isFilter: true,
-          type: 'select',
-          buildUrl: '/api/bole/StoreManage/list',
-          labelProp: 'storeName',
           valueProp: 'id',
           rules: {trigger: 'change', required: true,}
         },
@@ -71,7 +60,7 @@ export default {
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/teacherManage/list',
+          buildUrl: '/api/teacherManage/list',
           labelProp: 'teacherName',
           valueProp: 'id',
           rules: {trigger: 'change', required: true,}

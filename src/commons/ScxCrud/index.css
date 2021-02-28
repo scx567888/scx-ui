@@ -23,8 +23,8 @@
 }
 
 /*表格表头默认主题的颜色*/
-.scx-crud .scx-dialog .scx-dialog-item-inline .el-form-item__content {
-    width: 624px;
+.scx-crud  .scx-dialog-item-inline .el-form-item__content {
+    width: 624px !important;
 }
 
 /*重写开关大小*/
