@@ -161,7 +161,7 @@ export default {
 
 
     async function removeFile(file) {
-      const msg = await request.delete('/api/core/uploadFile/' + file.id, {}).then(res => res.message);
+      const msg = await request.delete('/api/uploadFile/' + file.id, {}).then(res => res.message);
       if (msg === 'success') {
         const index = fileList.value.indexOf(file);
         fileList.value.splice(index, 1);
@@ -173,7 +173,7 @@ export default {
     }
 
     function getList(fileIds) {
-      request.post('/api/core/uploadFile/listByIds', {
+      request.post('/api/uploadFile/listByIds', {
         page: 1,
         limit: -1,
         sort: "desc",
@@ -195,7 +195,7 @@ export default {
       })
     }
 
-    const handleClick = ({realUrl}) => download(scxConfig.baseApi + '/base/download/' + realUrl);
+    const handleClick = ({filePath}) => download(scxConfig.baseApi + '/api/download/' + filePath);
 
 
     //清楚事件给外部调用
@@ -231,7 +231,7 @@ export default {
       // }
     })
 
-    const getRealUrl = (item) => scxConfig.baseApi + '/base/download/' + item.filePath;
+    const getRealUrl = (item) => scxConfig.baseApi + '/api/showPicture/' + item.filePath;
 
 
     // getList(props.modelValue)
