@@ -53,7 +53,7 @@ export default {
         },
         {
           prop: 'address', maxlength: 1000, width: '200px',
-          showOverflowTooltip: true,
+          showOverflowTooltip: true,//todo
           type: 'textarea',
           inline: true,
           rules: {required: true}
