@@ -10,7 +10,7 @@ export default {
         {
             icon: 'alert',
             path: 'activity-manage',
-            component: () => import('/@/views/bole/activityManage/activityManage.vue'),
+            component: () => import('/@/views/bole/activityManage.vue'),
             name: 'activityManage',
             perms: [
                 {
@@ -46,7 +46,7 @@ export default {
         {
             icon: 'profile',
             path: 'course-manage',
-            component: () => import('/@/views/bole/courseManage/courseManage.vue'),
+            component: () => import('/@/views/bole/courseManage.vue'),
             name: 'courseManage',
             perms: [
                 {
@@ -82,7 +82,7 @@ export default {
         {
             icon: 'peoples',
             path: 'teacher-manage',
-            component: () => import('/@/views/bole/teacherManage/teacherManage.vue'),
+            component: () => import('/@/views/bole/teacherManage.vue'),
             name: 'teacherManage',
             perms: [
                 {
@@ -124,7 +124,7 @@ export default {
             children: [
                 {
                     path: 'store-manage',
-                    component: () => import('/@/views/bole/storeManage/storeManage.vue'),
+                    component: () => import('/@/views/bole/storeManage.vue'),
                     name: 'storeManage',
                     perms: [
                         {
@@ -159,7 +159,7 @@ export default {
                 },
                 {
                     path: 'store-type-manage',
-                    component: () => import('/@/views/bole/storeTypeManage/storeTypeManage.vue'),
+                    component: () => import('/@/views/bole/storeTypeManage.vue'),
                     name: 'storeTypeManage',
                     perms: [
                         {
@@ -197,7 +197,7 @@ export default {
         {
             icon: 'pushpin',
             path: 'orderCode-manage',
-            component: () => import('/@/views/bole/orderCodeManage/orderCodeManage.vue'),
+            component: () => import('/@/views/bole/orderCodeManage.vue'),
             name: 'orderCodeManage',
             perms: [
                 {
@@ -213,7 +213,7 @@ export default {
         {
             icon: 'account-book',
             path: 'merchant-manage',
-            component: () => import('/@/views/bole/merchantManage/merchantManage.vue'),
+            component: () => import('/@/views/bole/merchantManage.vue'),
             name: 'merchantManage',
             perms: [
                 {
@@ -249,7 +249,7 @@ export default {
         {
             icon: 'message',
             path: 'index',
-            component: () => import('/@/views/core/instantMessaging/index.vue'),
+            component: () => import('/@/views/bole/instantMessaging.vue'),
             name: 'instantMessaging',
             perms: [
 

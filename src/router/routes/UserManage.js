@@ -10,7 +10,7 @@ export default {
         {
             icon: 'cooperate',
             path: 'user-manage',
-            component: () => import('/@/views/core/user/userManage.vue'),
+            component: () => import('/@/views/user/userManage.vue'),
             name: 'userManage',
             perms: [
                 {
@@ -46,7 +46,7 @@ export default {
         {
             icon: 'lock',
             path: 'role-manage',
-            component: () => import('/@/views/core/permission/roleManage.vue'),
+            component: () => import('/@/views/user/roleManage.vue'),
             name: 'roleManage',
             perms: [
                 {
@@ -82,7 +82,7 @@ export default {
         {
             icon: 'tree',
             path: 'dept-manage',
-            component: () => import('/@/views/core/organization/deptManage.vue'),
+            component: () => import('/@/views/user/deptManage.vue'),
             name: 'deptManage',
             perms: [
                 {

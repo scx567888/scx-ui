@@ -21,7 +21,7 @@ export default {
         },
         {
             path: 'log-manage',
-            component: () => import('/@/views/core/permission/logManage.vue'),
+            component: () => import('/@/views/core/system/logManage.vue'),
             name: 'logManage',
             perms: []
         }

@@ -9,7 +9,7 @@ export default [
         children: [
             {
                 path: 'dashboard',
-                component: () => import('/@/views/core/dashboard.vue'),
+                component: () => import('/@/views/base/dashboard.vue'),
                 name: 'dashboard',
                 icon: 'dashboard',
                 affix: true
@@ -19,7 +19,7 @@ export default [
     //默认登录界面
     {
         path: '/login',
-        component: () => import('/@/views/core/login/index.vue'),
+        component: () => import('/@/views/base/login/index.vue'),
         hidden: true
     },
     {
@@ -30,7 +30,7 @@ export default [
         children: [
             {
                 path: 'index',
-                component: () => import('/@/views/core/profile/index.vue'),
+                component: () => import('/@/views/base/profile/index.vue'),
                 name: 'profile',
                 icon: 'user',
                 noCache: true
