@@ -1,5 +1,5 @@
 export default {
-    courseName: 'courseName',
+    activityName: 'activityName',
     remarks: 'remarks',
     price: 'price',
     originalPrice: 'originalPrice',
@@ -10,6 +10,8 @@ export default {
     merchantId: 'merchantId',
     storeId: 'storeId',
     teacherAccount: 'teacherAccount',
-    courseOrderBy: 'courseOrderBy',
-    thisStatus: 'status',
+    activityOrderBy: 'activityOrderBy',
+    thisStatus: 'thisStatus',
+    contacts: 'contacts',
+    phone: 'phone',
 }

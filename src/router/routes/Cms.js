@@ -14,14 +14,14 @@ export default {
             name: 'column',
             perms: []
         }, {
-            path: 'article-manage',
+            path: 'article',
             component: () => import('/@/views/cms/article.vue'),
-            name: 'articleManage',
+            name: 'article',
             perms: []
         }, {
-            path: 'template-manage',
-            component: () => import('/@/views/cms/templateManage.vue'),
-            name: 'templateManage',
+            path: 'template',
+            component: () => import('/@/views/cms/template.vue'),
+            name: 'template',
             perms: []
         },
     ]
