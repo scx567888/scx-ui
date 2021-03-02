@@ -116,8 +116,8 @@ export default {
             ]
         },
         {
-            path: '/store-manage',
-            component: Layout,
+            path: 'store-manage',
+            component: () => import('/@/views/core/threerouter.vue'),
             alwaysShow: true, //总在根目录显示
             name: 'storeManage',
             icon: 'home',
