@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       crudConfig: {
-        modelName: 'User',
+        modelName: 'user',
         editShow: 'username',
         module: 'core'
       },

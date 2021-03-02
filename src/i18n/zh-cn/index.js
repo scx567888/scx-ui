@@ -5,7 +5,7 @@ import setting from './modules/_scx/setting'
 import tagsView from './modules/_scx/tagsView'
 import table from './modules/_scx/table'
 import login from './modules/base/login'
-import User from './modules/user/User'
+import user from './modules/user/user'
 import Article from './modules/cms/Article'
 import Column from './modules/cms/Column'
 import ProjectNote from './modules/system/ProjectNote'
@@ -25,7 +25,7 @@ const modules = {
     'setting': setting,
     'table': table,
     'tagsView': tagsView,
-    'User': User,
+    'user': user,
     'Article': Article,
     'Column': Column,
     'Dic': Dic,
