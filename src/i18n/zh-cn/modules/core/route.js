@@ -19,6 +19,7 @@ export default {
     processNode: '节点管理',
     processTowards: '走向管理',
     logManage: '日志查看',
+    bole:'博乐教育',
 // aaa
     organizationManage: '组织机构管理',
     deptManage: '部门管理',

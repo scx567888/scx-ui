@@ -18,6 +18,12 @@ export default {
             component: () => import('/@/views/core/system/test.vue'),
             name: 'test',
             perms: []
+        },
+        {
+            path: 'log-manage',
+            component: () => import('/@/views/core/permission/logManage.vue'),
+            name: 'logManage',
+            perms: []
         }
     ]
 }

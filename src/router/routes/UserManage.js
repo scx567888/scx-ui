@@ -8,6 +8,7 @@ export default {
     icon: 'cooperate',
     children: [
         {
+            icon: 'cooperate',
             path: 'user-manage',
             component: () => import('/@/views/core/user/userManage.vue'),
             name: 'userManage',
@@ -43,38 +44,59 @@ export default {
             ]
         },
         {
-            path: 'student-manage',
-            component: () => import('/@/views/reson/userManage/studentManage.vue'),
-            name: 'studentManage',
+            icon: 'lock',
+            path: 'role-manage',
+            component: () => import('/@/views/core/permission/roleManage.vue'),
+            name: 'roleManage',
             perms: [
                 {
-                    id: 'Student:list',
+                    id: 'Role:list',
                     label: 'list'
                 },
                 {
-                    id: 'Student:info',
+                    id: 'Role:info',
                     label: 'info'
                 },
                 {
-                    id: 'Student:save',
+                    id: 'Role:save',
                     label: 'save'
                 },
                 {
-                    id: 'Student:update',
+                    id: 'Role:update',
                     label: 'update'
                 },
                 {
-                    id: 'Student:delete',
+                    id: 'Role:delete',
                     label: 'delete'
                 },
                 {
-                    id: 'Student:batchDelete',
+                    id: 'Role:batchDelete',
                     label: 'batchDelete'
                 },
                 {
-                    id: 'Student:revokeDelete',
+                    id: 'Role:revokeDelete',
                     label: 'revokeDelete'
                 }
+            ]
+        },
+        {
+            icon: 'tree',
+            path: 'dept-manage',
+            component: () => import('/@/views/core/organization/deptManage.vue'),
+            name: 'deptManage',
+            perms: [
+                {
+                    id: 'Dept:save',
+                    label: 'save'
+                },
+                {
+                    id: 'Dept:update',
+                    label: 'update'
+                },
+                {
+                    id: 'Dept:delete',
+                    label: 'delete'
+                },
             ]
         }
     ]
