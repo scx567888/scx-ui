@@ -5,7 +5,7 @@ export default {
     server: {
         port: 9999,
     },
-    base: '/',
+    base: './',
     resolve: {
         alias: {'/@': __dirname + '/src'},
     },
