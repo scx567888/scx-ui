@@ -308,14 +308,14 @@ export default {
     function sortTable(headItem) {
       if (headItem.hasSort) {
         if (sortType.prop === headItem.prop) {
-          if (sortType.order === 'asc') {
-            sortType.order = 'desc';
+          if (sortType.sortType === 'asc') {
+            sortType.sortType = 'desc';
           } else {
-            sortType.order = 'asc';
+            sortType.sortType = 'asc';
           }
         } else {
           sortType.prop = headItem.prop;
-          sortType.order = 'asc';
+          sortType.sortType = 'asc';
         }
         context.emit('sort-change', sortType)
       }

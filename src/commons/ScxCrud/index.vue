@@ -40,7 +40,7 @@
         <!--查询列 开始-->
         <div v-for="(col,index) in scxCrudItems.filter(c=>c.isFilter)" :key="index"
              class="header-item">
-          <scx-easy-item v-model="crudContext.queryParam[col.prop]"
+          <scx-easy-item v-model="crudContext.queryParam.queryObject[col.prop]"
                          :isFilter="true"
                          :placeholder="col.label||t(crudConfig.modelName+'.'+col.prop)"
                          :scx-easy-item-config="col"
@@ -404,7 +404,7 @@ export default {
       temp: {},//数据操作的临时对象 !!!很重要!!!
       tableBody: [],//整个表格列表的数据
       tableLoading: true,//table 加载状态
-      queryParam: {page: 0, limit: 10, sort: 'desc', orderBy: 'id'},//查询参数 page : 请求页数 , limit : 一页数量 ,sort : 正序还是倒序 ,orderBy : 排序依据的字段 默认是根据 id 这样速度最快
+      queryParam: {page: 0, limit: 10,orderBy:{orderByColumn:'id',sortType:'desc'},queryObject:{}},//查询参数 page : 请求页数 , limit : 一页数量 ,sort : 正序还是倒序 ,orderBy : 排序依据的字段 默认是根据 id 这样速度最快
       total: 0,//总条数
       rules: {},//添加和修改页面的 表单验证条件 此值会根据 tableDate 自动构建
       handleExcelDownloadNowPageDisabled: false,//下载当前页 Excel 的条目是否禁用状态 用于防止重复点击
@@ -435,11 +435,11 @@ export default {
         }
         //如果元素属于查询列 在 queryParam 里添加当前元素的属性 并设置值为 空字符串
         if (tableEntity.isFilter) {
-          crudContext.queryParam[tableEntity.prop] = ''
+          crudContext.queryParam.queryObject[tableEntity.prop] = ''
         }
         //默认过滤项参数 一般用法为设置此值 但是隐藏此项 实现页面初始化过滤
         if (tableEntity.defaultFilterValue !== undefined) {
-          crudContext.queryParam[tableEntity.prop] = tableEntity.defaultFilterValue
+          crudContext.queryParam.queryObject[tableEntity.prop] = tableEntity.defaultFilterValue
         }
         //如果页面有树 设置是否默认展开
         if (tableEntity.collapseOpen) {
@@ -760,8 +760,8 @@ export default {
 
     //点击table 表头进行排序
     function sortByProp(column) {
-      crudContext.queryParam.orderBy = column.prop
-      crudContext.queryParam.sort = column.order
+      crudContext.queryParam.orderBy.orderByColumn = column.prop
+      crudContext.queryParam.orderBy.sortType = column.sortType
       getList();
     }
 
@@ -803,7 +803,7 @@ export default {
         //如果是查询参数
         if (props.scxCrudItems[key].isFilter) {
           //将 queryParam 里对应的参数设为 null
-          crudContext.queryParam[props.scxCrudItems[key].prop] = ''
+          crudContext.queryParam.queryObject[props.scxCrudItems[key].prop] = ''
         }
       }
       //进行一次查询
@@ -959,18 +959,18 @@ export default {
         if (props.scxCrudItems[key].isFilter && props.scxCrudItems[key].type === 'select' && props.scxCrudItems[key].buildUrl) {
           try {
             let optionArrayName = crudContext.optionArray[props.scxCrudItems[key].prop];
-            let optionArrayValue = optionArrayName.find(d => d[props.scxCrudItems[key].labelProp] === queryParamCopy[props.scxCrudItems[key].prop]);
-            queryParamCopy[props.scxCrudItems[key].prop] = optionArrayValue[props.scxCrudItems[key].valueProp];
+            let optionArrayValue = optionArrayName.find(d => d[props.scxCrudItems[key].labelProp] === queryParamCopy.queryObject[props.scxCrudItems[key].prop]);
+            queryParamCopy.queryObject[props.scxCrudItems[key].prop] = optionArrayValue[props.scxCrudItems[key].valueProp];
           } catch (e) {
 
           }
         }
       }
-      let filteredQueryParam = filterParams(queryParamCopy);
+      queryParamCopy.queryObject = filterParams(queryParamCopy.queryObject);
       if (!crudConfig.hasPagination) {
-        filteredQueryParam.limit = -1
+        queryParamCopy.limit = -1
       }
-      request.post(crudConfig.listApi, filteredQueryParam).then(response => {
+      request.post(crudConfig.listApi, queryParamCopy).then(response => {
         crudContext.tableBody = response.items;
         crudContext.total = response.total;
         crudContext.tableLoading = false
