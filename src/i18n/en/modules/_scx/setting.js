@@ -4,6 +4,11 @@ export default {
     tagsView: 'Open Tags-View',
     sidebarLogo: 'Sidebar Logo',
     lowSpecialEffect: 'Low Effect',
-    horizontalMode: 'Horizontal',
-    setLanguageSuccess: 'Switch Language Success'
+    layoutMode: 'Layout',
+    mainTransitionAnimation: 'Animation',
+    enlarge: 'Enlarge',
+    fade: 'Fade',
+    threeDRotate: '3D',
+    setLanguageSuccess: 'Switch Language Success',
+    watermarkState: 'Watermark'
 }

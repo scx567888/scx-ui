@@ -5,10 +5,9 @@ export default {
     size: 'Global Size',
     screenFull: 'Screen Full',
     headerSearch: 'Header Search',
-    default: 'Big',
+    big: 'Big',
     medium: 'Medium (Default)',
     small: 'Small',
-    mini: 'Mini',
     switchSizeSuccess: 'Switch Size Success',
     langSelect: 'Lang Select',
     search: 'Search'
