@@ -27,6 +27,7 @@ function checkIdCard(rule, value, callback) {
  */
 function checkPhoneNumber(rule, value, callback) {
     if (value === '' || value === undefined) {
+        console.log(callback)
         callback(new Error("电话号码不能为空"))
     } else {
         const reg = /^1[3456789]\d{9}$/
