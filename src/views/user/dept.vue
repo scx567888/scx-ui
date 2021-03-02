@@ -47,9 +47,9 @@
 import {list2tree} from '/@/utils';
 import request from "/@/utils/request";
 import {computed, reactive, ref, watch} from "vue";
-import {getPermTreeData} from "../../../utils/permUtil";
-import ScxIcon from "../../../commons/ScxIcon/index.vue";
-import {t} from "../../../i18n";
+import {getPermTreeData} from "../../utils/permUtil";
+import ScxIcon from "../../commons/ScxIcon/index.vue";
+import {t} from "../../i18n";
 
 export default {
   setup() {

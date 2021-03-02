@@ -26,7 +26,7 @@ const asyncRoutes = [
     Bole,
     // 正常这里是 404 页面 但是根据需求我们把错误页面全部重定向到首页
     //todo vue-router 新版本此处配置有变动
-    {path: '/:pathMatch(.*)*', component: () => import('/@/views/attend/attendanceList.vue'), hidden: true}
+    {path: '/:pathMatch(.*)*', component: () => import('/@/views/base/dashboard.vue'), hidden: true}
 ]
 
 

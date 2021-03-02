@@ -10,36 +10,36 @@ export default {
     children: [
         {
             path: 'project-note',
-            component: () => import('/@/views/core/system/projectNote.vue'),
+            component: () => import('/@/views/system/projectNote.vue'),
             name: 'projectNote',
             perms: []
         }, {
             path: 'test',
-            component: () => import('/@/views/core/system/test.vue'),
+            component: () => import('/@/views/system/test.vue'),
             name: 'test',
             perms: []
         },
         {
             path: 'log-manage',
-            component: () => import('/@/views/core/system/logManage.vue'),
+            component: () => import('/@/views/system/logManage.vue'),
             name: 'logManage',
             perms: []
         },
         {
             path: 'log-manage',
-            component: () => import('/@/views/core/system/logManage.vue'),
+            component: () => import('/@/views/system/logManage.vue'),
             name: 'logManage',
             perms: []
         },
         {
             path: 'log-manage',
-            component: () => import('/@/views/core/system/logManage.vue'),
+            component: () => import('/@/views/system/logManage.vue'),
             name: 'logManage',
             perms: []
         },
         {
             path: 'log-manage',
-            component: () => import('/@/views/core/system/logManage.vue'),
+            component: () => import('/@/views/system/logManage.vue'),
             name: 'logManage',
             perms: []
         }

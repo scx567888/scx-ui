@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import request from "../../../utils/request";
+import request from "../../utils/request";
 import {computed, reactive, ref, watch} from "vue";
-import {list2tree} from "../../../utils";
-import {t} from "../../../i18n";
-import {getPermTreeData} from "../../../utils/permUtil";
-import ScxIcon from '../../../commons/ScxIcon/index.vue'; //图标组件
+import {list2tree} from "../../utils";
+import {t} from "../../i18n";
+import {getPermTreeData} from "../../utils/permUtil";
+import ScxIcon from '../../commons/ScxIcon/index.vue'; //图标组件
 
 export default {
   setup() {
