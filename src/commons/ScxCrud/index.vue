@@ -912,38 +912,22 @@ export default {
 
     const getPlaceholder = (col) => col.placeholder || (crudContext.pageFlag === 'create' ? col.createPlaceholder : col.editPlaceholder);
 
-    function checkUnique(rule, value, callback) {
-      let ruleMessage = rule.message;
-      rule.message = null;
+    function checkUnique(rule, value, callback, name) {
       if (value === '' || value === undefined) {
-        callback(new Error(ruleMessage + "不能为空"))
+        callback(new Error(name + "不能为空"))
       } else {
         let p = {};
-        if (crudContext.pageFlag === 'create') {
-          p[rule.field] = value;
-        } else {
-          p[rule.field] = value;
+        p[rule.field] = value;
+        if (crudContext.pageFlag !== 'create') {
           p['id'] = crudContext.temp.id;
         }
         request.post(crudConfig.checkUniqueApi, p).then(res => {
           if (res.isUnique) {
             callback()
           } else {
-            callback(new Error(ruleMessage + '已被占用'))
+            callback(new Error(name + '已被占用'))
           }
         });
-      }
-    }
-
-    function noCheckInEdit(rule, value, callback) {
-      if (crudContext.pageFlag === 'create') {
-        if (value === '' || value === undefined) {
-          callback(new Error(rule.message))
-        } else {
-          callback()
-        }
-      } else {
-        callback()
       }
     }
 
@@ -1094,44 +1078,23 @@ export default {
     }
 
     function formatRules(modelName, routerCol) {
-      //todo hack 此处是为了处理 element 的 bug 等待 element 修复完成会删掉
-      if (routerCol.rules.validator) {
-        return {required: false}
-      }
       let tempRules = {};
-      if (routerCol.rules.showFlag) {
-        if (routerCol.rules.showFlag.includes(crudContext.pageFlag)) {
-          tempRules.required = routerCol.rules.required || true;
-          tempRules.trigger = routerCol.rules.trigger || 'blur';
-          tempRules.message = (routerCol.label || t(modelName + '.' + routerCol.prop)) + '不能为空';
-
-          if (routerCol.rules.isUnique) {
-            tempRules.message = (routerCol.label || t(modelName + '.' + routerCol.prop));
-            tempRules.validator = checkUnique
-          }
-          if (routerCol.rules.validator) {
-            tempRules.validator = routerCol.rules.validator;
-            tempRules.message = null
-          }
-          if (routerCol.noCheckInEdit) {
-            tempRules.validator = noCheckInEdit
-          }
-        }
-      } else {
-        tempRules.required = routerCol.rules.required || true;
+      // 校验的 flag 比如密码 在创建的时候需要校验
+      // 但是修改的时候就不需要校验 就设置为 checkFlag:['create'] 即可
+      const checkFlag = routerCol.rules.checkFlag;
+      if (!checkFlag || checkFlag.includes(crudContext.pageFlag)) {
+        const colName = (routerCol.label || t(modelName + '.' + routerCol.prop));
         tempRules.trigger = routerCol.rules.trigger || 'blur';
-        tempRules.message = (routerCol.label || t(modelName + '.' + routerCol.prop)) + '不能为空';
-
-        if (routerCol.rules.isUnique) {
-          tempRules.message = (routerCol.label || t(modelName + '.' + routerCol.prop));
-          tempRules.validator = checkUnique
-        }
         if (routerCol.rules.validator) {
           tempRules.validator = routerCol.rules.validator;
-          tempRules.message = null
-        }
-        if (routerCol.noCheckInEdit) {
-          tempRules.validator = noCheckInEdit
+          tempRules.required = true
+        } else if (routerCol.rules.isUnique) {
+          tempRules.validator = (a, b, c) => checkUnique(a, b, c, colName)
+          tempRules.required = true
+          tempRules.trigger = 'blur';
+        } else {
+          tempRules.message = colName + '不能为空';
+          tempRules.required = routerCol.rules.required === undefined || routerCol.rules.required;
         }
       }
       return tempRules;

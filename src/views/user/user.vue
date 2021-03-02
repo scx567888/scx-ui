@@ -30,10 +30,9 @@ export default {
           maxlength: 15,
           noShowInTable: true,
           noShowValueInEdit: true,
-          noCheckInEdit: true,
           createPlaceholder: '请输入密码',
           editPlaceholder: '留空则不修改',
-          rules: {required: true, trigger: 'change', showFlag: ['create']}
+          rules: {required: true, trigger: 'change', checkFlag: ['create']}
         },
         {
           prop: 'idCard',
