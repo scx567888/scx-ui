@@ -21,7 +21,7 @@ export default {
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/MerchantManage/list',
+          buildUrl: '/api/merchantManage/list',
           labelProp: 'merchantName',
           valueProp: 'id',
           rules: {trigger: 'change', required: true,}
