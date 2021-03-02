@@ -104,7 +104,7 @@ export default {
           showCheckbox: true,
           collapseOpen: false,
           isFilter: true,
-          buildUrl: '/api/core/Role/list',
+          buildUrl: '/api/role/list',
           labelProp: 'roleName',
           valueProp: 'id',
           noShowInTable: true
@@ -116,7 +116,7 @@ export default {
           showCheckbox: true,//是否显示 checkbox 默认不显示
           collapseOpen: false,
           isFilter: true,
-          buildUrl: '/api/core/Dept/list',
+          buildUrl: '/api/dept/list',
           labelProp: 'deptName',
           valueProp: 'id',
           noShowInTable: true

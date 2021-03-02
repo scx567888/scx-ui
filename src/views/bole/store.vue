@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {checkPhoneNumber} from "../../../utils/constant/rules"; // 这里获取电话校验方法
+import {checkPhoneNumber} from "../../utils/constant/rules"; // 这里获取电话校验方法
 export default {
   name: 'StoreManage',
   data() {

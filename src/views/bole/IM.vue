@@ -27,7 +27,7 @@
 
 <script>
 import {ref} from "vue"
-import {sendMessage} from "../../../utils/webSocketUtil"
+import {sendMessage} from "../../utils/webSocketUtil"
 
 export default {
   name: "index",

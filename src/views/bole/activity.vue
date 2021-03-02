@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {checkPhoneNumber} from "../../../utils/constant/rules";
+import {checkPhoneNumber} from "../../utils/constant/rules";
 
 export default {
   name: 'ActivityManage',

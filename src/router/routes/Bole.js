@@ -117,7 +117,7 @@ export default {
         },
         {
             path: 'store',
-            component: () => import('/@/views/core/threerouter.vue'),
+            component: () => import('/@/views/_scx/threerouter.vue'),
             alwaysShow: true, //总在根目录显示
             name: 'store',
             icon: 'home',
@@ -197,7 +197,7 @@ export default {
         {
             icon: 'pushpin',
             path: 'orderCode',
-            component: () => import('/@/views/bole/orderCodeManage.vue'),
+            component: () => import('/@/views/bole/orderCode.vue'),
             name: 'orderCode',
             perms: [
                 {
