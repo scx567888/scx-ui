@@ -9,9 +9,9 @@ export default {
     children: [
         {
             icon: 'alert',
-            path: 'activity-manage',
-            component: () => import('/@/views/bole/activityManage.vue'),
-            name: 'activityManage',
+            path: 'activity',
+            component: () => import('/@/views/bole/activity.vue'),
+            name: 'activity',
             perms: [
                 {
                     id: 'ActivityManage:list',
@@ -45,9 +45,9 @@ export default {
         },
         {
             icon: 'profile',
-            path: 'course-manage',
-            component: () => import('/@/views/bole/courseManage.vue'),
-            name: 'courseManage',
+            path: 'course',
+            component: () => import('/@/views/bole/course.vue'),
+            name: 'course',
             perms: [
                 {
                     id: 'CourseManage:list',
@@ -81,9 +81,9 @@ export default {
         },
         {
             icon: 'peoples',
-            path: 'teacher-manage',
-            component: () => import('/@/views/bole/teacherManage.vue'),
-            name: 'teacherManage',
+            path: 'teacher',
+            component: () => import('/@/views/bole/teacher.vue'),
+            name: 'teacher',
             perms: [
                 {
                     id: 'TeacherManage:list',
@@ -116,16 +116,16 @@ export default {
             ]
         },
         {
-            path: 'store-manage',
+            path: 'store',
             component: () => import('/@/views/core/threerouter.vue'),
             alwaysShow: true, //总在根目录显示
-            name: 'storeManage',
+            name: 'store',
             icon: 'home',
             children: [
                 {
-                    path: 'store-manage',
-                    component: () => import('/@/views/bole/storeManage.vue'),
-                    name: 'storeManage',
+                    path: 'store',
+                    component: () => import('/@/views/bole/store.vue'),
+                    name: 'store',
                     perms: [
                         {
                             id: 'StoreManage:list',
@@ -158,9 +158,9 @@ export default {
                     ]
                 },
                 {
-                    path: 'store-type-manage',
-                    component: () => import('/@/views/bole/storeTypeManage.vue'),
-                    name: 'storeTypeManage',
+                    path: 'store-type',
+                    component: () => import('/@/views/bole/storeType.vue'),
+                    name: 'storeType',
                     perms: [
                         {
                             id: 'StoreTypeManage:list',
@@ -196,9 +196,9 @@ export default {
         },
         {
             icon: 'pushpin',
-            path: 'orderCode-manage',
+            path: 'orderCode',
             component: () => import('/@/views/bole/orderCodeManage.vue'),
-            name: 'orderCodeManage',
+            name: 'orderCode',
             perms: [
                 {
                     id: 'OrderCodeManage:list',
@@ -212,9 +212,9 @@ export default {
         },
         {
             icon: 'account-book',
-            path: 'merchant-manage',
-            component: () => import('/@/views/bole/merchantManage.vue'),
-            name: 'merchantManage',
+            path: 'merchant',
+            component: () => import('/@/views/bole/merchant.vue'),
+            name: 'merchant',
             perms: [
                 {
                     id: 'MerchantManage:list',
@@ -249,7 +249,7 @@ export default {
         {
             icon: 'message',
             path: 'index',
-            component: () => import('/@/views/bole/instantMessaging.vue'),
+            component: () => import('/@/views/bole/IM.vue'),
             name: 'instantMessaging',
             perms: [
 

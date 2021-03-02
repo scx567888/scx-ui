@@ -5,7 +5,7 @@ import BaseRoutes from './routes/Base'
 //用户管理
 import Bole from './routes/Bole'
 import Cms from './routes/Cms'
-import UserManage from './routes/UserManage'
+import User from './routes/User'
 import System from './routes/System'
 
 //获取项目的最基础路由
@@ -20,7 +20,7 @@ function resetRouter() {
  * 需要根据用户角色动态加载的路由
  */
 const asyncRoutes = [
-    UserManage,
+    User,
     Cms,
     System,
     Bole,

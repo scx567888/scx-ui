@@ -4,14 +4,14 @@ export default {
     path: '/user',
     component: Layout,
     alwaysShow: true, //总在根目录显示
-    name: 'userManage',
+    name: 'user',
     icon: 'cooperate',
     children: [
         {
             icon: 'cooperate',
-            path: 'user-manage',
-            component: () => import('/@/views/user/userManage.vue'),
-            name: 'userManage',
+            path: 'user',
+            component: () => import('/@/views/user/user.vue'),
+            name: 'user',
             perms: [
                 {
                     id: 'User:list',
@@ -45,9 +45,9 @@ export default {
         },
         {
             icon: 'lock',
-            path: 'role-manage',
-            component: () => import('/@/views/user/roleManage.vue'),
-            name: 'roleManage',
+            path: 'role',
+            component: () => import('/@/views/user/role.vue'),
+            name: 'role',
             perms: [
                 {
                     id: 'Role:list',
@@ -81,9 +81,9 @@ export default {
         },
         {
             icon: 'tree',
-            path: 'dept-manage',
-            component: () => import('/@/views/user/deptManage.vue'),
-            name: 'deptManage',
+            path: 'dept',
+            component: () => import('/@/views/user/dept.vue'),
+            name: 'dept',
             perms: [
                 {
                     id: 'Dept:save',

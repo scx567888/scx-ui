@@ -9,13 +9,13 @@ export default {
     icon: 'lcd-display',
     children: [
         {
-            path: 'column-manage',
-            component: () => import('/@/views/cms/columnManage.vue'),
-            name: 'columnManage',
+            path: 'column',
+            component: () => import('/@/views/cms/column.vue'),
+            name: 'column',
             perms: []
         }, {
             path: 'article-manage',
-            component: () => import('/@/views/cms/articleManage.vue'),
+            component: () => import('/@/views/cms/article.vue'),
             name: 'articleManage',
             perms: []
         }, {

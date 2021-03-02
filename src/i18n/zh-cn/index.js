@@ -1,18 +1,21 @@
-import error from './modules/core/error'
-import login from './modules/core/login'
-import navbar from './modules/core/navbar'
-import route from './modules/core/route'
-import setting from './modules/core/setting'
-import table from './modules/core/table'
-import tagsView from './modules/core/tagsView'
-import User from './modules/core/userManage/User'
-import ProjectNote from './modules/reson/system/ProjectNote'
-import MerchantManage from './modules/bole/MerchantManage'
-import StoreManage from './modules/bole/StoreManage'
-import TeacherManage from './modules/bole/TeacherManage'
-import CourseManage from './modules/bole/CourseManage'
-import ActivityManage from './modules/bole/ActivityManage'
-import OrderCodeManage from './modules/bole/OrderCodeManage'
+import error from './modules/_scx/error'
+import navbar from './modules/_scx/navbar'
+import route from './modules/_scx/route'
+import setting from './modules/_scx/setting'
+import tagsView from './modules/_scx/tagsView'
+import table from './modules/_scx/table'
+import login from './modules/base/login'
+import User from './modules/user/User'
+import Article from './modules/cms/Article'
+import Column from './modules/cms/Column'
+import ProjectNote from './modules/system/ProjectNote'
+import Dic from './modules/system/Dic'
+import MerchantManage from './modules/bole/Merchant'
+import StoreManage from './modules/bole/Store'
+import TeacherManage from './modules/bole/Teacher'
+import CourseManage from './modules/bole/Course'
+import ActivityManage from './modules/bole/Activity'
+import OrderCodeManage from './modules/bole/OrderCode'
 //todo 等待 vite 添加类似 require.context 的方法然后重构此模块
 const modules = {
     'error': error,
@@ -23,6 +26,9 @@ const modules = {
     'table': table,
     'tagsView': tagsView,
     'User': User,
+    'Article': Article,
+    'Column': Column,
+    'Dic': Dic,
     'ProjectNote': ProjectNote,
     'MerchantManage': MerchantManage,
     'StoreManage': StoreManage,
