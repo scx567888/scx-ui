@@ -1,6 +1,5 @@
 export default {
     title: 'SCX',// 主标题
-    openModule: ['*'],// 开启的模块 --> openModule: ['core', 'cms', 'bole','attend']
     defaultSetting: {// 平台默认的设置 用户初次使用时采用 (及 localStorage 里不存在以下值时的默认值)
         theme: 'green',// 默认主题 现有 dark,default (使用时请设置为 '' ) ,green,purple,red,windows
         tagsView: true,// 默认是否显示 多任务栏

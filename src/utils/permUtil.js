@@ -1,6 +1,6 @@
 // user login
 import request from "./request";
-import {asyncRoutes, BaseRoutes, getOpenModules, resetRouter} from "../router";
+import {asyncRoutes, BaseRoutes,  resetRouter} from "../router";
 import {state} from "../store";
 import scxConfig from "../../scx.config";
 import {delAllViews} from "./tagViewUtil";
@@ -129,7 +129,7 @@ function getPermTreeData() {
                 children: []
             }
             ,
-            ...getOpenModules()
+
         ]
     };
 

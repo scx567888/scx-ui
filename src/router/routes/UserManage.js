@@ -4,7 +4,7 @@ export default {
     path: '/user',
     component: Layout,
     alwaysShow: true, //总在根目录显示
-    name: 'user',
+    name: 'userManage',
     icon: 'cooperate',
     children: [
         {

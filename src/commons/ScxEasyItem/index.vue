@@ -305,8 +305,6 @@ export default {
       cb(results);
     }
 
-    console.log(optionArray.value)
-
     return {
       easyItemConfig,
       getSelectOptionLabel,
