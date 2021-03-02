@@ -1094,6 +1094,10 @@ export default {
     }
 
     function formatRules(modelName, routerCol) {
+      //todo hack 此处是为了处理 element 的 bug 等待 element 修复完成会删掉
+      if (routerCol.rules.validator) {
+        return {required: false}
+      }
       let tempRules = {};
       if (routerCol.rules.showFlag) {
         if (routerCol.rules.showFlag.includes(crudContext.pageFlag)) {
