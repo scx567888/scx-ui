@@ -113,7 +113,7 @@ export default {
   emits: ['getList', 'handleDelete', 'handleUpdate', 'nextPage', 'previousPage', 'sort-change'],
   setup(props, context) {
     const crudContext = inject('crudContext');
-    const optionArray = crudContext ? computed(() => crudContext.optionArray) : {};
+    const optionArray = crudContext ? computed(() => crudContext.optionArray).value : {};
     //表格本身
     const scxTableRef = ref(null);
     //表格dom 参数 用于计算

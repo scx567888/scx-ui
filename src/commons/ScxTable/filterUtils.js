@@ -26,7 +26,7 @@ const getPictureList = (pictureIds) => pictureIds ? strToArray(pictureIds).map(i
 //用于 table 列 为下拉选的过滤
 function filterSelect(col, value, optionArray) {
     try {
-        let optionArrayValue = optionArray.find(d => d[col.valueProp] === value);
+        let optionArrayValue = optionArray.find(d => d[col.valueProp] == value);
         if (col.tableLabelFormat) {
             return col.tableLabelFormat(optionArrayValue)
         }

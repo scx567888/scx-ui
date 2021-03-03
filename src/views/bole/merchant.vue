@@ -39,6 +39,8 @@ export default {
           prop: 'approved',
           width: '100px',
           type: 'select',
+          labelProp:'label',
+          valueProp:'value',
           option: [{value: 1, label: '是'}, {value: 0, label: '否'}],
           placeholder: '是否认证',
           defaultValue: 0
@@ -47,6 +49,8 @@ export default {
           prop: 'highQuality',
           width: '100px',
           type: 'select',
+          labelProp:'label',
+          valueProp:'value',
           option: [{value: 1, label: '是'}, {value: 0, label: '否'}],
           placeholder: '是否为优质商户',
           defaultValue: 0
@@ -73,6 +77,8 @@ export default {
           prop: 'thisStatus',
           width: '100px',
           type: 'select',
+          labelProp:'label',
+          valueProp:'value',
           option: [{value: 0, label: '启用'}, {value: 0, label: '停用'}],
           placeholder: '状态',
           defaultValue: 1
