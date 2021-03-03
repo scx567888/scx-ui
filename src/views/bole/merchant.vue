@@ -79,7 +79,7 @@ export default {
           type: 'select',
           labelProp:'label',
           valueProp:'value',
-          option: [{value: 0, label: '启用'}, {value: 0, label: '停用'}],
+          option: [{value: 0, label: '启用'}, {value: 1, label: '停用'}],
           placeholder: '状态',
           defaultValue: 1
         },
