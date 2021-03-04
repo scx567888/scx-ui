@@ -44,39 +44,82 @@ export default {
             ]
         },
         {
-            icon: 'profile',
             path: 'course',
-            component: () => import('/@/views/bole/course.vue'),
+            component: () => import('/@/views/_scx/threerouter.vue'),
+            alwaysShow: true, //总在根目录显示
             name: 'course',
-            perms: [
+            icon: 'profile',
+            children: [
                 {
-                    id: 'CourseManage:list',
-                    label: 'list'
+                    path: 'course',
+                    component: () => import('/@/views/bole/course.vue'),
+                    name: 'course',
+                    perms: [
+                        {
+                            id: 'CourseManage:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'CourseManage:info',
+                            label: 'info'
+                        },
+                        {
+                            id: 'CourseManage:save',
+                            label: 'save'
+                        },
+                        {
+                            id: 'CourseManage:update',
+                            label: 'update'
+                        },
+                        {
+                            id: 'CourseManage:delete',
+                            label: 'delete'
+                        },
+                        {
+                            id: 'CourseManage:batchDelete',
+                            label: 'batchDelete'
+                        },
+                        {
+                            id: 'CourseManage:revokeDelete',
+                            label: 'revokeDelete'
+                        }
+                    ]
                 },
                 {
-                    id: 'CourseManage:info',
-                    label: 'info'
+                    path: 'subject-manage',
+                    component: () => import('/@/views/bole/subject.vue'),
+                    name: 'subjectManage',
+                    perms: [
+                        {
+                            id: 'SubjectManage:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'SubjectManage:info',
+                            label: 'info'
+                        },
+                        {
+                            id: 'SubjectManage:save',
+                            label: 'save'
+                        },
+                        {
+                            id: 'SubjectManage:update',
+                            label: 'update'
+                        },
+                        {
+                            id: 'SubjectManage:delete',
+                            label: 'delete'
+                        },
+                        {
+                            id: 'SubjectManage:batchDelete',
+                            label: 'batchDelete'
+                        },
+                        {
+                            id: 'SubjectManage:revokeDelete',
+                            label: 'revokeDelete'
+                        }
+                    ]
                 },
-                {
-                    id: 'CourseManage:save',
-                    label: 'save'
-                },
-                {
-                    id: 'CourseManage:update',
-                    label: 'update'
-                },
-                {
-                    id: 'CourseManage:delete',
-                    label: 'delete'
-                },
-                {
-                    id: 'CourseManage:batchDelete',
-                    label: 'batchDelete'
-                },
-                {
-                    id: 'CourseManage:revokeDelete',
-                    label: 'revokeDelete'
-                }
             ]
         },
         {
@@ -116,43 +159,43 @@ export default {
             ]
         },
         {
-            path: 'store',
+            path: 'merchant',
             component: () => import('/@/views/_scx/threerouter.vue'),
             alwaysShow: true, //总在根目录显示
-            name: 'store',
-            icon: 'home',
+            name: 'merchant',
+            icon: 'account-book',
             children: [
                 {
-                    path: 'store',
-                    component: () => import('/@/views/bole/store.vue'),
-                    name: 'store',
+                    path: 'merchant',
+                    component: () => import('/@/views/bole/merchant.vue'),
+                    name: 'merchant',
                     perms: [
                         {
-                            id: 'StoreManage:list',
+                            id: 'MerchantManage:list',
                             label: 'list'
                         },
                         {
-                            id: 'StoreManage:info',
+                            id: 'MerchantManage:info',
                             label: 'info'
                         },
                         {
-                            id: 'StoreManage:save',
+                            id: 'MerchantManage:save',
                             label: 'save'
                         },
                         {
-                            id: 'StoreManage:update',
+                            id: 'MerchantManage:update',
                             label: 'update'
                         },
                         {
-                            id: 'StoreManage:delete',
+                            id: 'MerchantManage:delete',
                             label: 'delete'
                         },
                         {
-                            id: 'StoreManage:batchDelete',
+                            id: 'MerchantManage:batchDelete',
                             label: 'batchDelete'
                         },
                         {
-                            id: 'StoreManage:revokeDelete',
+                            id: 'MerchantManage:revokeDelete',
                             label: 'revokeDelete'
                         }
                     ]
@@ -208,42 +251,6 @@ export default {
                     id: 'OrderCodeManage:info',
                     label: 'info'
                 },
-            ]
-        },
-        {
-            icon: 'account-book',
-            path: 'merchant',
-            component: () => import('/@/views/bole/merchant.vue'),
-            name: 'merchant',
-            perms: [
-                {
-                    id: 'MerchantManage:list',
-                    label: 'list'
-                },
-                {
-                    id: 'MerchantManage:info',
-                    label: 'info'
-                },
-                {
-                    id: 'MerchantManage:save',
-                    label: 'save'
-                },
-                {
-                    id: 'MerchantManage:update',
-                    label: 'update'
-                },
-                {
-                    id: 'MerchantManage:delete',
-                    label: 'delete'
-                },
-                {
-                    id: 'MerchantManage:batchDelete',
-                    label: 'batchDelete'
-                },
-                {
-                    id: 'MerchantManage:revokeDelete',
-                    label: 'revokeDelete'
-                }
             ]
         },
         {

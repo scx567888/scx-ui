@@ -7,6 +7,10 @@ export default {
     approved: '是否认证',
     highQuality: '是否为优质商户',
     remakes: '备注',
-    createTime: '注册时间',
+    createDate: '注册时间',
     thisStatus: '状态',
+    license:'营业执照',
+    typeImage:'缩略图',
+    banner:'图片集',
+    thisOrderBy:'排序',
 }

@@ -37,14 +37,6 @@ export default {
         rules: {required: true, validator: checkPhoneNumber}
       },
       {
-        prop: 'typeImg', width: '100px', isFilter: true,
-        rules: {required: true, trigger: 'change'}
-      },
-      {
-        prop: 'banner', width: '100px',
-        rules: {required: true, trigger: 'change'}
-      },
-      {
         filterWidth: '200px',
         prop: 'merchantId',
         width: '350px',
@@ -52,17 +44,6 @@ export default {
         type: 'select',
         buildUrl: '/api/merchantManage/list',
         labelProp: 'merchantName',
-        valueProp: 'id',
-        rules: {trigger: 'change', required: true,}
-      },
-      {
-        filterWidth: '200px',
-        prop: 'teacherAccount',
-        width: '350px',
-        isFilter: true,
-        type: 'select',
-        buildUrl: '/api/teacherManage/list',
-        labelProp: 'teacherName',
         valueProp: 'id',
         rules: {trigger: 'change', required: true,}
       },
@@ -75,9 +56,19 @@ export default {
         prop: 'thisStatus',
         width: '100px',
         type: 'select',
-        option: [{color: 'green', label: '启用'}, {color: 'red', label: '停用'}],
+        option: [{value:1, label: '启用'}, {value:0, label: '停用'}],
         placeholder: '状态',
-        defaultValue: '启用'
+        valueProp:'value',
+        labelProp:'label',
+        rules: {required: true, trigger: 'change'}
+      },
+      {
+        prop: 'typeImg', width: '100px', inline: true,type: 'upload',
+        rules: {required: true, trigger: 'change'}
+      },
+      {
+        prop: 'banner', width: '100px',inline: true,type: 'upload',noShowInTable: true,
+        rules: {required: true, trigger: 'change'}
       },
       {
         prop: 'remarks', maxlength: 1000, width: '200px',

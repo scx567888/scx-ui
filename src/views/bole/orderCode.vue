@@ -27,18 +27,8 @@ export default {
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/MerchantManage/list',
+          buildUrl: '/api/MerchantManage/list',
           labelProp: 'merchantName',
-          valueProp: 'id',
-          showFlag: []
-        },
-        {
-          prop: 'storeId',
-          width: '350px',
-          isFilter: true,
-          type: 'select',
-          buildUrl: '/api/bole/StoreManage/list',
-          labelProp: 'storeName',
           valueProp: 'id',
           showFlag: []
         },
@@ -47,7 +37,7 @@ export default {
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/CourseManage/list',
+          buildUrl: '/api/CourseManage/list',
           labelProp: 'courseName',
           valueProp: 'id',
           showFlag: []
@@ -57,7 +47,7 @@ export default {
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/ActivityManage/list',
+          buildUrl: '/api/ActivityManage/list',
           labelProp: 'activityName',
           valueProp: 'id',
           showFlag: []

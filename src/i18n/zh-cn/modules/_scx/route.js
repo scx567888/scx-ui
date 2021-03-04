@@ -21,6 +21,7 @@ export default {
     merchant: '商户管理',
     store: '门店管理',
     storeType: '门店类型',
+    subjectManage:'学科管理',
     teacher: '教师管理',
     course: '课程管理',
     activity: '活动管理',

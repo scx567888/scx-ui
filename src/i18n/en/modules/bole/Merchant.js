@@ -7,6 +7,10 @@ export default {
     approved: 'approved',
     highQuality: 'highQuality',
     remakes: 'remakes',
-    createTime: 'createTime',
+    createDate: 'createDate',
     thisStatus: 'thisStatus',
+    license:'license',
+    typeImage:'typeImage',
+    banner:'banner',
+    thisOrderBy:'orderBy',
 }
