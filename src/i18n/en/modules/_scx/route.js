@@ -21,6 +21,7 @@ export default {
     merchant: 'Merchant',
     store: 'Store',
     storeType: 'StoreType',
+    subjectManage:'subjectManage',
     teacher: 'Teacher',
     course: 'Course',
     activity: 'Activity',

@@ -12,4 +12,6 @@ export default {
     teacherAccount: 'teacherAccount',
     courseOrderBy: 'courseOrderBy',
     thisStatus: 'thisStatus',
+
+    subject:'subject',
 }

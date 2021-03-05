@@ -56,6 +56,15 @@ export default {
           defaultValue: 0
         },
         {
+          prop: 'license', width: '100px', type: 'upload',inline: true,
+        },
+        {
+          prop: 'typeImage', width: '100px', type: 'upload',inline: true,
+        },
+        {
+          prop: 'banner', width: '100px', type: 'upload',inline: true,noShowInTable: true,
+        },
+        {
           prop: 'address', maxlength: 1000, width: '200px',
           showOverflowTooltip: true,//todo
           type: 'textarea',
@@ -70,18 +79,23 @@ export default {
           noShowInTable: true,
         },
         {
-          prop: 'createTime', width: '100px', isFilter: true, tableWidth: "200px",
+          prop: 'createDate', width: '100px', isFilter: true, tableWidth: "200px",
           showFlag: []
         },
         {
           prop: 'thisStatus',
           width: '100px',
           type: 'select',
-          labelProp:'label',
           valueProp:'value',
-          option: [{value: 0, label: '启用'}, {value: 1, label: '停用'}],
+          labelProp:'label',
+          option: [{value: 1, label: '启用'}, {value: 0, label: '停用'}],
           placeholder: '状态',
-          defaultValue: 1
+          inline: true,
+          rules: {required: true, trigger: 'change'}
+        },
+        {
+          prop: 'thisOrderBy', width: '100px', defaultValue: 0,
+          rules: {required: true, trigger: 'change'}
         },
       ]
     }

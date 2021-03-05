@@ -199,7 +199,7 @@ export default {
 
     const typeList = ['input', 'radio', 'checkbox', 'number', 'select', 'cascade', 'switch', 'slider', 'time',
       'timeSelect', 'date', 'dateTime', 'upload', 'rate', 'color', 'autoComplete', 'treeSelect', 'tinymce',
-      'codemirror', 'html', 'textarea', 'link'
+      'codemirror', 'html', 'textarea', 'link','region'
     ];
 
     const crudContext = inject('crudContext');

@@ -26,44 +26,25 @@ export default {
           rules: {required: true, trigger: 'change'}
         },
         {
-          prop: 'typeImg', width: '100px', isFilter: true,
-          rules: {required: true, trigger: 'change'}
-        },
-        {
-          prop: 'banner', width: '100px',
-          rules: {required: true, trigger: 'change'}
-        },
-        {
           filterWidth: '200px',
           prop: 'merchantId',
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/MerchantManage/list',
+          buildUrl: '/api/MerchantManage/list',
           labelProp: 'merchantName',
           valueProp: 'id',
           rules: {trigger: 'change', required: true,}
         },
         {
           filterWidth: '200px',
-          prop: 'storeId',
+          prop: 'subject',
           width: '350px',
           isFilter: true,
           type: 'select',
-          buildUrl: '/api/bole/StoreManage/list',
-          labelProp: 'storeName',
-          valueProp: 'id',
-          rules: {trigger: 'change', required: true,}
-        },
-        {
-          filterWidth: '200px',
-          prop: 'teacherAccount',
-          width: '350px',
-          isFilter: true,
-          type: 'select',
-          buildUrl: '/api/bole/teacherManage/list',
-          labelProp: 'teacherName',
-          valueProp: 'id',
+          buildUrl: '/api/SubjectManage/list',
+          labelProp: 'subjectName',
+          valueProp: 'subjectName',
           rules: {trigger: 'change', required: true,}
         },
         {
@@ -75,9 +56,17 @@ export default {
           prop: 'thisStatus',
           width: '100px',
           type: 'select',
-          option: [{color: 'green', label: '启用'}, {color: 'red', label: '停用'}],
+          option: [{label: '启用',value:1}, {label: '停用',value:0}],
           placeholder: '状态',
-          defaultValue: '启用'
+          valueProp:'value',
+          labelProp:'label',
+          rules: {required: true, trigger: 'change'}
+        },
+        {
+          prop: 'typeImg', width: '100px', inline: true,type: 'upload',
+        },
+        {
+          prop: 'banner', width: '100px',inline: true,type: 'upload',noShowInTable: true,
         },
         {
           prop: 'remarks', maxlength: 1000, width: '200px',

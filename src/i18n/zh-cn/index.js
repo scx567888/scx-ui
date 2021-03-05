@@ -12,6 +12,7 @@ import ProjectNote from './modules/system/ProjectNote'
 import Dic from './modules/system/Dic'
 import MerchantManage from './modules/bole/Merchant'
 import StoreManage from './modules/bole/Store'
+import SubjectManage from "./modules/bole/SubjectManage"
 import TeacherManage from './modules/bole/Teacher'
 import CourseManage from './modules/bole/Course'
 import ActivityManage from './modules/bole/Activity'
@@ -36,6 +37,7 @@ const modules = {
     'CourseManage': CourseManage,
     'ActivityManage': ActivityManage,
     'OrderCodeManage': OrderCodeManage,
+    'SubjectManage':SubjectManage,
 }
 
 export default modules

@@ -4,7 +4,7 @@ export default {
     price: '价格',
     originalPrice: '原价',
     typeImg: '缩略图',
-    banner: 'banner',
+    banner:'图片集',
     notice: '购买须知',
     courseText: '正文介绍',
     merchantId: '所属商户',
@@ -12,4 +12,5 @@ export default {
     teacherAccount: '授课教师',
     courseOrderBy: '排序',
     thisStatus: '状态',
+    subject:'学科',
 }
