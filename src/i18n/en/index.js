@@ -17,6 +17,7 @@ import TeacherManage from './modules/bole/Teacher'
 import CourseManage from './modules/bole/Course'
 import ActivityManage from './modules/bole/Activity'
 import OrderCodeManage from './modules/bole/OrderCode'
+import MerchantVerify from './modules/bole/MerchantVerify'
 //todo 等待 vite 添加类似 require.context 的方法然后重构此模块
 const modules = {
     'error': error,
@@ -38,6 +39,7 @@ const modules = {
     'ActivityManage': ActivityManage,
     'OrderCodeManage': OrderCodeManage,
     'SubjectManage':SubjectManage,
+    'MerchantVerify':MerchantVerify,
 }
 
 export default modules

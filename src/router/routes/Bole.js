@@ -235,6 +235,41 @@ export default {
                         }
                     ]
                 },
+                {
+                    path: 'merchant-verify',
+                    component: () => import('/@/views/bole/merchantVerify.vue'),
+                    name: 'merchantVerify',
+                    perms: [
+                        {
+                            id: 'MerchantVerify:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'MerchantVerify:info',
+                            label: 'info'
+                        },
+                        {
+                            id: 'MerchantVerify:save',
+                            label: 'save'
+                        },
+                        {
+                            id: 'MerchantVerify:update',
+                            label: 'update'
+                        },
+                        {
+                            id: 'MerchantVerify:delete',
+                            label: 'delete'
+                        },
+                        {
+                            id: 'MerchantVerify:batchDelete',
+                            label: 'batchDelete'
+                        },
+                        {
+                            id: 'MerchantVerify:revokeDelete',
+                            label: 'revokeDelete'
+                        }
+                    ]
+                },
             ]
         },
         {

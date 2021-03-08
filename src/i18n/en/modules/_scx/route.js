@@ -26,5 +26,6 @@ export default {
     course: 'Course',
     activity: 'Activity',
     orderCode: 'OrderCode',
+    merchantVerify:'MerchantVerify',
     instantMessaging: 'IM'
 }
