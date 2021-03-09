@@ -26,5 +26,6 @@ export default {
     course: '课程管理',
     activity: '活动管理',
     orderCode: '订单管理',
-    instantMessaging: '客服中心'
+    instantMessaging: '客服中心',
+    merchantVerify:'商户认证',
 }

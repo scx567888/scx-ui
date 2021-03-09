@@ -58,7 +58,7 @@
         <div v-if="tableConfig.hasOperation" :style="{width: tableConfig.operationWidth}" class="fixed-right "
              @click.stop="">
           <slot :row="rowItem" name="operation">
-            请添加操作按钮
+            -
           </slot>
         </div>
       </div>

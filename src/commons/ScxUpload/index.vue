@@ -4,6 +4,7 @@
     <scx-progress v-if="progressContext.isShow" v-model="progressContext.value"/>
     <el-button class="upload-btn" size="mini" type="success" @click="hiddenUploadInputRef.click()">
       <scx-icon type="outlined" icon="cloud-upload"/>
+
       点击上传 , 共 {{ fileList.length }} 个文件
     </el-button>
     <div class="file-list">
