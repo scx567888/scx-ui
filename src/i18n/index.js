@@ -1,17 +1,19 @@
-import enLocale from './en/index' //自定义国际化语言
-import zh_cnLocale from './zh-cn/index'
-// import elementEnLocale from 'element-plus/lib/locale/lang/en' // element-ui 控件语言  英文
-//import elementZhCNLocale from 'element-plus/lib/locale/lang/zh-cn' // element-ui 控件语言 中文
+import elementEnLocale from 'element-plus/lib/locale/lang/en' // element-ui 控件语言  英文
+import elementZhCNLocale from 'element-plus/lib/locale/lang/zh-cn' // element-ui 控件语言 中文
 import {state} from '../store'
+import {getI18nModule} from "../utils";
+
+const enLocale = getI18nModule(import.meta.globEager('./en/**/*.js'))
+const zh_cnLocale = getI18nModule(import.meta.globEager('./zh-cn/**/*.js'))
 
 const messages = {
     en: {
         ...enLocale,
-        // ...elementEnLocale
+        ...elementEnLocale
     },
     'zh-cn': {
         ...zh_cnLocale,
-        // ...elementZhCNLocale
+        ...elementZhCNLocale
     }
 };
 

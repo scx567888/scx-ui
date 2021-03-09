@@ -108,6 +108,15 @@ function getUUID() {
     return uuid.substr(uuid.lastIndexOf("/") + 1);
 }
 
+function getI18nModule(allModules) {
+    const modules = {}
+    for (const path in allModules) {
+        let fileNameByPath = getFileNameByPath(path);
+        modules[fileNameByPath] = allModules[path].default
+    }
+    return modules;
+}
+
 export {
     strToArray,
     getNowTimeStr,
@@ -120,5 +129,6 @@ export {
     getFileNameByPath,
     resolvePath,
     download,
-    getUUID
+    getUUID,
+    getI18nModule
 }
