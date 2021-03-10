@@ -13,4 +13,5 @@ export default {
     typeImage:'typeImage',
     banner:'banner',
     thisOrderBy:'orderBy',
+    storeType:'storeType',
 }

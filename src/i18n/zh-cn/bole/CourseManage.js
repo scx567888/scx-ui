@@ -13,4 +13,8 @@ export default {
     courseOrderBy: '排序',
     thisStatus: '状态',
     subject:'学科',
+    age:'使用年龄',
+    classTime:'上课时间',
+    takeTime:'学时',
+    classType:'班级类型',
 }

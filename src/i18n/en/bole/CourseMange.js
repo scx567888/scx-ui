@@ -12,6 +12,9 @@ export default {
     teacherAccount: 'teacherAccount',
     courseOrderBy: 'courseOrderBy',
     thisStatus: 'thisStatus',
-
     subject:'subject',
+    age:'age',
+    classTime:'classTime',
+    takeTime:'takeTime',
+    classType:'classType',
 }

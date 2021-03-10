@@ -270,21 +270,149 @@ export default {
                         }
                     ]
                 },
+                {
+                    path: 'cost',
+                    component: () => import('/@/views/bole/cost.vue'),
+                    name: 'costManage',
+                    perms: [
+                        {
+                            id: 'CostManage:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'CostManage:info',
+                            label: 'info'
+                        },
+                        {
+                            id: 'CostManage:save',
+                            label: 'save'
+                        },
+                        {
+                            id: 'CostManage:update',
+                            label: 'update'
+                        },
+                        {
+                            id: 'CostManage:delete',
+                            label: 'delete'
+                        },
+                        {
+                            id: 'CostManage:batchDelete',
+                            label: 'batchDelete'
+                        },
+                        {
+                            id: 'CostManage:revokeDelete',
+                            label: 'revokeDelete'
+                        }
+                    ]
+                },
             ]
         },
         {
-            icon: 'pushpin',
             path: 'orderCode',
-            component: () => import('/@/views/bole/orderCode.vue'),
+            component: () => import('/@/views/_scx/threerouter.vue'),
+            alwaysShow: true, //总在根目录显示
             name: 'orderCode',
-            perms: [
+            icon: 'pushpin',
+            children: [
                 {
-                    id: 'OrderCodeManage:list',
-                    label: 'list'
+                    path: 'orderCode',
+                    component: () => import('/@/views/bole/orderCode.vue'),
+                    name: 'orderCode',
+                    perms: [
+                        {
+                            id: 'OrderCodeManage:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'OrderCodeManage:info',
+                            label: 'info'
+                        },
+                    ]
                 },
                 {
-                    id: 'OrderCodeManage:info',
-                    label: 'info'
+                    path: 'statement',
+                    component: () => import('/@/views/bole/statement.vue'),
+                    name: 'statement',
+                    perms: [
+                        {
+                            id: 'OrderCodeManage:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'OrderCodeManage:info',
+                            label: 'info'
+                        },
+                    ]
+                },
+                {
+                    path: 'refund-info',
+                    component: () => import('/@/views/bole/refundInfo.vue'),
+                    name: 'refundInfo',
+                    perms: [
+                        {
+                            id: 'RefundInfo:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'RefundInfo:info',
+                            label: 'info'
+                        },
+                        {
+                            id: 'RefundInfo:save',
+                            label: 'save'
+                        },
+                        {
+                            id: 'RefundInfo:update',
+                            label: 'update'
+                        },
+                        {
+                            id: 'RefundInfo:delete',
+                            label: 'delete'
+                        },
+                        {
+                            id: 'RefundInfo:batchDelete',
+                            label: 'batchDelete'
+                        },
+                        {
+                            id: 'RefundInfo:revokeDelete',
+                            label: 'revokeDelete'
+                        }
+                    ]
+                },
+                {
+                    path: 'refund-verify',
+                    component: () => import('/@/views/bole/refundVerify.vue'),
+                    name: 'refundVerify',
+                    perms: [
+                        {
+                            id: 'RefundVerify:list',
+                            label: 'list'
+                        },
+                        {
+                            id: 'RefundVerify:info',
+                            label: 'info'
+                        },
+                        {
+                            id: 'RefundVerify:save',
+                            label: 'save'
+                        },
+                        {
+                            id: 'RefundVerify:update',
+                            label: 'update'
+                        },
+                        {
+                            id: 'RefundVerify:delete',
+                            label: 'delete'
+                        },
+                        {
+                            id: 'RefundVerify:batchDelete',
+                            label: 'batchDelete'
+                        },
+                        {
+                            id: 'RefundVerify:revokeDelete',
+                            label: 'revokeDelete'
+                        }
+                    ]
                 },
             ]
         },

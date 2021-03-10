@@ -13,4 +13,5 @@ export default {
     typeImage:'缩略图',
     banner:'图片集',
     thisOrderBy:'排序',
+    storeType:'门店类型',
 }

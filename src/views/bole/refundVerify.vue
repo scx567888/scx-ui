@@ -7,6 +7,9 @@
         width="30%"
         >
       <el-row>
+        <el-col :span="24"><el-input type="text" v-model="verifyInfo.orderCode"/></el-col>
+      </el-row>
+      <el-row>
         <el-col :span="24"><el-input type="text" v-model="verifyInfo.merchantName"/></el-col>
       </el-row>
       <el-row>
@@ -49,14 +52,14 @@ import request from "../../utils/request";
 import {ElMessage} from "element-plus"; // 这里获取电话校验方法
 export default {
 
-  name: 'MerchantVerify',
+  name: 'RefundVerify',
 
   setup() {
 
     const crudRef = ref(null);
 
     const tableConfig = reactive({
-      modelName: 'MerchantVerify',
+      modelName: 'RefundVerify',
       module: 'bole',
       labelWidth: '200px',
       dialogWidth: '70%',
@@ -67,6 +70,10 @@ export default {
       hasDeleteButton: false
     });
     const tableData = ref([
+      {
+        prop: 'orderCode', width: '100px', isFilter: true,
+        showFlag: []
+      },
       {
         filterWidth: '200px',
         prop: 'merchantId',
@@ -97,7 +104,7 @@ export default {
         noShowInTable: true,
       },
       {
-        prop: 'applyFile', width: '100px', type: 'upload', inline: true,
+        prop: 'applyFile', width: '100px', type: 'upload', inline: true,noShowInTable: true,
       },
       {
         prop: 'createDate', width: '100px', tableWidth: "200px",
@@ -115,6 +122,7 @@ export default {
 
     const verifyInfo = reactive({
       id:0,
+      orderCode:'',
       merchantName:'',
       applyText:'',
       applyFile:'',
@@ -135,7 +143,6 @@ export default {
           return o.applyStatus=='2'
         },
         callback: (row) => {
-          console.log(row);
           openBox(row);
         }
       }]);
@@ -158,6 +165,7 @@ export default {
         request.get('/api/MerchantManage/get?id='+bean.merchantId).then(response => {
           if(response.code===20 && response.items){
             verifyInfo.id = bean.id;
+            verifyInfo.orderCode = bean.orderCode;
             verifyInfo.merchantName = response.items.merchantName;
             verifyInfo.merchantId = response.items.id;
             verifyInfo.applyFile = bean.applyFile;
@@ -168,7 +176,7 @@ export default {
     }
 
     const submitData =()=>{
-      request.post('/api/MerchantVerify/apply',verifyInfo).then(response => {
+      request.post('/api/RefundVerify/apply',verifyInfo).then(response => {
             if (response.code === 20) {
               ElMessage.success('操作成功!');
               crudRef.value.getList();
@@ -183,6 +191,7 @@ export default {
     const clearForm =() => {
       verifyInfo.id = 0;
       verifyInfo.merchantName ='';
+      verifyInfo.orderCode ='';
       verifyInfo.applyText ='';
       verifyInfo.applyFile ='';
       verifyInfo.applyStatus ='1';

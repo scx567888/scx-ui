@@ -27,5 +27,9 @@ export default {
     activity: 'Activity',
     orderCode: 'OrderCode',
     merchantVerify:'MerchantVerify',
+    refundInfo:'RefundInfo',
+    refundVerify:'RefundVerify',
+    statement:'Statement',
+    costManage:'CostManage',
     instantMessaging: 'IM'
 }

@@ -34,7 +34,7 @@
         </el-button>
       </div>
       <!--添加按钮 结束-->
-
+      <div v-html="messageDiv" style="margin:auto"></div>
       <!--查询列和查询按钮 开始-->
       <div v-if="crudConfig.hasQueryOperation">
         <!--查询列 开始-->
@@ -265,6 +265,9 @@ export default {
     scxEditButtons: {
       type: Array,
       default: () => []
+    },
+    messageDiv: {
+      type: Object,
     }
   },
   setup(props, context) {
