@@ -38,6 +38,17 @@ export default {
         },
         {
           filterWidth: '200px',
+          prop: 'teacherId',
+          width: '350px',
+          isFilter: true,
+          type: 'select',
+          buildUrl: '/api/teacherManage/list',
+          labelProp: 'teacherName',
+          valueProp: 'id',
+          rules: {trigger: 'change', required: true,}
+        },
+        {
+          filterWidth: '200px',
           prop: 'subject',
           width: '350px',
           isFilter: true,
@@ -46,6 +57,22 @@ export default {
           labelProp: 'subjectName',
           valueProp: 'subjectName',
           rules: {trigger: 'change', required: true,}
+        },
+        {
+          prop: 'age', width: '100px',
+          rules: {required: true, trigger: 'change'}
+        },
+        {
+          prop: 'classTime', width: '100px',
+          rules: {required: true, trigger: 'change'}
+        },
+        {
+          prop: 'takeTime', width: '100px',
+          rules: {required: true, trigger: 'change'}
+        },
+        {
+          prop: 'classType', width: '100px',
+          rules: {required: true, trigger: 'change'}
         },
         {
           prop: 'courseOrderBy', width: '100px',

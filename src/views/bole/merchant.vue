@@ -54,6 +54,17 @@ export default {
         rules: {required: true, trigger: 'change'}
       },
       {
+        filterWidth: '200px',
+        prop: 'storeType',
+        width: '350px',
+        isFilter: true,
+        type: 'select',
+        buildUrl: '/api/storeTypeManage/list',
+        labelProp: 'typeName',
+        valueProp: 'typeName',
+        rules: {trigger: 'change', required: true,}
+      },
+      {
         prop: 'province',
         tableWidth: '170px',
         //使用 region 会导致 页面卡顿 慎用

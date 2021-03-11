@@ -7,4 +7,7 @@ export default {
     userAccount: 'userAccount',
     payInfo: 'payInfo',
     thisStatus: 'thisStatus',
+    proportion:'proportion',
+    platformIncome:'platformIncome',
+    merchantIncome:'merchantIncome',
 }

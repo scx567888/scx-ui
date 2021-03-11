@@ -28,4 +28,8 @@ export default {
     orderCode: '订单管理',
     instantMessaging: '客服中心',
     merchantVerify:'商户认证',
+    refundInfo:'退款管理',
+    refundVerify:'退款申请',
+    statement:'流水管理',
+    costManage:'分成管理',
 }

@@ -48,7 +48,7 @@
                   :style="eStyle"
                   :type="easyItemConfig.datePickerType"
                   clearable
-                  value-format="yyyy-MM-dd"/>
+                  format="yyyy-MM-dd"/>
 
   <el-date-picker v-else-if="easyItemConfig.type==='datetime'" v-model="eModel"
                   :disabled="eDisabled"

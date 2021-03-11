@@ -15,12 +15,12 @@ export default {
       },
       tableData: [
         {
-          prop: 'teacherName', width: '100px', isFilter: true,
-          rules: {required: true, trigger: 'change'}
+          prop: 'headPortrait', width: '100px', type: "upload", inline:true,
+          rules: {trigger: 'change'}
         },
         {
-          prop: 'headPortrait', width: '100px', noShowInTable: true,
-          rules: {trigger: 'change'}
+          prop: 'teacherName', width: '100px', isFilter: true,
+          rules: {required: true, trigger: 'change'}
         },
         {
           prop: 'age', width: '100px',
@@ -38,17 +38,6 @@ export default {
           type: 'select',
           buildUrl: '/api/merchantManage/list',
           labelProp: 'merchantName',
-          valueProp: 'id',
-          rules: {trigger: 'change', required: true,}
-        },
-        {
-          filterWidth: '200px',
-          prop: 'storeId',
-          width: '350px',
-          isFilter: true,
-          type: 'select',
-          buildUrl: '/api/storeTypeManage/list',
-          labelProp: 'storeName',
           valueProp: 'id',
           rules: {trigger: 'change', required: true,}
         },

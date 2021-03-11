@@ -7,4 +7,7 @@ export default {
     userAccount: '用户账号',
     payInfo: '消费金额',
     thisStatus: '状态',
+    proportion:'分成比',
+    platformIncome:'平台收费',
+    merchantIncome:'商户盈利',
 }
