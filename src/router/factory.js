@@ -1,9 +1,11 @@
 import {state} from '../store'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import {getPageTitle} from '../utils' // 获取 token
 import {getFilteredAsyncRoutes, getToken, getUserInfo, removeToken, removeUserState} from '../utils/permUtil'
 import {createRouter, createWebHashHistory} from "vue-router";
 
-NProgress.configure({showSpinner: false}); // NProgress 配置项
+NProgress.configure({showSpinner: true}); // NProgress 配置项
 
 const whiteList = ['/login']; // 不进行重定向的白名单
 

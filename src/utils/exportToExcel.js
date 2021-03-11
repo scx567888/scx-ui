@@ -1,3 +1,4 @@
+import XLSX from 'xlsx/dist/xlsx.mini.min'
 import {download} from './index'
 function sheet_from_array_of_arrays(data) {
     let ws = {};

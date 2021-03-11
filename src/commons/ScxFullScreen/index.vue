@@ -6,6 +6,7 @@
 
 <script>
 import {onMounted, onUnmounted, ref} from 'vue'
+import screenfull from 'screenfull'
 
 export default {
   name: "scx-fullscreen",
