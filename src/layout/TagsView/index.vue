@@ -75,7 +75,7 @@ export default {
     }
 
     function isAffix(tag) {
-      return tag.meta && tag.meta.affix
+      return tag.affix
     }
 
     function filterAffixTags(routes, basePath = '/') {

@@ -1,9 +1,9 @@
 import {getScxRouter} from "./factory";
-import scxConfig from "../../scx.config";
 //最基础路由
 import BaseRoutes from './routes/Base'
 //用户管理
 import Bole from './routes/Bole'
+import Ims from './routes/Ims'
 import Cms from './routes/Cms'
 import User from './routes/User'
 import System from './routes/System'
@@ -24,6 +24,7 @@ const asyncRoutes = [
     Cms,
     System,
     Bole,
+    Ims,
     // 正常这里是 404 页面 但是根据需求我们把错误页面全部重定向到首页
     //todo vue-router 新版本此处配置有变动
     {path: '/:pathMatch(.*)*', component: () => import('/@/views/base/dashboard.vue'), hidden: true}

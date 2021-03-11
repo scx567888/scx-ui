@@ -30,7 +30,7 @@ export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
-
+    console.log(router.getRoutes())
 
     const layoutMode = computed(() => state.setting.layoutMode)
     const permission_routes = computed(() => {

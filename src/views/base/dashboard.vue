@@ -1,5 +1,7 @@
 <template>
   <div>
+    <scx-tinymce v-model="test"></scx-tinymce>
+    <scx-tinymce v-model="test"></scx-tinymce>
     <h1>首页</h1>
     消息
     <textarea v-model="message"/>
@@ -23,6 +25,7 @@ export default {
   name: 'Dashboard',
   setup() {
 
+    const test=ref("");
     const imageSuccessCBK=(e)=>{console.log(e)};
     const allOnlineUser = ref([]);
     const selectUser = ref({});
@@ -54,7 +57,8 @@ export default {
       sendData,
       selectUser,
       allOnlineUser,
-      imageSuccessCBK
+      imageSuccessCBK,
+      test
     }
   }
 }
