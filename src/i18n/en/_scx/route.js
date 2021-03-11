@@ -2,6 +2,7 @@ export default {
     index: 'Index',
     dashboard: 'Dashboard',
     profile: 'Profile',
+    login: 'Login',
 // aaa
     user: 'User',
     role: 'Role',

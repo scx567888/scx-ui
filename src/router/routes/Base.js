@@ -20,6 +20,7 @@ export default [
     {
         path: '/login',
         component: () => import('/@/views/base/login/index.vue'),
+        name:'login',
         hidden: true
     },
     {

@@ -2,6 +2,7 @@ export default {
     index: '首页',
     dashboard: '首页',
     profile: '个人中心',
+    login: '系统登录',
 // aaa
     user: '用户管理',
     role: '角色管理',
