@@ -20,8 +20,8 @@ function filterSwitchRender(value) {
     return h('span', style, filterSwitch(value))
 }
 
-const getPicture = (pictureIds) => pictureIds ? scxConfig.baseApi + '/base/showPictureById/' + strToArray(pictureIds)[0] + '?w=200&h=200' : null;
-const getPictureList = (pictureIds) => pictureIds ? strToArray(pictureIds).map(id => scxConfig.baseApi + '/base/showPictureById/' + id) : [];
+const getPicture = (pictureIds) => pictureIds ? scxConfig.baseApi + '/api/showPictureById/' + strToArray(pictureIds)[0] + '?w=200&h=200' : null;
+const getPictureList = (pictureIds) => pictureIds ? strToArray(pictureIds).map(id => scxConfig.baseApi + '/api/showPictureById/' + id) : [];
 
 //用于 table 列 为下拉选的过滤
 function filterSelect(col, value, optionArray) {

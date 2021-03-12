@@ -115,7 +115,7 @@ export default {
     //点击上传
     function handleSubmit() {
       uploadFileList.value.forEach(v => {
-        tinymce.get(tinymceId).insertContent(`<img style="width: 200px" src="${scxConfig.baseApi + '/base/showPicture/' + v.realUrl}"  alt="${v.name}"/>`)
+        tinymce.get(tinymceId).insertContent(`<img style="width: 200px" src="${scxConfig.baseApi + '/api/showPicture/' + v.filePath}"  alt="${v.name}"/>`)
       })
       dialogVisible.value = false
     }

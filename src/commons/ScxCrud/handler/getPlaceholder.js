@@ -1,0 +1,1 @@
+const getPlaceholder = (col) => col.placeholder || (crudContext.pageFlag === 'create' ? col.createPlaceholder : col.editPlaceholder);

@@ -20,7 +20,7 @@ function removeToken() {
 function setUserState({userId, nickName, avatar, perms, realName, realDelete}) {
     state.user.userId = userId
     state.user.nickName = nickName
-    state.user.avatar = scxConfig.baseApi + '/base/showPicture/' + avatar + '?w=200&h=200'
+    state.user.avatar = scxConfig.baseApi + '/api/showPicture/' + avatar + '?w=200&h=200'
     state.user.perms = perms;
     state.user.realName = realName;
     state.user.realDelete = realDelete
