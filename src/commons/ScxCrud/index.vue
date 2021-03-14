@@ -1,10 +1,11 @@
 <template>
   <div class="scx-crud">
     <scx-crud-header/>
-<!--    <scx-crud-main/>-->
-<!--    <scx-crud-footer/>-->
-<!--    <scx-crud-edit-dialog/>-->
-<!--    <scx-crud-delete-dialog/>-->
+    <scx-crud-main/>
+    <scx-crud-footer/>
+    <scx-crud-edit-dialog/>
+    <scx-crud-delete-dialog/>
+    <scx-crud-import-dialog/>
     <el-backtop target=".scx-main-content"/>
   </div>
 </template>
@@ -17,6 +18,7 @@ import ScxCrudMain from './module/ScxCrudMain.vue'
 import ScxCrudFooter from './module/ScxCrudFooter.vue'
 import ScxCrudEditDialog from './module/ScxCrudEditDialog.vue'
 import ScxCrudDeleteDialog from './module/ScxCrudDeleteDialog.vue'
+import ScxCrudImportDialog from './module/ScxCrudImportDialog.vue'
 import {initCrudContext} from "./init/initCrudContext";
 import {initCrudEventBus} from "./init/initCrudEventBus";
 
@@ -27,14 +29,14 @@ export default {
     ScxCrudMain,
     ScxCrudFooter,
     ScxCrudEditDialog,
-    ScxCrudDeleteDialog
+    ScxCrudDeleteDialog,
+    ScxCrudImportDialog
   },
   props: {
     scxCrudConfig: {
       type: Object,
       required: true,
-      default: () => {
-      }
+      default: () => {}
     },
     scxCrudItems: {
       type: Array,
@@ -50,7 +52,7 @@ export default {
       default: () => []
     }
   },
-  setup(props, context) {
+  setup(props) {
     //初始化整个 crudContext 的上下文对象 及当前组件的事件总线
     const crudContext = initCrudContext(props);
     const crudEventBus = initCrudEventBus(crudContext);

@@ -1,6 +1,6 @@
 
 //多重组添加方法
-function groupItemAdd(col) {
+export function groupItemAdd(col) {
     let groupItemTemp = {}
     let groupItemIndex = 0;
     if (crudContext.temp[col.prop]) {

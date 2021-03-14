@@ -1,6 +1,6 @@
-import request from "../../../../utils/request";
+import request from "../../../utils/request";
 
-export function checkUnique(rule, value, callback, name) {
+export function checkUnique(rule, value, callback, name, crudContext) {
     if (value === '' || value === undefined) {
         callback(new Error(name + "不能为空"))
     } else {
@@ -9,7 +9,7 @@ export function checkUnique(rule, value, callback, name) {
         if (crudContext.pageFlag !== 'create') {
             p['id'] = crudContext.temp.id;
         }
-        request.post(crudConfig.checkUniqueApi, p).then(res => {
+        request.post(crudContext.config.checkUniqueApi, p).then(res => {
             if (res.isUnique) {
                 callback()
             } else {

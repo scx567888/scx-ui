@@ -1,1 +1,3 @@
-const getPlaceholder = (col) => col.placeholder || (crudContext.pageFlag === 'create' ? col.createPlaceholder : col.editPlaceholder);
+export function getPlaceholder(crudContext, col) {
+    return col.placeholder || (crudContext.pageFlag === 'create' ? col.createPlaceholder : col.editPlaceholder);
+}

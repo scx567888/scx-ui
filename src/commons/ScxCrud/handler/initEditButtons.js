@@ -17,6 +17,7 @@ const editButtons = ref([//表格内列编辑按钮的数据
             handleDelete(row)
         }
     }]);
+
 new function initEditButtons() {
     editButtons.value = editButtons.value.concat(props.scxEditButtons);
     const excludedEditButtonProps = [];

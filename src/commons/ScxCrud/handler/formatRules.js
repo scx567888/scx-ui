@@ -1,18 +1,19 @@
-import {t} from "../../../../i18n";
+import {t} from "../../../i18n";
+import {checkUnique} from "./checkUnique";
 
-function formatRules(modelName, routerCol) {
+export function formatRules(crudContext, routerCol) {
     let tempRules = {};
     // 校验的 flag 比如密码 在创建的时候需要校验
     // 但是修改的时候就不需要校验 就设置为 checkFlag:['create'] 即可
     const checkFlag = routerCol.rules.checkFlag;
     if (!checkFlag || checkFlag.includes(crudContext.pageFlag)) {
-        const colName = (routerCol.label || t(modelName + '.' + routerCol.prop));
+        const colName = (routerCol.label || t(crudContext.config.modelName + '.' + routerCol.prop));
         tempRules.trigger = routerCol.rules.trigger || 'blur';
         if (routerCol.rules.validator) {
             tempRules.validator = routerCol.rules.validator;
             tempRules.required = true
         } else if (routerCol.rules.isUnique) {
-            tempRules.validator = (a, b, c) => checkUnique(a, b, c, colName)
+            tempRules.validator = (a, b, c) => checkUnique(a, b, c, colName,crudContext)
             tempRules.required = true
             tempRules.trigger = 'blur';
         } else {

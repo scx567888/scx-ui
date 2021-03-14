@@ -1,8 +1,10 @@
-import {strToArray} from "../../../../utils";
 import {nextTick} from "vue";
+import {formatRules} from "./formatRules";
+import {strToArray} from "../../../utils";
+import {getOptionByBuildUrl} from "./getOptionByBuildUrl";
 
-async function preparationDataAndAddingRules() {
-    let nowFormData = props.scxCrudItems;
+export async function preparationDataAndAddingRules(crudContext) {
+    let nowFormData = crudContext.items;
     //对当前选中行的数据的格式进行 清洗过滤 便于在修改页面中展示
     for (let key in nowFormData) {
         let tableEntity = nowFormData[key];
@@ -39,7 +41,7 @@ async function preparationDataAndAddingRules() {
         }
         //对校验规则进行设置
         if (tableEntity.rules) {
-            crudContext.rules[tableEntity.prop] = [formatRules(crudConfig.modelName, tableEntity)]
+            crudContext.rules[tableEntity.prop] = [formatRules(crudContext, tableEntity)]
         }
         //如果是 group 类型 则要对里面的数据进行校验
         if (tableEntity.type === 'group') {
@@ -60,6 +62,6 @@ async function preparationDataAndAddingRules() {
     }
     //清空当前表单的校验
     await nextTick(() => {
-        scxCreateAndUpdateFormRef.value.clearValidate()
+        // crudContext.scxCreateAndUpdateFormRef.clearValidate()
     })
 }

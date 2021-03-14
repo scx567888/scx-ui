@@ -1,6 +1,6 @@
 //绑定键盘事件
-export function bindingKeyboard(e,crudConfig) {
-    if (crudConfig.hasShortcutKeys) {
+export function bindingKeyboard(e,crudContext) {
+    if (crudContext.config.hasShortcutKeys) {
         //按键盘方向左键
         if (e.key === 'ArrowLeft' && !crudContext.loading) {
             //如果页面没有加载完 禁止下一页 防止向服务器发送过多请求

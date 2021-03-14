@@ -5,7 +5,7 @@ import {t} from "../../../../i18n";
 import request from "../../../../utils/request";
 import {h} from "vue";
 
-function batchDeleteModel(fromKeyBorder) {
+export function batchDeleteModel(fromKeyBorder) {
     //要删除的 对象的 id 数组
     let deleteIds = [];
     //向后台发送 请求的 对象

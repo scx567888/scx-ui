@@ -65,6 +65,7 @@ const defaultCrudContext = {
     addButtons: [],//添加按钮的数据
     editButtons: [],//右侧编辑按钮的数据
     items: [],//处理后
+    scxCreateAndUpdateFormRef: null
 }
 
 export function initCrudContext(prop) {
@@ -100,7 +101,7 @@ function initCrudItems(crudContext, newVal) {
         if (item.prop === undefined || item.prop === null) {
             console.error("[ScxCrud] Item 缺失必须属性 prop !!! : " + JSON.stringify(item));
         } else {
-            const i = filterItem(item);
+            const i = filterItem(crudContext, item);
             if (i !== null && i !== undefined) {
                 crudContext.items.push(i);
             }
@@ -108,34 +109,37 @@ function initCrudItems(crudContext, newVal) {
     })
 }
 
-function filterItem(item) {
+function filterItem(crudContext, item) {
 
     if (item.type === 'input' || item.type === undefined) {
-        return filterItemTypeInput(item);
+        return filterItemTypeInput(crudContext, item);
     }
     if (item.type === 'select') {
-        return filterItemTypeSelect(item);
+        return filterItemTypeSelect(crudContext, item);
+    }
+    if (item.type === 'group') {
+        return filterItemTypeGroup(crudContext, item);
     }
     if (item.type === 'password') {
-        return filterItemTypePassword(item);
+        return filterItemTypePassword(crudContext, item);
     }
     if (item.type === 'switch') {
-        return filterItemTypeSwitch(item);
+        return filterItemTypeSwitch(crudContext, item);
     }
     if (item.type === 'tree') {
-        return filterItemTypeTree(item);
+        return filterItemTypeTree(crudContext, item);
     }
     if (item.type === 'number') {
-        return filterItemTypeNumber(item);
+        return filterItemTypeNumber(crudContext, item);
     }
     if (item.type === 'region') {
-        return filterItemTypeRegion(item);
+        return filterItemTypeRegion(crudContext, item);
     }
     if (item.type === 'textarea') {
-        return filterItemTypeTextarea(item);
+        return filterItemTypeTextarea(crudContext, item);
     }
     if (item.type === 'date') {
-        return filterItemTypeDate(item);
+        return filterItemTypeDate(crudContext, item);
     } else {
         console.warn("[ScxCrud] Item type 未知 !!! : " + JSON.stringify(item))
     }
@@ -147,7 +151,20 @@ function filterItem(item) {
  * 过滤 input 类型的 item
  * @param item
  */
-function filterItemTypeInput(item) {
+function filterItemTypeInput(crudContext, item) {
+    crudContext.temp[item.prop] = '';
+    //如果元素属于查询列 在 queryParam 里添加当前元素的属性 并设置值为 空字符串
+    // if (tableEntity.isFilter) {
+    //     crudContext.queryParam.queryObject[tableEntity.prop] = ''
+    // }
+    // //默认过滤项参数 一般用法为设置此值 但是隐藏此项 实现页面初始化过滤
+    // if (tableEntity.defaultFilterValue !== undefined) {
+    //     crudContext.queryParam.queryObject[tableEntity.prop] = tableEntity.defaultFilterValue
+    // }
+    // //如果页面有树 设置是否默认展开
+    // if (tableEntity.collapseOpen) {
+    //     crudContext.editDialog.collapseList.push(tableEntity.prop)
+    // }
     return item;
 }
 
@@ -155,7 +172,7 @@ function filterItemTypeInput(item) {
  * 过滤 select 类型的 item
  * @param item
  */
-function filterItemTypeSelect(item) {
+function filterItemTypeSelect(crudContext,item) {
     //select 类型的必须要有 labelProp 和 valueProp
     if (item.labelProp === undefined || item.labelProp == null) {
         console.error("[ScxCrud] Item Type:Select 缺失必须属性 !!! labelProp 已采用默认值 [label] !!! : " + JSON.stringify(item));
@@ -187,6 +204,28 @@ function filterItemTypeSelect(item) {
         console.error("[ScxCrud] Item Type:Select 数据源错误 option 和 buildUrl 必须存在其中一个 !!! " + JSON.stringify(item))
         return null;
     }
+    // if (tableEntity.buildUrl) {
+    //     //此处使用 同步 因为必须在加载整个页面数据之前  完成下拉选数据的加载
+    //     getOptionByBuildUrl(tableEntity.buildUrl).then(data => {
+    //         // optionArray 是一个类似于键值对的对象 key 存储的是 当前下拉选列的 名称
+    //         // value 存储的是从后台获取的下拉选的数据
+    //         crudContext.optionArray[tableEntity.prop] = data.items
+    //     })
+    // } else {
+    //     if (Object.prototype.toString.call(tableEntity.option[0]) === "[object String]") {
+    //         crudContext.optionArray[tableEntity.prop] = tableEntity.option.map(o => {
+    //             return {label: o, value: o}
+    //         });
+    //     } else {
+    //         crudContext.optionArray[tableEntity.prop] = tableEntity.option
+    //     }
+    // }
+    //获取自动完成框数据
+    // if (tableEntity.autoComplete) {
+    //     request.post(crudConfig.autoCompleteApi + tableEntity.prop, {}).then(data => {
+    //         crudContext.optionArray[tableEntity.prop] = data.items
+    //     })
+    // }
 
     return item;
 }
@@ -203,7 +242,8 @@ function filterItemTypePassword(item) {
  * 过滤 switch 类型的 item
  * @param item
  */
-function filterItemTypeSwitch(item) {
+function filterItemTypeSwitch(crudContext,item) {
+    crudContext.queryParam.queryObject[item.prop] = ''
     return item;
 }
 
@@ -220,6 +260,11 @@ function filterItemTypeNumber(item) {
  * @param item
  */
 function filterItemTypeTree(item) {
+    return item;
+}
+
+function filterItemTypeGroup(crudContext, item) {
+    crudContext.temp[item.prop] = [];
     return item;
 }
 
