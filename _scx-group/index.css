@@ -1,0 +1,66 @@
+.scx-group {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    /* 特有 css */
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+}
+
+.scx-group-item {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    /* 特有 css */
+    border: 1px dashed var(--scx-text-placeholder-color);
+    background-color: var(--scx-theme-bg);
+    transition: transform 600ms ease, opacity 600ms ease;
+}
+
+.scx-group-item-operation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+
+.scx-group-item-move-up-button {
+    /* 占位用 方便开发者覆盖 css */
+}
+
+.scx-group-item-move-down-button {
+    /* 占位用 方便开发者覆盖 css */
+}
+
+.scx-group-item-remove-button {
+    /* 占位用 方便开发者覆盖 css */
+}
+
+/*简单设置一下 默认占位按钮的样式*/
+.scx-group-item-operation .placeholder-button {
+    display: flex;
+    height: 22px;
+    width: 22px;
+    justify-content: center;
+    align-items: center;
+}
+
+/*以下为 vue 动画*/
+.scx-group-list-enter-from {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+.scx-group-list-leave-to {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+/* 重要 !!!!!  避免嵌套动画延迟 */
+.scx-group-list-move .scx-group-list-move {
+    transition: unset;
+}

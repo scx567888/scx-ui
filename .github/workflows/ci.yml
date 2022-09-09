@@ -1,0 +1,27 @@
+name: CI
+on: [ push, pull_request ]
+jobs:
+  build-and-test:
+    name: 构建和测试
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: 签出代码
+        uses: actions/checkout@v2
+
+      - name: 安装 Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: 安装依赖项
+        run: npm install
+
+      - name: 使用 npm 进行构建和测试
+        run: npm run build:test
+
+      - name: 上传 构建和测试 生成的文件
+        uses: actions/upload-artifact@v2
+        with:
+          name: scx-ui-artifact
+          path: test/dist/

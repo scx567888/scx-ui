@@ -1,0 +1,38 @@
+/*全局右键菜单*/
+.scx-contextmenu {
+    margin: 0;
+    background: var(--scx-glass-bg);
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    box-shadow: var(--scx-box-shadow);
+    max-height: 500px;
+    overflow: auto;
+    backdrop-filter: var(--scx-glass-bg-filter);
+}
+
+.scx-contextmenu li {
+    margin: 0;
+    padding: 7px 16px;
+    cursor: pointer;
+}
+
+.scx-contextmenu li:hover {
+    background: var(--scx-theme);
+    color: var(--scx-bg);
+}
+
+.scx-contextmenu-transition-leave-active,
+.scx-contextmenu-transition-enter-active {
+    transition: all 200ms cubic-bezier(.23, 1, .32, 1);
+}
+
+.scx-contextmenu-transition-enter-from,
+.scx-contextmenu-transition-leave-active {
+    opacity: 0;
+    transform: translateY(-10px);
+}
