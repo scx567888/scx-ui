@@ -38,7 +38,7 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-> Some front end kits for SCX
+> Some front end UI kits for SCX
 
 ## NPM
 
