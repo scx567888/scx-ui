@@ -38,7 +38,7 @@
 
 简体中文 | [English](./README.md)
 
-> 用于 SCX 的一些前端套件
+> 用于 SCX 的一些前端 UI 套件
 
 ## NPM
 
