@@ -65,7 +65,7 @@
 
 <script>
 import './index.css'
-import {computed, inject, reactive, ref, watch} from "vue";
+import {computed, reactive, ref, watch} from "vue";
 import ScxIcon from "../_scx-icon/index.vue";
 import ScxProgress from "../_scx-progress/index.vue";
 import {percentage} from "../vanilla-percentage.js";
