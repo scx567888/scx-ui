@@ -21,13 +21,13 @@ class ScxFetchOptions {
 
     /**
      * 前置处理器
-     * @type {false}
+     * @type {boolean}
      */
     usePreInterceptor;
 
     /**
      * 后置处理器
-     * @type {false}
+     * @type {boolean}
      */
     usePostInterceptor;
 
