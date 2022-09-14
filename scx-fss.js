@@ -301,7 +301,7 @@ class ScxFSS {
      * @param fssObjectID
      */
     joinRawURL(fssObjectID) {
-        return joinURL(this.scxReq.baseURL, ScxFSS.rawURL(), fssObjectID);
+        return joinURL(this.scxReq.baseURL, ScxFSS.rawURL(), fssObjectID).toString();
     };
 
     /**
@@ -331,7 +331,7 @@ class ScxFSS {
      * @param fssObjectID
      */
     joinDownloadURL(fssObjectID) {
-        return joinURL(this.scxReq.baseURL, ScxFSS.downloadURL(), fssObjectID);
+        return joinURL(this.scxReq.baseURL, ScxFSS.downloadURL(), fssObjectID).toString();
     };
 
 }
