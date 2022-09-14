@@ -16,18 +16,12 @@
 </template>
 
 <script>
-import {provide, ref} from "vue";
-import {scxApiHelper, scxEventBus, scxFSS, scxJsonVoReq, scxReq} from "./_scx/index.js";
+import {ref} from "vue";
 import {changeTheme} from "../../_scx-theme/index.js";
 
 export default {
   name: "App",
   setup() {
-    provide("scx-api-helper", scxApiHelper);
-    provide("scx-req", scxReq);
-    provide("scx-json-vo-req", scxJsonVoReq);
-    provide("scx-event-bus", scxEventBus);
-    provide("scx-fss", scxFSS);
     const b = ref(false);
 
     function f1() {
