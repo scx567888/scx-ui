@@ -1,6 +1,7 @@
 import SparkMD5 from "spark-md5";
-import {JsonVOError, ScxJsonVoReq} from "./scx-json-vo-req.js";
 import {percentage} from "./vanilla-percentage.js";
+import {joinURL} from "./vanilla-url-helper.js";
+import {JsonVOError} from "./scx-req.js";
 
 class FSSObject {
     fssObjectID;//文件的 id
@@ -25,7 +26,6 @@ class FSSObject {
  */
 class ScxFSS {
     scxReq;
-    scxJsonVoReq;
     maxUploadSize = 10 * 1024 * 1024 * 1024;//最大上传文件 写死 10GB
     chunkSize = 2 * 1024 * 1024;//切片大小 这里写死 2MB
 
@@ -35,7 +35,6 @@ class ScxFSS {
      */
     constructor(scxReq) {
         this.scxReq = scxReq;
-        this.scxJsonVoReq = new ScxJsonVoReq(scxReq);
     }
 
     /**
@@ -229,7 +228,7 @@ class ScxFSS {
                     uploadFormData.append('nowChunkIndex', i + '');
 
                     //向后台发送请求
-                    this.scxJsonVoReq.post(ScxFSS.uploadURL(), uploadFormData).then(data => {
+                    this.scxReq.post(ScxFSS.uploadURL(), uploadFormData).then(data => {
                         //这里因为有断点续传的功能所以可以直接设置 i 以便跳过已经上传过的区块
                         if (data.type === 'need-more') {
                             i = data.item;
@@ -244,7 +243,7 @@ class ScxFSS {
                 }
 
                 //这里先检查一下服务器是否已经有相同MD5的文件了 有的话就不传了
-                this.scxJsonVoReq.post(ScxFSS.checkAnyFileExistsByThisMD5URL(), {
+                this.scxReq.post(ScxFSS.checkAnyFileExistsByThisMD5URL(), {
                     fileName,
                     fileSize,
                     fileMD5: md5
@@ -273,7 +272,7 @@ class ScxFSS {
      */
     info(fssObjectID) {
         return new Promise((resolve, reject) => {
-            this.scxJsonVoReq.post(ScxFSS.infoURL(), {fssObjectID}).then(data => {
+            this.scxReq.post(ScxFSS.infoURL(), {fssObjectID}).then(data => {
                 resolve(data ? new FSSObject(data) : null);
             }).catch(e => {
                 reject(e)
@@ -288,7 +287,7 @@ class ScxFSS {
      */
     listInfo(fssObjectIDs) {
         return new Promise((resolve, reject) => {
-            this.scxJsonVoReq.post(ScxFSS.listInfoURL(), {fssObjectIDs}).then(data => {
+            this.scxReq.post(ScxFSS.listInfoURL(), {fssObjectIDs}).then(data => {
                 const fssObjectList = data.map(i => new FSSObject(i));
                 resolve(fssObjectList);
             }).catch(e => {
@@ -302,7 +301,7 @@ class ScxFSS {
      * @param fssObjectID
      */
     joinRawURL(fssObjectID) {
-        return this.scxReq.scxApiHelper.joinHttpURL(ScxFSS.rawURL()) + fssObjectID
+        return joinURL(this.scxReq.baseURL, ScxFSS.rawURL(), fssObjectID);
     };
 
     /**
@@ -311,22 +310,20 @@ class ScxFSS {
      * @param options {JoinImageURLOptions}
      */
     joinImageURL(fssObjectID, options = {}) {
+        const url = joinURL(this.scxReq.baseURL, ScxFSS.imageURL(), fssObjectID);
         const {w, h, t, width = w, height = h, type = t} = options;
-        let queryStr = "";
         if (width || height || type) {
-            const urlSearchParams = new URLSearchParams();
             if (width) {
-                urlSearchParams.set('w', width + '');
+                url.searchParams.set('w', width + '');
             }
             if (height) {
-                urlSearchParams.set('h', height + '');
+                url.searchParams.set('h', height + '');
             }
             if (type) {
-                urlSearchParams.set('t', type);
+                url.searchParams.set('t', type);
             }
-            queryStr = "?" + urlSearchParams.toString();
         }
-        return this.scxReq.scxApiHelper.joinHttpURL(ScxFSS.imageURL()) + fssObjectID + queryStr;
+        return url.toString();
     };
 
     /**
@@ -334,7 +331,7 @@ class ScxFSS {
      * @param fssObjectID
      */
     joinDownloadURL(fssObjectID) {
-        return this.scxReq.scxApiHelper.joinHttpURL(ScxFSS.downloadURL()) + fssObjectID
+        return joinURL(this.scxReq.baseURL, ScxFSS.downloadURL(), fssObjectID);
     };
 
 }
