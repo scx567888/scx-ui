@@ -1,6 +1,6 @@
 import {ScxFetchMethodType} from "./_scx-fetch/ScxFetchMethodType.js";
 import {initDefaultOptions, ScxFetchOptions} from "./_scx-fetch/ScxFetchOptions.js";
-import {createInit, setBody, setHeaders, setMethod} from "./_scx-fetch/ScxFetchHelper.js";
+import {createInit, mixinOptions, setBody, setHeaders, setMethod} from "./_scx-fetch/ScxFetchHelper.js";
 import {ResponseNotOKError} from "./_scx-fetch/ResponseNotOKError.js";
 import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
 import {FetchError} from "./_scx-fetch/FetchError.js";
@@ -41,14 +41,15 @@ class ScxFetch {
     req(url, body = {}, options = {}) {
         const {
             method, headers, defaultResponseType, usePreInterceptor, usePostInterceptor, charset
-        } = {...this.defaultOptions, ...options};
-        //初始化 fetch 参数 , 此处携带 cookie
-        const init = createInit(method);
-        const finalURL = new URL(url, this.baseURL);
-        //设置 body 并根据 body 类型设置请求头
-        setBody(finalURL, body, init, charset);
-        //设置请求头 放在 setBody 后以保证 options 中的 headers 可以覆盖 setBody 中设置的值
-        setHeaders(headers, init);
+        } = mixinOptions(this.defaultOptions, options);
+
+        const init = createInit(method);//初始化 fetch 参数 , 此处携带 cookie
+
+        const finalURL = new URL(url, this.baseURL);//创建 url
+
+        setBody(init, body, finalURL, charset);//设置 body 并根据 body 类型设置请求头
+
+        setHeaders(init, headers);//设置请求头 放在 setBody 后以保证 options 中的 headers 可以覆盖 setBody 中设置的值
 
         const finalInit = usePreInterceptor ? this.preInterceptor(init) : init;
 

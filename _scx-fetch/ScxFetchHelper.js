@@ -29,7 +29,7 @@ function setURLSearchParams(url, body) {
     }
 }
 
-function setHeaders(headers, init) {
+function setHeaders(init, headers) {
     if (headers) {
         //循环设置 headers
         for (let k in headers) {
@@ -40,7 +40,7 @@ function setHeaders(headers, init) {
     }
 }
 
-function setBody(url, body, init,charset) {
+function setBody(init, body, url, charset) {
     if (body) {
         if (body instanceof FormData) {
             init.body = body;
@@ -55,4 +55,9 @@ function setBody(url, body, init,charset) {
     }
 }
 
-export {createInit, setMethod, setHeaders, setBody}
+
+function mixinOptions(defaultOptions, options) {
+    return {...defaultOptions, ...options};
+}
+
+export {createInit, setMethod, setHeaders, setBody, mixinOptions}
