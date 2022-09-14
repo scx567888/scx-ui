@@ -7,7 +7,7 @@ import {FetchError} from "./_scx-fetch/FetchError.js";
 import {ScxFetchHeaders} from "./_scx-fetch/ScxFetchHeaders.js";
 
 /**
- *  ScxReq : 针对 fetch 的简单封装
+ *  ScxFetch : 针对 fetch 的简单封装
  */
 class ScxFetch {
 
