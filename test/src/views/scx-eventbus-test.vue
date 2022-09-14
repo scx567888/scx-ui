@@ -15,13 +15,12 @@
 
 <script>
 import {onMounted, ref} from "vue";
-import {ScxApiHelper, ScxEventBus} from "../../../index.js";
+import {ScxEventBus} from "../../../index.js";
 
 export default {
   name: "scx-eventbus-test",
   setup() {
-    const scxApiHelper = new ScxApiHelper("http://127.0.0.1:8080/");
-    const scxEventBus = new ScxEventBus(scxApiHelper);
+    const scxEventBus = new ScxEventBus("http://127.0.0.1:8080/");
 
     const imInput = ref("");
     const imInput2 = ref("");

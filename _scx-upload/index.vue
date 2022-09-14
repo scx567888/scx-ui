@@ -65,11 +65,12 @@
 
 <script>
 import './index.css'
-import {computed, inject, reactive, ref, watch} from "vue";
+import {computed, reactive, ref, watch} from "vue";
 import ScxIcon from "../_scx-icon/index.vue";
 import ScxProgress from "../_scx-progress/index.vue";
 import {percentage} from "../vanilla-percentage.js";
 import {ScxFSSHelper, UploadInfo} from "./helper.js";
+import {useScxFSS} from "../_scx-fss/ScxFSSVueInstall.js";
 
 export default {
   name: "scx-upload",
@@ -109,7 +110,7 @@ export default {
   },
   setup(props, ctx) {
 
-    const scxFSS = inject("scx-fss", null);
+    const scxFSS = useScxFSS();
 
     const scxFSSHelper = new ScxFSSHelper(scxFSS);
 
