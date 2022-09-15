@@ -14,7 +14,7 @@ function useScxReq() {
     return inject(scxReqKey);
 }
 
-class ScxReqVueInstall {
+class ScxReqVueInstaller {
 
     scxReq;
 
@@ -27,4 +27,4 @@ class ScxReqVueInstall {
     }
 }
 
-export {ScxReqVueInstall, scxReqKey, useScxReq}
+export {ScxReqVueInstaller, scxReqKey, useScxReq}

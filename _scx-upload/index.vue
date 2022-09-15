@@ -70,7 +70,7 @@ import ScxIcon from "../_scx-icon/index.vue";
 import ScxProgress from "../_scx-progress/index.vue";
 import {percentage} from "../vanilla-percentage.js";
 import {ScxFSSHelper, UploadInfo} from "./helper.js";
-import {useScxFSS} from "../_scx-fss/ScxFSSVueInstall.js";
+import {useScxFSS} from "../_scx-fss/ScxFSSVueInstaller.js";
 
 export default {
   name: "scx-upload",
