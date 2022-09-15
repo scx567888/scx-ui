@@ -2,9 +2,9 @@ import {inject} from "vue";
 
 /**
  *
- * @type {Symbol}
+ * @type {string}
  */
-const scxFetchKey = Symbol('scx-fetch');
+const scxFetchKey = 'scx-fetch';
 
 /**
  *

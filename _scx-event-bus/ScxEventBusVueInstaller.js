@@ -2,9 +2,9 @@ import {inject} from "vue";
 
 /**
  *
- * @type {Symbol}
+ * @type {string}
  */
-const scxEventBusKey = Symbol('scx-event-bus');
+const scxEventBusKey = 'scx-event-bus';
 
 /**
  *
