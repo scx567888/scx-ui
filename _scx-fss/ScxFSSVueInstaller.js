@@ -2,9 +2,9 @@ import {inject} from "vue";
 
 /**
  *
- * @type {Symbol}
+ * @type {string}
  */
-const scxFSSKey = Symbol('scx-fss');
+const scxFSSKey = 'scx-fss';
 
 /**
  *

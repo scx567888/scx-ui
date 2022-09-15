@@ -2,9 +2,9 @@ import {inject} from "vue";
 
 /**
  *
- * @type {Symbol}
+ * @type {string}
  */
-const scxReqKey = Symbol('scx-req');
+const scxReqKey = 'scx-req';
 
 /**
  *
