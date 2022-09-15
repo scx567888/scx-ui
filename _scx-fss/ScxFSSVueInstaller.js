@@ -14,7 +14,7 @@ function useScxFSS() {
     return inject(scxFSSKey);
 }
 
-class ScxFSSVueInstall {
+class ScxFSSVueInstaller {
 
     scxFSS;
 
@@ -27,4 +27,4 @@ class ScxFSSVueInstall {
     }
 }
 
-export {ScxFSSVueInstall, scxFSSKey, useScxFSS}
+export {ScxFSSVueInstaller, scxFSSKey, useScxFSS}

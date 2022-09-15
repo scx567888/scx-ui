@@ -14,7 +14,7 @@ function useScxFetch() {
     return inject(scxFetchKey);
 }
 
-class ScxFetchVueInstall {
+class ScxFetchVueInstaller {
 
     scxFetch;
 
@@ -27,4 +27,4 @@ class ScxFetchVueInstall {
     }
 }
 
-export {ScxFetchVueInstall, useScxFetch}
+export {ScxFetchVueInstaller, useScxFetch}

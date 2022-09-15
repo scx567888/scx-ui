@@ -14,7 +14,7 @@ function useScxEventBus() {
     return inject(scxEventBusKey);
 }
 
-class ScxEventBusVueInstall {
+class ScxEventBusVueInstaller {
 
     scxEventBus;
 
@@ -27,4 +27,4 @@ class ScxEventBusVueInstall {
     }
 }
 
-export {ScxEventBusVueInstall, scxEventBusKey, useScxEventBus}
+export {ScxEventBusVueInstaller, scxEventBusKey, useScxEventBus}
