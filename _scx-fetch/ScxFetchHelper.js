@@ -6,7 +6,7 @@ import {HttpHeaderValues} from "./HttpHeaderValues.js";
  * @param method
  * @returns {RequestInit}
  */
-function createInit(method) {
+function createRequestInit(method) {
     return {
         method,
         headers: new Headers(),
@@ -18,7 +18,7 @@ function createInit(method) {
 /**
  * 参数处理器
  * @param method
- * @param  options {ScxFetchOptions}
+ * @param  options {ScxFetchOptions | Object}
  * @returns {ScxFetchOptions}
  */
 function setMethod(method, options = {}) {
@@ -28,17 +28,17 @@ function setMethod(method, options = {}) {
 
 /**
  *
- * @param {RequestInit} init
- * @param {Headers|Object} headers
+ * @param {RequestInit} requestInit
+ * @param {Headers | Object} headers
  */
-function setHeaders(init, headers) {
+function setRequestHeaders(requestInit, headers) {
     //循环设置 headers
     if (headers !== null && headers !== undefined) {
         if (headers instanceof Headers) {
-            headers.forEach((k, v) => init.headers.set(k, v))
+            headers.forEach((k, v) => requestInit.headers.set(k, v))
         } else {
             for (const [key, value] of Object.entries(headers)) {
-                init.headers.set(key, String(value));
+                requestInit.headers.set(key, String(value));
             }
         }
     }
@@ -46,23 +46,23 @@ function setHeaders(init, headers) {
 
 /**
  *
- * @param {RequestInit} init
+ * @param {RequestInit} requestInit
  * @param {Object} body
  * @param {URL} url
  * @param {string} charset
  */
-function setBody(init, body, url, charset) {
+function setRequestBody(requestInit, body, url, charset) {
     if (body !== null && body !== undefined) {
         if (body instanceof FormData) {
-            init.body = body;
+            requestInit.body = body;
         } else if (Object.keys(body).length > 0) {
-            if (init.method === 'GET') {
+            if (requestInit.method === 'GET') {
                 for (const [key, value] of Object.entries(body)) {
                     url.searchParams.set(key, String(value));
                 }
             } else {
-                init.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
-                init.body = JSON.stringify(body);
+                requestInit.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
+                requestInit.body = JSON.stringify(body);
             }
         }
     }
@@ -78,4 +78,4 @@ function mixinOptions(defaultOptions, options) {
     return {...defaultOptions, ...options};
 }
 
-export {createInit, setMethod, setHeaders, setBody, mixinOptions}
+export {createRequestInit, setMethod, setRequestHeaders, setRequestBody, mixinOptions}
