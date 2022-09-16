@@ -42,9 +42,9 @@ function setResponseType(options = {}) {
  */
 class ScxReq {
 
-    scxFetch
+    scxFetch;
 
-    baseURL
+    baseURL;
 
     constructor(scxFetch) {
         if (scxFetch instanceof ScxFetch) {
