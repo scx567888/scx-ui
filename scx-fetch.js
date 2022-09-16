@@ -41,7 +41,7 @@ class ScxFetch {
      * 基本的 req
      * @param  url {URL | string}
      * @param  body {Object}
-     * @param  options {ScxFetchOptions | Object}
+     * @param  options {ScxFetchOptions}
      * @returns {Promise<ScxFetchResponse>}
      */
     req(url, body = {}, options = {}) {
@@ -94,7 +94,7 @@ class ScxFetch {
      * GET 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     get(url, body = null, options = {}) {
@@ -105,7 +105,7 @@ class ScxFetch {
      * POST 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     post(url, body = null, options = {}) {
@@ -116,7 +116,7 @@ class ScxFetch {
      * PUT 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     put(url, body = null, options = {}) {
@@ -127,7 +127,7 @@ class ScxFetch {
      * DELETE 方法
      * @param {URL | string} url
      * @param {Object} body
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     delete(url, body = null, options = {}) {

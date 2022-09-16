@@ -59,7 +59,7 @@ class ScxReq {
      * GET 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     get(url, body = null, options = {}) {
@@ -70,7 +70,7 @@ class ScxReq {
      * POST 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     post(url, body = null, options = {}) {
@@ -81,7 +81,7 @@ class ScxReq {
      * PUT 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     put(url, body = null, options = {}) {
@@ -92,7 +92,7 @@ class ScxReq {
      * DELETE 方法
      * @param url {URL | string}
      * @param body {Object}
-     * @param options {ScxFetchOptions | Object}
+     * @param options {ScxFetchOptions}
      * @returns {Promise<unknown>}
      */
     delete(url, body = null, options = {}) {
