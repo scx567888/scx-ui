@@ -42,9 +42,9 @@ function setResponseType(options = {}) {
  */
 class ScxReq {
 
-    scxFetch
+    scxFetch;
 
-    baseURL
+    baseURL;
 
     constructor(scxFetch) {
         if (scxFetch instanceof ScxFetch) {
@@ -57,9 +57,9 @@ class ScxReq {
 
     /**
      * GET 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     get(url, body = null, options = {}) {
@@ -68,9 +68,9 @@ class ScxReq {
 
     /**
      * POST 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     post(url, body = null, options = {}) {
@@ -79,9 +79,9 @@ class ScxReq {
 
     /**
      * PUT 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     put(url, body = null, options = {}) {
@@ -90,9 +90,9 @@ class ScxReq {
 
     /**
      * DELETE 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     delete(url, body = null, options = {}) {

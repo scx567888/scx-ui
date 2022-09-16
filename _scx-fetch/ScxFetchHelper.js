@@ -1,16 +1,24 @@
 import {HttpHeaderNames} from "./HttpHeaderNames.js";
 import {HttpHeaderValues} from "./HttpHeaderValues.js";
 
-function createInit(method) {
+/**
+ *
+ * @param method
+ * @returns {RequestInit}
+ */
+function createRequestInit(method) {
     return {
-        method, headers: new Headers(), credentials: 'include', body: null
+        method,
+        headers: new Headers(),
+        credentials: 'include',
+        body: null
     };
 }
 
 /**
  * 参数处理器
  * @param method
- * @param  options {ScxFetchOptions}
+ * @param  options {ScxFetchOptions | Object}
  * @returns {ScxFetchOptions}
  */
 function setMethod(method, options = {}) {
@@ -18,38 +26,43 @@ function setMethod(method, options = {}) {
     return options;
 }
 
-function setURLSearchParams(url, body) {
-    if (body) {
-        //循环设置 body
-        for (let k in body) {
-            if (body.hasOwnProperty(k)) {
-                url.searchParams.set(k, body[k]);
+/**
+ *
+ * @param {RequestInit} requestInit
+ * @param {Headers | Object} headers
+ */
+function setRequestHeaders(requestInit, headers) {
+    //循环设置 headers
+    if (headers !== null && headers !== undefined) {
+        if (headers instanceof Headers) {
+            headers.forEach((k, v) => requestInit.headers.set(k, v))
+        } else {
+            for (const [key, value] of Object.entries(headers)) {
+                requestInit.headers.set(key, String(value));
             }
         }
     }
 }
 
-function setHeaders(init, headers) {
-    if (headers) {
-        //循环设置 headers
-        for (let k in headers) {
-            if (headers.hasOwnProperty(k)) {
-                init.headers.set(k, headers[k]);
-            }
-        }
-    }
-}
-
-function setBody(init, body, url, charset) {
-    if (body) {
+/**
+ *
+ * @param {RequestInit} requestInit
+ * @param {Object} body
+ * @param {URL} url
+ * @param {string} charset
+ */
+function setRequestBody(requestInit, body, url, charset) {
+    if (body !== null && body !== undefined) {
         if (body instanceof FormData) {
-            init.body = body;
+            requestInit.body = body;
         } else if (Object.keys(body).length > 0) {
-            if (init.method === 'GET') {
-                setURLSearchParams(url, body);
+            if (requestInit.method === 'GET') {
+                for (const [key, value] of Object.entries(body)) {
+                    url.searchParams.set(key, String(value));
+                }
             } else {
-                init.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
-                init.body = JSON.stringify(body);
+                requestInit.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
+                requestInit.body = JSON.stringify(body);
             }
         }
     }
@@ -65,4 +78,4 @@ function mixinOptions(defaultOptions, options) {
     return {...defaultOptions, ...options};
 }
 
-export {createInit, setMethod, setHeaders, setBody, mixinOptions}
+export {createRequestInit, setMethod, setRequestHeaders, setRequestBody, mixinOptions}

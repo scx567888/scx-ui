@@ -1,6 +1,12 @@
 import {ScxFetchMethodType} from "./_scx-fetch/ScxFetchMethodType.js";
 import {initDefaultOptions, ScxFetchOptions} from "./_scx-fetch/ScxFetchOptions.js";
-import {createInit, mixinOptions, setBody, setHeaders, setMethod} from "./_scx-fetch/ScxFetchHelper.js";
+import {
+    createRequestInit,
+    mixinOptions,
+    setMethod,
+    setRequestBody,
+    setRequestHeaders
+} from "./_scx-fetch/ScxFetchHelper.js";
 import {ResponseNotOKError} from "./_scx-fetch/ResponseNotOKError.js";
 import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
 import {FetchError} from "./_scx-fetch/FetchError.js";
@@ -33,25 +39,25 @@ class ScxFetch {
 
     /**
      * 基本的 req
-     * @returns {Promise<Object>}
-     * @param url
-     * @param body {Object}
-     * @param options {ScxFetchOptions}
+     * @param  url {URL | string}
+     * @param  body {Object}
+     * @param  options {ScxFetchOptions | Object}
+     * @returns {Promise<ScxFetchResponse>}
      */
     req(url, body = {}, options = {}) {
         const {
             method, headers, responseType, usePreInterceptor, usePostInterceptor, charset
         } = mixinOptions(this.defaultOptions, options);
 
-        const init = createInit(method);//初始化 fetch 参数 , 此处携带 cookie
+        const requestInit = createRequestInit(method);//初始化 fetch 参数 , 此处携带 cookie
 
         const finalURL = new URL(url, this.baseURL);//创建 url
 
-        setBody(init, body, finalURL, charset);//设置 body 并根据 body 类型设置请求头
+        setRequestBody(requestInit, body, finalURL, charset);//设置 body 并根据 body 类型设置请求头
 
-        setHeaders(init, headers);//设置请求头 放在 setBody 后以保证 options 中的 headers 可以覆盖 setBody 中设置的值
+        setRequestHeaders(requestInit, headers);//设置请求头 放在 setRequestBody 后以保证 options 中的 headers 可以覆盖 setRequestBody 中设置的值
 
-        const finalInit = usePreInterceptor ? this.preInterceptor(init) : init;
+        const finalInit = usePreInterceptor ? this.preInterceptor(requestInit) : requestInit;
 
         //此处进行特殊处理 1, 处理返回结果 2, 将非 2xx 的状态码表示为错误
         const result = new Promise((resolve, reject) => fetch(finalURL, finalInit).then(res => {
@@ -69,7 +75,7 @@ class ScxFetch {
     /**
      * 前置处理器
      * @param request {RequestInit}
-     * @returns {*}
+     * @returns {RequestInit}
      */
     preInterceptor(request) {
         return request;
@@ -77,8 +83,8 @@ class ScxFetch {
 
     /**
      * 后置处理器
-     * @param response {Promise<Object>}
-     * @returns {*}
+     * @param response {Promise<ScxFetchResponse>}
+     * @returns {Promise<*>}
      */
     postInterceptor(response) {
         return response;
@@ -86,9 +92,9 @@ class ScxFetch {
 
     /**
      * GET 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL | string}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     get(url, body = null, options = {}) {
@@ -97,9 +103,9 @@ class ScxFetch {
 
     /**
      * POST 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL | string}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     post(url, body = null, options = {}) {
@@ -108,9 +114,9 @@ class ScxFetch {
 
     /**
      * PUT 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param url {URL | string}
+     * @param body {Object}
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     put(url, body = null, options = {}) {
@@ -119,9 +125,9 @@ class ScxFetch {
 
     /**
      * DELETE 方法
-     * @param url
-     * @param body
-     * @param options {ScxFetchOptions}
+     * @param {URL | string} url
+     * @param {Object} body
+     * @param options {ScxFetchOptions | Object}
      * @returns {Promise<unknown>}
      */
     delete(url, body = null, options = {}) {
