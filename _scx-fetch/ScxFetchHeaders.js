@@ -5,7 +5,7 @@ class ScxFetchHeaders {
      * @param {Headers} headers
      */
     constructor(headers) {
-        headers.forEach((k, v) => {
+        headers.forEach((v, k) => {
             this[k] = v;
         });
     }
