@@ -1,9 +1,17 @@
 import {HttpHeaderNames} from "./HttpHeaderNames.js";
 import {HttpHeaderValues} from "./HttpHeaderValues.js";
 
+/**
+ *
+ * @param method
+ * @returns {RequestInit}
+ */
 function createInit(method) {
     return {
-        method, headers: new Headers(), credentials: 'include', body: null
+        method,
+        headers: new Headers(),
+        credentials: 'include',
+        body: null
     };
 }
 
@@ -18,35 +26,40 @@ function setMethod(method, options = {}) {
     return options;
 }
 
-function setURLSearchParams(url, body) {
-    if (body) {
-        //循环设置 body
-        for (let k in body) {
-            if (body.hasOwnProperty(k)) {
-                url.searchParams.set(k, body[k]);
-            }
-        }
-    }
-}
-
+/**
+ *
+ * @param {RequestInit} init
+ * @param {Headers|Object} headers
+ */
 function setHeaders(init, headers) {
-    if (headers) {
-        //循环设置 headers
-        for (let k in headers) {
-            if (headers.hasOwnProperty(k)) {
-                init.headers.set(k, headers[k]);
+    //循环设置 headers
+    if (headers !== null && headers !== undefined) {
+        if (headers instanceof Headers) {
+            headers.forEach((k, v) => init.headers.set(k, v))
+        } else {
+            for (const [key, value] of Object.entries(headers)) {
+                init.headers.set(key, String(value));
             }
         }
     }
 }
 
+/**
+ *
+ * @param {RequestInit} init
+ * @param {Object} body
+ * @param {URL} url
+ * @param {string} charset
+ */
 function setBody(init, body, url, charset) {
-    if (body) {
+    if (body !== null && body !== undefined) {
         if (body instanceof FormData) {
             init.body = body;
         } else if (Object.keys(body).length > 0) {
             if (init.method === 'GET') {
-                setURLSearchParams(url, body);
+                for (const [key, value] of Object.entries(body)) {
+                    url.searchParams.set(key, String(value));
+                }
             } else {
                 init.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
                 init.body = JSON.stringify(body);

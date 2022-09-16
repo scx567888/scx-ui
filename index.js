@@ -1,6 +1,7 @@
 export * from './scx-context-menu.js'
 export * from './scx-event-bus.js'
 export * from './_scx-event-bus/ScxEventBusVueInstaller.js'
+export * from './_scx-fetch/ScxFetchResponseType.js'
 export * from './_scx-fetch/ScxFetchVueInstaller.js'
 export * from './_scx-fss/ScxFSSVueInstaller.js'
 export * from './_scx-req/ScxReqVueInstaller.js'

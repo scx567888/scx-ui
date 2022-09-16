@@ -1,25 +1,27 @@
 class ScxFetchHeaders {
 
-    fetchHeaders;
-
     /**
      *
      * @param {Headers} headers
      */
     constructor(headers) {
-        this.fetchHeaders = headers;
+        headers.forEach((k, v) => {
+            this[k] = v;
+        });
     }
 
     get(name) {
-        return this.fetchHeaders.get(name);
+        return this[name];
     };
 
     has(name) {
-        return this.fetchHeaders.has(name);
+        return this.hasOwnProperty(name);
     };
 
-    forEach(callbackFun, thisArg) {
-        return this.fetchHeaders.forEach(callbackFun, thisArg);
+    forEach(callbackFun) {
+        for (const [key, value] of Object.entries(this)) {
+            callbackFun(key, value)
+        }
     };
 
 }
