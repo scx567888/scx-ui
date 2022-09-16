@@ -55,7 +55,12 @@ function setBody(init, body, url, charset) {
     }
 }
 
-
+/**
+ *
+ * @param defaultOptions
+ * @param options
+ * @returns {ScxFetchOptions}
+ */
 function mixinOptions(defaultOptions, options) {
     return {...defaultOptions, ...options};
 }
