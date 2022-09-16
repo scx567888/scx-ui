@@ -25,11 +25,13 @@ function jsonVoProcessor(r) {
 
 /**
  * 通过 scx-req 发送的请求我们默认都是 json 格式的
- * @param options
- * @returns {{responseType: string}}
+ * @param {ScxFetchOptions} options
+ * @returns {ScxFetchOptions}
  */
 function setResponseType(options = {}) {
-    options.responseType = ScxFetchResponseType.JSON;
+    if (options.responseType === null || options.responseType === undefined) {
+        options.responseType = ScxFetchResponseType.JSON;
+    }
     return options;
 }
 

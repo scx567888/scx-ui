@@ -40,7 +40,7 @@ class ScxFetch {
      */
     req(url, body = {}, options = {}) {
         const {
-            method, headers, defaultResponseType, usePreInterceptor, usePostInterceptor, charset
+            method, headers, responseType, usePreInterceptor, usePostInterceptor, charset
         } = mixinOptions(this.defaultOptions, options);
 
         const init = createInit(method);//初始化 fetch 参数 , 此处携带 cookie
@@ -59,7 +59,7 @@ class ScxFetch {
                 reject(new ResponseNotOKError(res));
             } else {
                 // resolve 的参数是 Promise 时会直接调用 参数的 resolve
-                resolve(ScxFetchResponse.create(res, defaultResponseType))
+                resolve(ScxFetchResponse.create(res, responseType))
             }
         }).catch(error => reject(new FetchError(error))));
 
