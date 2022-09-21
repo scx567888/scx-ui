@@ -30,6 +30,7 @@
     border: 1px solid var(--scx-theme);
     border-radius: 4px;
     box-sizing: border-box;
+    line-height: normal;
 }
 
 .scx-upload-list .preview-text {
