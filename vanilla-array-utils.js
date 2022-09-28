@@ -1,5 +1,5 @@
 /**
- * 我们不直接操作原数组而是返回新数组
+ * 拷贝数组 (浅拷贝)
  * @param list
  * @returns {*[]}
  */
@@ -132,5 +132,13 @@ function arrayEquals(array1, array2) {
 }
 
 export {
-    removeByIndex, moveUpByIndex, moveDownByIndex, removeByItem, moveUpByItem, moveDownByItem, insertItem, arrayEquals
+    copyArray,
+    removeByIndex,
+    moveUpByIndex,
+    moveDownByIndex,
+    removeByItem,
+    moveUpByItem,
+    moveDownByItem,
+    insertItem,
+    arrayEquals
 }

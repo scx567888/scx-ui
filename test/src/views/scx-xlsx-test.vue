@@ -17,7 +17,7 @@ export default {
       for (let i = 0; i < 999; i++) {
         data.push({name: '张三' + 1, age: i, idCard: "202001999192929" + i})
       }
-      exportExcel({headerTranslationMap: headTranslation, listData: data})
+      exportExcel("导出的文件", data, headTranslation)
     }
 
     return {

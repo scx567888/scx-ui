@@ -1,5 +1,6 @@
 import {HttpHeaderNames} from "./HttpHeaderNames.js";
 import {HttpHeaderValues} from "./HttpHeaderValues.js";
+import {notNull} from "../vanilla-object-helper";
 
 /**
  *
@@ -33,7 +34,7 @@ function setMethod(method, options = {}) {
  */
 function setRequestHeaders(requestInit, headers) {
     //循环设置 headers
-    if (headers !== null && headers !== undefined) {
+    if (notNull(headers)) {
         if (headers instanceof Headers) {
             headers.forEach((k, v) => requestInit.headers.set(k, v))
         } else {
@@ -52,7 +53,7 @@ function setRequestHeaders(requestInit, headers) {
  * @param {string} charset
  */
 function setRequestBody(requestInit, body, url, charset) {
-    if (body !== null && body !== undefined) {
+    if (notNull(body)) {
         if (body instanceof FormData) {
             requestInit.body = body;
         } else if (Object.keys(body).length > 0) {

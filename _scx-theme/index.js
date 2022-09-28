@@ -1,6 +1,6 @@
 /**
  * 修改主题
- * @param value 传入 true 或 false
+ * @param value {boolean} 传入 true 或 false
  */
 function changeTheme(value) {
     if (value) {
