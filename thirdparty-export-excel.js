@@ -1,71 +1,50 @@
 import {utils, write} from 'xlsx'
 import {download} from "./vanilla-download.js";
 
-//此方法其实是从 xlsx 中拷贝出来的
-function s2ab(s) {
-    const buf = new ArrayBuffer(s.length);
-    const view = new Uint8Array(buf);
-    for (let i = 0; i !== s.length; ++i) {
-        view[i] = s.charCodeAt(i) & 0xFF
+/**
+ * 导出 excel
+ * @param data 数据
+ * @param header 表头的翻译
+ * @param fileName {string}
+ */
+function exportExcel(fileName, data, header = null) {
+    const excelBlob = createExcel(data, header);
+    if (!fileName.endsWith(".xlsx")) {
+        fileName = fileName + ".xlsx";
     }
-    return buf;
+    download(excelBlob, fileName);
+}
+
+//没有 header 则尝试已第一列的 key 作为 header
+function tryCreateHeader(data) {
+    const header = {};
+    const firstData = data[0];
+    if (firstData !== null && firstData !== undefined) {
+        Object.keys(firstData).forEach((k) => header[k] = k);
+    }
+    return header;
 }
 
 /**
  * 导出 excel
- * @param headerTranslationMap 表头的翻译
- * @param listData 数组类型数据
- * @param filename 文件名称 (注意不需要写后缀)
- * @param bookType 导出类型 默认 xlsx
+ * @param header 表头的翻译 应该是一个 对象
+ * @param data 数组类型数据
+ * @return {Blob}
  */
-function exportExcel({headerTranslationMap, listData, filename = "Exported-Excel", bookType = "xlsx"}) {
+function createExcel(data, header = tryCreateHeader(data)) {
 
-    //没有 headerTranslationMap 则尝试已第一列的 key 作为 headerTranslationMap
-    if (!headerTranslationMap) {
-        headerTranslationMap = {};
-        if (listData.length > 0) {
-            for (let listDatumKey in listData[0]) {
-                headerTranslationMap[listDatumKey] = listDatumKey;
-            }
-        }
-    }
+    const headerKeys = Object.keys(header);
 
-    // 内部使用的 listData
-    const _listData = [...listData];
+    const arrayData = [header, ...data].map(b => headerKeys.map(k => b[k])); //二维数组 参照 https://docs.sheetjs.com/docs/api/utilities
 
-    //添加表头
-    _listData.unshift(headerTranslationMap);
+    const sheet1 = utils.aoa_to_sheet(arrayData);
 
-    //二维数组 用于导出
-    const twoDimensionalArray = [];
+    const workbook = {SheetNames: ['Sheet1'], Sheets: {Sheet1: sheet1}};
 
-    //循环向 twoDimensionalArray 中写入数组
-    for (let listElement of _listData) {
-        const tempArray = [];
-        for (let headTranslationKey in headerTranslationMap) {
-            tempArray.push(listElement[headTranslationKey])
-        }
-        twoDimensionalArray.push(tempArray)
-    }
+    const buffer = write(workbook, {type: 'buffer'});
 
-    //创建 工作簿 (workbook)
-    const workbook = {
-        SheetNames: ['Sheet1'], Sheets: {
-            Sheet1: utils.aoa_to_sheet(twoDimensionalArray)
-        }
-    };
-
-    // 获取可写入对象
-    const wb = write(workbook, {
-        bookType: bookType, bookSST: false, type: 'binary'
-    });
-
-    //创建 blob 对象
-    const url = window.URL.createObjectURL(new Blob([s2ab(wb)], {type: "application/octet-stream"}));
-
-    //下载
-    download(url, `${filename}.${bookType}`);
+    return new Blob([buffer], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
 
 }
 
-export {exportExcel}
+export {createExcel,exportExcel}
