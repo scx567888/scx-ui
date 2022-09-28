@@ -11,6 +11,7 @@ import {ResponseNotOKError} from "./_scx-fetch/ResponseNotOKError.js";
 import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
 import {FetchError} from "./_scx-fetch/FetchError.js";
 import {ScxFetchHeaders} from "./_scx-fetch/ScxFetchHeaders.js";
+import {notNull} from "./vanilla-object-helper.js";
 
 /**
  *  ScxFetch : 针对 fetch 的简单封装
@@ -33,8 +34,10 @@ class ScxFetch {
      *
      * @param {string|URL} baseURL
      */
-    constructor(baseURL) {
-        this.baseURL = new URL(baseURL);
+    constructor(baseURL = null) {
+        if (notNull(baseURL)) {
+            this.baseURL = new URL(baseURL);
+        }
     }
 
     /**
@@ -51,7 +54,7 @@ class ScxFetch {
 
         const requestInit = createRequestInit(method);//初始化 fetch 参数 , 此处携带 cookie
 
-        const finalURL = new URL(url, this.baseURL);//创建 url
+        const finalURL = notNull(this.baseURL) ? new URL(url, this.baseURL) : new URL(url);//创建 url
 
         setRequestBody(requestInit, body, finalURL, charset);//设置 body 并根据 body 类型设置请求头
 
