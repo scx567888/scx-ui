@@ -7,18 +7,25 @@ import {isString} from "./vanilla-type-helper.js";
  */
 function download(url, fileName) {
     const link = document.createElement('a');
-    link.style.display = 'none';
-    if (isString(url)) {
-        link.href = url;
-    } else if (url instanceof Blob) {
-        link.href = URL.createObjectURL(url);
-    }
+    link.rel = 'noopener';
+    link.target = '_blank'
+
     if (fileName) {
-        link.setAttribute('download', fileName);
+        link.download = fileName;
     }
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+    if (isString(url)) { // 标准 URL
+        link.href = url
+        if (link.origin !== location.origin) {
+            fetch(link.href, {method: "GET"}).then(r => r.blob()).then(b => download(b, name)).catch(e => link.click());
+        } else {
+            link.click();
+        }
+    } else { // Blob 文件
+        link.href = URL.createObjectURL(url);
+        setTimeout(() => URL.revokeObjectURL(link.href), 4E4); // 40s
+        setTimeout(() => link.click(), 0);
+    }
 }
 
 export {
