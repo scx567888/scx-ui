@@ -6,9 +6,9 @@
       用户管理员 {{ userInfo.isAdmin }}
     </div>
     <div v-if="aaa">
-      <button type="button" v-perm="'hasThis'" @click="show()">一个按钮</button>
-      <button type="button" v-perm="'hasThis1'" @click="show1()">另个按钮</button>
-      <button type="button" v-perm="['hasThis2']" @click="show1()">另个按钮2</button>
+      <button v-perm="'hasThis'" type="button" @click="show()">一个按钮</button>
+      <button v-perm="'hasThis1'" type="button" @click="show1()">另个按钮</button>
+      <button v-perm="['hasThis2']" type="button" @click="show1()">另个按钮2</button>
     </div>
 
     <!--  todo 不建议这么写 建议使用上方写法(套一层) v-if 和 v-perm 同时使用会导致很多意想不到的错误  -->
