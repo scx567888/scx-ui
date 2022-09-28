@@ -1,5 +1,6 @@
 import {utils, write} from 'xlsx'
 import {download} from "./vanilla-download.js";
+import {notNull} from "./vanilla-object-helper.js";
 
 /**
  * 导出 excel
@@ -19,7 +20,7 @@ function exportExcel(fileName, data, header = null) {
 function tryCreateHeader(data) {
     const header = {};
     const firstData = data[0];
-    if (firstData !== null && firstData !== undefined) {
+    if (notNull(firstData)) {
         Object.keys(firstData).forEach((k) => header[k] = k);
     }
     return header;
@@ -47,4 +48,4 @@ function createExcel(data, header = tryCreateHeader(data)) {
 
 }
 
-export {createExcel,exportExcel}
+export {createExcel, exportExcel}

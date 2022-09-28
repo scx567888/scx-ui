@@ -1,3 +1,5 @@
+import {isNull} from "./vanilla-object-helper.js";
+
 /**
  * 将含有 id parentID 的 list 列表转换为树形结构
  * 这里将 parentID 为 null 或 undefined 的设置为 第一层
@@ -41,7 +43,7 @@ function listToTree(source, rawOptions = {}) {
             }
         }
         //需要返回的节点 1, 是根节点 2, 是孤儿节点
-        return parentID === null || parentID === undefined || isOrphan;
+        return isNull(parentID) || isOrphan;
     });
 
 }

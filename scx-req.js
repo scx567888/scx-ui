@@ -1,6 +1,7 @@
 import {ScxFetchResponseType} from "./_scx-fetch/ScxFetchResponseType.js";
 import {JsonVOError} from "./_scx-req/JsonVOError.js";
 import {ScxFetch} from "./scx-fetch.js";
+import {isNull} from "./vanilla-object-helper.js";
 
 /**
  *
@@ -29,7 +30,7 @@ function jsonVoProcessor(r) {
  * @returns {ScxFetchOptions}
  */
 function setResponseType(options = {}) {
-    if (options.responseType === null || options.responseType === undefined) {
+    if (isNull(options.responseType)) {
         options.responseType = ScxFetchResponseType.JSON;
     }
     return options;

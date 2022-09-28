@@ -8,4 +8,25 @@ function deepCopy(o) {
     return JSON.parse(JSON.stringify(o));
 }
 
-export {deepCopy}
+function isNull(o) {
+    return !notNull(o);
+}
+
+function notNull(o) {
+    return o !== undefined && o !== null;
+}
+
+/**
+ * 判断字符串 不为空
+ * @param str
+ * @returns {boolean}
+ */
+function notBlank(str) {
+    return notNull(str) ? str.toString().trim() !== '' : false;
+}
+
+function isBlank(str) {
+    return !notBlank(str);
+}
+
+export {deepCopy, isNull, notNull, isBlank, notBlank}
