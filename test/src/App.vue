@@ -11,6 +11,7 @@
   <router-link class="fff" to="/scx-upload-test">ScxUpload 测试</router-link>
   <router-link class="fff" to="/scx-upload-list-test">ScxUploadList 测试</router-link>
   <router-link class="fff" to="/scx-loading-test">ScxLoading 测试</router-link>
+  <router-link class="fff" to="/scx-perm-test">ScxPerm 测试</router-link>
   <button @click="f1">点击切换主题</button>
   <router-view/>
 </template>
