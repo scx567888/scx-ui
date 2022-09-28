@@ -62,6 +62,11 @@ const ScxRouter = createRouter({
             name: 'scx-loading-test',
             component: () => import('./views/scx-loading-test.vue'),
         },
+        {
+            path: '/scx-perm-test',
+            name: 'scx-perm-test',
+            component: () => import('./views/scx-perm-test.vue'),
+        },
     ]
 });
 
