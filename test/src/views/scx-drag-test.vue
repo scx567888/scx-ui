@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <label>
-      显示虚拟边界
-      <input v-model="showMargin" type="checkbox">
-    </label>
+  <div style="height: 2000px">
     <label>
       自动归位
       <input v-model="autoBack" type="checkbox">
@@ -16,31 +12,35 @@
         {{ i }}
       </div>
 
-      <div ref="rightRef" class="scx-drag-test-div-wrapper right" :class="{showMargin}">
+    </div>
+
+    <div ref="ggg"
+         style="width: 1000px;height: 500px;position: relative;border: 1px solid red;margin:50px;resize: both;overflow: hidden">
+      <div ref="rightRef" class="scx-drag-test-div-wrapper right">
         <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附右侧
         </div>
       </div>
 
-      <div ref="topRef" class="scx-drag-test-div-wrapper top" :class="{showMargin}">
+      <div ref="topRef" class="scx-drag-test-div-wrapper top">
         <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附上侧
         </div>
       </div>
 
-      <div ref="leftRef" class="scx-drag-test-div-wrapper left" :class="{showMargin}">
+      <div ref="leftRef" class="scx-drag-test-div-wrapper left">
         <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附左侧
         </div>
       </div>
 
-      <div ref="bottomRef" class="scx-drag-test-div-wrapper bottom" :class="{showMargin}">
+      <div ref="bottomRef" class="scx-drag-test-div-wrapper bottom">
         <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附下侧
         </div>
       </div>
-
     </div>
+
   </div>
 </template>
 
@@ -49,13 +49,13 @@ import {onMounted, ref, watch} from "vue";
 import {useScxDrag} from "../../../_scx-drag/index.js";
 
 const autoBack = ref(false)
-const showMargin = ref(false);
 
 const div2Ref = ref();
 const rightRef = ref();
 const topRef = ref();
 const leftRef = ref();
 const bottomRef = ref();
+const ggg = ref();
 
 function getValue(i) {
   return {
@@ -128,14 +128,8 @@ onMounted(() => {
   const getO = (i) => {
     return {
       callback: getDragEvent(i),
-      bounds: (a) => {
-        if (showMargin.value) {
-          a.bottom = a.bottom - 100
-          a.top = a.top + 100
-          a.left = a.left + 100
-          a.right = a.right - 100
-        }
-        return a;
+      bounds: function (a) {
+        return ggg.value.getBoundingClientRect();
       }
     }
   }
@@ -243,22 +237,6 @@ onMounted(() => {
   border-width: 4px;
   border-style: solid;
   box-sizing: border-box;
-}
-
-.showMargin.right {
-  right: 100px;
-}
-
-.showMargin.top {
-  top: 100px;
-}
-
-.showMargin.left {
-  left: 100px;
-}
-
-.showMargin.bottom {
-  bottom: 100px;
 }
 
 .ttt {
