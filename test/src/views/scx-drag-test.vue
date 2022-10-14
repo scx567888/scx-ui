@@ -11,31 +11,31 @@
 
     <div style="display: flex;flex-wrap: wrap">
 
-      <div ref="div2Ref" v-for="i in 100" v-drag="getValue(i)" :style="{background:getColor()}"
+      <div ref="div2Ref" v-for="i in 100" v-drag="getValue(i)" :style="{background:getColor(),color:getColor()}"
            class="scx-drag-test-div2">
         {{ i }}
       </div>
 
       <div ref="rightRef" class="scx-drag-test-div-wrapper right" :class="{showMargin}">
-        <div :style="{background:getColor()}" class="scx-drag-test-div1">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附右侧
         </div>
       </div>
 
       <div ref="topRef" class="scx-drag-test-div-wrapper top" :class="{showMargin}">
-        <div :style="{background:getColor()}" class="scx-drag-test-div1">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附上侧
         </div>
       </div>
 
       <div ref="leftRef" class="scx-drag-test-div-wrapper left" :class="{showMargin}">
-        <div :style="{background:getColor()}" class="scx-drag-test-div1">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附左侧
         </div>
       </div>
 
       <div ref="bottomRef" class="scx-drag-test-div-wrapper bottom" :class="{showMargin}">
-        <div :style="{background:getColor()}" class="scx-drag-test-div1">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
           吸附下侧
         </div>
       </div>
@@ -61,19 +61,20 @@ function getValue(i) {
   return {
     callback: {
       onClick: (el) => {
-        el.style.backgroundColor=getColor();
+        el.style.backgroundColor = getColor();
+        el.style.color = getColor();
         console.log(i + " : onClick")
       },
       onDrag: (el) => {
         console.log(i + " : onDrag")
-        el.classList.add("transition-none")
+        el.classList.add("dragging")
       },
       onDragEnd: (el) => {
-        if (autoBack.value){
+        if (autoBack.value) {
           el.style.transform = "unset"
         }
         console.log(i + " : onDragEnd")
-        el.classList.remove("transition-none")
+        el.classList.remove("dragging")
       }
     }
   }
@@ -99,7 +100,12 @@ function getDragEvent(i) {
         nowMatrix = nowMatrix.translate(-nowMatrix.e, 0)
       }
       el.style.transform = nowMatrix.toString()
-      el.classList.add("transform-none")
+      el.classList.add("ttt")
+      el.addEventListener("transitionend", (e) => {
+        if (e.target === el) {
+          el.classList.remove("ttt")
+        }
+      });
     }
   }
 }
@@ -167,27 +173,27 @@ onMounted(() => {
   font-size: 20px;
   cursor: move;
   user-select: none;
-  transition: all 300ms ease-out;
+
 }
 
 .scx-drag-test-div-wrapper.right {
   right: 0px;
-  top: 50%;
+  top: 200px;
 }
 
 .scx-drag-test-div-wrapper.bottom {
   bottom: 0px;
-  left: 50%;
+  left: 200px;
 }
 
 .scx-drag-test-div-wrapper.top {
   top: 0px;
-  left: 50%;
+  left: 200px;
 }
 
 .scx-drag-test-div-wrapper.left {
   left: 0px;
-  top: 50%;
+  top: 200px;
 }
 
 .transform-none {
@@ -255,7 +261,7 @@ onMounted(() => {
   bottom: 100px;
 }
 
-.transition-none {
-  transition-duration: unset;
+.ttt {
+  transition: all 300ms ease-out;
 }
 </style>
