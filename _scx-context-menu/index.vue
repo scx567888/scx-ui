@@ -1,30 +1,59 @@
 <template>
-  <transition name="scx-contextmenu-transition">
-    <ul v-show="showContextMenu" ref="scxContextMenuRef" class="scx-contextmenu" @contextmenu.prevent="">
-      <li v-for="item in contextMenuItems" @click="callItemCallBack(item)">
-        <component :is="getLabel(item)"></component>
-      </li>
-    </ul>
-  </transition>
+  <div ref="scxContextMenuRef" class="scx-context-menu" @contextmenu.prevent="">
+    <div class="scx-context-menu-item" v-for="item in contextMenuItems" @click="callItemCallBack(item)">
+      <component :is="renderLabel(item)"></component>
+    </div>
+  </div>
 </template>
 
 <script>
+//todo 多级菜单 ?
 import './index.css'
-import {onMounted, ref} from 'vue'
+import {nextTick, onMounted, ref} from 'vue'
 import {closeContextMenu} from "../scx-context-menu.js";
+import {isFunction} from "../vanilla-type-helper.js";
 
 export default {
   name: "scx-context-menu",
   props: {
-    x: Number,
-    y: Number,
+    mouseEvent: MouseEvent,
     contextMenuItems: Array
   },
   setup(props, context) {
     const scxContextMenuRef = ref(null);
-    const showContextMenu = ref(false);
 
-    const callItemCallBack = (item) => {
+    //设置初始状态 保证元素可以正确的获取的内容大小以便后续计算
+    function initStatus() {
+      scxContextMenuRef.value.style.top = 0;
+      scxContextMenuRef.value.style.left = 0;
+      scxContextMenuRef.value.style.visibility = "hidden";
+    }
+
+    function setStatus(top, left, type) {
+      scxContextMenuRef.value.classList.add(type);
+      scxContextMenuRef.value.style.top = top + 'px';
+      scxContextMenuRef.value.style.left = left + 'px';
+      scxContextMenuRef.value.style.visibility = "unset";
+    }
+
+    function show(mouseEvent) {
+      initStatus();
+      //todo 或者用 clientX ?
+      let x = mouseEvent.pageX;
+      let y = mouseEvent.pageY;
+      const clientWidth = window.innerWidth;
+      const clientHeight = window.innerHeight;
+      nextTick(() => {
+        const {width, height} = scxContextMenuRef.value.getBoundingClientRect();
+        //todo 这里还可以做优化 以保证 菜单展示不下的时候出现滚动条 通过设置 height 和 width 实现
+        const top = clientHeight > height + y ? y : y - height;
+        const type = clientHeight > height + y ? "top" : "bottom";
+        const left = clientWidth > width + x ? x : x - width;
+        setStatus(top, left, type)
+      })
+    }
+
+    function callItemCallBack(item) {
       if (item.callback) {
         item.callback(closeContextMenu)
       } else {
@@ -32,21 +61,18 @@ export default {
       }
     }
 
-    const getLabel = ({label}) => {
-      if (typeof label === 'function') {
+    function renderLabel(c) {
+      const {label} = c;
+      if (isFunction(label)) {
         return label;
       } else {
         return () => label;
       }
     }
 
-    onMounted(() => {
-      scxContextMenuRef.value.style.top = props.y + 'px';
-      scxContextMenuRef.value.style.left = props.x + 'px';
-      showContextMenu.value = true
-    })
+    onMounted(() => show(props.mouseEvent))
 
-    return {scxContextMenuRef, showContextMenu, callItemCallBack, getLabel}
+    return {scxContextMenuRef, callItemCallBack, renderLabel}
   }
 
 }

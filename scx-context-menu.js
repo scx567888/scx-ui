@@ -4,7 +4,7 @@ import {h, render} from "vue";
 let contextMenuInstance;
 
 function bodyClick(e) {
-    let isOnContextmenu = e.target.closest('.scx-contextmenu');
+    let isOnContextmenu = e.target.closest('.scx-context-menu');
 
     if (!isOnContextmenu && contextMenuInstance) {
         closeContextMenu();
@@ -12,13 +12,14 @@ function bodyClick(e) {
 }
 
 function showContextMenu(e, value) {
+    //默认阻止事件冒泡
+    e.stopPropagation();
     if (contextMenuInstance) {
         document.body.removeChild(contextMenuInstance)
     }
     const container = document.createElement('div')
     let vm = h(ScxContextMenu, {
-        x: e.clientX,
-        y: e.clientY,
+        mouseEvent: e,
         contextMenuItems: value
     })
     render(vm, container)

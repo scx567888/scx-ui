@@ -2,6 +2,19 @@ import {onBeforeUnmount} from 'vue'
 import {isFunction, isObject} from "./vanilla-type-helper.js";
 import {notNull} from "./vanilla-object-helper";
 
+/**
+ * 获取视图的上下界限
+ * @return {{top: number, left: number, bottom: number, right: number}}
+ */
+function getViewBounds() {
+    //当前视图的宽高
+    const clientWidth = document.documentElement.clientWidth;
+    const clientHeight = document.documentElement.clientHeight;
+
+    //计算上下界限
+    return {left: 0, top: 0, right: clientWidth, bottom: clientHeight};
+}
+
 class ScxDrag {
 
     /**
@@ -63,25 +76,12 @@ class ScxDrag {
     //获取上下界 默认采用 浏览器视图
     getBounds() {
         if (isFunction(this.bounds)) {
-            return this.bounds(this.getViewBounds());
+            return this.bounds(getViewBounds());
         } else if (isObject(this.bounds)) {
             return this.bounds;
         } else {
-            return this.getViewBounds();
+            return getViewBounds();
         }
-    }
-
-    /**
-     * 获取视图的上下界限
-     * @return {{top: number, left: number, bottom: number, right: number}}
-     */
-    getViewBounds() {
-        //当前视图的宽高
-        const clientWidth = document.documentElement.clientWidth;
-        const clientHeight = document.documentElement.clientHeight;
-
-        //计算上下界限
-        return {left: 0, top: 0, right: clientWidth, bottom: clientHeight};
     }
 
     //判断坐标与start 的差值是否小于指定值
@@ -203,5 +203,6 @@ const ScxDragDirective = {
 
 export {
     useScxDrag,
-    ScxDragDirective
+    ScxDragDirective,
+    getViewBounds
 }
