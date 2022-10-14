@@ -4,10 +4,15 @@
       显示虚拟边界
       <input v-model="showMargin" type="checkbox">
     </label>
+    <label>
+      自动归位
+      <input v-model="autoBack" type="checkbox">
+    </label>
 
     <div style="display: flex;flex-wrap: wrap">
 
-      <div v-for="i in 100" v-drag="getDragEvent2(i)" :style="{background:getColor()}" class="scx-drag-test-div2">
+      <div ref="div2Ref" v-for="i in 100" v-drag="getValue(i)" :style="{background:getColor()}"
+           class="scx-drag-test-div2">
         {{ i }}
       </div>
 
@@ -40,27 +45,36 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {useScxDrag} from "../../../_scx-drag/index.js";
 
-
+const autoBack = ref(false)
 const showMargin = ref(false);
 
+const div2Ref = ref();
 const rightRef = ref();
 const topRef = ref();
 const leftRef = ref();
 const bottomRef = ref();
 
-function getDragEvent2(i) {
+function getValue(i) {
   return {
-    onClick: (el) => {
-      console.log(i + " : onClick")
-    },
-    onDrag: (el) => {
-      console.log(i + " : onDrag")
-    },
-    onDragEnd: (el) => {
-      console.log(i + " : onDragEnd")
+    callback: {
+      onClick: (el) => {
+        el.style.backgroundColor=getColor();
+        console.log(i + " : onClick")
+      },
+      onDrag: (el) => {
+        console.log(i + " : onDrag")
+        el.classList.add("transition-none")
+      },
+      onDragEnd: (el) => {
+        if (autoBack.value){
+          el.style.transform = "unset"
+        }
+        console.log(i + " : onDragEnd")
+        el.classList.remove("transition-none")
+      }
     }
   }
 }
@@ -96,6 +110,15 @@ function getColor() {
 
 onMounted(() => {
 
+  watch(autoBack, (v) => {
+    if (v) {
+      for (let div2RefKey in div2Ref.value) {
+        div2Ref.value[div2RefKey].style.transform = "unset"
+      }
+    }
+  }, {immediate: true})
+
+
   const getO = (i) => {
     return {
       callback: getDragEvent(i),
@@ -130,6 +153,7 @@ onMounted(() => {
   font-size: 20px;
   cursor: move;
   user-select: none;
+  transition: all 300ms ease-out;
 }
 
 .scx-drag-test-div-wrapper {
@@ -143,7 +167,7 @@ onMounted(() => {
   font-size: 20px;
   cursor: move;
   user-select: none;
-  transition: all 100ms ease-in;
+  transition: all 300ms ease-out;
 }
 
 .scx-drag-test-div-wrapper.right {
@@ -180,7 +204,7 @@ onMounted(() => {
   font-size: 20px;
   cursor: move;
   user-select: none;
-  transition: all 100ms ease-in;
+  transition: all 300ms ease-in;
 }
 
 .dragging {
@@ -203,9 +227,16 @@ onMounted(() => {
 }
 
 .dragging > .scx-drag-test-div1 {
-  border-radius: 10px;
-  animation: r 3s linear infinite;
+  border-radius: 50%;
+  animation: r 300ms linear infinite;
   background: darkmagenta !important;
+  border-right-color: #0d6efd;
+  border-left-color: #fe0953;
+  border-bottom-color: #45fe06;
+  border-top-color: #fff700;
+  border-width: 4px;
+  border-style: solid;
+  box-sizing: border-box;
 }
 
 .showMargin.right {
@@ -224,4 +255,7 @@ onMounted(() => {
   bottom: 100px;
 }
 
+.transition-none {
+  transition-duration: unset;
+}
 </style>
