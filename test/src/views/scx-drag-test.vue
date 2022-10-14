@@ -1,43 +1,150 @@
 <template>
-  <div>
-    <div v-for="i in 100" v-drag="getDragEvent(i)" :style="{background:getColor()}" class="scx-drag-test-div">
-      {{ i }}
-    </div>
-  </div>
+  <div style="height: 2000px">
+    <label>
+      自动归位
+      <input v-model="autoBack" type="checkbox">
+    </label>
 
+    <div style="display: flex;flex-wrap: wrap">
+
+      <div v-for="i in 100" ref="div2Ref" v-drag="getValue(i)" :style="{background:getColor(),color:getColor()}"
+           class="scx-drag-test-div2">
+        {{ i }}
+      </div>
+
+    </div>
+
+    <div ref="ggg"
+         style="width: 1000px;height: 500px;position: relative;border: 1px solid red;margin:50px;resize: both;overflow: hidden">
+      <div ref="rightRef" class="scx-drag-test-div-wrapper right">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
+          吸附右侧
+        </div>
+      </div>
+
+      <div ref="topRef" class="scx-drag-test-div-wrapper top">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
+          吸附上侧
+        </div>
+      </div>
+
+      <div ref="leftRef" class="scx-drag-test-div-wrapper left">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
+          吸附左侧
+        </div>
+      </div>
+
+      <div ref="bottomRef" class="scx-drag-test-div-wrapper bottom">
+        <div :style="{background:getColor(),color:getColor()}" class="scx-drag-test-div1">
+          吸附下侧
+        </div>
+      </div>
+    </div>
+
+  </div>
 </template>
 
-<script>
-export default {
-  name: "scx-drag-test",
-  setup() {
+<script setup>
+import {onMounted, ref, watch} from "vue";
+import {useScxDrag} from "../../../scx-drag.js";
 
-    function getDragEvent(i) {
-      return {
-        onClick: (el) => {
-          console.log(i + " : onClick")
-        },
-        onDrag: (el) => {
-          console.log(i + " : onDrag")
-        },
-        onDragEnd: (el) => {
-          console.log(i + " : onDragEnd")
+const autoBack = ref(false)
+
+const div2Ref = ref();
+const rightRef = ref();
+const topRef = ref();
+const leftRef = ref();
+const bottomRef = ref();
+const ggg = ref();
+
+function getValue(i) {
+  return {
+    callback: {
+      onClick: (el) => {
+        el.style.backgroundColor = getColor();
+        el.style.color = getColor();
+        console.log(i + " : onClick")
+      },
+      onDrag: (el) => {
+        console.log(i + " : onDrag")
+        el.classList.add("dragging")
+      },
+      onDragEnd: (el) => {
+        if (autoBack.value) {
+          el.style.transform = "unset"
         }
+        console.log(i + " : onDragEnd")
+        el.classList.remove("dragging")
       }
     }
-
-    function getColor() {
-      return "#" + Math.random().toString(16).slice(-6);
-    }
-
-    return {getColor, getDragEvent}
   }
 }
+
+function getDragEvent(i) {
+  return {
+    onClick: (el) => {
+      console.log(i + " : onClick")
+    },
+    onDrag: (el) => {
+      el.classList.add("dragging")
+      console.log(i + " : onDrag")
+    },
+    onDragEnd: (el, startMatrix) => {
+      console.log(i + " : onDragEnd")
+      el.classList.remove("dragging")
+      let nowMatrix = new DOMMatrix(window.getComputedStyle(el).transform);
+      //清楚我们不需要的坐标
+      if (i === "top" || i === "bottom") {
+        nowMatrix = nowMatrix.translate(0, -nowMatrix.f)
+      } else if (i === "left" || i === "right") {
+        nowMatrix = nowMatrix.translate(-nowMatrix.e, 0)
+      }
+      el.style.transform = nowMatrix.toString()
+      el.classList.add("ttt")
+      el.addEventListener("transitionend", (e) => {
+        if (e.target === el) {
+          el.classList.remove("ttt")
+        }
+      });
+    }
+  }
+}
+
+function getColor() {
+  return "#" + Math.random().toString(16).slice(-6);
+}
+
+onMounted(() => {
+
+  watch(autoBack, (v) => {
+    if (v) {
+      for (let div2RefKey in div2Ref.value) {
+        div2Ref.value[div2RefKey].style.transform = "unset"
+      }
+    }
+  }, {immediate: true})
+
+
+  const getO = (i) => {
+    return {
+      callback: getDragEvent(i),
+      bounds: function (a) {
+        return ggg.value.getBoundingClientRect();
+      }
+    }
+  }
+
+  useScxDrag(leftRef.value, getO("left"));
+  useScxDrag(topRef.value, getO("top"));
+  useScxDrag(rightRef.value, getO("right"));
+  useScxDrag(bottomRef.value, getO("bottom"));
+
+});
+
 </script>
 
 <style scoped>
-.scx-drag-test-div {
-  position: fixed;
+.scx-drag-test-div2 {
   width: 100px;
   height: 100px;
   display: flex;
@@ -46,5 +153,93 @@ export default {
   font-size: 20px;
   cursor: move;
   user-select: none;
+  transition: all 300ms ease-out;
+}
+
+.scx-drag-test-div-wrapper {
+  z-index: 1;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: move;
+  user-select: none;
+
+}
+
+.scx-drag-test-div-wrapper.right {
+  right: 0px;
+  top: 200px;
+}
+
+.scx-drag-test-div-wrapper.bottom {
+  bottom: 0px;
+  left: 200px;
+}
+
+.scx-drag-test-div-wrapper.top {
+  top: 0px;
+  left: 200px;
+}
+
+.scx-drag-test-div-wrapper.left {
+  left: 0px;
+  top: 200px;
+}
+
+.transform-none {
+  transform: none;
+}
+
+.scx-drag-test-div1 {
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: move;
+  user-select: none;
+  transition: all 300ms ease-in;
+}
+
+.dragging {
+  transition: none;
+}
+
+@keyframes r {
+
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+
+}
+
+.dragging > .scx-drag-test-div1 {
+  border-radius: 50%;
+  animation: r 300ms linear infinite;
+  background: darkmagenta !important;
+  border-right-color: #0d6efd;
+  border-left-color: #fe0953;
+  border-bottom-color: #45fe06;
+  border-top-color: #fff700;
+  border-width: 4px;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.ttt {
+  transition: all 300ms ease-out;
 }
 </style>

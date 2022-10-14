@@ -5,7 +5,10 @@
     <input ref="hiddenInputRef" multiple placeholder="file" style="display: none" type="file"
            @change="onHiddenInputChange">
 
-    <scx-group v-model="uploadInfoList" :before-remove="beforeRemove" :show-move-button="!disabled" :show-remove-button="!disabled">
+    <scx-group v-model="uploadInfoList"
+               :before-remove="beforeRemove"
+               :show-move-button="!disabled"
+               :show-remove-button="!disabled">
       <template v-if="!disabled" #before>
         <!-- 上传按钮 -->
         <button class="upload-button" type="button" @click="selectFile">

@@ -1,128 +1,208 @@
-class dragState {
-    constructor() {
-        this.startX = 0;
-        this.startY = 0;
+import {onBeforeUnmount} from 'vue'
+import {isFunction, isObject} from "./vanilla-type-helper.js";
+import {notNull} from "./vanilla-object-helper";
+
+/**
+ * 获取视图的上下界限
+ * @return {{top: number, left: number, bottom: number, right: number}}
+ */
+function getViewBounds() {
+    //当前视图的宽高
+    const clientWidth = document.documentElement.clientWidth;
+    const clientHeight = document.documentElement.clientHeight;
+
+    //计算上下界限
+    return {left: 0, top: 0, right: clientWidth, bottom: clientHeight};
+}
+
+class ScxDrag {
+
+    /**
+     * 目标元素
+     */
+    targetElement;
+
+    /**
+     * 可拖拽区域元素
+     */
+    dragElement;
+
+    //存取鼠标按下时的初始状态 (包含元素的初始矩阵,鼠标位置,上下界限等)
+    startX;
+    startY;
+    startMatrix;
+
+    //判断为点击事件的距离
+    v = 10;
+
+    //当前状态
+    dragIng = false;
+
+    //用户自定义的 上下界
+    bounds;
+
+    //用户自定义的 回调
+    callback = {
+        onClick: (el) => {
+        }, onDrag: (el) => {
+        }, onDragEnd: (el) => {
+        }
+    }
+
+    //上下界限 用于加速计算
+    minLeft;
+    minTop;
+    maxLeft;
+    maxTop;
+
+    /**
+     *
+     * @param targetElement
+     * @param dragElement
+     * @param callback
+     * @param bounds {Function||{top,left,bottom,right}}
+     */
+    constructor(targetElement, {dragElement, callback, bounds} = {}) {
+        this.targetElement = targetElement;
+        this.dragElement = dragElement ? dragElement : targetElement; //默认使用 targetElement
+        this.callback = callback;
+        this.bounds = bounds;// 自定义的界限
+        //强制绑定 this 指向
+        this.onMousedown = this.onMousedown.bind(this);
+        this.onMousemove = this.onMousemove.bind(this);
+        this.onMouseup = this.onMouseup.bind(this);
+    }
+
+    //获取上下界 默认采用 浏览器视图
+    getBounds() {
+        if (isFunction(this.bounds)) {
+            return this.bounds(getViewBounds());
+        } else if (isObject(this.bounds)) {
+            return this.bounds;
+        } else {
+            return getViewBounds();
+        }
+    }
+
+    //判断坐标与start 的差值是否小于指定值
+    isMove(x, y) {
+        return Math.abs(this.startX - x) > this.v || Math.abs(this.startY - y) > this.v;
+    }
+
+    onMousedown(event) {
+        //获取鼠标初始点击位置
+        this.startX = event.clientX;
+        this.startY = event.clientY;
+
+        //获取元素当前的矩阵状态
+        this.startMatrix = new DOMMatrix(window.getComputedStyle(this.targetElement).transform);
+
+        //获取元素当前的位置
+        const {left, top, bottom, right} = this.targetElement.getBoundingClientRect();
+
+        //计算上下界限
+        const bounds = this.getBounds();
+
+        //计算上下界限
+        this.minLeft = bounds.left - left;
+        this.minTop = bounds.top - top;
+        this.maxLeft = bounds.right - right;
+        this.maxTop = bounds.bottom - bottom;
+
+        document.addEventListener('mousemove', this.onMousemove);
+        document.addEventListener('mouseup', this.onMouseup);
+    }
+
+    onMousemove(event) {
+        if (this.isMove(event.clientX, event.clientY)) {
+            this.update(event.clientX, event.clientY);
+            if (!this.dragIng) {
+                this.callOnDrag();
+                this.dragIng = true
+            }
+        }
+    }
+
+    onMouseup(e) {
         this.dragIng = false;
-        this.onClick = (el) => {
-        };
-        this.onDrag = (el) => {
-        };
-        this.onDragEnd = (el) => {
-        };
-    }
-}
-
-//判断坐标与start 的差值是否小于指定值
-function isMove(ds, x, y, v) {
-    return Math.abs(ds.startX - x) > v || Math.abs(ds.startY - y) > v;
-}
-
-function onMouseMove(el, e, x, y) {
-    // 获取拖拽元素的位置
-    let left = e.clientX - x;
-    let top = e.clientY - y;
-    // 把拖拽元素 放到 当前的位置
-    if (left <= 0) {
-        left = 0;
-    } else if (left >= document.documentElement.clientWidth - el.offsetWidth) {
-        left = document.documentElement.clientWidth - el.offsetWidth;
-    }
-    if (top <= 0) {
-        top = 0;
-    } else if (top >= document.documentElement.clientHeight - el.offsetHeight) {
-        top = document.documentElement.clientHeight - el.offsetHeight
-    }
-    el.style.left = left + "px";
-    el.style.top = top + "px"
-}
-
-function getDragState(value) {
-    const temp = new dragState();
-    if (value) {
-        if (value.onClick) {
-            temp.onClick = value.onClick
+        if (this.isMove(e.clientX, e.clientY)) {
+            this.callOnDragEnd();
+        } else {
+            this.callOnClick();
         }
-        if (value.onDrag) {
-            temp.onDrag = value.onDrag
-        }
-        if (value.onDragEnd) {
-            temp.onDragEnd = value.onDragEnd
+        document.removeEventListener('mousemove', this.onMousemove)
+        document.removeEventListener('mouseup', this.onMouseup)
+    }
+
+    update(X, Y) {
+        let moveX = Math.min(Math.max(X - this.startX, this.minLeft), this.maxLeft);
+        let moveY = Math.min(Math.max(Y - this.startY, this.minTop), this.maxTop);
+        //todo 这里若元素有放大旋转等操作会导致错误的移动
+        //这里距离需要进行重新计算
+        moveX = moveX / this.startMatrix.a;
+        moveY = moveY / this.startMatrix.d;
+        //旋转等操作待处理
+
+        const newMatrix = this.startMatrix.translate(moveX, moveY);
+
+        this.targetElement.style.transform = newMatrix.toString();
+    }
+
+    callOnDrag() {
+        if (notNull(this.callback) && isFunction(this.callback.onDrag)) {
+            this.callback.onDrag(this.targetElement);
         }
     }
-    return temp;
+
+    callOnDragEnd(e) {
+        if (notNull(this.callback) && isFunction(this.callback.onDragEnd)) {
+            this.callback.onDragEnd(this.targetElement, this.startMatrix, e);
+        }
+    }
+
+    callOnClick() {
+        if (notNull(this.callback) && isFunction(this.callback.onClick)) {
+            this.callback.onClick(this.targetElement);
+        }
+    }
+
+    enable() {
+        this.dragElement.addEventListener('mousedown', this.onMousedown)
+        return this;
+    }
+
+    disable() {
+        this.dragElement.removeEventListener('mousedown', this.onMousedown)
+        return this;
+    }
+
+}
+
+/**
+ *
+ * @param targetElement
+ * @param options {{dragElement, callback, bounds}}}
+ * @return {ScxDrag}
+ */
+function useScxDrag(targetElement, options = {}) {
+    const scxDrag = new ScxDrag(targetElement, options);
+    scxDrag.enable();
+    onBeforeUnmount(() => scxDrag.disable());
+    return scxDrag;
 }
 
 const ScxDragDirective = {
     name: 'drag',
     mounted(el, {value}) {
-        const ds = getDragState(value);
-        //兼容 移动端
-        el.ontouchstart = (e) => {
-            //停止事件传播
-            e.stopPropagation();
-            e.preventDefault();
-            ds.startX = e.touches[0].clientX;
-            ds.startY = e.touches[0].clientY;
-            let x = e.touches[0].clientX - el.offsetLeft;
-            let y = e.touches[0].clientY - el.offsetTop;
-            document.ontouchmove = (de) => {
-                if (isMove(ds, de.touches[0].clientX, de.touches[0].clientY, 10)) {
-                    //进行鼠标拖拽事件
-                    onMouseMove(el, de.touches[0], x, y);
-                    if (!ds.dragIng) {
-                        ds.onDrag(el)
-                        ds.dragIng = true
-                    }
-                }
-            }
-            document.ontouchend = (de) => {
-                document.ontouchmove = null;
-                document.ontouchend = null;
-                ds.dragIng = false;
-                //根据鼠标移动的距离判断是什么事件 x y 都 小于 10
-                if (isMove(ds, de.changedTouches[0].clientX, de.changedTouches[0].clientY, 10)) {
-                    ds.onDragEnd(el);
-                } else {
-                    ds.onClick(el);
-                }
-            }
-        }
-        //pc端
-        el.onmousedown = (e) => {
-            //我们只响应左键
-            if (e.button !== 0) {
-                return;
-            }
-            ds.startX = e.clientX;
-            ds.startY = e.clientY;
-            let x = e.clientX - el.offsetLeft;
-            let y = e.clientY - el.offsetTop;
-            document.onmousemove = (de) => {
-                if (isMove(ds, de.clientX, de.clientY, 10)) {
-                    //进行鼠标拖拽事件
-                    onMouseMove(el, de, x, y);
-                    if (!ds.dragIng) {
-                        ds.onDrag(el)
-                        ds.dragIng = true
-                    }
-                }
-            }
-            document.onmouseup = (de) => {
-                document.onmousemove = null;
-                document.onmouseup = null;
-                ds.dragIng = false;
-                //根据鼠标移动的距离判断是什么事件 x y 都 小于 10
-                if (isMove(ds, de.clientX, de.clientY, 10)) {
-                    ds.onDragEnd(el);
-                } else {
-                    ds.onClick(el);
-                }
-            }
-        }
+        useScxDrag(el, value);
     },
     updated(el, {value}) {
 
     }
 }
 
-export {ScxDragDirective}
+export {
+    useScxDrag,
+    ScxDragDirective,
+    getViewBounds
+}
