@@ -1,6 +1,6 @@
 <template>
   <div ref="scxContextMenuRef" class="scx-context-menu" @contextmenu.prevent="">
-    <div class="scx-context-menu-item" v-for="item in contextMenuItems" @click="callItemCallBack(item)">
+    <div v-for="item in contextMenuItems" class="scx-context-menu-item" @click="callItemCallBack(item)">
       <component :is="renderLabel(item)"></component>
     </div>
   </div>

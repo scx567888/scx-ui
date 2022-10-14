@@ -7,7 +7,7 @@
 
     <div style="display: flex;flex-wrap: wrap">
 
-      <div ref="div2Ref" v-for="i in 100" v-drag="getValue(i)" :style="{background:getColor(),color:getColor()}"
+      <div v-for="i in 100" ref="div2Ref" v-drag="getValue(i)" :style="{background:getColor(),color:getColor()}"
            class="scx-drag-test-div2">
         {{ i }}
       </div>
