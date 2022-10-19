@@ -1,12 +1,21 @@
 import ScxContextMenu from "./_scx-context-menu/index.vue";
 import {h, render} from "vue";
 
-let contextMenuInstance;
+// 这里因为 vite 每次导入时都使用不同的 上下文导致 contextMenuInstance 为空 这里直接绑定到 window 上
+// let contextMenuInstance;
+
+function getInstance() {
+    return window['__SCX_CONTEXT_MENU_INSTANCE__'];
+}
+
+function setInstance(instance) {
+    return window['__SCX_CONTEXT_MENU_INSTANCE__'] = instance;
+}
 
 function bodyClick(e) {
     let isOnContextmenu = e.target.closest('.scx-context-menu');
 
-    if (!isOnContextmenu && contextMenuInstance) {
+    if (!isOnContextmenu && getInstance()) {
         closeContextMenu();
     }
 }
@@ -14,8 +23,9 @@ function bodyClick(e) {
 function showContextMenu(e, value) {
     //默认阻止事件冒泡
     e.stopPropagation();
-    if (contextMenuInstance) {
-        document.body.removeChild(contextMenuInstance)
+    const instance = getInstance();
+    if (instance) {
+        document.body.removeChild(instance);
     }
     const container = document.createElement('div')
     let vm = h(ScxContextMenu, {
@@ -23,14 +33,14 @@ function showContextMenu(e, value) {
         contextMenuItems: value
     })
     render(vm, container)
-    contextMenuInstance = container
+    setInstance(container)
     document.body.appendChild(container)
     document.body.addEventListener('click', bodyClick);
 }
 
 function closeContextMenu() {
-    document.body.removeChild(contextMenuInstance)
-    contextMenuInstance = null;
+    document.body.removeChild(getInstance())
+    setInstance(null);
     document.body.removeEventListener('click', bodyClick);
 }
 
