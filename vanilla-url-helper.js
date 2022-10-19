@@ -1,3 +1,5 @@
+import {notBlank} from "./vanilla-object-helper.js";
+
 /**
  * 是否是外链
  * @param {string} url
@@ -22,7 +24,7 @@ function isHttpURL(url) {
  * @returns {*|string}
  */
 function cleanURL(url) {
-    return url.join("/").split("/").join("/");
+    return url.join("/").split("/").filter(notBlank).join("/");
 }
 
 
