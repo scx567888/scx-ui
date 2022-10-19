@@ -39,7 +39,10 @@ function showContextMenu(e, value) {
 }
 
 function closeContextMenu() {
-    document.body.removeChild(getInstance())
+    const instance = getInstance();
+    if (instance) {
+        document.body.removeChild(instance);
+    }
     setInstance(null);
     document.body.removeEventListener('click', bodyClick);
 }
