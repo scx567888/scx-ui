@@ -4,13 +4,12 @@
 class EBEvent {
     name;
     event;
-    isWSEvent;
 
-    constructor(name, event, isWSEvent) {
+    constructor(name, event) {
         this.name = name;
         this.event = event;
-        this.isWSEvent = isWSEvent;
     }
+
 }
 
 export {EBEvent}
