@@ -34,7 +34,7 @@ class ScxEventBus {
     /**
      * 手动启动连接
      */
-    createWebSocket() {
+    start() {
         this.webSocketHelper.createWebSocket();
         return this;
     }
