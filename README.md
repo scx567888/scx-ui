@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://scx.cool/img/scx-ui-logo.svg" width="300px"  alt="scx-ui-logo"/>
+    <img src="https://scx.cool/logos/scx-ui-logo.svg" width="300px"  alt="scx-ui-logo"/>
 </p>
 <p align="center">
     <a target="_blank" href="https://github.com/scx567888/scx-ui/actions/workflows/ci.yml">
