@@ -23,7 +23,7 @@ class ScxEventBus {
                 if (es) {
                     for (const c of es) {
                         try {
-                            c.event(wsMessage.body)
+                            c(wsMessage.body)
                         } catch (e) {
                             console.warn(e)
                         }
@@ -65,7 +65,7 @@ class ScxEventBus {
         if (es) {
             for (const c of es) {
                 try {
-                    c.event(message);
+                    c(message);
                 } catch (e) {
                     console.warn(e)
                 }
