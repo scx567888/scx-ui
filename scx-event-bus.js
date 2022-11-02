@@ -1,12 +1,11 @@
 import {WebSocketHelper} from "./_scx-event-bus/WebSocketHelper.js";
-import {EBEvent} from "./_scx-event-bus/EBEvent.js";
-import {WSBody} from "./_scx-event-bus/WSBody.js";
+import {WSMessage} from "./_scx-event-bus/WSMessage.js";
 import {initBaseURL} from "./_scx-event-bus/ScxEventBusHelper";
 
 class ScxEventBus {
     webSocketHelper;// websocket helper
-    eventList = [];// 事件列表
-    wsEventList = [];// ws 事件列表
+    events = {};// 事件列表
+    wsEvents = {};// ws 事件列表
 
     /**
      *
@@ -18,15 +17,18 @@ class ScxEventBus {
         //监听 websocket 的事件
         this.webSocketHelper.onmessage = (data) => {
             const json = JSON.parse(data);
-            const wsBody = new WSBody(json.name, json.data);
-            if (wsBody.name) {
-                this.wsEventList.filter(c => c.name === wsBody.name).forEach(c => {
-                    try {
-                        c.event(wsBody.data)
-                    } catch (e) {
-                        console.warn(e)
+            const wsMessage = new WSMessage(json.address, json.body, json.headers);
+            if (wsMessage.address) {
+                const es = this.wsEvents[wsMessage.address];
+                if (es) {
+                    for (const c of es) {
+                        try {
+                            c(wsMessage.body)
+                        } catch (e) {
+                            console.warn(e)
+                        }
                     }
-                });
+                }
             }
         }
     }
@@ -34,41 +36,59 @@ class ScxEventBus {
     /**
      * 手动启动连接
      */
-    start() {
+    startConnection() {
         this.webSocketHelper.createWebSocket();
         return this;
     }
 
-    //添加消费者
-    consumer(name, event) {
-        const b = this.eventList.some(c => c.name === name && c.event === event);
-        if (!b) {
-            this.eventList.push(new EBEvent(name, event));
+    unregisterConsumer(address, event) {
+        // 确保 是一个 set
+        if (this.events[address]) {
+            this.events[address].delete(event);
         }
+    };
+
+    unregisterWSConsumer(address, event) {
+        if (this.wsEvents[address]) {
+            this.wsEvents[address].delete(event);
+        }
+    };
+
+    //添加消费者
+    consumer(address, event) {
+        // 确保 是一个 set
+        if (!this.events[address]) {
+            this.events[address] = new Set();
+        }
+        this.events[address].add(event);
     };
 
     //添加 websocket 消费者
-    wsConsumer(name, event) {
-        const b = this.wsEventList.some(c => c.name === name && c.event === event);
-        if (!b) {
-            this.wsEventList.push(new EBEvent(name, event));
+    wsConsumer(address, event) {
+        // 确保 是一个 set
+        if (!this.wsEvents[address]) {
+            this.wsEvents[address] = new Set();
+        }
+        this.wsEvents[address].add(event);
+    };
+
+    //发送事件
+    publish(address, message) {
+        const es = this.events[address];
+        if (es) {
+            for (const c of es) {
+                try {
+                    c(message);
+                } catch (e) {
+                    console.warn(e)
+                }
+            }
         }
     };
 
     //发送事件
-    publish(name, message) {
-        this.eventList.filter(c => c.name === name).forEach(c => {
-            try {
-                c.event(message);
-            } catch (e) {
-                console.warn(e)
-            }
-        });
-    };
-
-    //发送事件
-    wsPublish(name, message) {
-        this.webSocketHelper.send(new WSBody(name, message));
+    wsPublish(address, body, headers = null) {
+        this.webSocketHelper.send(new WSMessage(address, body, headers));
     };
 
 }
