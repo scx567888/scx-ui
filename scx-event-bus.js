@@ -41,6 +41,19 @@ class ScxEventBus {
         return this;
     }
 
+    unregisterConsumer(address, event) {
+        // 确保 是一个 set
+        if (this.events[address]) {
+            this.events[address].delete(event);
+        }
+    };
+
+    unregisterWSConsumer(address, event) {
+        if (this.wsEvents[address]) {
+            this.wsEvents[address].delete(event);
+        }
+    };
+
     //添加消费者
     consumer(address, event) {
         // 确保 是一个 set
