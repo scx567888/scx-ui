@@ -1,6 +1,7 @@
 import {WebSocketHelper} from "./_scx-event-bus/WebSocketHelper.js";
 import {WSMessage} from "./_scx-event-bus/WSMessage.js";
 import {initBaseURL} from "./_scx-event-bus/ScxEventBusHelper";
+import {inject} from "vue";
 
 class ScxEventBus {
     webSocketHelper;// websocket helper
@@ -91,8 +92,28 @@ class ScxEventBus {
         this.webSocketHelper.send(new WSMessage(address, body, headers));
     };
 
+    install(app) {
+        app.provide(scxEventBusKey, this);
+    }
+
+}
+
+/**
+ *
+ * @type {string}
+ */
+const scxEventBusKey = 'scx-event-bus';
+
+/**
+ *
+ * @returns {ScxEventBus}
+ */
+function useScxEventBus() {
+    return inject(scxEventBusKey);
 }
 
 export {
-    ScxEventBus
+    ScxEventBus,
+    scxEventBusKey,
+    useScxEventBus
 }
