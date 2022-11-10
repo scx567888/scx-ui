@@ -2,6 +2,7 @@ import {ScxFetchResponseType} from "./_scx-fetch/ScxFetchResponseType.js";
 import {JsonVOError} from "./_scx-req/JsonVOError.js";
 import {ScxFetch} from "./scx-fetch.js";
 import {isNull} from "./vanilla-object-helper.js";
+import {inject} from "vue";
 
 /**
  *
@@ -100,6 +101,26 @@ class ScxReq {
         return jsonVoProcessor(this.scxFetch.delete(url, body, setResponseType(options)));
     }
 
+    install(app) {
+        app.provide(scxReqKey, this);
+    }
+
 }
 
-export {ScxReq, JsonVOError}
+
+/**
+ *
+ * @type {string}
+ */
+const scxReqKey = 'scx-req';
+
+/**
+ *
+ * @returns {ScxReq}
+ */
+function useScxReq() {
+    return inject(scxReqKey);
+}
+
+
+export {ScxReq, JsonVOError, scxReqKey, useScxReq}

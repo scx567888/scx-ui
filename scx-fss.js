@@ -2,6 +2,7 @@ import SparkMD5 from "spark-md5";
 import {percentage} from "./vanilla-percentage.js";
 import {joinURL} from "./vanilla-url-helper.js";
 import {JsonVOError} from "./scx-req.js";
+import {inject} from "vue";
 
 class FSSObject {
     fssObjectID;//文件的 id
@@ -334,49 +335,32 @@ class ScxFSS {
         return joinURL(this.scxReq.baseURL, ScxFSS.downloadURL(), fssObjectID).toString();
     };
 
+
+    install(app) {
+        app.provide(scxFSSKey, this);
+    }
+
+
 }
 
-class JoinImageURLOptions {
 
-    /**
-     * width 的简写形式
-     * @type {Number}
-     */
-    w;
+/**
+ *
+ * @type {string}
+ */
+const scxFSSKey = 'scx-fss';
 
-    /**
-     * height 的简写形式
-     * @type {Number}
-     */
-    h;
-
-    /**
-     * type 的简写形式
-     * @type {String}
-     */
-    t;
-
-    /**
-     * 优先级大于 w
-     * @type {Number}
-     */
-    width;
-
-    /**
-     * 优先级大于 h
-     * @type {Number}
-     */
-    height;
-
-    /**
-     * 优先级大于 t
-     * @type {String}
-     */
-    type;
+/**
+ *
+ * @returns {ScxFSS}
+ */
+function useScxFSS() {
+    return inject(scxFSSKey);
 }
 
 export {
     ScxFSS,
-    JoinImageURLOptions,
-    FSSObject
+    FSSObject,
+    useScxFSS,
+    scxFSSKey
 }

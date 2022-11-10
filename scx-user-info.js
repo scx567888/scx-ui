@@ -1,3 +1,5 @@
+import {inject} from "vue";
+
 /**
  * 用户信息类
  */
@@ -54,6 +56,25 @@ class ScxUserInfo {
         return this;
     }
 
+
+    install(app) {
+        app.provide(scxUserInfoKey, this);
+    }
+
 }
 
-export {ScxUserInfo}
+/**
+ *
+ * @type {string}
+ */
+const scxUserInfoKey = 'scx-user-info';
+
+/**
+ *
+ * @returns {ScxUserInfo}
+ */
+function useScxUserInfo() {
+    return inject(scxUserInfoKey);
+}
+
+export {ScxUserInfo, useScxUserInfo, scxUserInfoKey}
