@@ -56,15 +56,13 @@ function setRequestBody(requestInit, body, url, charset) {
     if (notNull(body)) {
         if (body instanceof FormData) {
             requestInit.body = body;
-        } else if (Object.keys(body).length > 0) {
-            if (requestInit.method === 'GET') {
-                for (const [key, value] of Object.entries(body)) {
-                    url.searchParams.set(key, String(value));
-                }
-            } else {
-                requestInit.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
-                requestInit.body = JSON.stringify(body);
+        } else if (requestInit.method === 'GET') {
+            for (const [key, value] of Object.entries(body)) {
+                url.searchParams.set(key, String(value));
             }
+        } else {
+            requestInit.headers.set(HttpHeaderNames.CONTENT_TYPE, `${HttpHeaderValues.APPLICATION_JSON};charset=${charset}`);
+            requestInit.body = JSON.stringify(body);
         }
     }
 }
