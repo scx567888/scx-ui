@@ -43,7 +43,7 @@ class ScxFSS {
      * @returns {string}
      */
     static uploadURL() {
-        return '/api/fss/upload';
+        return 'api/fss/upload';
     }
 
     /**
@@ -51,7 +51,7 @@ class ScxFSS {
      * @returns {string}
      */
     static listInfoURL() {
-        return '/api/fss/list-info';
+        return 'api/fss/list-info';
     }
 
     /**
@@ -59,7 +59,7 @@ class ScxFSS {
      * @returns {string}
      */
     static infoURL() {
-        return '/api/fss/info';
+        return 'api/fss/info';
     }
 
     /**
@@ -67,7 +67,7 @@ class ScxFSS {
      * @returns {string}
      */
     static rawURL() {
-        return '/api/fss/raw/';
+        return 'api/fss/raw/';
     }
 
     /**
@@ -75,7 +75,7 @@ class ScxFSS {
      * @returns {string}
      */
     static imageURL() {
-        return '/api/fss/image/';
+        return 'api/fss/image/';
     }
 
     /**
@@ -83,11 +83,11 @@ class ScxFSS {
      * @returns {string}
      */
     static downloadURL() {
-        return '/api/fss/download/';
+        return 'api/fss/download/';
     }
 
     static checkAnyFileExistsByThisMD5URL() {
-        return '/api/fss/check-any-file-exists-by-this-md5';
+        return 'api/fss/check-any-file-exists-by-this-md5';
     }
 
     static CHECKING() {

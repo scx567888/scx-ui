@@ -13,7 +13,7 @@ class ScxEventBus {
      * @param baseURL
      */
     constructor(baseURL) {
-        this.webSocketHelper = new WebSocketHelper(new URL('/scx', initBaseURL(baseURL)));
+        this.webSocketHelper = new WebSocketHelper(new URL('scx', initBaseURL(baseURL)));
 
         //监听 websocket 的事件
         this.webSocketHelper.onmessage = (data) => {
