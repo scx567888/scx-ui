@@ -1,11 +1,11 @@
 {
   "name": "scx-ui",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Some front end UI kits for SCX",
   "license": "MIT",
   "author": "scx567888",
   "files": [
-    "_scx-*",
+    "_scx-*/**",
     "_svg-icons",
     "scx-*",
     "thirdparty-*",
