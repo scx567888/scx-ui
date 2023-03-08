@@ -34,8 +34,8 @@ export default {
       }
       return svgNameList;
     }
-    const filledIconList = getSvgNameList(import.meta.globEager('../../../_svg-icons/filled/*.svg'));
-    const outlinedIconList = getSvgNameList(import.meta.globEager('../../../_svg-icons/outlined/*.svg'));
+    const filledIconList = getSvgNameList(import.meta.glob('../../../_svg-icons/filled/*.svg'), { eager: true });
+    const outlinedIconList = getSvgNameList(import.meta.glob('../../../_svg-icons/outlined/*.svg', { eager: true }));
 
     function copyIcon(icon) {
       return `<scx-icon icon="${icon}"/>`;
