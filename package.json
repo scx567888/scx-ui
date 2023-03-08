@@ -20,7 +20,7 @@
   "scripts": {
     "dev:test": "vite test --host",
     "build:test": "vite build test",
-    "preview:test": "vite preview test"
+    "preview:test": "vite preview test --host"
   },
   "dependencies": {
     "spark-md5": "^3.0.2",

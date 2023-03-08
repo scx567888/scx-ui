@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue';
-import {scxIconPlugin} from '../scx-icon-vite-plugins.js';
+import {scxIconPluginUseJS} from '../scx-icon-vite-plugins.js';
 
 export default {
     base: './',
@@ -10,5 +10,5 @@ export default {
                 isCustomElement: tag => ['scx-loading'].includes(tag)
             }
         }
-    }), scxIconPlugin({type: 'js', svgRoot: ['a']})]
+    }), scxIconPluginUseJS(['a'])]
 }
