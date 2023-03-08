@@ -51,16 +51,13 @@ npm install scx-ui
 #### 1. 安装用于 ScxIcon 图标的 vite 插件 。
 
 ```javascript
-import {scxIconPlugin} from 'scx-ui/scx-icon-vite-plugins.js';
+import {scxIconPluginUseJS} from 'scx-ui/scx-icon-vite-plugins.js';
 
 export default {
     base: './',
-    plugins: [scxIconPlugin({
-        //图标注入类型, js (用 js 动态注入) 或 html (直接注入到 index.html)
-        type: 'js',
-        //您自己的svg图标文件夹 , 也可以是一个数组 []
-        svgRoot: 'your-svg-root',
-    })]
+    plugins: [scxIconPluginUseJS( // 或 scxIconPluginUseHtml
+        'your-svg-root' //您自己的svg图标文件夹 , 也可以是一个数组 []
+    )]
 }
 ```
 

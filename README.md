@@ -51,16 +51,13 @@ npm install scx-ui
 #### 1. Install the vite plugin for ScxIcon .
 
 ```javascript
-import {scxIconPlugin} from 'scx-ui/scx-icon-vite-plugins.js';
+import {scxIconPluginUseJS} from 'scx-ui/scx-icon-vite-plugins.js';
 
 export default {
     base: './',
-    plugins: [scxIconPlugin({
-        //Icon inject type, js (use js) or html (inject to the index.html)
-        type: 'js',
-        //your svg icon root, It can also be an array []
-        svgRoot: 'your-svg-root',
-    })]
+    plugins: [scxIconPluginUseJS( // or scxIconPluginUseHtml
+        'your-svg-root' //your svg icon root, It can also be an array []
+    )]
 }
 ```
 
