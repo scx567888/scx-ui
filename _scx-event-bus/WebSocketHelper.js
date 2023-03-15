@@ -19,6 +19,10 @@ class WebSocketHelper {
         console.log(data)
     }
 
+    onopen() {
+        console.log("open")
+    }
+
     //创建连接方法
     createWebSocket() {
         try {
@@ -29,6 +33,7 @@ class WebSocketHelper {
                 console.log(`%c WebSocket 连接成功... ${new Date()} `, 'background: #222; color: #bada55');
                 this.startLove();
                 this.retryFailedSendEvent();
+                this.onopen();
             };
             //消息发送事件
             this.WEB_SOCKET.onmessage = (event) => {
