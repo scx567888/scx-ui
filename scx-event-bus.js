@@ -32,6 +32,10 @@ class ScxEventBus {
                 }
             }
         }
+
+        this.webSocketHelper.onopen = () => {
+            this.publish(ON_WEBSOCKET_OPEN)
+        }
     }
 
     /**
@@ -112,8 +116,11 @@ function useScxEventBus() {
     return inject(scxEventBusKey);
 }
 
+const ON_WEBSOCKET_OPEN = "ON_WEBSOCKET_OPEN";
+
 export {
     ScxEventBus,
     scxEventBusKey,
-    useScxEventBus
+    useScxEventBus,
+    ON_WEBSOCKET_OPEN
 }
