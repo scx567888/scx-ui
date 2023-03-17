@@ -1,10 +1,18 @@
-import {WebSocketHelper} from "./_scx-event-bus/WebSocketHelper.js";
+import {ScxWebSocket} from "./scx-web-socket.js";
 import {WSMessage} from "./_scx-event-bus/WSMessage.js";
-import {initBaseURL} from "./_scx-event-bus/ScxEventBusHelper";
+import {initBaseURL} from "./_scx-event-bus/ScxEventBusHelper.js";
 import {inject} from "vue";
 
 class ScxEventBus {
-    webSocketHelper;// websocket helper
+
+    LOVE = "❤";// 心跳检测字符
+
+    startLoveInterval = null;// 心跳检测定时器
+
+    /**
+     * @type{ScxWebSocket}
+     */
+    scxWebSocket;
     events = {};// 事件列表
     wsEvents = {};// ws 事件列表
 
@@ -13,11 +21,16 @@ class ScxEventBus {
      * @param baseURL
      */
     constructor(baseURL) {
-        this.webSocketHelper = new WebSocketHelper(new URL('scx', initBaseURL(baseURL)));
+        this.scxWebSocket = new ScxWebSocket(new URL('scx', initBaseURL(baseURL)));
 
         //监听 websocket 的事件
-        this.webSocketHelper.onmessage = (data) => {
-            const json = JSON.parse(data);
+        this.scxWebSocket.addEventListener("message", (event) => {
+            //心跳检测
+            if (event.data === this.LOVE) {
+                console.log(`%c WebSocket 心跳检测成功...  ${new Date()} `, 'background: #222; color: #2196f3');
+                return;
+            }
+            const json = JSON.parse(event.data);
             const wsMessage = new WSMessage(json.address, json.body, json.headers);
             if (wsMessage.address) {
                 const es = this.wsEvents[wsMessage.address];
@@ -31,18 +44,28 @@ class ScxEventBus {
                     }
                 }
             }
-        }
+        });
 
-        this.webSocketHelper.onopen = () => {
-            this.publish(ON_WEBSOCKET_OPEN)
-        }
+        this.scxWebSocket.addEventListener("open", () => {
+            this.publish(ON_WEBSOCKET_OPEN);
+            this.startLove();
+        });
+
+        this.scxWebSocket.addEventListener("error", () => {
+            this.clearStartLove();
+        });
+
+        this.scxWebSocket.addEventListener("close", () => {
+            this.clearStartLove();
+        });
+
     }
 
     /**
      * 手动启动连接
      */
-    startConnection() {
-        this.webSocketHelper.createWebSocket();
+    connect() {
+        this.scxWebSocket.connect();
         return this;
     }
 
@@ -93,8 +116,20 @@ class ScxEventBus {
 
     //发送事件
     wsPublish(address, body, headers = null) {
-        this.webSocketHelper.send(new WSMessage(address, body, headers));
+        const wsMessage = new WSMessage(address, body, headers);
+        this.scxWebSocket.send(JSON.stringify(wsMessage));
     };
+
+    startLove() {
+        //5 分钟检测一次
+        this.startLoveInterval = setInterval(() => this.scxWebSocket.send(this.LOVE), 1000 * 60 * 5);
+    }
+
+    clearStartLove() {
+        if (this.startLoveInterval != null) {
+            clearInterval(this.startLoveInterval)
+        }
+    }
 
     install(app) {
         app.provide(scxEventBusKey, this);
