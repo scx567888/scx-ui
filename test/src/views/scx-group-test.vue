@@ -59,6 +59,7 @@
 
 <script setup>
 import {ref} from "vue";
+import {insertItem} from "../../../vanilla-array-utils.js";
 
 const data = ref([{
   name: '', age: '', c: [
@@ -98,7 +99,7 @@ function groupItemAdd1() {
 }
 
 function groupItemAdd2(l) {
-  l.push({b: '', d: ''})
+  insertItem(l, 3, {b: '', d: ''})
 }
 </script>
 <style scoped>
