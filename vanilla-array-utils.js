@@ -13,9 +13,7 @@ function copyArray(list) {
  * @param index
  */
 function removeByIndex(list, index) {
-    const r = copyArray(list);
-    r.splice(index, 1);
-    return r;
+    list.splice(index, 1);
 }
 
 /**
@@ -25,17 +23,15 @@ function removeByIndex(list, index) {
  * @param newIndex a
  */
 function moveItemByIndex(list, oldIndex, newIndex) {
-    const r = copyArray(list);
     //经过计算 后有可能导致 索引没变化 这时就不需要在移动一次了
     if (oldIndex !== newIndex) {
         //保存临时数据
-        const oldItem = r[oldIndex];
+        const oldItem = list[oldIndex];
         //从原数组中移除数据
-        r.splice(oldIndex, 1);
+        list.splice(oldIndex, 1);
         //在指定位置插入新数据
-        r.splice(newIndex, 0, oldItem);
+        list.splice(newIndex, 0, oldItem);
     }
-    return r;
 }
 
 /**
@@ -108,15 +104,13 @@ function moveDownByItem(list, item, loop = false, step = 1) {
  * @param items 项
  */
 function insertItem(list, index, ...items) {
-    const r = copyArray(list);
     if (index < 0) {
-        r.unshift(...items);
+        list.unshift(...items);
     } else if (index > list.length) {
-        r.push(...items);
+        list.push(...items);
     } else {
-        r.splice(index, 0, ...items);
+        list.splice(index, 0, ...items);
     }
-    return r;
 }
 
 function arrayEquals(array1, array2) {

@@ -89,7 +89,7 @@ export default {
           return;
         }
       }
-      list.value = removeByIndex(list.value, index);
+      removeByIndex(list.value, index);
     }
 
     async function groupItemMoveUp(index) {
@@ -100,7 +100,7 @@ export default {
           return;
         }
       }
-      list.value = moveUpByIndex(list.value, index, props.loop);
+      moveUpByIndex(list.value, index, props.loop);
     }
 
     async function groupItemMoveDown(index) {
@@ -111,7 +111,7 @@ export default {
           return;
         }
       }
-      list.value = moveDownByIndex(list.value, index, props.loop);
+      moveDownByIndex(list.value, index, props.loop);
     }
 
     function showMoveUp(i) {
