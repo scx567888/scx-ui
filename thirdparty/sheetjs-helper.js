@@ -1,4 +1,4 @@
-import {utils, write} from 'xlsx'
+import {utils, write} from "xlsx";
 import {download} from "../vanilla/download.js";
 import {notNull} from "../vanilla/object-helper.js";
 
@@ -40,12 +40,12 @@ function createExcel(data, header = tryCreateHeader(data)) {
 
     const sheet1 = utils.aoa_to_sheet(arrayData);
 
-    const workbook = {SheetNames: ['Sheet1'], Sheets: {Sheet1: sheet1}};
+    const workbook = {SheetNames: ["Sheet1"], Sheets: {Sheet1: sheet1}};
 
-    const buffer = write(workbook, {type: 'buffer'});
+    const buffer = write(workbook, {type: "buffer"});
 
     return new Blob([buffer], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
 
 }
 
-export {createExcel, exportExcel}
+export {createExcel, exportExcel};

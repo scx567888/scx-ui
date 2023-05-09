@@ -27,14 +27,14 @@ function getFileNameFromContentDisposition(str) {
  * @param fileName 下载文件的名称 为空取文件原始名
  */
 function download(url, fileName = null) {
-    const link = document.createElement('a');
-    link.rel = 'noopener';
-    link.target = '_blank'
+    const link = document.createElement("a");
+    link.rel = "noopener";
+    link.target = "_blank";
 
-    link.download = notNull(fileName) ? fileName : '';
+    link.download = notNull(fileName) ? fileName : "";
 
     if (isString(url) || url instanceof URL) { // 标准 URL
-        link.href = url
+        link.href = url;
         if (link.origin !== location.origin) {
             fetch(link.href, {method: "GET"}).then(r => {
                 if (r.ok) {
@@ -64,5 +64,5 @@ function download(url, fileName = null) {
 
 export {
     download,
-    getFileNameFromContentDisposition
-}
+    getFileNameFromContentDisposition,
+};

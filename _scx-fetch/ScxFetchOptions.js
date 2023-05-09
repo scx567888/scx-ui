@@ -48,4 +48,4 @@ function initDefaultOptions() {
     return temp;
 }
 
-export {ScxFetchOptions, initDefaultOptions}
+export {ScxFetchOptions, initDefaultOptions};

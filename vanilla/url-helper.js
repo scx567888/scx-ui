@@ -39,5 +39,5 @@ function joinURL(baseURL, ...urls) {
 }
 
 export {
-    isExternal, isHttpURL, cleanURL, joinURL
-}
+    isExternal, isHttpURL, cleanURL, joinURL,
+};

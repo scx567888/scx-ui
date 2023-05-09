@@ -14,7 +14,7 @@ function jsonVoProcessor(r) {
     return new Promise((resolve, reject) => r.then(res => {
         const {responseType, body} = res;
         if (responseType === ScxFetchResponseType.JSON) {
-            if (body.message === 'ok') {
+            if (body.message === "ok") {
                 resolve(body.data);
             } else {
                 reject(new JsonVOError(body));
@@ -112,7 +112,7 @@ class ScxReq {
  *
  * @type {string}
  */
-const scxReqKey = 'scx-req';
+const scxReqKey = "scx-req";
 
 /**
  *
@@ -123,4 +123,4 @@ function useScxReq() {
 }
 
 
-export {ScxReq, JsonVOError, scxReqKey, useScxReq}
+export {ScxReq, JsonVOError, scxReqKey, useScxReq};

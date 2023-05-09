@@ -16,5 +16,5 @@ function percentage(value1, value2, fractionDigits = 2) {
 }
 
 export {
-    percentage
-}
+    percentage,
+};

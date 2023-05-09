@@ -61,7 +61,7 @@ class ScxWebSocket extends EventTarget {
 
         // 连接成功事件
         this.ws.addEventListener("open", (_event) => {
-            console.log(`%c WebSocket 连接成功... ${new Date()} `, 'background: #222; color: #bada55');
+            console.log(`%c WebSocket 连接成功... ${new Date()} `, "background: #222; color: #bada55");
             const event = cloneEvent(_event);
             this.dispatchEvent(event);
             this.retryFailedSendEvents();
@@ -111,7 +111,7 @@ class ScxWebSocket extends EventTarget {
         try {
             this.ws.send(data);
         } catch (e) {
-            this.failedSendDataList.push(data)
+            this.failedSendDataList.push(data);
         }
     }
 
@@ -142,4 +142,4 @@ class ScxWebSocket extends EventTarget {
 
 }
 
-export {ScxWebSocket}
+export {ScxWebSocket};

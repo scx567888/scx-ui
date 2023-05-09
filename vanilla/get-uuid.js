@@ -10,5 +10,5 @@ function getUUID() {
 }
 
 export {
-    getUUID
-}
+    getUUID,
+};

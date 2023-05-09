@@ -6,17 +6,17 @@
 import {ref} from "vue";
 import {Watermark} from "../../../vanilla/watermark.js";
 
-const text=ref("水印内容");
+const text = ref("水印内容");
 
-if (!window.__watermark){
-    window.__watermark=new Watermark();    
+if (!window.__watermark) {
+    window.__watermark = new Watermark();
 }
 
-function openWatermark(){
+function openWatermark() {
     window.__watermark.openWatermark();
 }
 
-function clearWatermark(){
+function clearWatermark() {
     window.__watermark.clearWatermark();
 }
 

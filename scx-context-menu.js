@@ -5,15 +5,15 @@ import {h, render} from "vue";
 // let contextMenuInstance;
 
 function getInstance() {
-    return window['__SCX_CONTEXT_MENU_INSTANCE__'];
+    return window["__SCX_CONTEXT_MENU_INSTANCE__"];
 }
 
 function setInstance(instance) {
-    return window['__SCX_CONTEXT_MENU_INSTANCE__'] = instance;
+    return window["__SCX_CONTEXT_MENU_INSTANCE__"] = instance;
 }
 
 function bodyClick(e) {
-    let isOnContextmenu = e.target.closest('.scx-context-menu');
+    let isOnContextmenu = e.target.closest(".scx-context-menu");
 
     if (!isOnContextmenu && getInstance()) {
         closeContextMenu();
@@ -27,39 +27,39 @@ function showContextMenu(e, value) {
     if (instance) {
         document.body.removeChild(instance);
     }
-    const container = document.createElement('div')
+    const container = document.createElement("div");
     let vm = h(ScxContextMenu, {
         mouseEvent: e,
-        contextMenuItems: value
-    })
-    render(vm, container)
-    setInstance(container)
-    document.body.appendChild(container)
-    document.body.addEventListener('click', bodyClick);
+        contextMenuItems: value,
+    });
+    render(vm, container);
+    setInstance(container);
+    document.body.appendChild(container);
+    document.body.addEventListener("click", bodyClick);
 }
 
 function closeContextMenu() {
     document.body.removeChild(getInstance());
     setInstance(null);
-    document.body.removeEventListener('click', bodyClick);
+    document.body.removeEventListener("click", bodyClick);
 }
 
 const ScxContextMenuDirective = {
-    name: 'contextmenu',
+    name: "contextmenu",
     //待处理
     mounted(el, {value}) {
         el.oncontextmenu = (e) => {
-            showContextMenu(e, value)
+            showContextMenu(e, value);
             return false;
         };
     },
     updated(el, {value}) {
 
-    }
-}
+    },
+};
 
 export {
     ScxContextMenuDirective,
     showContextMenu,
-    closeContextMenu
-}
+    closeContextMenu,
+};

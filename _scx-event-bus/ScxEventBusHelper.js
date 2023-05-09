@@ -8,4 +8,4 @@ function initBaseURL(url) {
     return baseURL;
 }
 
-export {initBaseURL}
+export {initBaseURL};

@@ -8,4 +8,4 @@ class FetchError {
 
 }
 
-export {FetchError}
+export {FetchError};

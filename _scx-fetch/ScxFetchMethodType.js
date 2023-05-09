@@ -5,4 +5,4 @@ class ScxFetchMethodType {
     static DELETE = "DELETE";
 }
 
-export {ScxFetchMethodType}
+export {ScxFetchMethodType};

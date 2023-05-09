@@ -6,4 +6,4 @@ class JsonVOError {
 
 }
 
-export {JsonVOError}
+export {JsonVOError};

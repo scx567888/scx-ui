@@ -21,13 +21,13 @@ class ScxEventBus {
      * @param baseURL
      */
     constructor(baseURL) {
-        this.scxWebSocket = new ScxWebSocket(new URL('scx', initBaseURL(baseURL)));
+        this.scxWebSocket = new ScxWebSocket(new URL("scx", initBaseURL(baseURL)));
 
         //监听 websocket 的事件
         this.scxWebSocket.addEventListener("message", (event) => {
             //心跳检测
             if (event.data === this.LOVE) {
-                console.log(`%c WebSocket 心跳检测成功...  ${new Date()} `, 'background: #222; color: #2196f3');
+                console.log(`%c WebSocket 心跳检测成功...  ${new Date()} `, "background: #222; color: #2196f3");
                 return;
             }
             const json = JSON.parse(event.data);
@@ -37,9 +37,9 @@ class ScxEventBus {
                 if (es) {
                     for (const c of es) {
                         try {
-                            c(wsMessage.body)
+                            c(wsMessage.body);
                         } catch (e) {
-                            console.warn(e)
+                            console.warn(e);
                         }
                     }
                 }
@@ -108,7 +108,7 @@ class ScxEventBus {
                 try {
                     c(message);
                 } catch (e) {
-                    console.warn(e)
+                    console.warn(e);
                 }
             }
         }
@@ -127,7 +127,7 @@ class ScxEventBus {
 
     clearStartLove() {
         if (this.startLoveInterval != null) {
-            clearInterval(this.startLoveInterval)
+            clearInterval(this.startLoveInterval);
         }
     }
 
@@ -141,7 +141,7 @@ class ScxEventBus {
  *
  * @type {string}
  */
-const scxEventBusKey = 'scx-event-bus';
+const scxEventBusKey = "scx-event-bus";
 
 /**
  *
@@ -157,5 +157,5 @@ export {
     ScxEventBus,
     scxEventBusKey,
     useScxEventBus,
-    ON_WEBSOCKET_OPEN
-}
+    ON_WEBSOCKET_OPEN,
+};

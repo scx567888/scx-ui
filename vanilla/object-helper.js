@@ -22,11 +22,11 @@ function notNull(o) {
  * @returns {boolean}
  */
 function notBlank(str) {
-    return notNull(str) ? str.toString().trim() !== '' : false;
+    return notNull(str) ? str.toString().trim() !== "" : false;
 }
 
 function isBlank(str) {
     return !notBlank(str);
 }
 
-export {deepCopy, isNull, notNull, isBlank, notBlank}
+export {deepCopy, isNull, notNull, isBlank, notBlank};

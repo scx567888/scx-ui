@@ -1,9 +1,9 @@
-import ScxIcon from './_scx-icon/index.vue'
-import ScxCrud from './_scx-crud/index.vue'
-import ScxGroup from './_scx-group/index.vue'
-import ScxUpload from './_scx-upload/index.vue'
-import ScxUploadList from './_scx-upload-list/index.vue'
-import ScxProgress from './_scx-progress/index.vue'
+import ScxIcon from "./_scx-icon/index.vue";
+import ScxCrud from "./_scx-crud/index.vue";
+import ScxGroup from "./_scx-group/index.vue";
+import ScxUpload from "./_scx-upload/index.vue";
+import ScxUploadList from "./_scx-upload-list/index.vue";
+import ScxProgress from "./_scx-progress/index.vue";
 import {ScxContextMenuDirective} from "./scx-context-menu.js";
 import {ScxDragDirective} from "./scx-drag.js";
 import {createScxPermDirective} from "./scx-perm.js";
@@ -24,7 +24,7 @@ const ScxComponent = {
         // 未来可以参照 https://github.com/vuejs/core/pull/4235 进行改动
         const scxPermDirective = createScxPermDirective(app);
         app.directive(scxPermDirective.name, scxPermDirective);
-    }
+    },
 };
 
 export {
@@ -33,5 +33,5 @@ export {
     ScxGroup,
     ScxUpload,
     ScxUploadList,
-    ScxComponent
-}
+    ScxComponent,
+};

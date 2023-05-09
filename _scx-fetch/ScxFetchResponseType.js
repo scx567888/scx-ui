@@ -37,4 +37,4 @@ class ScxFetchResponseType {
 
 }
 
-export {ScxFetchResponseType}
+export {ScxFetchResponseType};
