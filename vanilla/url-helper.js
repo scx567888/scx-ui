@@ -1,4 +1,4 @@
-import {notBlank} from "./vanilla-object-helper.js";
+import {notBlank} from "./object-helper.js";
 
 /**
  * 是否是外链

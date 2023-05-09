@@ -30,8 +30,8 @@
 <script>
 import './index.css'
 import {computed} from "vue";
-import {fixedElement} from "../thirdparty-vue-transition.js";
-import {moveDownByIndex, moveUpByIndex, removeByIndex} from "../vanilla-array-utils.js";
+import {fixedElement} from "../thirdparty/vue-transition.js";
+import {moveDownByIndex, moveUpByIndex, removeByIndex} from "../vanilla/array-utils.js";
 
 export default {
   name: "scx-group",

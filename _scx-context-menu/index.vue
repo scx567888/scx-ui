@@ -11,7 +11,7 @@
 import './index.css'
 import {nextTick, onMounted, ref} from 'vue'
 import {closeContextMenu} from "../scx-context-menu.js";
-import {isFunction} from "../vanilla-type-helper.js";
+import {isFunction} from "../vanilla/type-helper.js";
 
 export default {
   name: "scx-context-menu",

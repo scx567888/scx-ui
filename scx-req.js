@@ -1,7 +1,7 @@
 import {ScxFetchResponseType} from "./_scx-fetch/ScxFetchResponseType.js";
 import {JsonVOError} from "./_scx-req/JsonVOError.js";
 import {ScxFetch} from "./scx-fetch.js";
-import {isNull} from "./vanilla-object-helper.js";
+import {isNull} from "./vanilla/object-helper.js";
 import {inject} from "vue";
 
 /**

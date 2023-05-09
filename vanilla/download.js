@@ -1,5 +1,5 @@
-import {isString} from "./vanilla-type-helper.js";
-import {isNull, notBlank, notNull} from "./vanilla-object-helper.js";
+import {isString} from "./type-helper.js";
+import {isNull, notBlank, notNull} from "./object-helper.js";
 
 function getFileNameFromContentDisposition(str) {
     if (!str) {

@@ -1,6 +1,6 @@
 import {onBeforeUnmount} from 'vue'
-import {isFunction, isObject} from "./vanilla-type-helper.js";
-import {notNull} from "./vanilla-object-helper";
+import {isFunction, isObject} from "./vanilla/type-helper.js";
+import {notNull} from "./vanilla/object-helper";
 
 /**
  * 获取视图的上下界限

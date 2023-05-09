@@ -1,4 +1,4 @@
-import {isNull} from "./vanilla-object-helper.js";
+import {isNull} from "./object-helper.js";
 
 /**
  * 将含有 id parentID 的 list 列表转换为树形结构

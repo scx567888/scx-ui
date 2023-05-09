@@ -11,7 +11,7 @@ import {ResponseNotOKError} from "./_scx-fetch/ResponseNotOKError.js";
 import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
 import {FetchError} from "./_scx-fetch/FetchError.js";
 import {ScxFetchHeaders} from "./_scx-fetch/ScxFetchHeaders.js";
-import {notNull} from "./vanilla-object-helper.js";
+import {notNull} from "./vanilla/object-helper.js";
 import {inject} from "vue";
 
 /**

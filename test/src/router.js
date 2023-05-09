@@ -67,6 +67,16 @@ const ScxRouter = createRouter({
             name: 'scx-perm-test',
             component: () => import('./views/scx-perm-test.vue'),
         },
+        {
+            path: '/html-to-text-test',
+            name: 'html-to-text-test',
+            component: () => import('./views/html-to-text-test.vue'),
+        },
+        {
+            path: '/watermark-test',
+            name: 'watermark-test',
+            component: () => import('./views/watermark-test.vue'),
+        },
     ]
 });
 

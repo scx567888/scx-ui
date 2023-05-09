@@ -1,6 +1,6 @@
 import SparkMD5 from "spark-md5";
-import {percentage} from "./vanilla-percentage.js";
-import {joinURL} from "./vanilla-url-helper.js";
+import {percentage} from "./vanilla/percentage.js";
+import {joinURL} from "./vanilla/url-helper.js";
 import {JsonVOError} from "./scx-req.js";
 import {inject} from "vue";
 

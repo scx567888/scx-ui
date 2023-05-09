@@ -1,6 +1,6 @@
 import {utils, write} from 'xlsx'
-import {download} from "./vanilla-download.js";
-import {notNull} from "./vanilla-object-helper.js";
+import {download} from "../vanilla/download.js";
+import {notNull} from "../vanilla/object-helper.js";
 
 /**
  * 导出 excel

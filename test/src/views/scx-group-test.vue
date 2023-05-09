@@ -59,7 +59,7 @@
 
 <script setup>
 import {ref} from "vue";
-import {insertItem} from "../../../vanilla-array-utils.js";
+import {insertItem} from "../../../vanilla/array-utils.js";
 
 const data = ref([{
   name: '', age: '', c: [
