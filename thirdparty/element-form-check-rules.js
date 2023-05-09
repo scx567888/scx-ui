@@ -13,9 +13,9 @@ const EMAIL_REG = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))
  */
 function checkIDCard(rule, value, callback, name) {
     if (value && !ID_CARD_REG.test(value)) {
-        callback(new Error(name + "格式有误 !!!"))
+        callback(new Error(name + "格式有误 !!!"));
     } else {
-        callback()
+        callback();
     }
 }
 
@@ -29,9 +29,9 @@ function checkIDCard(rule, value, callback, name) {
  */
 function checkPhoneNumber(rule, value, callback, name) {
     if (value && !PHONE_NUMBER_REG.test(value)) {
-        callback(new Error(name + "格式有误 !!!"))
+        callback(new Error(name + "格式有误 !!!"));
     } else {
-        callback()
+        callback();
     }
 }
 
@@ -45,9 +45,9 @@ function checkPhoneNumber(rule, value, callback, name) {
  */
 function checkEmail(rule, value, callback, name) {
     if (value && !EMAIL_REG.test(value)) {
-        callback(new Error(name + "格式有误 !!!"))
+        callback(new Error(name + "格式有误 !!!"));
     } else {
-        callback()
+        callback();
     }
 }
 
@@ -61,12 +61,12 @@ function checkEmail(rule, value, callback, name) {
  */
 function checkURL(rule, value, callback, name) {
     if (value && !URL_REG.test(value)) {
-        callback(new Error(name + "格式有误 !!!"))
+        callback(new Error(name + "格式有误 !!!"));
     } else {
-        callback()
+        callback();
     }
 }
 
 export {
-    EMAIL_REG, URL_REG, PHONE_NUMBER_REG, ID_CARD_REG, checkIDCard, checkPhoneNumber, checkEmail, checkURL
-}
+    EMAIL_REG, URL_REG, PHONE_NUMBER_REG, ID_CARD_REG, checkIDCard, checkPhoneNumber, checkEmail, checkURL,
+};

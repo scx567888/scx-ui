@@ -4,7 +4,7 @@
  * @returns {*[]}
  */
 function copyArray(list) {
-    return [...list]
+    return [...list];
 }
 
 /**
@@ -134,5 +134,5 @@ export {
     moveUpByItem,
     moveDownByItem,
     insertItem,
-    arrayEquals
-}
+    arrayEquals,
+};

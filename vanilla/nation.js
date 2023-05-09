@@ -4,4 +4,4 @@ function getNation() {
     return NATION_DATA;
 }
 
-export {getNation}
+export {getNation};

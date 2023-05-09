@@ -13,9 +13,9 @@ function fixedElement(el) {
     el.style.top = `${el.offsetTop - parseFloat(marginTop)}px`;
     el.style.width = width;
     el.style.height = height;
-    el.style.position = 'absolute';
+    el.style.position = "absolute";
 }
 
 export {
-    fixedElement
-}
+    fixedElement,
+};

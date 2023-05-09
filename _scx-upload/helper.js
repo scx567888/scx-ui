@@ -4,7 +4,7 @@ class UploadInfo {
      * a
      * @type {string}
      */
-    fileName = '';
+    fileName = "";
 
     /**
      * a
@@ -28,7 +28,7 @@ class UploadInfo {
      * a
      * @type {string}
      */
-    progressState = '';
+    progressState = "";
 
     /**
      * a
@@ -46,7 +46,7 @@ class UploadInfo {
      * a
      * @type {string}
      */
-    fileID = '';
+    fileID = "";
 
     /**
      * 上传时间
@@ -85,7 +85,7 @@ class UploadInfo {
 
     fill(rawOptions) {
         const {
-            fileName, previewURL, downloadURL, uploadTime, fileSizeDisplay, fileSize, fssObjectID
+            fileName, previewURL, downloadURL, uploadTime, fileSizeDisplay, fileSize, fssObjectID,
         } = rawOptions;
         this.fileName = fileName;
         this.previewURL = previewURL;
@@ -108,7 +108,7 @@ class ScxFSSHelper {
     /**
      * @type ScxFSS
      */
-    scxFSS
+    scxFSS;
 
     constructor(scxFSS) {
         this.scxFSS = scxFSS;
@@ -128,7 +128,7 @@ class ScxFSSHelper {
                 if (item) {
                     resolve({...item, previewURL, downloadURL});
                 } else {
-                    resolve({fileName: '文件无法读取 !!! id : ' + fileID});
+                    resolve({fileName: "文件无法读取 !!! id : " + fileID});
                 }
             }).catch(e => reject(e));
         });
@@ -145,9 +145,9 @@ class ScxFSSHelper {
             // todo 这里没有使用 ScxFSS.CHECKING() 而是直接引入字符串的原因
             // todo 请参照 https://github.com/vitejs/vite/issues/7775
             //前 50% 是校验 md5 后 50% 才是真正的文件上传
-            if (state === 'checking') {
+            if (state === "checking") {
                 progress(value * 0.5, "校验中");
-            } else if (state === 'uploading') {
+            } else if (state === "uploading") {
                 progress(50 + value * 0.5, "上传中");
             }
         };
@@ -155,9 +155,9 @@ class ScxFSSHelper {
             this.scxFSS.upload(needUploadFile, onProgress).then(d => {
                 resolve(d.item.fssObjectID);
             }).catch(e => reject(e));
-        })
+        });
     }
 
 }
 
-export {UploadInfo, ScxFSSHelper}
+export {UploadInfo, ScxFSSHelper};

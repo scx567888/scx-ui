@@ -1,10 +1,10 @@
-import {createApp, reactive} from 'vue';
-import App from './App.vue';
-import {ScxRouter} from './router';
+import {createApp, reactive} from "vue";
+import App from "./App.vue";
+import {ScxRouter} from "./router";
 import {ScxComponent} from "../../scx-component.js";
 import "../../_scx-theme/default.css";
 import "../../_scx-theme/dark.css";
-import 'scx-icon/register';
+import "scx-icon/register";
 import {ScxEventBus} from "../../scx-event-bus.js";
 import {ScxReq} from "../../scx-req.js";
 import {ScxFSS} from "../../scx-fss.js";
@@ -16,10 +16,10 @@ const scxFSS = new ScxFSS(scxReq);
 const scxUserInfo = reactive(new ScxUserInfo());
 
 createApp(App)
-    .use(ScxRouter)
-    .use(ScxComponent)
-    .use(scxReq)
-    .use(scxFSS)
-    .use(scxEventBus)
-    .use(scxUserInfo)
-    .mount('#app');
+        .use(ScxRouter)
+        .use(ScxComponent)
+        .use(scxReq)
+        .use(scxFSS)
+        .use(scxEventBus)
+        .use(scxUserInfo)
+        .mount("#app");

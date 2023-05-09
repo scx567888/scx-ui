@@ -6,19 +6,19 @@ const ON_SCX_USER_CONFIG_CHANGE_EVENT_NAME = "onScxUserConfigChange";
  *
  * @type {string}
  */
-const scxSystemConfigKey = 'scx-system-config';
+const scxSystemConfigKey = "scx-system-config";
 
 /**
  *
  * @type {string}
  */
-const scxUserConfigKey = 'scx-user-config';
+const scxUserConfigKey = "scx-user-config";
 
 /**
  * a
  * @type {string}
  */
-const scxConfigManagerKey = 'scx-config-manager';
+const scxConfigManagerKey = "scx-config-manager";
 
 /**
  * 配置管理器
@@ -121,5 +121,5 @@ export {
     ScxConfigManager,
     useScxSystemConfig,
     useScxUserConfig,
-    useScxConfigManager
-}
+    useScxConfigManager,
+};

@@ -1,4 +1,4 @@
-import {isNull} from "./vanilla-object-helper.js";
+import {isNull} from "./object-helper.js";
 
 /**
  * 将含有 id parentID 的 list 列表转换为树形结构
@@ -10,11 +10,11 @@ function listToTree(source, rawOptions = {}) {
         idFieldName = "id", // id FieId 的名称 默认为 'id'
         parentIDFieldName = "parentID", // parentID FieId 的名称 默认为 'parentID'
         childrenFieldName = "children", // children FieId 的名称 默认为 'children'
-        ignoreOrphans = false // 是否忽略孤儿节点
+        ignoreOrphans = false, // 是否忽略孤儿节点
     } = rawOptions;
     //只处理数组结构
     if (!source || !Array.isArray(source)) {
-        console.warn("listToTree : 数据为空或数据格式有误 (正确情况应为 Array) !!!")
+        console.warn("listToTree : 数据为空或数据格式有误 (正确情况应为 Array) !!!");
         return [];
     }
     let cloneData = JSON.parse(JSON.stringify(source));  // 对源数据深度克隆
@@ -26,7 +26,7 @@ function listToTree(source, rawOptions = {}) {
         if (v) {
             v.push(t);
         } else {
-            parentIDMap.set(t[parentIDFieldName], [t])
+            parentIDMap.set(t[parentIDFieldName], [t]);
         }
     }
     // 循环所有项，并添加 children 属性
@@ -48,4 +48,4 @@ function listToTree(source, rawOptions = {}) {
 
 }
 
-export {listToTree}
+export {listToTree};

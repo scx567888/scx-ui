@@ -37,4 +37,4 @@ class JoinImageURLOptions {
     type;
 }
 
-export {JoinImageURLOptions}
+export {JoinImageURLOptions};

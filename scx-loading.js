@@ -90,7 +90,7 @@ const scxLoading = initScxLoading();
 class ScxLoading extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({mode: 'closed'});
+        const shadow = this.attachShadow({mode: "closed"});
         shadow.appendChild(scxLoading.cloneNode(true));
     }
 }
@@ -98,4 +98,4 @@ class ScxLoading extends HTMLElement {
 /**
  * 注册 scxLoading 组件
  */
-customElements.define('scx-loading', ScxLoading);
+customElements.define("scx-loading", ScxLoading);

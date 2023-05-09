@@ -10,4 +10,4 @@ function changeTheme(value) {
     }
 }
 
-export {changeTheme}
+export {changeTheme};

@@ -20,10 +20,10 @@ class ScxFetchHeaders {
 
     forEach(callbackFun) {
         for (const [key, value] of Object.entries(this)) {
-            callbackFun(key, value)
+            callbackFun(key, value);
         }
     };
 
 }
 
-export {ScxFetchHeaders}
+export {ScxFetchHeaders};

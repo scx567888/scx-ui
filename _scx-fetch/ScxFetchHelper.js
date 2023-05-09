@@ -1,6 +1,6 @@
 import {HttpHeaderNames} from "./HttpHeaderNames.js";
 import {HttpHeaderValues} from "./HttpHeaderValues.js";
-import {notNull} from "../vanilla-object-helper";
+import {notNull} from "../vanilla/object-helper";
 
 /**
  *
@@ -11,8 +11,8 @@ function createRequestInit(method) {
     return {
         method,
         headers: new Headers(),
-        credentials: 'include',
-        body: null
+        credentials: "include",
+        body: null,
     };
 }
 
@@ -36,7 +36,7 @@ function setRequestHeaders(requestInit, headers) {
     //循环设置 headers
     if (notNull(headers)) {
         if (headers instanceof Headers) {
-            headers.forEach((k, v) => requestInit.headers.set(k, v))
+            headers.forEach((k, v) => requestInit.headers.set(k, v));
         } else {
             for (const [key, value] of Object.entries(headers)) {
                 requestInit.headers.set(key, String(value));
@@ -56,7 +56,7 @@ function setRequestBody(requestInit, body, url, charset) {
     if (notNull(body)) {
         if (body instanceof FormData) {
             requestInit.body = body;
-        } else if (requestInit.method === 'GET') {
+        } else if (requestInit.method === "GET") {
             for (const [key, value] of Object.entries(body)) {
                 url.searchParams.set(key, String(value));
             }
@@ -77,4 +77,4 @@ function mixinOptions(defaultOptions, options) {
     return {...defaultOptions, ...options};
 }
 
-export {createRequestInit, setMethod, setRequestHeaders, setRequestBody, mixinOptions}
+export {createRequestInit, setMethod, setRequestHeaders, setRequestBody, mixinOptions};

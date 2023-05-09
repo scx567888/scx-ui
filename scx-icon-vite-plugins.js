@@ -1,18 +1,18 @@
 import {dirname, extname, join, posix, relative, resolve, win32} from "path";
 import {fileURLToPath} from "url";
 import {readdirSync, readFileSync, statSync} from "fs";
-import {Compiler} from 'svg-mixer'
+import {Compiler} from "svg-mixer";
 
-const SCX_ICON_REGISTER_ID = 'scx-icon/register';
+const SCX_ICON_REGISTER_ID = "scx-icon/register";
 
-const SVG_DOM_ID = '__scx__icon__dom__' + new Date().getTime() + '__';
+const SVG_DOM_ID = "__scx__icon__dom__" + new Date().getTime() + "__";
 
-const SVG_SYMBOL_ID_PREFIX = 'scx-icon_';
+const SVG_SYMBOL_ID_PREFIX = "scx-icon_";
 
 const svgCompiler = Compiler.create();
 
 function svgToSymbol(id, content) {
-    return svgCompiler.createSymbol({id, content, path: ''}).render();
+    return svgCompiler.createSymbol({id, content, path: ""}).render();
 }
 
 function getSymbolId(relativePath) {
@@ -20,7 +20,7 @@ function getSymbolId(relativePath) {
 }
 
 function getFileContent(absolutePath) {
-    return readFileSync(absolutePath, 'utf-8')
+    return readFileSync(absolutePath, "utf-8");
 }
 
 class ScxIconInterface {
@@ -61,7 +61,7 @@ class ScxIconInterface {
             }
             console.log(this.name + ` : ${svgRoot} , 已处理图标 ${allSVGFiles.length} 个 !!!`);
         }
-        return svgSymbolList.join('');
+        return svgSymbolList.join("");
     }
 
 }
@@ -73,9 +73,9 @@ class UseHtml extends ScxIconInterface {
     async transformIndexHtml() {
         const allSymbol = await this.getAllSymbol();
         return [{
-            tag: 'svg', attrs: {
-                id: SVG_DOM_ID, style: "display: none"
-            }, children: allSymbol, injectTo: 'body'
+            tag: "svg", attrs: {
+                id: SVG_DOM_ID, style: "display: none",
+            }, children: allSymbol, injectTo: "body",
         }];
     }
 
@@ -154,13 +154,13 @@ function scxIconPluginUseJS(svgRoot = []) {
     return {
         name: useJS.name,
         load(id) {
-            return useJS.load(id)
+            return useJS.load(id);
         },
         resolveId(id) {
             if (SCX_ICON_REGISTER_ID === id) {
                 return id;
             }
-        }
+        },
     };
 }
 
@@ -175,7 +175,7 @@ function scxIconPluginUseHtml(svgRoot = []) {
         name: useHtml.name,
         load(id) {
             if (SCX_ICON_REGISTER_ID === id) {
-                return '';
+                return "";
             }
         },
         resolveId(id) {
@@ -185,7 +185,7 @@ function scxIconPluginUseHtml(svgRoot = []) {
         },
         transformIndexHtml(html) {
             return useHtml.transformIndexHtml(html);
-        }
+        },
     };
 }
 
@@ -203,7 +203,7 @@ function getAllSVGFiles(root) {
     walkTree(root, f => {
         if (!f.isDirectory) {
             let ext = extname(f.relativePath);
-            if (ext && ext.toLowerCase() === '.svg') {
+            if (ext && ext.toLowerCase() === ".svg") {
                 svgFiles.push(f);
             }
         }
@@ -230,7 +230,7 @@ function walkTree(root, callback, topRoot = root) {
             callback({
                 absolutePath: normalizePath(itemPath),
                 relativePath: normalizePath(relative(topRoot, itemPath)),
-                isDirectory: stats.isDirectory()
+                isDirectory: stats.isDirectory(),
             });
             if (stats.isDirectory()) {
                 walkTree(itemPath, callback, topRoot);

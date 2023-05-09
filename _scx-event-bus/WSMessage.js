@@ -15,4 +15,4 @@ class WSMessage {
 
 }
 
-export {WSMessage}
+export {WSMessage};

@@ -1,4 +1,4 @@
-import {notBlank} from "./vanilla-object-helper.js";
+import {notBlank} from "./object-helper.js";
 
 /**
  * 是否是外链
@@ -39,5 +39,5 @@ function joinURL(baseURL, ...urls) {
 }
 
 export {
-    isExternal, isHttpURL, cleanURL, joinURL
-}
+    isExternal, isHttpURL, cleanURL, joinURL,
+};

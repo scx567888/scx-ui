@@ -5,13 +5,13 @@ import {
     mixinOptions,
     setMethod,
     setRequestBody,
-    setRequestHeaders
+    setRequestHeaders,
 } from "./_scx-fetch/ScxFetchHelper.js";
 import {ResponseNotOKError} from "./_scx-fetch/ResponseNotOKError.js";
 import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
 import {FetchError} from "./_scx-fetch/FetchError.js";
 import {ScxFetchHeaders} from "./_scx-fetch/ScxFetchHeaders.js";
-import {notNull} from "./vanilla-object-helper.js";
+import {notNull} from "./vanilla/object-helper.js";
 import {inject} from "vue";
 
 /**
@@ -50,7 +50,7 @@ class ScxFetch {
      */
     req(url, body = {}, options = {}) {
         const {
-            method, headers, responseType, usePreInterceptor, usePostInterceptor, charset
+            method, headers, responseType, usePreInterceptor, usePostInterceptor, charset,
         } = mixinOptions(this.defaultOptions, options);
 
         const requestInit = createRequestInit(method);//初始化 fetch 参数 , 此处携带 cookie
@@ -69,7 +69,7 @@ class ScxFetch {
                 reject(new ResponseNotOKError(res));
             } else {
                 // resolve 的参数是 Promise 时会直接调用 参数的 resolve
-                resolve(ScxFetchResponse.create(res, responseType))
+                resolve(ScxFetchResponse.create(res, responseType));
             }
         }).catch(error => reject(new FetchError(error))));
 
@@ -149,7 +149,7 @@ class ScxFetch {
  *
  * @type {string}
  */
-const scxFetchKey = 'scx-fetch';
+const scxFetchKey = "scx-fetch";
 
 /**
  *
@@ -167,5 +167,5 @@ export {
     ResponseNotOKError,
     ScxFetchOptions,
     ScxFetchResponse,
-    ScxFetchHeaders
-}
+    ScxFetchHeaders,
+};

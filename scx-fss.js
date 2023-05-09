@@ -1,6 +1,6 @@
 import SparkMD5 from "spark-md5";
-import {percentage} from "./vanilla-percentage.js";
-import {joinURL} from "./vanilla-url-helper.js";
+import {percentage} from "./vanilla/percentage.js";
+import {joinURL} from "./vanilla/url-helper.js";
 import {JsonVOError} from "./scx-req.js";
 import {inject} from "vue";
 
@@ -43,7 +43,7 @@ class ScxFSS {
      * @returns {string}
      */
     static uploadURL() {
-        return 'api/fss/upload';
+        return "api/fss/upload";
     }
 
     /**
@@ -51,7 +51,7 @@ class ScxFSS {
      * @returns {string}
      */
     static listInfoURL() {
-        return 'api/fss/list-info';
+        return "api/fss/list-info";
     }
 
     /**
@@ -59,7 +59,7 @@ class ScxFSS {
      * @returns {string}
      */
     static infoURL() {
-        return 'api/fss/info';
+        return "api/fss/info";
     }
 
     /**
@@ -67,7 +67,7 @@ class ScxFSS {
      * @returns {string}
      */
     static rawURL() {
-        return 'api/fss/raw/';
+        return "api/fss/raw/";
     }
 
     /**
@@ -75,7 +75,7 @@ class ScxFSS {
      * @returns {string}
      */
     static imageURL() {
-        return 'api/fss/image/';
+        return "api/fss/image/";
     }
 
     /**
@@ -83,19 +83,19 @@ class ScxFSS {
      * @returns {string}
      */
     static downloadURL() {
-        return 'api/fss/download/';
+        return "api/fss/download/";
     }
 
     static checkAnyFileExistsByThisMD5URL() {
-        return 'api/fss/check-any-file-exists-by-this-md5';
+        return "api/fss/check-any-file-exists-by-this-md5";
     }
 
     static CHECKING() {
-        return 'checking';
+        return "checking";
     }
 
     static UPLOADING() {
-        return 'uploading';
+        return "uploading";
     }
 
     /**
@@ -104,7 +104,7 @@ class ScxFSS {
      * @returns {string}
      */
     static formatFileSize(value) {
-        if (null == value || value === '') {
+        if (null == value || value === "") {
             return "0 Bytes";
         }
         const unitArr = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
@@ -128,8 +128,8 @@ class ScxFSS {
             //创建一个对象先
             const chunkAndMD5 = {
                 chunk: [],
-                md5: ''
-            }
+                md5: "",
+            };
             //不需要切割 (适用于文件大小 < 分块大小的情况, 因为比较常见 所以单独做处理)
             const noNeedSlice = file.size <= chunkSize;
             //计算需要分块的数量
@@ -178,11 +178,11 @@ class ScxFSS {
                 chunkAndMD5.chunk.push(tempFileChunk);
                 // 读取 (这里起始就是走的 fileReader.onload 方法)
                 fileReader.readAsArrayBuffer(tempFileChunk);
-            }
+            };
 
             //开始加载
             loadNext();
-        })
+        });
     }
 
     static defaultOnProgress(state, value) {
@@ -200,12 +200,12 @@ class ScxFSS {
         return new Promise((resolve, reject) => {
             //先判断待上传的文件是否为空或者是否为 File 对象
             if (file == null || !(file instanceof File)) {
-                reject('文件不能为空并且类型必须为文件 !!!');
+                reject("文件不能为空并且类型必须为文件 !!!");
                 return;
             }
             //判断文件大小是否超出最大限制
             if (file.size > this.maxUploadSize) {
-                reject('文件不能大于 ' + ScxFSS.formatFileSize(this.maxUploadSize) + ' !!! 问题文件 : ' + file.name);
+                reject("文件不能大于 " + ScxFSS.formatFileSize(this.maxUploadSize) + " !!! 问题文件 : " + file.name);
                 return;
             }
             //开始获取 md5和 分块
@@ -221,40 +221,40 @@ class ScxFSS {
                     //设置进度条 此处由已上传区块数量和全部区块数量计算而得
                     onProgress(ScxFSS.UPLOADING(), percentage(i, chunk.length));
                     const uploadFormData = new FormData();
-                    uploadFormData.append('fileName', fileName);
-                    uploadFormData.append('fileData', chunk[i]);
-                    uploadFormData.append('fileSize', fileSize + '');
-                    uploadFormData.append('fileMD5', md5);
-                    uploadFormData.append('chunkLength', chunk.length + '');
-                    uploadFormData.append('nowChunkIndex', i + '');
+                    uploadFormData.append("fileName", fileName);
+                    uploadFormData.append("fileData", chunk[i]);
+                    uploadFormData.append("fileSize", fileSize + "");
+                    uploadFormData.append("fileMD5", md5);
+                    uploadFormData.append("chunkLength", chunk.length + "");
+                    uploadFormData.append("nowChunkIndex", i + "");
 
                     //向后台发送请求
                     this.scxReq.post(ScxFSS.uploadURL(), uploadFormData).then(data => {
                         //这里因为有断点续传的功能所以可以直接设置 i 以便跳过已经上传过的区块
-                        if (data.type === 'need-more') {
+                        if (data.type === "need-more") {
                             i = data.item;
                             uploadNext();
-                        } else if (data.type === 'upload-success') {
+                        } else if (data.type === "upload-success") {
                             onProgress(ScxFSS.UPLOADING(), 100);
                             resolve(data);
                         } else { //这里就属于返回一些别的 类型了 我们虽然不知道是啥,但肯定不对 所以返回错误
                             reject(data);
                         }
                     }).catch(e => reject(e));
-                }
+                };
 
                 //这里先检查一下服务器是否已经有相同MD5的文件了 有的话就不传了
                 this.scxReq.post(ScxFSS.checkAnyFileExistsByThisMD5URL(), {
                     fileName,
                     fileSize,
-                    fileMD5: md5
+                    fileMD5: md5,
                 }).then(data => {
                     //这里表示服务器已经有这个文件了
                     onProgress(ScxFSS.UPLOADING(), 100);
                     resolve(data);
                 }).catch(e => {//这里表示服务器没找到这个文件 还是老老实实的传吧
                     //这里错误的种类比较多 也可能是网络错误或者权限错误啥的 这里判断一下先
-                    if (e instanceof JsonVOError && e.message === 'no-any-file-exists-for-this-md5') {
+                    if (e instanceof JsonVOError && e.message === "no-any-file-exists-for-this-md5") {
                         //开始递归上传
                         uploadNext();
                     } else {
@@ -262,8 +262,8 @@ class ScxFSS {
                     }
                 });
 
-            }).catch(e => reject(e))
-        })
+            }).catch(e => reject(e));
+        });
     };
 
     /**
@@ -276,7 +276,7 @@ class ScxFSS {
             this.scxReq.post(ScxFSS.infoURL(), {fssObjectID}).then(data => {
                 resolve(data ? new FSSObject(data) : null);
             }).catch(e => {
-                reject(e)
+                reject(e);
             });
         });
     };
@@ -292,7 +292,7 @@ class ScxFSS {
                 const fssObjectList = data.map(i => new FSSObject(i));
                 resolve(fssObjectList);
             }).catch(e => {
-                reject(e)
+                reject(e);
             });
         });
     };
@@ -315,13 +315,13 @@ class ScxFSS {
         const {w, h, t, width = w, height = h, type = t} = options;
         if (width || height || type) {
             if (width) {
-                url.searchParams.set('w', width + '');
+                url.searchParams.set("w", width + "");
             }
             if (height) {
-                url.searchParams.set('h', height + '');
+                url.searchParams.set("h", height + "");
             }
             if (type) {
-                url.searchParams.set('t', type);
+                url.searchParams.set("t", type);
             }
         }
         return url.toString();
@@ -348,7 +348,7 @@ class ScxFSS {
  *
  * @type {string}
  */
-const scxFSSKey = 'scx-fss';
+const scxFSSKey = "scx-fss";
 
 /**
  *
@@ -362,5 +362,5 @@ export {
     ScxFSS,
     FSSObject,
     useScxFSS,
-    scxFSSKey
-}
+    scxFSSKey,
+};

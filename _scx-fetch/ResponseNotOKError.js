@@ -8,4 +8,4 @@ class ResponseNotOKError {
 
 }
 
-export {ResponseNotOKError}
+export {ResponseNotOKError};

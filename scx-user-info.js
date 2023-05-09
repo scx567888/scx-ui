@@ -6,24 +6,24 @@ import {inject} from "vue";
 class ScxUserInfo {
 
     loginStatus = false; // 登录状态
-    id = ''; // 用户 id
-    username = ''; // 用户名
+    id = ""; // 用户 id
+    username = ""; // 用户名
     isAdmin = false;// 是否为管理员
-    avatar = ''; // 用户头像
-    phoneNumber = '';
-    emailAddress = '';
+    avatar = ""; // 用户头像
+    phoneNumber = "";
+    emailAddress = "";
     perms = [];//通用权限
     pagePerms = []; // 页面权限
     pageElementPerms = []; // 页面元素权限
     tombstone = false; // 是否使用真实删除 (这是后台的信息)
 
     reset() {
-        this.id = '';
-        this.username = '';
+        this.id = "";
+        this.username = "";
         this.isAdmin = false;
-        this.avatar = '';
-        this.phoneNumber = '';
-        this.emailAddress = '';
+        this.avatar = "";
+        this.phoneNumber = "";
+        this.emailAddress = "";
         this.perms = [];
         this.pagePerms = [];
         this.pageElementPerms = []; // 页面元素权限
@@ -67,7 +67,7 @@ class ScxUserInfo {
  *
  * @type {string}
  */
-const scxUserInfoKey = 'scx-user-info';
+const scxUserInfoKey = "scx-user-info";
 
 /**
  *
@@ -77,4 +77,4 @@ function useScxUserInfo() {
     return inject(scxUserInfoKey);
 }
 
-export {ScxUserInfo, useScxUserInfo, scxUserInfoKey}
+export {ScxUserInfo, useScxUserInfo, scxUserInfoKey};

@@ -18,7 +18,7 @@ function hasPerm(value) {
             return userInfo.pageElementPerms.includes(value);
         }
     }
-    return false
+    return false;
 }
 
 // 当 v-perm 和 v-if 同时使用时 会多次执行 mounted 导致多次监听
@@ -27,13 +27,13 @@ const watchEventMap = new Map();
 
 function doWatch(el, {value}, vnode) {
     // 创建 注释标签用来占位
-    const comment = document.createComment('v-perm');
+    const comment = document.createComment("v-perm");
     const parentNode = el.parentNode;
     if (parentNode) {
         const watchEvent = watch(getUserInfo(), () => {
             if (hasPerm(value)) {
                 if (parentNode.contains(comment)) {
-                    parentNode.replaceChild(el, comment)
+                    parentNode.replaceChild(el, comment);
                     vnode.el = el;
                 }
             } else {
@@ -62,9 +62,9 @@ function unWatch(el) {
  * @type {{unmounted: unWatch, name: string, mounted: doWatch}}
  */
 const scxPerm = {
-    name: 'perm',
+    name: "perm",
     mounted: doWatch,
-    unmounted: unWatch
+    unmounted: unWatch,
 };
 
 function createScxPermDirective(app) {
@@ -73,5 +73,5 @@ function createScxPermDirective(app) {
 }
 
 export {
-    createScxPermDirective, hasPerm
-}
+    createScxPermDirective, hasPerm,
+};

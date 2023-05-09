@@ -1,6 +1,6 @@
-import {onBeforeUnmount} from 'vue'
-import {isFunction, isObject} from "./vanilla-type-helper.js";
-import {notNull} from "./vanilla-object-helper";
+import {onBeforeUnmount} from "vue";
+import {isFunction, isObject} from "./vanilla/type-helper.js";
+import {notNull} from "./vanilla/object-helper";
 
 /**
  * 获取视图的上下界限
@@ -46,8 +46,8 @@ class ScxDrag {
         onClick: (el) => {
         }, onDrag: (el) => {
         }, onDragEnd: (el) => {
-        }
-    }
+        },
+    };
 
     //上下界限 用于加速计算
     minLeft;
@@ -109,8 +109,8 @@ class ScxDrag {
         this.maxLeft = bounds.right - right;
         this.maxTop = bounds.bottom - bottom;
 
-        document.addEventListener('mousemove', this.onMousemove);
-        document.addEventListener('mouseup', this.onMouseup);
+        document.addEventListener("mousemove", this.onMousemove);
+        document.addEventListener("mouseup", this.onMouseup);
     }
 
     onMousemove(event) {
@@ -118,7 +118,7 @@ class ScxDrag {
             this.update(event.clientX, event.clientY);
             if (!this.dragIng) {
                 this.callOnDrag();
-                this.dragIng = true
+                this.dragIng = true;
             }
         }
     }
@@ -130,8 +130,8 @@ class ScxDrag {
         } else {
             this.callOnClick();
         }
-        document.removeEventListener('mousemove', this.onMousemove)
-        document.removeEventListener('mouseup', this.onMouseup)
+        document.removeEventListener("mousemove", this.onMousemove);
+        document.removeEventListener("mouseup", this.onMouseup);
     }
 
     update(X, Y) {
@@ -167,12 +167,12 @@ class ScxDrag {
     }
 
     enable() {
-        this.dragElement.addEventListener('mousedown', this.onMousedown)
+        this.dragElement.addEventListener("mousedown", this.onMousedown);
         return this;
     }
 
     disable() {
-        this.dragElement.removeEventListener('mousedown', this.onMousedown)
+        this.dragElement.removeEventListener("mousedown", this.onMousedown);
         return this;
     }
 
@@ -192,17 +192,17 @@ function useScxDrag(targetElement, options = {}) {
 }
 
 const ScxDragDirective = {
-    name: 'drag',
+    name: "drag",
     mounted(el, {value}) {
         useScxDrag(el, value);
     },
     updated(el, {value}) {
 
-    }
-}
+    },
+};
 
 export {
     useScxDrag,
     ScxDragDirective,
-    getViewBounds
-}
+    getViewBounds,
+};
