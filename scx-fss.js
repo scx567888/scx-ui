@@ -99,24 +99,6 @@ class ScxFSS {
     }
 
     /**
-     * 格式化显示文件大小
-     * @param value
-     * @returns {string}
-     */
-    static formatFileSize(value) {
-        if (null == value || value === "") {
-            return "0 Bytes";
-        }
-        const unitArr = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-        let index;
-        const srcSize = parseFloat(value);
-        index = Math.floor(Math.log(srcSize) / Math.log(1024));
-        let size = srcSize / Math.pow(1024, index);
-        size = size.toFixed(2);//保留的小数位数
-        return size + unitArr[index];
-    }
-
-    /**
      * 获取 分块和 MD5
      * @param file
      * @param onProgress
@@ -205,7 +187,7 @@ class ScxFSS {
             }
             //判断文件大小是否超出最大限制
             if (file.size > this.maxUploadSize) {
-                reject("文件不能大于 " + ScxFSS.formatFileSize(this.maxUploadSize) + " !!! 问题文件 : " + file.name);
+                reject("文件不能大于 " + formatFileSize(this.maxUploadSize) + " !!! 问题文件 : " + file.name);
                 return;
             }
             //开始获取 md5和 分块
@@ -358,9 +340,28 @@ function useScxFSS() {
     return inject(scxFSSKey);
 }
 
+/**
+ * 格式化显示文件大小
+ * @param value
+ * @returns {string}
+ */
+function formatFileSize(value) {
+    if (null == value || value === "") {
+        return "0 Bytes";
+    }
+    const unitArr = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    let index;
+    const srcSize = parseFloat(value);
+    index = Math.floor(Math.log(srcSize) / Math.log(1024));
+    let size = srcSize / Math.pow(1024, index);
+    size = size.toFixed(2);//保留的小数位数
+    return size + unitArr[index];
+}
+
 export {
     ScxFSS,
     FSSObject,
     useScxFSS,
     scxFSSKey,
+    formatFileSize
 };
