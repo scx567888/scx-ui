@@ -22,10 +22,10 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^4.2.1",
     "clipboard": "^2.0.11",
     "jszip": "^3.10.1",
-    "vite": "^4.2.1",
+    "vite": "^4.3.5",
     "vue-router": "^4.1.6"
   },
   "peerDependencies": {
