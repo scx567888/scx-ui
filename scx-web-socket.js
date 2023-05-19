@@ -86,6 +86,8 @@ class ScxWebSocket extends EventTarget {
             this.dispatchEvent(event);
             this.reconnect();
         });
+
+        return this;
     }
 
     /**
@@ -137,7 +139,9 @@ class ScxWebSocket extends EventTarget {
      */
     close(code, reason) {
         this.forcedClose = true;
-        this.ws.close(code, reason);
+        if (this.ws) {
+            this.ws.close(code, reason);
+        }
     }
 
 }
