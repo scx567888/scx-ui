@@ -1,6 +1,7 @@
 import ScxIcon from "./_scx-icon/index.vue";
 import ScxCrud from "./_scx-crud/index.vue";
 import ScxGroup from "./_scx-group/index.vue";
+import ScxGroupNoTransition from "./_scx-group-no-transition/index.vue";
 import ScxUpload from "./_scx-upload/index.vue";
 import ScxUploadList from "./_scx-upload-list/index.vue";
 import ScxProgress from "./_scx-progress/index.vue";
@@ -9,7 +10,7 @@ import {ScxDragDirective} from "./scx-drag.js";
 import {createScxPermDirective} from "./scx-perm.js";
 
 //以下为组件
-const components = [ScxIcon, ScxCrud, ScxGroup, ScxUpload, ScxUploadList, ScxProgress];
+const components = [ScxIcon, ScxCrud, ScxGroup, ScxGroupNoTransition, ScxUpload, ScxUploadList, ScxProgress];
 
 //以下为指令
 const directives = [ScxContextMenuDirective, ScxDragDirective];
@@ -31,6 +32,7 @@ export {
     ScxIcon,
     ScxCrud,
     ScxGroup,
+    ScxGroupNoTransition,
     ScxUpload,
     ScxUploadList,
     ScxComponent,
