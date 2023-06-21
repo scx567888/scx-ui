@@ -8,15 +8,15 @@ class FSSObject {
     fssObjectID;//文件的 id
     fileName;//文件的名称
     uploadTime;//上传时间
-    fileMD5;//文件 md5
+    fileHash;//文件 hash
     fileSizeDisplay;//文件大小 格式化值
     fileSize;//文件大小
 
-    constructor({fssObjectID, fileName, uploadTime, fileMD5, fileSizeDisplay, fileSize}) {
+    constructor({fssObjectID, fileName, uploadTime, fileHash, fileSizeDisplay, fileSize}) {
         this.fssObjectID = fssObjectID;
         this.fileName = fileName;
         this.uploadTime = uploadTime;
-        this.fileMD5 = fileMD5;
+        this.fileHash = fileHash;
         this.fileSizeDisplay = fileSizeDisplay;
         this.fileSize = fileSize;
     }
@@ -86,8 +86,8 @@ class ScxFSS {
         return "api/fss/download/";
     }
 
-    static checkAnyFileExistsByThisMD5URL() {
-        return "api/fss/check-any-file-exists-by-this-md5";
+    static checkAnyFileExistsByHashURL() {
+        return "api/fss/check-any-file-exists-by-hash";
     }
 
     static CHECKING() {
@@ -105,12 +105,12 @@ class ScxFSS {
      * @param chunkSize
      * @returns {Promise<unknown>}
      */
-    static getChunkAndMD5(file, onProgress, chunkSize) {
+    static getChunkAndHash(file, onProgress, chunkSize) {
         return new Promise((resolve, reject) => {
             //创建一个对象先
             const chunkAndMD5 = {
                 chunk: [],
-                md5: "",
+                hash: "",
             };
             //不需要切割 (适用于文件大小 < 分块大小的情况, 因为比较常见 所以单独做处理)
             const noNeedSlice = file.size <= chunkSize;
@@ -134,7 +134,7 @@ class ScxFSS {
                 if (currentChunk < chunks) {
                     loadNext();
                 } else { //读完了 赋值MD5 并返回
-                    chunkAndMD5.md5 = spark.end(false);
+                    chunkAndMD5.hash = spark.end(false);
                     //设置校验 md5 为 100%
                     onProgress(ScxFSS.CHECKING(), 100);
                     resolve(chunkAndMD5);
@@ -191,11 +191,11 @@ class ScxFSS {
                 return;
             }
             //开始获取 md5和 分块
-            ScxFSS.getChunkAndMD5(file, onProgress, this.chunkSize).then(chunkAndMD5 => {
+            ScxFSS.getChunkAndHash(file, onProgress, this.chunkSize).then(chunkAndMD5 => {
                 const fileName = file.name;
                 const fileSize = file.size;
                 const chunk = chunkAndMD5.chunk;
-                const md5 = chunkAndMD5.md5;
+                const hash = chunkAndMD5.hash;
                 let i = 0;
 
                 //创建上传方法
@@ -206,7 +206,7 @@ class ScxFSS {
                     uploadFormData.append("fileName", fileName);
                     uploadFormData.append("fileData", chunk[i]);
                     uploadFormData.append("fileSize", fileSize + "");
-                    uploadFormData.append("fileMD5", md5);
+                    uploadFormData.append("fileHash", hash);
                     uploadFormData.append("chunkLength", chunk.length + "");
                     uploadFormData.append("nowChunkIndex", i + "");
 
@@ -226,17 +226,17 @@ class ScxFSS {
                 };
 
                 //这里先检查一下服务器是否已经有相同MD5的文件了 有的话就不传了
-                this.scxReq.post(ScxFSS.checkAnyFileExistsByThisMD5URL(), {
+                this.scxReq.post(ScxFSS.checkAnyFileExistsByHashURL(), {
                     fileName,
                     fileSize,
-                    fileMD5: md5,
+                    fileHash: hash,
                 }).then(data => {
                     //这里表示服务器已经有这个文件了
                     onProgress(ScxFSS.UPLOADING(), 100);
                     resolve(data);
                 }).catch(e => {//这里表示服务器没找到这个文件 还是老老实实的传吧
                     //这里错误的种类比较多 也可能是网络错误或者权限错误啥的 这里判断一下先
-                    if (e instanceof JsonVOError && e.message === "no-any-file-exists-for-this-md5") {
+                    if (e instanceof JsonVOError && e.message === "no-any-file-exists-for-hash") {
                         //开始递归上传
                         uploadNext();
                     } else {
