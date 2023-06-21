@@ -108,7 +108,7 @@ class ScxFSS {
     static getChunkAndHash(file, onProgress, chunkSize) {
         return new Promise((resolve, reject) => {
             //创建一个对象先
-            const chunkAndMD5 = {
+            const chunkAndHash = {
                 chunk: [],
                 hash: "",
             };
@@ -134,10 +134,10 @@ class ScxFSS {
                 if (currentChunk < chunks) {
                     loadNext();
                 } else { //读完了 赋值MD5 并返回
-                    chunkAndMD5.hash = spark.end(false);
+                    chunkAndHash.hash = spark.end(false);
                     //设置校验 md5 为 100%
                     onProgress(ScxFSS.CHECKING(), 100);
-                    resolve(chunkAndMD5);
+                    resolve(chunkAndHash);
                 }
             };
 
@@ -157,7 +157,7 @@ class ScxFSS {
                     tempFileChunk = file.slice(start, end);
                 }
                 // 将切割后的区块放入 fileInfo 对象的 chunk 中以便之后使用
-                chunkAndMD5.chunk.push(tempFileChunk);
+                chunkAndHash.chunk.push(tempFileChunk);
                 // 读取 (这里起始就是走的 fileReader.onload 方法)
                 fileReader.readAsArrayBuffer(tempFileChunk);
             };
