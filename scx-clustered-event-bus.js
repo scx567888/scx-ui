@@ -20,7 +20,7 @@ class ScxClusteredEventBus extends ScxEventBus {
      *
      * @type {MultiMap}
      */
-    wsHandlers = new MultiMap();// ws 事件列表
+    clusteredHandlers = new MultiMap();// ws 事件列表
 
     /**
      *
@@ -40,7 +40,7 @@ class ScxClusteredEventBus extends ScxEventBus {
             const json = JSON.parse(event.data);
             const wsMessage = new WSMessage(json.address, json.body, json.headers);
             if (wsMessage.address) {
-                const es = this.wsHandlers.get(wsMessage.address);
+                const es = this.clusteredHandlers.get(wsMessage.address);
                 for (const c of es) {
                     try {
                         c(wsMessage.body);
@@ -74,17 +74,17 @@ class ScxClusteredEventBus extends ScxEventBus {
         return this;
     }
 
-    removeWSHandler(address, callback) {
-        this.wsHandlers.delete(address, callback);
+    removeClusteredHandler(address, callback) {
+        this.clusteredHandlers.delete(address, callback);
     };
 
     //添加 websocket 消费者
-    addWSHandler(address, callback) {
-        this.wsHandlers.set(address, callback);
+    addClusteredHandler(address, callback) {
+        this.clusteredHandlers.set(address, callback);
     };
 
     //发送事件
-    wsPublish(address, body, headers = null) {
+    clusteredPublish(address, body, headers = null) {
         const wsMessage = new WSMessage(address, body, headers);
         this.scxWebSocket.send(JSON.stringify(wsMessage));
     };
