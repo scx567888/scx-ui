@@ -1,3 +1,4 @@
+export * from "./scx-clustered-event-bus.js";
 export * from "./scx-config-manager.js";
 export * from "./scx-context-menu.js";
 export * from "./scx-event-bus.js";
@@ -16,6 +17,7 @@ export * from "./vanilla/download.js";
 export * from "./vanilla/get-uuid.js";
 export * from "./vanilla/html-to-text.js";
 export * from "./vanilla/list-to-tree.js";
+export * from "./vanilla/multi-map.js";
 export * from "./vanilla/nation.js";
 export * from "./vanilla/object-helper.js";
 export * from "./vanilla/percentage.js";
