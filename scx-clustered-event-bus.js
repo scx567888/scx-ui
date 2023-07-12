@@ -1,0 +1,130 @@
+import {ScxWebSocket} from "./scx-web-socket.js";
+import {WSMessage} from "./_scx-event-bus/WSMessage.js";
+import {initBaseURL} from "./_scx-event-bus/ScxEventBusHelper.js";
+import {inject} from "vue";
+import {ScxEventBus} from "./scx-event-bus.js";
+import {MultiMap} from "./vanilla/multi-map.js";
+
+class ScxClusteredEventBus extends ScxEventBus {
+
+    LOVE = "❤";// 心跳检测字符
+
+    startLoveInterval = null;// 心跳检测定时器
+
+    /**
+     * @type{ScxWebSocket}
+     */
+    scxWebSocket;
+
+    /**
+     *
+     * @type {MultiMap}
+     */
+    wsHandlers = new MultiMap();// ws 事件列表
+
+    /**
+     *
+     * @param baseURL
+     */
+    constructor(baseURL) {
+        super();
+        this.scxWebSocket = new ScxWebSocket(new URL("scx", initBaseURL(baseURL)));
+
+        //监听 websocket 的事件
+        this.scxWebSocket.addEventListener("message", (event) => {
+            //心跳检测
+            if (event.data === this.LOVE) {
+                console.log(`%c WebSocket 心跳检测成功...  ${new Date()} `, "background: #222; color: #2196f3");
+                return;
+            }
+            const json = JSON.parse(event.data);
+            const wsMessage = new WSMessage(json.address, json.body, json.headers);
+            if (wsMessage.address) {
+                const es = this.wsHandlers.get(wsMessage.address);
+                for (const c of es) {
+                    try {
+                        c(wsMessage.body);
+                    } catch (e) {
+                        console.warn(e);
+                    }
+                }
+            }
+        });
+
+        this.scxWebSocket.addEventListener("open", () => {
+            this.publish(ON_WEBSOCKET_OPEN, undefined);
+            this.startLove();
+        });
+
+        this.scxWebSocket.addEventListener("error", () => {
+            this.clearStartLove();
+        });
+
+        this.scxWebSocket.addEventListener("close", () => {
+            this.clearStartLove();
+        });
+
+    }
+
+    /**
+     * 手动启动连接
+     */
+    connect() {
+        this.scxWebSocket.connect();
+        return this;
+    }
+
+    removeWSHandler(address, callback) {
+        this.wsHandlers.delete(address, callback);
+    };
+
+    //添加 websocket 消费者
+    addWSHandler(address, callback) {
+        this.wsHandlers.set(address, callback);
+    };
+
+    //发送事件
+    wsPublish(address, body, headers = null) {
+        const wsMessage = new WSMessage(address, body, headers);
+        this.scxWebSocket.send(JSON.stringify(wsMessage));
+    };
+
+    startLove() {
+        //5 分钟检测一次
+        this.startLoveInterval = setInterval(() => this.scxWebSocket.send(this.LOVE), 1000 * 60 * 5);
+    }
+
+    clearStartLove() {
+        if (this.startLoveInterval != null) {
+            clearInterval(this.startLoveInterval);
+        }
+    }
+
+    install(app) {
+        app.provide(scxClusteredEventBusKey, this);
+    }
+
+}
+
+/**
+ *
+ * @type {string}
+ */
+const scxClusteredEventBusKey = "scx-clustered-event-bus";
+
+/**
+ *
+ * @returns {ScxClusteredEventBus}
+ */
+function useScxClusteredEventBus() {
+    return inject(scxClusteredEventBusKey);
+}
+
+const ON_WEBSOCKET_OPEN = "ON_WEBSOCKET_OPEN";
+
+export {
+    ScxClusteredEventBus,
+    scxClusteredEventBusKey,
+    useScxClusteredEventBus,
+    ON_WEBSOCKET_OPEN,
+};
