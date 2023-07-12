@@ -15,12 +15,14 @@
 
 <script>
 import {onMounted, ref} from "vue";
-import {ScxEventBus} from "../../../index.js";
+import {ScxClusteredEventBus} from "../../../index.js";
 
 export default {
     name: "scx-eventbus-test",
     setup() {
-        const scxEventBus = new ScxEventBus("http://127.0.0.1:8080/");
+        const scxEventBus = new ScxClusteredEventBus("http://127.0.0.1:8080/");
+
+        scxEventBus.connect();
 
         const imInput = ref("");
         const imInput2 = ref("");
@@ -32,24 +34,24 @@ export default {
             //在本地发送
             scxEventBus.publish("showMessage", imInput.value);
             //向后台发送
-            scxEventBus.wsPublish("sendMessage", imInput.value);
+            scxEventBus.clusteredPublish("sendMessage", imInput.value);
         }
 
         //防止页面刷新变化 所以每次都重新注册
         onMounted(() => {
             //这里不用担心事件重复注册 , scxEventBus 会自动进行处理
             //注册一个本地事件
-            scxEventBus.consumer("showMessage", (message) => {
+            scxEventBus.addHandler("showMessage", (message) => {
                 console.log("这是本地的事件 : " + message);
             });
 
             //注册一个 websocket 的事件
-            scxEventBus.wsConsumer("writeMessage", (message) => {
+            scxEventBus.addClusteredHandler("writeMessage", (message) => {
                 imInput2.value = imInput2.value + message;
             });
 
             //注册一个 websocket 的事件
-            scxEventBus.wsConsumer("writeTime", (message) => {
+            scxEventBus.addClusteredHandler("writeTime", (message) => {
                 nowTime.value = message;
             });
 
