@@ -1,6 +1,12 @@
+import {MultiMap} from "./vanilla/multi-map.js";
+
 class ScxEventBus {
 
-    #handlers = {};
+    /**
+     *
+     * @type {MultiMap}
+     */
+    handlers = new MultiMap();
 
     /**
      * 添加一个处理器
@@ -9,10 +15,7 @@ class ScxEventBus {
      * @param {Function} callback
      */
     addHandler(address, callback) {
-        if (!(address in this.#handlers)) {
-            this.#handlers[address] = [];
-        }
-        this.#handlers[address].push(callback);
+        this.handlers.set(address, callback);
     }
 
     /**
@@ -22,14 +25,12 @@ class ScxEventBus {
      * @param {Object} message
      */
     publish(address, message) {
-        const handlers = this.#handlers[address];
-        if (handlers) {
-            for (const callback of handlers) {
-                try {
-                    callback(message);
-                } catch (e) {
-                    console.warn(e);
-                }
+        const handlers = this.handlers.get(address);
+        for (const callback of handlers) {
+            try {
+                callback(message);
+            } catch (e) {
+                console.warn(e);
             }
         }
     }
@@ -41,19 +42,7 @@ class ScxEventBus {
      * @param {Function} callback
      */
     removeHandler(address, callback) {
-        const handlers = this.#handlers[address];
-        if (handlers) {
-            let index;
-            do {
-                index = handlers.indexOf(callback);
-                handlers.splice(index, 1);
-            }
-            while (index !== -1);
-            
-            if (handlers.length === 0) {
-                delete this.#handlers[address];
-            }
-        }
+        this.handlers.delete(address, callback);
     }
 
     /**
