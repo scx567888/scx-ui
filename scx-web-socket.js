@@ -1,3 +1,5 @@
+import {ScxEventBus} from "./scx-event-bus.js";
+
 function cloneEvent(oldEvent) {
     return new oldEvent.constructor(oldEvent.type, oldEvent);
 }
@@ -5,7 +7,7 @@ function cloneEvent(oldEvent) {
 /**
  * 具有自动重连功能的 WebSocket
  */
-class ScxWebSocket extends EventTarget {
+class ScxWebSocket extends ScxEventBus {
 
     /**
      *  WebSocket 连接参数
