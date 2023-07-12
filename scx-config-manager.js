@@ -28,7 +28,7 @@ class ScxConfigManager {
     req;
 
     /**
-     * @type {ScxEventBus}
+     * @type {ScxClusteredEventBus}
      */
     eventBus;
 
@@ -39,7 +39,7 @@ class ScxConfigManager {
     /**
      *
      * @param req {ScxReq}
-     * @param eventBus {ScxEventBus}
+     * @param eventBus {ScxClusteredEventBus}
      * @param systemConfig {Object}
      * @param userConfig {Object}
      */
@@ -54,11 +54,11 @@ class ScxConfigManager {
         if (!isReactive(this)) {
             throw new Error("调用 startWatch 前请确保当前实例是一个 reactive 对象");
         }
-        this.eventBus.wsConsumer(ON_SCX_USER_CONFIG_CHANGE_EVENT_NAME, (data) => {
+        this.eventBus.addClusteredHandler(ON_SCX_USER_CONFIG_CHANGE_EVENT_NAME, (data) => {
             Object.assign(this.userConfig, data);
             this.eventBus.publish(ON_SCX_USER_CONFIG_CHANGE_EVENT_NAME, this.userConfig);
         });
-        this.eventBus.wsConsumer(ON_SCX_SYSTEM_CONFIG_CHANGE_EVENT_NAME, (data) => {
+        this.eventBus.addClusteredHandler(ON_SCX_SYSTEM_CONFIG_CHANGE_EVENT_NAME, (data) => {
             Object.assign(this.systemConfig, data);
             this.eventBus.publish(ON_SCX_SYSTEM_CONFIG_CHANGE_EVENT_NAME, this.systemConfig);
         });
@@ -66,12 +66,12 @@ class ScxConfigManager {
     }
 
     onSystemConfigChange(event) {
-        this.eventBus.consumer(ON_SCX_SYSTEM_CONFIG_CHANGE_EVENT_NAME, event);
+        this.eventBus.addHandler(ON_SCX_SYSTEM_CONFIG_CHANGE_EVENT_NAME, event);
         return this;
     }
 
     onUserConfigChange(event) {
-        this.eventBus.consumer(ON_SCX_USER_CONFIG_CHANGE_EVENT_NAME, event);
+        this.eventBus.addHandler(ON_SCX_USER_CONFIG_CHANGE_EVENT_NAME, event);
         return this;
     }
 
