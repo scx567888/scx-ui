@@ -58,6 +58,7 @@ class ScxWebSocket extends ScxEventBus {
      * 创建连接方法
      */
     connect() {
+        this.forcedClose = false;
         // 创建连接
         this.ws = new WebSocket(this.url, this.protocols);
 
