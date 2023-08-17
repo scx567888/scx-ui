@@ -58,7 +58,6 @@ class ScxWebSocket extends ScxEventBus {
      * 创建连接方法
      */
     connect() {
-        this.forcedClose = false;
         // 创建连接
         this.ws = new WebSocket(this.url, this.protocols);
 
@@ -145,6 +144,7 @@ class ScxWebSocket extends ScxEventBus {
         if (this.ws) {
             this.ws.close(code, reason);
         }
+        console.log(`%c WebSocket 主动关闭... ${new Date()} `, "background: #fc5531; color: #fff");
     }
 
 }
