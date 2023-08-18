@@ -38,10 +38,10 @@ class ScxWebSocket extends ScxEventBus {
     lockReconnect = false;
 
     /**
-     * 是否已经由用户手动关闭
-     * @type {boolean}
+     * a
+     *
      */
-    forcedClose = false;
+    reconnectTimeout;
 
     /**
      * 创建 ScxWebSocket
@@ -58,53 +58,10 @@ class ScxWebSocket extends ScxEventBus {
      * 创建连接方法
      */
     connect() {
-        // 创建连接
+        this._closeQuietly();
         this.ws = new WebSocket(this.url, this.protocols);
-
-        // 连接成功事件
-        this.ws.addEventListener("open", (_event) => {
-            console.log(`%c WebSocket 连接成功... ${new Date()} `, "background: #222; color: #bada55");
-            const event = cloneEvent(_event);
-            this.dispatchEvent(event);
-            this.retryFailedSendEvents();
-        });
-
-        // 消息发送事件
-        this.ws.addEventListener("message", (_event) => {
-            const event = cloneEvent(_event);
-            this.dispatchEvent(event);
-        });
-
-        // 关闭事件
-        this.ws.addEventListener("close", (_event) => {
-            const event = cloneEvent(_event);
-            this.dispatchEvent(event);
-            this.reconnect();
-        });
-
-        // 连接异常事件
-        this.ws.addEventListener("error", (_event) => {
-            const event = cloneEvent(_event);
-            this.dispatchEvent(event);
-            this.reconnect();
-        });
-
+        this._addWebSocketEventListener();
         return this;
-    }
-
-    /**
-     * 重连方法
-     */
-    reconnect() {
-        if (this.lockReconnect || this.forcedClose) {
-            return;
-        }
-        console.warn("WebSocket 重连中... ", new Date());
-        this.lockReconnect = true;
-        setTimeout(() => {  //没连接上会一直重连，设置延迟为5000毫秒避免请求过多
-            this.lockReconnect = false;
-            this.connect();
-        }, 5000);
     }
 
     /**
@@ -117,12 +74,66 @@ class ScxWebSocket extends ScxEventBus {
         } catch (e) {
             this.failedSendDataList.push(data);
         }
+        return this;
+    }
+
+    /**
+     * 关闭连接 一般由 用户主动调用 会触发 close 和 error 事件
+     * @param { number? } code
+     * @param { string? } reason
+     */
+    close(code, reason) {
+        if (this.reconnectTimeout) {
+            clearTimeout(this.reconnectTimeout);
+            this.lockReconnect = false;
+        }
+        if (this.ws) {
+            this._removeWebSocketEventListener();
+            this.ws.addEventListener("close", this._closeEvent);
+            this.ws.addEventListener("error", this._errorEvent);
+        }
+        if (this.ws) {
+            this.ws.close(code, reason);
+            console.log(`%c WebSocket 主动关闭... ${new Date()} `, "background: #fc5531; color: #fff");
+        }
+        return this;
+    }
+
+    /**
+     * 安静的关闭 一般由 内部调用, 不会触发任何事件(因为已经被移除)
+     */
+    _closeQuietly() {
+        if (this.reconnectTimeout) {
+            clearTimeout(this.reconnectTimeout);
+            this.lockReconnect = false;
+        }
+        if (this.ws) {
+            this._removeWebSocketEventListener();
+        }
+        if (this.ws) {
+            this.ws.close();
+        }
+    }
+
+    /**
+     * 重连方法
+     */
+    _reconnect() {
+        if (this.lockReconnect) {
+            return;
+        }
+        console.warn("WebSocket 重连中... ", new Date());
+        this.lockReconnect = true;
+        this.reconnectTimeout = setTimeout(() => {  //没连接上会一直重连，设置延迟为5000毫秒避免请求过多
+            this.lockReconnect = false;
+            this.connect();
+        }, 5000);
     }
 
     /**
      * 重试发送错误的请求
      */
-    retryFailedSendEvents() {
+    _retryFailedSendEvents() {
         for (let data of this.failedSendDataList) {
             try {
                 this.ws.send(data);
@@ -134,17 +145,52 @@ class ScxWebSocket extends ScxEventBus {
         this.failedSendDataList.splice(0, this.failedSendDataList.length);
     }
 
-    /**
-     * 关闭连接
-     * @param { number } code
-     * @param { string } reason
-     */
-    close(code, reason) {
-        this.forcedClose = true;
-        if (this.ws) {
-            this.ws.close(code, reason);
-        }
-        console.log(`%c WebSocket 主动关闭... ${new Date()} `, "background: #fc5531; color: #fff");
+    _openEvent = (_event) => {
+        console.log(`%c WebSocket 连接成功... ${new Date()} `, "background: #222; color: #bada55");
+        const event = cloneEvent(_event);
+        this.dispatchEvent(event);
+        this._retryFailedSendEvents();
+    };
+
+    _messageEvent = (_event) => {
+        const event = cloneEvent(_event);
+        this.dispatchEvent(event);
+    };
+
+    _closeEvent = (_event) => {
+        const event = cloneEvent(_event);
+        this.dispatchEvent(event);
+    };
+
+    _errorEvent = (_event) => {
+        const event = cloneEvent(_event);
+        this.dispatchEvent(event);
+    };
+
+    _closeAndReconnectEvent = (_event) => {
+        this._closeEvent(_event);
+        this._reconnect();
+    };
+
+    _errorAndReconnectEvent = (_event) => {
+        this._errorEvent(_event);
+        this._reconnect();
+    };
+
+    _addWebSocketEventListener() {
+        this.ws.addEventListener("open", this._openEvent);
+        this.ws.addEventListener("message", this._messageEvent);
+        this.ws.addEventListener("close", this._closeAndReconnectEvent);
+        this.ws.addEventListener("error", this._errorAndReconnectEvent);
+    }
+
+    _removeWebSocketEventListener() {
+        this.ws.removeEventListener("open", this._openEvent);
+        this.ws.removeEventListener("message", this._messageEvent);
+        this.ws.removeEventListener("close", this._closeEvent);
+        this.ws.removeEventListener("error", this._errorEvent);
+        this.ws.removeEventListener("close", this._closeAndReconnectEvent);
+        this.ws.removeEventListener("error", this._errorAndReconnectEvent);
     }
 
 }
