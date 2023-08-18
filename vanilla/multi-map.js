@@ -1,5 +1,7 @@
 class MultiMap {
 
+    map = {};
+
     clear() {
         this.map = {};
     }
@@ -43,8 +45,6 @@ class MultiMap {
             this.map[key] = [value];
         }
     }
-
-    map = {};
 
 }
 

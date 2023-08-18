@@ -363,5 +363,5 @@ export {
     FSSObject,
     useScxFSS,
     scxFSSKey,
-    formatFileSize
+    formatFileSize,
 };
