@@ -12,7 +12,14 @@ class FSSObject {
     fileSizeDisplay;//文件大小 格式化值
     fileSize;//文件大小
 
-    constructor({fssObjectID, fileName, uploadTime, fileHash, fileSizeDisplay, fileSize}) {
+    constructor({
+                    fssObjectID,
+                    fileName,
+                    uploadTime,
+                    fileHash,
+                    fileSizeDisplay,
+                    fileSize
+                }) {
         this.fssObjectID = fssObjectID;
         this.fileName = fileName;
         this.uploadTime = uploadTime;
@@ -168,7 +175,10 @@ class ScxFSS {
     }
 
     static defaultOnProgress(state, value) {
-        console.log({state: state, value: value});
+        console.log({
+            state: state,
+            value: value
+        });
     }
 
     /**
@@ -294,7 +304,14 @@ class ScxFSS {
      */
     joinImageURL(fssObjectID, options = {}) {
         const url = joinURL(this.scxReq.baseURL, ScxFSS.imageURL(), fssObjectID);
-        const {w, h, t, width = w, height = h, type = t} = options;
+        const {
+            w,
+            h,
+            t,
+            width = w,
+            height = h,
+            type = t
+        } = options;
         if (width || height || type) {
             if (width) {
                 url.searchParams.set("w", width + "");

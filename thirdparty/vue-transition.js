@@ -8,7 +8,12 @@
  * @param el
  */
 function fixedElement(el) {
-    const {marginLeft, marginTop, width, height} = window.getComputedStyle(el);
+    const {
+        marginLeft,
+        marginTop,
+        width,
+        height
+    } = window.getComputedStyle(el);
     el.style.left = `${el.offsetLeft - parseFloat(marginLeft)}px`;
     el.style.top = `${el.offsetTop - parseFloat(marginTop)}px`;
     el.style.width = width;

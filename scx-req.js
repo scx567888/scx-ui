@@ -11,7 +11,10 @@ import {isNull} from "./vanilla/object-helper.js";
 function jsonVoProcessor(r) {
     //这里是特殊处理
     return new Promise((resolve, reject) => r.then(res => {
-        const {responseType, body} = res;
+        const {
+            responseType,
+            body
+        } = res;
         if (responseType === ScxFetchResponseType.JSON) {
             if (body.message === "ok") {
                 resolve(body.data);

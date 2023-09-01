@@ -12,7 +12,11 @@ const SVG_SYMBOL_ID_PREFIX = "scx-icon_";
 const svgCompiler = Compiler.create();
 
 function svgToSymbol(id, content) {
-    return svgCompiler.createSymbol({id, content, path: ""}).render();
+    return svgCompiler.createSymbol({
+        id,
+        content,
+        path: ""
+    }).render();
 }
 
 function getSymbolId(relativePath) {
@@ -52,7 +56,10 @@ class ScxIconInterface {
         const svgSymbolList = [];
         for (let svgRoot of this.svgRoots) {
             const allSVGFiles = getAllSVGFiles(svgRoot);
-            for (const {relativePath, absolutePath} of allSVGFiles) {
+            for (const {
+                relativePath,
+                absolutePath
+            } of allSVGFiles) {
                 const symbolContent = await svgToSymbol(getSymbolId(relativePath), getFileContent(absolutePath));
                 //内容不为空 添加
                 if (symbolContent) {
@@ -73,9 +80,13 @@ class UseHtml extends ScxIconInterface {
     async transformIndexHtml() {
         const allSymbol = await this.getAllSymbol();
         return [{
-            tag: "svg", attrs: {
-                id: SVG_DOM_ID, style: "display: none",
-            }, children: allSymbol, injectTo: "body",
+            tag: "svg",
+            attrs: {
+                id: SVG_DOM_ID,
+                style: "display: none",
+            },
+            children: allSymbol,
+            injectTo: "body",
         }];
     }
 

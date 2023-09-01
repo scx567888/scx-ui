@@ -4,7 +4,7 @@ import {inject} from "vue";
  *
  * @type {string}
  */
-const scxFSSKey = 'scx-fss';
+const scxFSSKey = "scx-fss";
 
 /**
  *
@@ -27,4 +27,4 @@ class ScxFSSVueInstaller {
     }
 }
 
-export {ScxFSSVueInstaller, scxFSSKey, useScxFSS}
+export {ScxFSSVueInstaller, scxFSSKey, useScxFSS};

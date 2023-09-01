@@ -49,7 +49,12 @@ class ScxFetch {
      */
     req(url, body = {}, options = {}) {
         const {
-            method, headers, responseType, usePreInterceptor, usePostInterceptor, charset,
+            method,
+            headers,
+            responseType,
+            usePreInterceptor,
+            usePostInterceptor,
+            charset,
         } = mixinOptions(this.defaultOptions, options);
 
         const requestInit = createRequestInit(method);//初始化 fetch 参数 , 此处携带 cookie

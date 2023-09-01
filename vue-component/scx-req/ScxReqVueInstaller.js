@@ -4,7 +4,7 @@ import {inject} from "vue";
  *
  * @type {string}
  */
-const scxReqKey = 'scx-req';
+const scxReqKey = "scx-req";
 
 /**
  *
@@ -27,4 +27,4 @@ class ScxReqVueInstaller {
     }
 }
 
-export {ScxReqVueInstaller, scxReqKey, useScxReq}
+export {ScxReqVueInstaller, scxReqKey, useScxReq};

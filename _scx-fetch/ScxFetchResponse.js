@@ -50,8 +50,8 @@ class ScxFetchResponse {
             const headers = new ScxFetchHeaders(response.headers);
             const responseType = ScxFetchResponseType.getByHeaders(headers, defaultResponseType);
             ScxFetchResponse.getBodyPromise(responseType, response)
-                    .then((body) => resolve(new ScxFetchResponse(headers, response.type, response.url, body, responseType)))
-                    .catch((e) => reject(e));
+                .then((body) => resolve(new ScxFetchResponse(headers, response.type, response.url, body, responseType)))
+                .catch((e) => reject(e));
         });
     }
 

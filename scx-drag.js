@@ -11,7 +11,12 @@ function getViewBounds() {
     const clientHeight = document.documentElement.clientHeight;
 
     //计算上下界限
-    return {left: 0, top: 0, right: clientWidth, bottom: clientHeight};
+    return {
+        left: 0,
+        top: 0,
+        right: clientWidth,
+        bottom: clientHeight
+    };
 }
 
 class ScxDrag {
@@ -43,8 +48,10 @@ class ScxDrag {
     //用户自定义的 回调
     callback = {
         onClick: (el) => {
-        }, onDrag: (el) => {
-        }, onDragEnd: (el) => {
+        },
+        onDrag: (el) => {
+        },
+        onDragEnd: (el) => {
         },
     };
 
@@ -61,7 +68,11 @@ class ScxDrag {
      * @param callback
      * @param bounds {Function||{top,left,bottom,right}}
      */
-    constructor(targetElement, {dragElement, callback, bounds} = {}) {
+    constructor(targetElement, {
+        dragElement,
+        callback,
+        bounds
+    } = {}) {
         this.targetElement = targetElement;
         this.dragElement = dragElement ? dragElement : targetElement; //默认使用 targetElement
         this.callback = callback;
@@ -97,7 +108,12 @@ class ScxDrag {
         this.startMatrix = new DOMMatrix(window.getComputedStyle(this.targetElement).transform);
 
         //获取元素当前的位置
-        const {left, top, bottom, right} = this.targetElement.getBoundingClientRect();
+        const {
+            left,
+            top,
+            bottom,
+            right
+        } = this.targetElement.getBoundingClientRect();
 
         //计算上下界限
         const bounds = this.getBounds();

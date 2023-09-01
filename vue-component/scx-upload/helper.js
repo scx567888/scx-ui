@@ -85,7 +85,13 @@ class UploadInfo {
 
     fill(rawOptions) {
         const {
-            fileName, previewURL, downloadURL, uploadTime, fileSizeDisplay, fileSize, fssObjectID,
+            fileName,
+            previewURL,
+            downloadURL,
+            uploadTime,
+            fileSizeDisplay,
+            fileSize,
+            fssObjectID,
         } = rawOptions;
         this.fileName = fileName;
         this.previewURL = previewURL;
@@ -121,12 +127,19 @@ class ScxFSSHelper {
      * @returns {Promise<{fileName: string}|{[p: string]: *}>}
      */
     fileInfoHandler(fileID) {
-        const previewURL = this.scxFSS.joinImageURL(fileID, {w: 150, h: 150});
+        const previewURL = this.scxFSS.joinImageURL(fileID, {
+            w: 150,
+            h: 150
+        });
         const downloadURL = this.scxFSS.joinDownloadURL(fileID);
         return new Promise((resolve, reject) => {
             this.scxFSS.info(fileID).then(item => {
                 if (item) {
-                    resolve({...item, previewURL, downloadURL});
+                    resolve({
+                        ...item,
+                        previewURL,
+                        downloadURL
+                    });
                 } else {
                     resolve({fileName: "文件无法读取 !!! id : " + fileID});
                 }
