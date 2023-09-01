@@ -40,7 +40,10 @@ function createExcel(data, header = tryCreateHeader(data)) {
 
     const sheet1 = utils.aoa_to_sheet(arrayData);
 
-    const workbook = {SheetNames: ["Sheet1"], Sheets: {Sheet1: sheet1}};
+    const workbook = {
+        SheetNames: ["Sheet1"],
+        Sheets: {Sheet1: sheet1}
+    };
 
     const buffer = write(workbook, {type: "buffer"});
 

@@ -42,7 +42,10 @@ function doWatch(el, {value}, vnode) {
                     vnode.el = comment;
                 }
             }
-        }, {immediate: true, deep: true});
+        }, {
+            immediate: true,
+            deep: true
+        });
         watchEventMap.set(el, watchEvent);
     }
 }

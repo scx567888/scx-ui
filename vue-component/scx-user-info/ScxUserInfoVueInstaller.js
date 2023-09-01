@@ -29,6 +29,6 @@ class ScxUserInfoVueInstaller {
 
 export {
     ScxUserInfoVueInstaller,
-    useScxUserInfo, 
+    useScxUserInfo,
     scxUserInfoKey
 };

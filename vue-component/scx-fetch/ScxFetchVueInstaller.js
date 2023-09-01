@@ -4,7 +4,7 @@ import {inject} from "vue";
  *
  * @type {string}
  */
-const scxFetchKey = 'scx-fetch';
+const scxFetchKey = "scx-fetch";
 
 /**
  *
@@ -27,4 +27,4 @@ class ScxFetchVueInstaller {
     }
 }
 
-export {ScxFetchVueInstaller, useScxFetch}
+export {ScxFetchVueInstaller, useScxFetch};

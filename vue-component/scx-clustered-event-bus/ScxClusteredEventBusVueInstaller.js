@@ -14,14 +14,14 @@ function useScxClusteredEventBus() {
     return inject(scxClusteredEventBusKey);
 }
 
-class ScxClusteredEventBusVueInstaller  {
+class ScxClusteredEventBusVueInstaller {
 
     scxClusteredEventBus;
 
     constructor(scxClusteredEventBus) {
         this.scxClusteredEventBus = scxClusteredEventBus;
     }
-    
+
     install(app) {
         app.provide(scxClusteredEventBusKey, this.scxClusteredEventBus);
     }
