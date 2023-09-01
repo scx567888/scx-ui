@@ -68,7 +68,7 @@ import {createApp} from 'vue';
 import {ScxComponent} from 'scx-ui/vue-component/index.js';
 import App from './App.vue';
 import 'scx-ui/scx-theme/default.css'; // Don't forget to import theme
-import 'scx-ui/_scx-theme/dark.css';
+import 'scx-ui/scx-theme/dark.css';
 import 'scx-icon/register'; //if type = js you need import this virtual module
 
 createApp(App)
