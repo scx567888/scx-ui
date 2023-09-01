@@ -67,8 +67,8 @@ export default {
 import {createApp} from 'vue';
 import {ScxComponent} from 'scx-ui/vue-component/index.js';
 import App from './App.vue';
-import 'scx-ui/scx-theme/default.css'; // 别忘了导入主题
-import 'scx-ui/scx-theme/dark.css';
+import 'scx-ui/_scx-theme/default.css'; // 别忘了导入主题
+import 'scx-ui/_scx-theme/dark.css';
 import 'scx-icon/register'; //如果 type = js 则需要再次引入虚拟模块
 
 createApp(App)
