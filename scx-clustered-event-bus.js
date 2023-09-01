@@ -106,4 +106,6 @@ const ON_WEBSOCKET_OPEN = "ON_WEBSOCKET_OPEN";
 export {
     ScxClusteredEventBus,
     ON_WEBSOCKET_OPEN,
+    initBaseURL,
+    WSMessage
 };

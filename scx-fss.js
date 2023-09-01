@@ -2,6 +2,7 @@ import SparkMD5 from "spark-md5";
 import {percentage} from "./vanilla/percentage.js";
 import {joinURL} from "./vanilla/url-helper.js";
 import {JsonVOError} from "./scx-req.js";
+import {JoinImageURLOptions} from "./_scx-fss/JoinImageURLOptions.js";
 
 class FSSObject {
     fssObjectID;//文件的 id
@@ -340,4 +341,5 @@ export {
     ScxFSS,
     FSSObject,
     formatFileSize,
+    JoinImageURLOptions
 };
