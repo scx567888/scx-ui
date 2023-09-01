@@ -23,7 +23,7 @@
 
 <script>
 import {ref} from "vue";
-import {changeTheme} from "../../_scx-theme/index.js";
+import {changeTheme} from "../../index.js";
 
 export default {
     name: "App",

@@ -1,5 +1,5 @@
 import vue from "@vitejs/plugin-vue";
-import {scxIconPluginUseJS} from "../scx-icon-vite-plugins.js";
+import {scxIconPluginUseJS} from "../vite-plugin/index.js";
 
 export default {
     base: "./",

@@ -12,7 +12,6 @@ import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
 import {FetchError} from "./_scx-fetch/FetchError.js";
 import {ScxFetchHeaders} from "./_scx-fetch/ScxFetchHeaders.js";
 import {notNull} from "./vanilla/object-helper.js";
-import {inject} from "vue";
 
 /**
  *  ScxFetch : 针对 fetch 的简单封装
@@ -138,30 +137,9 @@ class ScxFetch {
         return this.req(url, body, setMethod(ScxFetchMethodType.DELETE, options));
     }
 
-
-    install(app) {
-        app.provide(scxFetchKey, this);
-    }
-
-}
-
-/**
- *
- * @type {string}
- */
-const scxFetchKey = "scx-fetch";
-
-/**
- *
- * @returns {ScxFetch}
- */
-function useScxFetch() {
-    return inject(scxFetchKey);
 }
 
 export {
-    useScxFetch,
-    scxFetchKey,
     ScxFetch,
     FetchError,
     ResponseNotOKError,

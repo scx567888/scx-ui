@@ -1,7 +1,6 @@
 import {ScxWebSocket} from "./scx-web-socket.js";
-import {WSMessage} from "./_scx-event-bus/WSMessage.js";
-import {initBaseURL} from "./_scx-event-bus/ScxEventBusHelper.js";
-import {inject} from "vue";
+import {WSMessage} from "./_scx-clustered-event-bus/WSMessage.js";
+import {initBaseURL} from "./_scx-clustered-event-bus/ScxClusteredEventBusHelper.js";
 import {ScxEventBus} from "./scx-event-bus.js";
 import {MultiMap} from "./vanilla/multi-map.js";
 
@@ -100,31 +99,13 @@ class ScxClusteredEventBus extends ScxEventBus {
         }
     }
 
-    install(app) {
-        app.provide(scxClusteredEventBusKey, this);
-    }
-
-}
-
-/**
- *
- * @type {string}
- */
-const scxClusteredEventBusKey = "scx-clustered-event-bus";
-
-/**
- *
- * @returns {ScxClusteredEventBus}
- */
-function useScxClusteredEventBus() {
-    return inject(scxClusteredEventBusKey);
 }
 
 const ON_WEBSOCKET_OPEN = "ON_WEBSOCKET_OPEN";
 
 export {
     ScxClusteredEventBus,
-    scxClusteredEventBusKey,
-    useScxClusteredEventBus,
     ON_WEBSOCKET_OPEN,
+    initBaseURL,
+    WSMessage
 };

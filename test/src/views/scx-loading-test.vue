@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import "../../../scx-loading.js";
+import "../../../web-component/scx-loading.js";
 </script>
 
 <style scoped>

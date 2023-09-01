@@ -1,4 +1,4 @@
-import {ScxFetchHeaders} from "../scx-fetch.js";
+import {ScxFetchHeaders} from "./ScxFetchHeaders.js";
 import {ScxFetchResponseType} from "./ScxFetchResponseType.js";
 
 class ScxFetchResponse {

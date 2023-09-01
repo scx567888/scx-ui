@@ -2,7 +2,7 @@ import SparkMD5 from "spark-md5";
 import {percentage} from "./vanilla/percentage.js";
 import {joinURL} from "./vanilla/url-helper.js";
 import {JsonVOError} from "./scx-req.js";
-import {inject} from "vue";
+import {JoinImageURLOptions} from "./_scx-fss/JoinImageURLOptions.js";
 
 class FSSObject {
     fssObjectID;//文件的 id
@@ -317,27 +317,6 @@ class ScxFSS {
         return joinURL(this.scxReq.baseURL, ScxFSS.downloadURL(), fssObjectID).toString();
     };
 
-
-    install(app) {
-        app.provide(scxFSSKey, this);
-    }
-
-
-}
-
-
-/**
- *
- * @type {string}
- */
-const scxFSSKey = "scx-fss";
-
-/**
- *
- * @returns {ScxFSS}
- */
-function useScxFSS() {
-    return inject(scxFSSKey);
 }
 
 /**
@@ -361,7 +340,6 @@ function formatFileSize(value) {
 export {
     ScxFSS,
     FSSObject,
-    useScxFSS,
-    scxFSSKey,
     formatFileSize,
+    JoinImageURLOptions
 };
