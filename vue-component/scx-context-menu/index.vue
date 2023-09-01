@@ -10,8 +10,8 @@
 //todo 多级菜单 ?
 import "./index.css";
 import {nextTick, onMounted, ref} from "vue";
-import {closeContextMenu} from "../scx-context-menu.js";
-import {isFunction} from "../vanilla/type-helper.js";
+import {closeContextMenu} from "./index.js";
+import {isFunction} from "../../vanilla/type-helper.js";
 
 export default {
     name: "scx-context-menu",

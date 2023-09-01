@@ -134,7 +134,7 @@ class UseJS extends ScxIconInterface {
 
 }
 
-const defaultSVGRoot = resolve(dirname(fileURLToPath(import.meta.url)), "./_svg-icons");
+const defaultSVGRoot = resolve(dirname(fileURLToPath(import.meta.url)), "./default-svg-icons");
 
 function cleanSVGRoot(svgRoot) {
     if (Array.isArray(svgRoot)) {

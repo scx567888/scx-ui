@@ -1,4 +1,4 @@
-import ScxContextMenu from "./_scx-context-menu/index.vue";
+import ScxContextMenu from "./index.vue";
 import {h, render} from "vue";
 
 // 这里因为 vite 每次导入时都使用不同的 上下文导致 contextMenuInstance 为空 这里直接绑定到 window 上

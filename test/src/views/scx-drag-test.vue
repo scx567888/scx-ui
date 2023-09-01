@@ -46,7 +46,7 @@
 
 <script setup>
 import {onMounted, ref, watch} from "vue";
-import {useScxDrag} from "../../../scx-drag.js";
+import {useScxDrag} from "../../../vue-component/index.js";
 
 const autoBack = ref(false);
 

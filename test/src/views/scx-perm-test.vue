@@ -21,7 +21,7 @@
 
 <script setup>
 import {ref} from "vue";
-import {useScxUserInfo} from "../../../scx-user-info.js";
+import {useScxUserInfo} from "../../../vue-component/index.js";
 
 const aaa = ref(true);
 
