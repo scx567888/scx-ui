@@ -51,7 +51,7 @@ npm install scx-ui
 #### 1. Install the vite plugin for ScxIcon .
 
 ```javascript
-import {scxIconPluginUseJS} from 'scx-ui/scx-icon-vite-plugins.js';
+import {scxIconPluginUseJS} from 'scx-ui/vite-plugin/index.js';
 
 export default {
     base: './',
@@ -65,9 +65,9 @@ export default {
 
 ```javascript
 import {createApp} from 'vue';
-import {ScxComponent} from 'scx-ui/scx-component.js';
+import {ScxComponent} from 'scx-ui/vue-component/index.js';
 import App from './App.vue';
-import 'scx-ui/_scx-theme/default.css'; // Don't forget to import theme
+import 'scx-ui/scx-theme/default.css'; // Don't forget to import theme
 import 'scx-ui/_scx-theme/dark.css';
 import 'scx-icon/register'; //if type = js you need import this virtual module
 
