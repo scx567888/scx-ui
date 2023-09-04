@@ -1,5 +1,4 @@
-import {isFunction, isObject} from "./vanilla/type-helper.js";
-import {notNull} from "./vanilla/object-helper";
+import {isFunction, isObject, notNull} from "../../vanilla-util/index.js";
 
 /**
  * 获取视图的上下界限
@@ -15,7 +14,7 @@ function getViewBounds() {
         left: 0,
         top: 0,
         right: clientWidth,
-        bottom: clientHeight
+        bottom: clientHeight,
     };
 }
 
@@ -71,7 +70,7 @@ class ScxDrag {
     constructor(targetElement, {
         dragElement,
         callback,
-        bounds
+        bounds,
     } = {}) {
         this.targetElement = targetElement;
         this.dragElement = dragElement ? dragElement : targetElement; //默认使用 targetElement
@@ -112,7 +111,7 @@ class ScxDrag {
             left,
             top,
             bottom,
-            right
+            right,
         } = this.targetElement.getBoundingClientRect();
 
         //计算上下界限

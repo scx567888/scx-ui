@@ -1,4 +1,4 @@
-import {MultiMap} from "./vanilla/multi-map.js";
+import {MultiMap} from "../../vanilla-util/index.js";
 
 class ScxEventBus {
 
