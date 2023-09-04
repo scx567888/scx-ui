@@ -34,8 +34,8 @@ export default {
             }
             return svgNameList;
         };
-        const filledIconList = getSvgNameList(import.meta.glob("../../../vite-plugin/scx-icon-vite-plugins/default-svg-icons/filled/*.svg"), {eager: true});
-        const outlinedIconList = getSvgNameList(import.meta.glob("../../../vite-plugin/scx-icon-vite-plugins/default-svg-icons/outlined/*.svg", {eager: true}));
+        const filledIconList = getSvgNameList(import.meta.glob("../../../vite-plugin/scx-icon-vite-plugin/default-svg-icons/filled/*.svg"), {eager: true});
+        const outlinedIconList = getSvgNameList(import.meta.glob("../../../vite-plugin/scx-icon-vite-plugin/default-svg-icons/outlined/*.svg", {eager: true}));
 
         function copyIcon(icon) {
             return `<scx-icon icon="${icon}"/>`;

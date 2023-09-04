@@ -96,14 +96,17 @@ class ScxLoading extends HTMLElement {
 }
 
 
-function defineScxLoading(){
-    /**
-     * 注册 scxLoading 组件
-     */
-    customElements.define("scx-loading", ScxLoading);
+/**
+ * 注册 scxLoading 组件
+ */
+function defineScxLoading() {
+    //防止重复注册
+    if (!customElements.get("scx-loading")) {
+        customElements.define("scx-loading", ScxLoading);
+    }
 }
 
 export {
     ScxLoading,
     defineScxLoading
-}
+};
