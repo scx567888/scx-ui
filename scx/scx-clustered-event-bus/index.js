@@ -1,8 +1,8 @@
-import {ScxWebSocket} from "./scx-web-socket.js";
-import {WSMessage} from "./_scx-clustered-event-bus/WSMessage.js";
-import {initBaseURL} from "./_scx-clustered-event-bus/ScxClusteredEventBusHelper.js";
-import {ScxEventBus} from "./scx-event-bus.js";
-import {MultiMap} from "./vanilla/multi-map.js";
+import {WSMessage} from "./WSMessage.js";
+import {initBaseURL} from "./ScxClusteredEventBusHelper.js";
+import {ScxWebSocket} from "../scx-web-socket/index.js";
+import {ScxEventBus} from "../scx-event-bus/index.js";
+import {MultiMap} from "../../vanilla-util/index.js";
 
 class ScxClusteredEventBus extends ScxEventBus {
 
@@ -107,5 +107,5 @@ export {
     ScxClusteredEventBus,
     ON_WEBSOCKET_OPEN,
     initBaseURL,
-    WSMessage
+    WSMessage,
 };

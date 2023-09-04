@@ -1,17 +1,12 @@
-import {ScxFetchMethodType} from "./_scx-fetch/ScxFetchMethodType.js";
-import {initDefaultOptions, ScxFetchOptions} from "./_scx-fetch/ScxFetchOptions.js";
-import {
-    createRequestInit,
-    mixinOptions,
-    setMethod,
-    setRequestBody,
-    setRequestHeaders,
-} from "./_scx-fetch/ScxFetchHelper.js";
-import {ResponseNotOKError} from "./_scx-fetch/ResponseNotOKError.js";
-import {ScxFetchResponse} from "./_scx-fetch/ScxFetchResponse.js";
-import {FetchError} from "./_scx-fetch/FetchError.js";
-import {ScxFetchHeaders} from "./_scx-fetch/ScxFetchHeaders.js";
-import {notNull} from "./vanilla/object-helper.js";
+import {ScxFetchMethodType} from "./ScxFetchMethodType.js";
+import {ResponseNotOKError} from "./ResponseNotOKError.js";
+import {ScxFetchResponse} from "./ScxFetchResponse.js";
+import {FetchError} from "./FetchError.js";
+import {ScxFetchHeaders} from "./ScxFetchHeaders.js";
+import {ScxFetchResponseType} from "./ScxFetchResponseType.js";
+import {initDefaultOptions, ScxFetchOptions} from "./ScxFetchOptions.js";
+import {createRequestInit, mixinOptions, setMethod, setRequestBody, setRequestHeaders} from "./ScxFetchHelper.js";
+import {notNull} from "../../vanilla-util/index.js";
 
 /**
  *  ScxFetch : 针对 fetch 的简单封装
@@ -151,4 +146,5 @@ export {
     ScxFetchOptions,
     ScxFetchResponse,
     ScxFetchHeaders,
+    ScxFetchResponseType,
 };
