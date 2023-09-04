@@ -1,5 +1,5 @@
 import {onBeforeUnmount} from "vue";
-import {ScxDrag} from "../../scx-drag.js";
+import {ScxDrag} from "../../scx/index.js";
 
 /**
  *

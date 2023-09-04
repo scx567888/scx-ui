@@ -40,8 +40,7 @@ import {computed, reactive, ref, watch} from "vue";
 import ScxGroup from "../scx-group/index.vue";
 import ScxProgress from "../scx-progress/index.vue";
 import {ScxFSSHelper, UploadInfo} from "../scx-upload/helper.js";
-import {arrayEquals} from "../../vanilla/array-utils.js";
-import {percentage} from "../../vanilla/percentage.js";
+import {arrayEquals, percentage} from "../../vanilla-util/index.js";
 import {useScxFSS} from "../scx-fss/ScxFSSVueInstaller.js";
 
 export default {
