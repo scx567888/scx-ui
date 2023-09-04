@@ -1,4 +1,4 @@
-import {ScxEventBus} from "./scx-event-bus.js";
+import {ScxEventBus} from "../scx-event-bus/index.js";
 
 function cloneEvent(oldEvent) {
     return new oldEvent.constructor(oldEvent.type, oldEvent);
