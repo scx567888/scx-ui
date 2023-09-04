@@ -1,1 +1,1 @@
-export * from "./scx-icon-vite-plugins/index.js";
+export * from "./scx-icon-vite-plugin/index.js";
