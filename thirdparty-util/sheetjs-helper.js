@@ -1,6 +1,5 @@
 import {utils, write} from "xlsx";
-import {download} from "../vanilla/download.js";
-import {notNull} from "../vanilla/object-helper.js";
+import {download, notNull} from "../vanilla-util/index.js";
 
 /**
  * 导出 excel
@@ -42,7 +41,7 @@ function createExcel(data, header = tryCreateHeader(data)) {
 
     const workbook = {
         SheetNames: ["Sheet1"],
-        Sheets: {Sheet1: sheet1}
+        Sheets: {Sheet1: sheet1},
     };
 
     const buffer = write(workbook, {type: "buffer"});
