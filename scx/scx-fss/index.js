@@ -1,8 +1,7 @@
 import SparkMD5 from "spark-md5";
-import {percentage} from "./vanilla/percentage.js";
-import {joinURL} from "./vanilla/url-helper.js";
-import {JsonVOError} from "./scx-req.js";
-import {JoinImageURLOptions} from "./_scx-fss/JoinImageURLOptions.js";
+import {joinURL, percentage} from "../../vanilla-util/index.js";
+import {JsonVOError} from "../scx-req/index.js";
+import {JoinImageURLOptions} from "./JoinImageURLOptions.js";
 
 class FSSObject {
     fssObjectID;//文件的 id
@@ -18,7 +17,7 @@ class FSSObject {
                     uploadTime,
                     fileHash,
                     fileSizeDisplay,
-                    fileSize
+                    fileSize,
                 }) {
         this.fssObjectID = fssObjectID;
         this.fileName = fileName;
@@ -177,7 +176,7 @@ class ScxFSS {
     static defaultOnProgress(state, value) {
         console.log({
             state: state,
-            value: value
+            value: value,
         });
     }
 
@@ -310,7 +309,7 @@ class ScxFSS {
             t,
             width = w,
             height = h,
-            type = t
+            type = t,
         } = options;
         if (width || height || type) {
             if (width) {
@@ -358,5 +357,5 @@ export {
     ScxFSS,
     FSSObject,
     formatFileSize,
-    JoinImageURLOptions
+    JoinImageURLOptions,
 };
