@@ -12,15 +12,16 @@ export * from "./scx-user-info/ScxUserInfoVueInstaller.js";
 import ScxIcon from "./scx-icon/index.vue";
 import ScxCrud from "./scx-crud/index.vue";
 import ScxGroup from "./scx-group/index.vue";
+import ScxProgress from "./scx-progress/index.vue";
+import ScxSwitch from "./scx-switch/index.vue";
 import ScxUpload from "./scx-upload/index.vue";
 import ScxUploadList from "./scx-upload-list/index.vue";
-import ScxProgress from "./scx-progress/index.vue";
 import {ScxContextMenuDirective} from "./scx-context-menu/index.js";
 import {ScxDragDirective} from "./scx-drag/index.js";
 import {createScxPermDirective} from "./scx-perm/index.js";
 
 //以下为组件
-const components = [ScxIcon, ScxCrud, ScxGroup, ScxUpload, ScxUploadList, ScxProgress];
+const components = [ScxIcon, ScxCrud, ScxGroup, ScxProgress, ScxSwitch, ScxUpload, ScxUploadList];
 
 //以下为指令
 const directives = [ScxContextMenuDirective, ScxDragDirective];
