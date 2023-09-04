@@ -9,7 +9,7 @@
 
 <script setup>
 import {ref} from "vue";
-import {ScxUpload} from "../../../vue-component/index.js";
+import {ScxUpload} from "../../../index.js";
 
 const nowFile = ref("");
 

@@ -14,7 +14,7 @@
 </template>
 <script setup>
 import {computed, ref} from "vue";
-import {htmlToText} from "../../../vanilla/html-to-text.js";
+import {htmlToText} from "../../../index.js";
 
 const html = ref("<h1 style=\"color:red\">123456</h1>");
 

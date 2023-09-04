@@ -29,7 +29,7 @@
 
 <script setup>
 import {h, ref} from "vue";
-import {showContextMenu} from "../../../vue-component/index.js";
+import {showContextMenu} from "../../../index.js";
 
 const message1 = ref("右键点我");
 const testValue = ref("");

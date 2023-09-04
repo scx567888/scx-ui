@@ -4,7 +4,7 @@
 </template>
 <script setup>
 import {ref} from "vue";
-import {Watermark} from "../../../vanilla/watermark.js";
+import {Watermark} from "../../../index.js";
 
 const text = ref("水印内容");
 

@@ -3,7 +3,9 @@
 </template>
 
 <script setup>
-import "../../../web-component/scx-loading.js";
+import {defineScxLoading } from "../../../index.js";
+
+defineScxLoading();
 </script>
 
 <style scoped>
