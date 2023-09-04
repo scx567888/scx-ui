@@ -15,29 +15,30 @@
         <router-link class="fff" to="/scx-perm-test">ScxPerm 测试</router-link>
         <router-link class="fff" to="/html-to-text-test">HtmlToText 测试</router-link>
         <router-link class="fff" to="/watermark-test">水印测试</router-link>
-        <button @click="f1">点击切换主题</button>
+        <router-link class="fff" to="/scx-switch-test">ScxSwitch</router-link>
+        <scx-switch v-model="b"></scx-switch>点击切换主题
     </div>
 
     <router-view/>
 </template>
 
 <script>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {changeTheme} from "../../index.js";
+import ScxSwitch from "../../vue-component/scx-switch/index.vue";
 
 export default {
     name: "App",
+    components: {ScxSwitch},
     setup() {
         const b = ref(false);
 
-        function f1() {
-            b.value = !b.value;
-            changeTheme(b.value);
-        }
+        watch(b,(v)=>{
+            changeTheme(v);
+        })
 
         return {
-            b,
-            f1
+            b
         };
     }
 };

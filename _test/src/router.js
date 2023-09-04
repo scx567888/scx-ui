@@ -77,6 +77,11 @@ const ScxRouter = createRouter({
             name: "watermark-test",
             component: () => import("./views/watermark-test.vue"),
         },
+        {
+            path: "/scx-switch-test",
+            name: "scx-switch-test",
+            component: () => import("./views/scx-switch-test.vue"),
+        },
     ],
 });
 
