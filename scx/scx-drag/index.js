@@ -1,4 +1,4 @@
-import {isFunction, isObject, notNull} from "../../vanilla-util/index.js";
+import {isFunction, isObject} from "../../vanilla-util/index.js";
 
 /**
  * 获取视图的上下界限
@@ -45,14 +45,10 @@ class ScxDrag {
     bounds;
 
     //用户自定义的 回调
-    callback = {
-        onClick: (el) => {
-        },
-        onDrag: (el) => {
-        },
-        onDragEnd: (el) => {
-        },
-    };
+    onClick;
+    onDragStart;
+    onDrag;
+    onDragEnd;
 
     //上下界限 用于加速计算
     minLeft;
@@ -69,12 +65,22 @@ class ScxDrag {
      */
     constructor(targetElement, {
         dragElement,
-        callback,
+        onClick = (el) => {
+        },
+        onDragStart = (el) => {
+        },
+        onDrag = (el) => {
+        },
+        onDragEnd = (el) => {
+        },
         bounds,
     } = {}) {
         this.targetElement = targetElement;
         this.dragElement = dragElement ? dragElement : targetElement; //默认使用 targetElement
-        this.callback = callback;
+        this.onClick = onClick;
+        this.onDragStart = onDragStart;
+        this.onDrag = onDrag;
+        this.onDragEnd = onDragEnd;
         this.bounds = bounds;// 自定义的界限
         //强制绑定 this 指向
         this.onMousedown = this.onMousedown.bind(this);
@@ -128,22 +134,23 @@ class ScxDrag {
     }
 
     onMousemove(event) {
-        if (this.isMove(event.clientX, event.clientY)) {
+        if (this.dragIng || this.isMove(event.clientX, event.clientY)) {
             this.update(event.clientX, event.clientY);
             if (!this.dragIng) {
-                this.callOnDrag();
+                this.onDragStart(this.targetElement);
                 this.dragIng = true;
             }
+            this.onDrag(this.targetElement);
         }
     }
 
     onMouseup(e) {
-        this.dragIng = false;
-        if (this.isMove(e.clientX, e.clientY)) {
-            this.callOnDragEnd();
+        if (this.dragIng) {
+            this.onDragEnd(this.targetElement, this.startMatrix, e);
         } else {
-            this.callOnClick();
+            this.onClick(this.targetElement);
         }
+        this.dragIng = false;
         document.removeEventListener("mousemove", this.onMousemove);
         document.removeEventListener("mouseup", this.onMouseup);
     }
@@ -160,24 +167,6 @@ class ScxDrag {
         const newMatrix = this.startMatrix.translate(moveX, moveY);
 
         this.targetElement.style.transform = newMatrix.toString();
-    }
-
-    callOnDrag() {
-        if (notNull(this.callback) && isFunction(this.callback.onDrag)) {
-            this.callback.onDrag(this.targetElement);
-        }
-    }
-
-    callOnDragEnd(e) {
-        if (notNull(this.callback) && isFunction(this.callback.onDragEnd)) {
-            this.callback.onDragEnd(this.targetElement, this.startMatrix, e);
-        }
-    }
-
-    callOnClick() {
-        if (notNull(this.callback) && isFunction(this.callback.onClick)) {
-            this.callback.onClick(this.targetElement);
-        }
     }
 
     enable() {

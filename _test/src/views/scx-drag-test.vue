@@ -39,7 +39,20 @@
                     吸附下侧
                 </div>
             </div>
+
+            <div ref="hhh" style="width: 200px;height: 200px;" :style="{background:getColor(),color:getColor()}">
+                <div ref="jjj" style="width: 100%;height: 30px; cursor: move;user-select: none;" :style="{background:getColor(),color:getColor()}">
+                    只有这里可以拖拽呦
+                </div>
+                这里不可以拓展呦
+                <input type="text">
+                <input type="password">
+                <button type="button">一个按钮</button>
+            </div>
+            
         </div>
+        
+    
 
     </div>
 </template>
@@ -56,27 +69,31 @@ const topRef = ref();
 const leftRef = ref();
 const bottomRef = ref();
 const ggg = ref();
+const hhh = ref();
+const jjj = ref();
 
 function getValue(i) {
     return {
-        callback: {
-            onClick: (el) => {
-                el.style.backgroundColor = getColor();
-                el.style.color = getColor();
-                console.log(i + " : onClick");
-            },
-            onDrag: (el) => {
-                console.log(i + " : onDrag");
-                el.classList.add("dragging");
-            },
-            onDragEnd: (el) => {
-                if (autoBack.value) {
-                    el.style.transform = "unset";
-                }
-                console.log(i + " : onDragEnd");
-                el.classList.remove("dragging");
+        onClick: (el) => {
+            el.style.backgroundColor = getColor();
+            el.style.color = getColor();
+            console.log(i + " : onClick");
+        },
+        onDragStart: (el) => {
+            console.log(i + " : onDragStart");
+            el.classList.add("dragging");
+        },
+        onDrag: (el) => {
+            console.log(i + " : onDrag");
+        },
+        onDragEnd: (el) => {
+            if (autoBack.value) {
+                el.style.transform = "unset";
             }
+            console.log(i + " : onDragEnd");
+            el.classList.remove("dragging");
         }
+
     };
 }
 
@@ -85,9 +102,9 @@ function getDragEvent(i) {
         onClick: (el) => {
             console.log(i + " : onClick");
         },
-        onDrag: (el) => {
+        onDragStart: (el) => {
             el.classList.add("dragging");
-            console.log(i + " : onDrag");
+            console.log(i + " : onDragStart");
         },
         onDragEnd: (el, startMatrix) => {
             console.log(i + " : onDragEnd");
@@ -127,7 +144,7 @@ onMounted(() => {
 
     const getO = (i) => {
         return {
-            callback: getDragEvent(i),
+            ...getDragEvent(i),
             bounds: function (a) {
                 return ggg.value.getBoundingClientRect();
             }
@@ -138,6 +155,13 @@ onMounted(() => {
     useScxDrag(topRef.value, getO("top"));
     useScxDrag(rightRef.value, getO("right"));
     useScxDrag(bottomRef.value, getO("bottom"));
+
+    useScxDrag(hhh.value, {
+        dragElement:jjj.value,
+        bounds: function (a) {
+            return ggg.value.getBoundingClientRect();
+        }
+    });
 
 });
 
