@@ -59,24 +59,26 @@ const ggg = ref();
 
 function getValue(i) {
     return {
-        callback: {
-            onClick: (el) => {
-                el.style.backgroundColor = getColor();
-                el.style.color = getColor();
-                console.log(i + " : onClick");
-            },
-            onDrag: (el) => {
-                console.log(i + " : onDrag");
-                el.classList.add("dragging");
-            },
-            onDragEnd: (el) => {
-                if (autoBack.value) {
-                    el.style.transform = "unset";
-                }
-                console.log(i + " : onDragEnd");
-                el.classList.remove("dragging");
+        onClick: (el) => {
+            el.style.backgroundColor = getColor();
+            el.style.color = getColor();
+            console.log(i + " : onClick");
+        },
+        onDragStart: (el) => {
+            console.log(i + " : onDragStart");
+            el.classList.add("dragging");
+        },
+        onDrag: (el) => {
+            console.log(i + " : onDrag");
+        },
+        onDragEnd: (el) => {
+            if (autoBack.value) {
+                el.style.transform = "unset";
             }
+            console.log(i + " : onDragEnd");
+            el.classList.remove("dragging");
         }
+
     };
 }
 
@@ -85,9 +87,9 @@ function getDragEvent(i) {
         onClick: (el) => {
             console.log(i + " : onClick");
         },
-        onDrag: (el) => {
+        onDragStart: (el) => {
             el.classList.add("dragging");
-            console.log(i + " : onDrag");
+            console.log(i + " : onDragStart");
         },
         onDragEnd: (el, startMatrix) => {
             console.log(i + " : onDragEnd");
@@ -127,7 +129,7 @@ onMounted(() => {
 
     const getO = (i) => {
         return {
-            callback: getDragEvent(i),
+            ...getDragEvent(i),
             bounds: function (a) {
                 return ggg.value.getBoundingClientRect();
             }
