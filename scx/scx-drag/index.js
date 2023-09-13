@@ -77,7 +77,6 @@ class ScxDrag {
         onDragEnd = (el) => {
         },
         bounds,// 自定义的界限
-        useRAF = true,// 是否使用 RAF
     } = {}) {
         this.targetElement = targetElement;
         this.dragElement = dragElement;
@@ -86,9 +85,8 @@ class ScxDrag {
         this.onDrag = onDrag;
         this.onDragEnd = onDragEnd;
         this.bounds = bounds;
-        if (useRAF) {
-            this.onMove = rafThrottle(this.onMove);
-        }
+        //节流
+        this.update = rafThrottle(this.update);
         //强制绑定 this 指向 防止 addEventListener 改变 this 指向
         this.onMousedown = this.onMousedown.bind(this);
         this.onMousemove = this.onMousemove.bind(this);
@@ -213,6 +211,8 @@ class ScxDrag {
     }
 
     onEnd(e) {
+        //需等待 update 完成后 
+        this.update.cancel();
         if (this.isMoving) {
             this.onDragEnd(this.targetElement, this.startMatrix, e);
         } else {

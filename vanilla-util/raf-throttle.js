@@ -4,17 +4,21 @@
  * @return 带有节流的 callback
  */
 function rafThrottle(callback) {
-    let needRAF = true;
-    return function (...arg) {
-        if (!needRAF) {
+    let requestId = null;
+    const throttled = function (...arg) {
+        if (requestId) {
             return;
         }
-        needRAF = false;
-        requestAnimationFrame(() => {
-            needRAF = true;
+        requestId = requestAnimationFrame(() => {
+            requestId = null;
             callback.apply(this, arg);
         });
     };
+    throttled.cancel = () => {
+        cancelAnimationFrame(requestId);
+        requestId = null;
+    };
+    return throttled;
 }
 
 export {rafThrottle};
