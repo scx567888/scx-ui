@@ -56,6 +56,9 @@ class ScxDrag {
     maxLeft;
     maxTop;
 
+    //当前触摸点 
+    nowTouch;
+
     /**
      *
      * @param targetElement
@@ -111,6 +114,17 @@ class ScxDrag {
         return Math.abs(this.startX - x) > this.v || Math.abs(this.startY - y) > this.v;
     }
 
+    //当多指移动时 我们只需要获取当前的移动事件
+    filterTouchEvent(event) {
+        let touch;
+        for (let changedTouch of event.changedTouches) {
+            if (changedTouch.identifier === this.nowTouch.identifier) {
+                touch = changedTouch;
+            }
+        }
+        return touch;
+    }
+
     onMousedown(event) {
         //我们只响应左键
         if (event.button !== 0) {
@@ -127,9 +141,10 @@ class ScxDrag {
         //停止事件传播
         event.stopPropagation();
         event.preventDefault();
+        //设置最后一个 触摸点
+        this.nowTouch = event.changedTouches[event.changedTouches.length - 1];
 
-        //只处理第一个点
-        this.onStart(event.touches[0].clientX, event.touches[0].clientY);
+        this.onStart(this.nowTouch.clientX, this.nowTouch.clientY);
 
         document.addEventListener("touchmove", this.onTouchmove);
         document.addEventListener("touchend", this.onTouchend);
@@ -140,7 +155,10 @@ class ScxDrag {
     }
 
     onTouchmove(event) {
-        this.onMove(event.touches[0].clientX, event.touches[0].clientY);
+        let touch = this.filterTouchEvent(event);
+        if (touch) {
+            this.onMove(touch.clientX, touch.clientY);
+        }
     }
 
     onMouseup(e) {
@@ -150,7 +168,10 @@ class ScxDrag {
     }
 
     onTouchend(e) {
-        this.onEnd(e);
+        let touch = this.filterTouchEvent(e);
+        if (touch) {
+            this.onEnd(e);
+        }
         document.removeEventListener("touchmove", this.onTouchmove);
         document.removeEventListener("touchend", this.onTouchend);
     }
