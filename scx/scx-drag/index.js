@@ -1,4 +1,4 @@
-import {isFunction, isObject} from "../../vanilla-util/index.js";
+import {isFunction, isObject, rafThrottle} from "../../vanilla-util/index.js";
 
 /**
  * 获取视图的上下界限
@@ -39,7 +39,7 @@ class ScxDrag {
     v = 10;
 
     //当前状态
-    dragIng = false;
+    isMoving = false;
 
     //用户自定义的 上下界
     bounds;
@@ -56,6 +56,9 @@ class ScxDrag {
     maxLeft;
     maxTop;
 
+    //当前触摸点 
+    nowTouch;
+
     /**
      *
      * @param targetElement
@@ -64,7 +67,7 @@ class ScxDrag {
      * @param bounds {Function||{top,left,bottom,right}}
      */
     constructor(targetElement, {
-        dragElement,
+        dragElement = targetElement, //默认使用 targetElement
         onClick = (el) => {
         },
         onDragStart = (el) => {
@@ -73,19 +76,24 @@ class ScxDrag {
         },
         onDragEnd = (el) => {
         },
-        bounds,
+        bounds,// 自定义的界限
     } = {}) {
         this.targetElement = targetElement;
-        this.dragElement = dragElement ? dragElement : targetElement; //默认使用 targetElement
+        this.dragElement = dragElement;
         this.onClick = onClick;
         this.onDragStart = onDragStart;
         this.onDrag = onDrag;
         this.onDragEnd = onDragEnd;
-        this.bounds = bounds;// 自定义的界限
-        //强制绑定 this 指向
+        this.bounds = bounds;
+        //节流
+        this.update = rafThrottle(this.update);
+        //强制绑定 this 指向 防止 addEventListener 改变 this 指向
         this.onMousedown = this.onMousedown.bind(this);
         this.onMousemove = this.onMousemove.bind(this);
         this.onMouseup = this.onMouseup.bind(this);
+        this.onTouchstart = this.onTouchstart.bind(this);
+        this.onTouchmove = this.onTouchmove.bind(this);
+        this.onTouchend = this.onTouchend.bind(this);
     }
 
     //获取上下界 默认采用 浏览器视图
@@ -104,10 +112,71 @@ class ScxDrag {
         return Math.abs(this.startX - x) > this.v || Math.abs(this.startY - y) > this.v;
     }
 
+    //当多指移动时 我们只需要获取当前的移动事件
+    filterTouchEvent(event) {
+        let touch;
+        for (let changedTouch of event.changedTouches) {
+            if (changedTouch.identifier === this.nowTouch.identifier) {
+                touch = changedTouch;
+            }
+        }
+        return touch;
+    }
+
     onMousedown(event) {
+        //我们只响应左键
+        if (event.button !== 0) {
+            return;
+        }
         //获取鼠标初始点击位置
-        this.startX = event.clientX;
-        this.startY = event.clientY;
+        this.onStart(event.clientX, event.clientY);
+
+        document.addEventListener("mousemove", this.onMousemove);
+        document.addEventListener("mouseup", this.onMouseup);
+    }
+
+    onTouchstart(event) {
+        //停止事件传播
+        event.stopPropagation();
+        event.preventDefault();
+        //设置最后一个 触摸点
+        this.nowTouch = event.changedTouches[event.changedTouches.length - 1];
+
+        this.onStart(this.nowTouch.clientX, this.nowTouch.clientY);
+
+        document.addEventListener("touchmove", this.onTouchmove);
+        document.addEventListener("touchend", this.onTouchend);
+    }
+
+    onMousemove(event) {
+        this.onMove(event.clientX, event.clientY);
+    }
+
+    onTouchmove(event) {
+        let touch = this.filterTouchEvent(event);
+        if (touch) {
+            this.onMove(touch.clientX, touch.clientY);
+        }
+    }
+
+    onMouseup(e) {
+        this.onEnd(e);
+        document.removeEventListener("mousemove", this.onMousemove);
+        document.removeEventListener("mouseup", this.onMouseup);
+    }
+
+    onTouchend(e) {
+        let touch = this.filterTouchEvent(e);
+        if (touch) {
+            this.onEnd(e);
+        }
+        document.removeEventListener("touchmove", this.onTouchmove);
+        document.removeEventListener("touchend", this.onTouchend);
+    }
+
+    onStart(x, y) {
+        this.startX = x;
+        this.startY = y;
 
         //获取元素当前的矩阵状态
         this.startMatrix = new DOMMatrix(window.getComputedStyle(this.targetElement).transform);
@@ -128,31 +197,28 @@ class ScxDrag {
         this.minTop = bounds.top - top;
         this.maxLeft = bounds.right - right;
         this.maxTop = bounds.bottom - bottom;
-
-        document.addEventListener("mousemove", this.onMousemove);
-        document.addEventListener("mouseup", this.onMouseup);
     }
 
-    onMousemove(event) {
-        if (this.dragIng || this.isMove(event.clientX, event.clientY)) {
-            this.update(event.clientX, event.clientY);
-            if (!this.dragIng) {
+    onMove(x, y) {
+        if (this.isMoving || this.isMove(x, y)) {
+            this.update(x, y);
+            if (!this.isMoving) {
+                this.isMoving = true;
                 this.onDragStart(this.targetElement);
-                this.dragIng = true;
             }
             this.onDrag(this.targetElement);
         }
     }
 
-    onMouseup(e) {
-        if (this.dragIng) {
+    onEnd(e) {
+        //需等待 update 完成后 
+        this.update.cancel();
+        if (this.isMoving) {
             this.onDragEnd(this.targetElement, this.startMatrix, e);
         } else {
             this.onClick(this.targetElement);
         }
-        this.dragIng = false;
-        document.removeEventListener("mousemove", this.onMousemove);
-        document.removeEventListener("mouseup", this.onMouseup);
+        this.isMoving = false;
     }
 
     update(X, Y) {
@@ -171,11 +237,13 @@ class ScxDrag {
 
     enable() {
         this.dragElement.addEventListener("mousedown", this.onMousedown);
+        this.dragElement.addEventListener("touchstart", this.onTouchstart);
         return this;
     }
 
     disable() {
         this.dragElement.removeEventListener("mousedown", this.onMousedown);
+        this.dragElement.removeEventListener("touchstart", this.onTouchstart);
         return this;
     }
 

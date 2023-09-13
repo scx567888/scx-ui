@@ -93,7 +93,6 @@ function getValue(i) {
             console.log(i + " : onDragEnd");
             el.classList.remove("dragging");
         }
-
     };
 }
 
