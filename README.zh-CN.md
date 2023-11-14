@@ -22,8 +22,8 @@
    <a target="_blank" href="https://github.com/vitejs/vite">
         <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/dev/vite?color=f44336" alt="Vite"/>
     </a>
-    <a target="_blank" href="https://github.com/satazor/js-spark-md5">
-        <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/spark-md5?color=ff8000" alt="js-spark-md5"/>
+    <a target="_blank" href="https://github.com/scx567888/js-spark-md5-es">
+        <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/spark-md5-es?color=ff8000" alt="js-spark-md5"/>
     </a>
     <a target="_blank" href="https://github.com/JetBrains/svg-mixer">
         <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/svg-mixer?color=44be16" alt="svg-mixer"/>
