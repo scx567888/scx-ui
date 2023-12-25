@@ -22,7 +22,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.4.1",
+    "@vitejs/plugin-vue": "^5.0.0",
     "clipboard": "^2.0.11",
     "jszip": "^3.10.1",
     "vite": "^5.0.0",
