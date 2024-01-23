@@ -39,7 +39,7 @@ jobs:
           path: "./dist/"
 
       - name: 上传工件到 GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "./dist/"
 
