@@ -5,7 +5,6 @@
         <router-link class="fff" to="/scx-drag-test">拖动测试</router-link>
         <router-link class="fff" to="/scx-eventbus-test">事件总线测试</router-link>
         <router-link class="fff" to="/scx-icon-test">图标测试</router-link>
-        <router-link class="fff" to="/scx-xlsx-test">XLSX导出测试</router-link>
         <router-link class="fff" to="/scx-crud-test">ScxCrud测试</router-link>
         <router-link class="fff" to="/scx-group-test">ScxGroup测试</router-link>
         <router-link class="fff" to="/list-to-tree-test">ListToTree测试</router-link>

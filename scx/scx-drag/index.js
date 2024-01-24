@@ -1,4 +1,4 @@
-import {isFunction, isObject, rafThrottle} from "../../vanilla-util/index.js";
+import {isFunction, isObject, rafThrottle} from "../../util/index.js";
 
 /**
  * 获取视图的上下界限

@@ -1,6 +1,6 @@
 import {ScxFetch, ScxFetchResponseType} from "../scx-fetch/index.js";
 import {JsonVOError} from "./JsonVOError.js";
-import {isNull} from "../../vanilla-util/index.js";
+import {isNull} from "../../util/index.js";
 
 /**
  *

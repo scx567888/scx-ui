@@ -1,5 +1,6 @@
 export * from './array-utils.js'
 export * from './download.js'
+export * from './fixed-element.js'
 export * from './get-uuid.js'
 export * from './html-to-text.js'
 export * from './list-to-tree.js'

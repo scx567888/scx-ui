@@ -6,7 +6,7 @@ import {ScxFetchHeaders} from "./ScxFetchHeaders.js";
 import {ScxFetchResponseType} from "./ScxFetchResponseType.js";
 import {initDefaultOptions, ScxFetchOptions} from "./ScxFetchOptions.js";
 import {createRequestInit, mixinOptions, setMethod, setRequestBody, setRequestHeaders} from "./ScxFetchHelper.js";
-import {notNull} from "../../vanilla-util/index.js";
+import {notNull} from "../../util/index.js";
 
 /**
  *  ScxFetch : 针对 fetch 的简单封装

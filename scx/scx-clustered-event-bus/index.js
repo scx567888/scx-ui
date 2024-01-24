@@ -2,7 +2,7 @@ import {WSMessage} from "./WSMessage.js";
 import {initBaseURL} from "./ScxClusteredEventBusHelper.js";
 import {ScxWebSocket} from "../scx-web-socket/index.js";
 import {ScxEventBus} from "../scx-event-bus/index.js";
-import {MultiMap} from "../../vanilla-util/index.js";
+import {MultiMap} from "../../util/index.js";
 
 class ScxClusteredEventBus extends ScxEventBus {
 
