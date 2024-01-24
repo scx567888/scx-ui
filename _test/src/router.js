@@ -29,11 +29,6 @@ const ScxRouter = createRouter({
             component: () => import("./views/scx-icon-test.vue"),
         },
         {
-            path: "/scx-xlsx-test",
-            name: "scx-xlsx-test",
-            component: () => import("./views/scx-xlsx-test.vue"),
-        },
-        {
             path: "/scx-crud-test",
             name: "scx-crud-test",
             component: () => import("./views/scx-crud-test.vue"),

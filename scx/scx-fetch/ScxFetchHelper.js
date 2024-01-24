@@ -1,6 +1,6 @@
 import {HttpHeaderNames} from "./HttpHeaderNames.js";
 import {HttpHeaderValues} from "./HttpHeaderValues.js";
-import {notNull} from "../../vanilla-util/index.js";
+import {notNull} from "../../util/index.js";
 
 /**
  *

@@ -1,5 +1,5 @@
 import SparkMD5 from "spark-md5-es";
-import {joinURL, percentage} from "../../vanilla-util/index.js";
+import {joinURL, percentage} from "../../util/index.js";
 import {JsonVOError} from "../scx-req/index.js";
 import {JoinImageURLOptions} from "./JoinImageURLOptions.js";
 
