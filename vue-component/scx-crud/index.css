@@ -1,0 +1,46 @@
+/*主内容*/
+.scx-crud {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    row-gap: 5px;
+}
+
+/*头部*/
+.scx-crud-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*头部分栏布局*/
+.scx-crud-header-left,
+.scx-crud-header-right,
+.scx-crud-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: center;
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+/*头部左侧所有子元素的样式*/
+.scx-crud-header-left > *,
+.scx-crud-header-right > *,
+.scx-crud-footer > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/*头部右侧容器的子元素排列类型*/
+.scx-crud-header-right {
+    justify-content: flex-end;
+}
+
+/* 主区域 */
+.scx-crud-main {
+
+}

@@ -1,0 +1,29 @@
+{
+  "name": "scx-ui",
+  "version": "1.4.4",
+  "description": "Some front end UI kits for SCX",
+  "license": "MIT",
+  "author": "scx567888",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scx567888/scx-ui.git"
+  },
+  "scripts": {
+    "dev:test": "vite _test --host",
+    "build:test": "vite build _test",
+    "preview:test": "vite preview _test --host"
+  },
+  "dependencies": {
+    "spark-md5-es": "^3.0.2",
+    "svg-mixer": "^2.3.14",
+    "vue": "^3.4.15"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "clipboard": "^2.0.11",
+    "vite": "^5.0.12",
+    "vue-router": "^4.2.5"
+  }
+}

@@ -1,0 +1,33 @@
+.scx-progress {
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #c0c0c0;
+    border-radius: .25rem;
+}
+
+.scx-progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-align: right;
+    white-space: nowrap;
+    background-color: #0d6efd;
+    transition: width .6s ease;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+    animation: 1s linear infinite scx-progress-bar-stripes;
+}
+
+.scx-progress-bar-text {
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+@keyframes scx-progress-bar-stripes {
+    0% {
+        background-position-x: 1rem;
+    }
+}
