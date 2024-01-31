@@ -31,8 +31,8 @@
     <a target="_blank" href="https://github.com/vuejs/core">
         <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/vue?color=29aaf5" alt="vue"/>
     </a> 
-    <a target="_blank" href="https://github.com/SheetJS/sheetjs">
-        <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/xlsx?color=9c27b0" alt="SheetJS"/>
+    <a target="_blank" href="https://github.com/zenorocha/clipboard.js">
+        <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/dev/clipboard?color=9c27b0" alt="clipboard.js"/>
     </a>
 </p>
 
