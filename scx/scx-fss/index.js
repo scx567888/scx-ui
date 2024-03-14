@@ -1,7 +1,7 @@
 import SparkMD5 from "spark-md5-es";
 import {joinURL, percentage} from "../../util/index.js";
 import {JsonVOError} from "../scx-req/index.js";
-import {JoinImageUrlOptions} from "./join-image-url-options.js";
+import {JoinImageURLOptions} from "./join-image-url-options.js";
 import {FSSObject} from "./fss-object.js";
 
 const UPLOAD_URL = "api/fss/upload";
@@ -161,7 +161,7 @@ class ScxFSS {
     /**
      * 获取 img url
      * @param fssObjectID
-     * @param options {JoinImageUrlOptions}
+     * @param options {JoinImageURLOptions}
      */
     joinImageURL(fssObjectID, options = {}) {
         const url = joinURL(this.scxReq.baseURL, IMAGE_URL, fssObjectID);
@@ -289,5 +289,5 @@ export {
     FSSObject,
     formatFileSize,
     getChunkAndHash,
-    JoinImageUrlOptions,
+    JoinImageURLOptions,
 };

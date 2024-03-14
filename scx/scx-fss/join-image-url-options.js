@@ -1,4 +1,4 @@
-class JoinImageUrlOptions {
+class JoinImageURLOptions {
 
     /**
      * width 的简写形式
@@ -37,4 +37,4 @@ class JoinImageUrlOptions {
     type;
 }
 
-export {JoinImageUrlOptions};
+export {JoinImageURLOptions};
