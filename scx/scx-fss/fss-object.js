@@ -23,4 +23,4 @@ class FSSObject {
     }
 }
 
-export {FSSObject}
+export {FSSObject};

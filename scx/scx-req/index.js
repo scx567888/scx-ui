@@ -1,5 +1,5 @@
 import {ScxFetch, ScxFetchResponseType} from "../scx-fetch/index.js";
-import {JsonVOError} from "./JsonVOError.js";
+import {JsonVOError} from "./json-vo-error.js";
 import {isNull} from "../../util/index.js";
 
 /**
@@ -12,7 +12,7 @@ function jsonVoProcessor(r) {
     return new Promise((resolve, reject) => r.then(res => {
         const {
             responseType,
-            body
+            body,
         } = res;
         if (responseType === ScxFetchResponseType.JSON) {
             if (body.message === "ok") {
