@@ -1,7 +1,8 @@
 import SparkMD5 from "spark-md5-es";
 import {joinURL, percentage} from "../../util/index.js";
 import {JsonVOError} from "../scx-req/index.js";
-import {JoinImageURLOptions} from "./JoinImageURLOptions.js";
+import {JoinImageUrlOptions} from "./join-image-url-options.js";
+import {FSSObject} from "./fss-object.js";
 
 const UPLOAD_URL = "api/fss/upload";
 const LIST_INFO_URL = "api/fss/list-info";
@@ -17,31 +18,6 @@ const UPLOADING = "uploading";
 const NEED_MORE = "need-more";
 const UPLOAD_SUCCESS = "upload-success";
 const NO_ANY_FILE_EXISTS_FOR_HASH = "no-any-file-exists-for-hash";
-
-class FSSObject {
-    fssObjectID;//文件的 id
-    fileName;//文件的名称
-    uploadTime;//上传时间
-    fileHash;//文件 hash
-    fileSizeDisplay;//文件大小 格式化值
-    fileSize;//文件大小
-
-    constructor({
-                    fssObjectID,
-                    fileName,
-                    uploadTime,
-                    fileHash,
-                    fileSizeDisplay,
-                    fileSize,
-                }) {
-        this.fssObjectID = fssObjectID;
-        this.fileName = fileName;
-        this.uploadTime = uploadTime;
-        this.fileHash = fileHash;
-        this.fileSizeDisplay = fileSizeDisplay;
-        this.fileSize = fileSize;
-    }
-}
 
 /**
  * req
@@ -185,7 +161,7 @@ class ScxFSS {
     /**
      * 获取 img url
      * @param fssObjectID
-     * @param options {JoinImageURLOptions}
+     * @param options {JoinImageUrlOptions}
      */
     joinImageURL(fssObjectID, options = {}) {
         const url = joinURL(this.scxReq.baseURL, IMAGE_URL, fssObjectID);
@@ -313,5 +289,5 @@ export {
     FSSObject,
     formatFileSize,
     getChunkAndHash,
-    JoinImageURLOptions,
+    JoinImageUrlOptions,
 };
