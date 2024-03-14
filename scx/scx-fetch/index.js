@@ -1,11 +1,11 @@
-import {ScxFetchMethodType} from "./ScxFetchMethodType.js";
-import {ResponseNotOKError} from "./ResponseNotOKError.js";
-import {ScxFetchResponse} from "./ScxFetchResponse.js";
-import {FetchError} from "./FetchError.js";
-import {ScxFetchHeaders} from "./ScxFetchHeaders.js";
-import {ScxFetchResponseType} from "./ScxFetchResponseType.js";
-import {initDefaultOptions, ScxFetchOptions} from "./ScxFetchOptions.js";
-import {createRequestInit, mixinOptions, setMethod, setRequestBody, setRequestHeaders} from "./ScxFetchHelper.js";
+import {ScxFetchMethodType} from "./scx-fetch-method-type.js";
+import {ResponseNotOKError} from "./response-not-ok-error.js";
+import {ScxFetchResponse} from "./scx-fetch-response.js";
+import {FetchError} from "./fetch-error.js";
+import {ScxFetchHeaders} from "./scx-fetch-headers.js";
+import {ScxFetchResponseType} from "./scx-fetch-response-type.js";
+import {initDefaultOptions, ScxFetchOptions} from "./scx-fetch-options.js";
+import {createRequestInit, mixinOptions, setMethod, setRequestBody, setRequestHeaders} from "./scx-fetch-helper.js";
 import {notNull} from "../../util/index.js";
 
 /**
