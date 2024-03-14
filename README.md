@@ -25,8 +25,8 @@
     <a target="_blank" href="https://github.com/scx567888/js-spark-md5-es">
         <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/spark-md5-es?color=ff8000" alt="js-spark-md5"/>
     </a>
-    <a target="_blank" href="https://github.com/JetBrains/svg-mixer">
-        <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/svg-mixer?color=44be16" alt="svg-mixer"/>
+    <a target="_blank" href="https://github.com/fb55/htmlparser2">
+        <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/htmlparser2?color=44be16" alt="htmlparser2"/>
     </a>
     <a target="_blank" href="https://github.com/vuejs/core">
         <img src="https://img.shields.io/github/package-json/dependency-version/scx567888/scx-ui/vue?color=29aaf5" alt="vue"/>
