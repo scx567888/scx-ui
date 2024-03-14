@@ -12,7 +12,7 @@ function fixedElement(el) {
         marginLeft,
         marginTop,
         width,
-        height
+        height,
     } = window.getComputedStyle(el);
     el.style.left = `${el.offsetLeft - parseFloat(marginLeft)}px`;
     el.style.top = `${el.offsetTop - parseFloat(marginTop)}px`;
