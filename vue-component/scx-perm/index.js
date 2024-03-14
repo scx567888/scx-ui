@@ -1,4 +1,4 @@
-import {scxUserInfoKey} from "../scx-user-info/ScxUserInfoVueInstaller.js";
+import {scxUserInfoKey} from "../scx-user-info/scx-user-info-vue-installer.js";
 import {watch} from "vue";
 
 let appContext = null;

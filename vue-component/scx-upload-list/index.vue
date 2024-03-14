@@ -41,7 +41,7 @@ import ScxGroup from "../scx-group/index.vue";
 import ScxProgress from "../scx-progress/index.vue";
 import {ScxFSSHelper, UploadInfo} from "../scx-upload/helper.js";
 import {arrayEquals, percentage} from "../../util/index.js";
-import {useScxFSS} from "../scx-fss/ScxFSSVueInstaller.js";
+import {useScxFSS} from "../scx-fss/scx-fss-vue-installer.js";
 
 export default {
     name: "scx-upload-list",
