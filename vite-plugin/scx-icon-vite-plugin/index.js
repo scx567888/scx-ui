@@ -1,23 +1,13 @@
 import {dirname, extname, join, posix, relative, resolve, win32} from "path";
 import {fileURLToPath} from "url";
 import {readdirSync, readFileSync, statSync} from "fs";
-import {Compiler} from "svg-mixer";
+import {svgToSymbol} from "./svg-to-symbol.js";
 
 const SCX_ICON_REGISTER_ID = "scx-icon/register";
 
 const SVG_DOM_ID = "__scx__icon__dom__" + new Date().getTime() + "__";
 
 const SVG_SYMBOL_ID_PREFIX = "scx-icon_";
-
-const svgCompiler = Compiler.create();
-
-function svgToSymbol(id, content) {
-    return svgCompiler.createSymbol({
-        id,
-        content,
-        path: "",
-    }).render();
-}
 
 function getSymbolId(relativePath) {
     return SVG_SYMBOL_ID_PREFIX + relativePath.substring(0, relativePath.length - 4).split("/").filter(s => s).join("-");
@@ -60,7 +50,7 @@ class ScxIconInterface {
                 relativePath,
                 absolutePath
             } of allSVGFiles) {
-                const symbolContent = await svgToSymbol(getSymbolId(relativePath), getFileContent(absolutePath));
+                const symbolContent = svgToSymbol(getSymbolId(relativePath), getFileContent(absolutePath));
                 //内容不为空 添加
                 if (symbolContent) {
                     svgSymbolList.push(symbolContent);

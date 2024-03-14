@@ -16,8 +16,9 @@
     "preview:test": "vite preview _test --host"
   },
   "dependencies": {
+    "dom-serializer": "^2.0.0",
+    "htmlparser2": "^9.1.0",
     "spark-md5-es": "^3.0.2",
-    "svg-mixer": "^2.3.14",
     "vue": "^3.4.15"
   },
   "devDependencies": {
