@@ -26,5 +26,5 @@ const ScxDragDirective = {
 
 export {
     useScxDrag,
-    ScxDragDirective
+    ScxDragDirective,
 };

@@ -129,7 +129,7 @@ class ScxFSSHelper {
     fileInfoHandler(fileID) {
         const previewURL = this.scxFSS.joinImageURL(fileID, {
             w: 150,
-            h: 150
+            h: 150,
         });
         const downloadURL = this.scxFSS.joinDownloadURL(fileID);
         return new Promise((resolve, reject) => {
@@ -138,7 +138,7 @@ class ScxFSSHelper {
                     resolve({
                         ...item,
                         previewURL,
-                        downloadURL
+                        downloadURL,
                     });
                 } else {
                     resolve({fileName: "文件无法读取 !!! id : " + fileID});

@@ -44,7 +44,7 @@ function doWatch(el, {value}, vnode) {
             }
         }, {
             immediate: true,
-            deep: true
+            deep: true,
         });
         watchEventMap.set(el, watchEvent);
     }
