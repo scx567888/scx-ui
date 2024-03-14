@@ -108,5 +108,5 @@ function defineScxLoading() {
 
 export {
     ScxLoading,
-    defineScxLoading
+    defineScxLoading,
 };

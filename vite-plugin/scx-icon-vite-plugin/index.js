@@ -15,7 +15,7 @@ function svgToSymbol(id, content) {
     return svgCompiler.createSymbol({
         id,
         content,
-        path: ""
+        path: "",
     }).render();
 }
 
