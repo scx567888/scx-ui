@@ -1,5 +1,5 @@
-import {ScxFetchMethodType} from "./ScxFetchMethodType.js";
-import {ScxFetchResponseType} from "./ScxFetchResponseType.js";
+import {ScxFetchMethodType} from "./scx-fetch-method-type.js";
+import {ScxFetchResponseType} from "./scx-fetch-response-type.js";
 
 class ScxFetchOptions {
 

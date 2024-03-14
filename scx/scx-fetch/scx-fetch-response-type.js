@@ -1,5 +1,5 @@
-import {HttpHeaderNames} from "./HttpHeaderNames.js";
-import {HttpHeaderValues} from "./HttpHeaderValues.js";
+import {HttpHeaderNames} from "./http-header-names.js";
+import {HttpHeaderValues} from "./http-header-values.js";
 
 class ScxFetchResponseType {
 
