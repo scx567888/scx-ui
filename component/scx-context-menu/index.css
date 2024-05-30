@@ -1,0 +1,51 @@
+/*全局右键菜单*/
+.scx-context-menu {
+    margin: 0;
+    background: var(--scx-glass-bg);
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 3px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    box-shadow: var(--scx-box-shadow);
+    max-height: 500px;
+    overflow: auto;
+    backdrop-filter: var(--scx-glass-bg-filter);
+    box-sizing: border-box;
+    width: max-content;
+}
+
+@keyframes from-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes from-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.scx-context-menu.top {
+    animation: from-top 200ms cubic-bezier(.23, 1, .32, 1);
+}
+
+.scx-context-menu.bottom {
+    animation: from-bottom 200ms cubic-bezier(.23, 1, .32, 1);
+}
+
+.scx-context-menu-item {
+    margin: 0;
+    padding: 7px 16px;
+    cursor: pointer;
+}
+
+.scx-context-menu-item:hover {
+    background: var(--scx-theme);
+    color: var(--scx-bg);
+}

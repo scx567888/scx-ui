@@ -1,0 +1,59 @@
+/* 此处重写项目中最基础的 css 变量 */
+html.dark {
+
+    /* 主要强调色 */
+    --scx-theme: rgb(72, 147, 73);
+    /* 用于背景强调色 或 hover 背景色 */
+    --scx-theme-bg: rgb(0, 71, 25, 0.2);
+    /* 次要强调色 */
+    --scx-theme-secondary: rgba(72, 147, 73, 0.5);
+    /* 主要背景 (也可以为图片) */
+    --scx-bg: #2b2b2b;
+    /* 主要文字颜色 */
+    --scx-text-color: whitesmoke;
+    /* 次要文字颜色 */
+    --scx-text-secondary-color: #909399;
+    /* 占位文字颜色 */
+    --scx-text-placeholder-color: #a8abb2;
+
+    /* 滚动条背景 */
+    --scx-scrollbar-bg: rgb(20, 20, 20);
+    /* 滚动条拖动滑块背景 */
+    --scx-scrollbar-thumb-bg: rgba(72, 147, 73, 0.4);
+    /* 滚动条拖动滑块背景 (hover) */
+    --scx-scrollbar-thumb-hover-bg: rgba(72, 147, 73, 0.8);
+
+    /* 强调内容背景 */
+    --scx-overlay-bg: #3c3c3c;
+
+    /* 磨砂玻璃背景 */
+    --scx-glass-bg: rgba(50, 50, 50, 0.8);
+    /* 背景滤镜 */
+    --scx-glass-bg-filter: blur(8px);
+
+    /* 通用的阴影 分别是 [颜色, X 偏移量, Y 偏移量, 模糊, 扩张] */
+    --scx-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 3px 0px;
+    /* 没有偏移量的阴影 */
+    --scx-box-shadow-center: rgba(0, 0, 0, 0.4) 0 0 3px 1px;
+    /* 只需要上方有阴影 */
+    --scx-box-shadow-top: rgba(0, 0, 0, 0.4) 0 -1px 3px 0px;
+    /* 只需要左边有阴影 */
+    --scx-box-shadow-left: rgba(0, 0, 0, 0.4) -1px 0 3px 0px;
+    /* 只需要下方有阴影 */
+    --scx-box-shadow-bottom: rgba(0, 0, 0, 0.4) 0 1px 3px 0px;
+    /* 只需要右边有阴影 */
+    --scx-box-shadow-right: rgba(0, 0, 0, 0.4) 1px 0 3px 0px;
+
+    /* 输入框 */
+    --scx-input_bg: rgba(255, 255, 255, 0.2);
+    --scx-input_box-shadow: rgba(180, 180, 180, 0.6) 0 0 1px 1px;
+    --scx-input-hover_box-shadow: rgba(44, 170, 46, 0.6) 0 0 2px 2px;
+
+    /* scx-panel 组件 */
+    --scx-panel-item_bg: rgba(255, 255, 255, 0.2);
+    --scx-panel-item_border-color: transparent;
+    --scx-panel-item_hover-bg: rgb(72, 147, 73);
+    --scx-panel-item_hover-border-color: transparent;
+    --scx-panel-item_hover-color: whitesmoke;
+
+}

@@ -1,0 +1,109 @@
+.scx-switch + .scx-switch {
+    margin: 2px;
+}
+
+.scx-switch {
+    height: 22px;
+    width: 44px;
+    border: none;
+    background: rgba(0, 0, 0, .25);
+    border-radius: 11px;
+    position: relative;
+    vertical-align: middle;
+    transition: background-color 150ms, box-shadow 150ms;
+    cursor: pointer;
+    padding: 0;
+}
+
+.scx-switch:hover {
+    box-shadow: 0 0 0 0.1rem var(--scx-text-placeholder-color);
+}
+
+.scx-switch > .scx-switch-icon {
+    box-shadow: rgba(0, 35, 11, 0.2) 0 2px 4px 0;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 18px;
+    width: 18px;
+    background: white;
+    border-radius: 9px;
+    transition: left 150ms ease-in-out, width 200ms ease-in-out, margin-left 200ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.scx-switch.scx-switch-checked {
+    background: var(--scx-theme);
+}
+
+.scx-switch.scx-switch-checked > .scx-switch-icon {
+    left: calc(100% - 18px - 2px);
+}
+
+.scx-switch.scx-switch-checked:active > .scx-switch-icon {
+    width: 22px;
+    margin-left: -4px;
+}
+
+.scx-switch:active > .scx-switch-icon {
+    width: 22px;
+    margin-left: 0;
+}
+
+.scx-switch > .scx-switch-label {
+    position: absolute;
+    top: 2px;
+    display: flex;
+    align-items: center;
+    right: 8px;
+}
+
+.scx-switch.scx-switch-checked > .scx-switch-label {
+    left: 8px;
+}
+
+.scx-switch:focus {
+    outline: none;
+}
+
+.scx-switch[disabled] {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.scx-switch.scx-switch-checked:active {
+    animation: scx-switch-close-tips 1500ms infinite linear;
+}
+
+.scx-switch:active {
+    animation: scx-switch-open-tips 1500ms infinite linear;
+}
+
+@keyframes scx-switch-close-tips {
+    0% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+    50% {
+
+        box-shadow: 0 0 0 0.2rem rgba(255, 38, 103, 0.5)
+    }
+    100% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+}
+
+@keyframes scx-switch-open-tips {
+    0% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+    50% {
+
+        box-shadow: 0 0 0 0.2rem rgba(17, 141, 47, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 0.1rem rgba(99, 172, 255, 0.5);
+    }
+}

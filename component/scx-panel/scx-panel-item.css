@@ -1,0 +1,36 @@
+.scx-panel-item {
+    flex-shrink: 0;
+    height: 40px;
+    display: flex;
+    border-radius: 2px;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid var(--scx-panel-item_border-color);
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: all ease 100ms;
+    background: var(--scx-panel-item_bg);
+}
+
+.scx-panel-item:hover,
+.scx-panel-item.active {
+    background: var(--scx-panel-item_hover-bg);
+    border: 2px solid var(--scx-panel-item_hover-border-color);
+    color: var(--scx-panel-item_hover-color);
+}
+
+.scx-panel-item > svg {
+    flex-shrink: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    fill: currentColor;
+}
+
+.scx-panel-item > span {
+    font-weight: 600;
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

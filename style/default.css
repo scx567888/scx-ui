@@ -1,0 +1,98 @@
+/* 定义项目中最基础的 css 变量 */
+:root {
+
+    /* 主要强调色 */
+    --scx-theme: rgb(24, 144, 255);
+    /* 用于背景强调色 或 hover 背景色 */
+    --scx-theme-bg: rgba(24, 144, 255, 0.15);
+    /* 次要强调色 */
+    --scx-theme-secondary: rgba(24, 144, 255, 0.4);
+    /* 主要背景 (也可以为图片) */
+    --scx-bg: #f2f2f2;
+    /* 主要文字颜色 */
+    --scx-text-color: #333333;
+    /* 次要文字颜色 */
+    --scx-text-secondary-color: #909399;
+    /* 占位文字颜色 */
+    --scx-text-placeholder-color: rgba(114, 114, 114, 0.5);
+
+    /* 滚动条背景 */
+    --scx-scrollbar-bg: transparent;
+    /* 滚动条拖动滑块背景 */
+    --scx-scrollbar-thumb-bg: rgb(192, 222, 250);
+    /* 滚动条拖动滑块背景 (hover) */
+    --scx-scrollbar-thumb-hover-bg: rgb(136, 196, 252);
+
+    /* 强调内容背景 */
+    --scx-overlay-bg: #ffffff;
+
+    /* 磨砂玻璃背景 */
+    --scx-glass-bg: rgba(255, 255, 255, 0.4);
+    /* 背景滤镜 */
+    --scx-glass-bg-filter: blur(8px);
+
+    /* 通用的阴影 分别是 [颜色, X 偏移量, Y 偏移量, 模糊, 扩张] */
+    --scx-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 3px 0px;
+    /* 没有偏移量的阴影 */
+    --scx-box-shadow-center: rgba(0, 0, 0, 0.2) 0 0 3px 1px;
+    /* 只需要上方有阴影 */
+    --scx-box-shadow-top: rgba(0, 0, 0, 0.2) 0 -1px 3px 0px;
+    /* 只需要左边有阴影 */
+    --scx-box-shadow-left: rgba(0, 0, 0, 0.2) -1px 0 3px 0px;
+    /* 只需要下方有阴影 */
+    --scx-box-shadow-bottom: rgba(0, 0, 0, 0.2) 0 1px 3px 0px;
+    /* 只需要右边有阴影 */
+    --scx-box-shadow-right: rgba(0, 0, 0, 0.2) 1px 0 3px 0px;
+
+    /* 输入框 */
+    --scx-input_bg: rgba(250, 250, 250, 0.1);
+    --scx-input_box-shadow: rgba(150, 150, 150, 0.6) 0 0 1px 1px;
+    --scx-input-hover_box-shadow: rgba(24, 144, 255, 0.6) 0 0 2px 2px;
+
+    /* scx-panel 组件 */
+    --scx-panel-item_bg: rgba(255, 255, 255, 0.3);
+    --scx-panel-item_border-color: rgba(150, 150, 150, 0.6);
+    --scx-panel-item_hover-bg: rgba(187, 217, 247, 0.6);
+    --scx-panel-item_hover-border-color: rgba(24, 144, 255, 1);
+    --scx-panel-item_hover-color: rgba(24, 144, 255, 1);
+
+}
+
+/* 去除浏览器默认样式 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+    background: var(--scx-bg);
+    color: var(--scx-text-color);
+}
+
+/* 浏览器 选中字体 颜色 */
+::selection {
+    background-color: var(--scx-theme);
+    color: var(--scx-bg);
+}
+
+/* 整个滚动条 */
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    border-radius: 2px;
+    background-color: var(--scx-scrollbar-bg);
+}
+
+/* 可拖动的滚动手柄 */
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: var(--scx-scrollbar-thumb-bg);
+}
+
+/* 鼠标移入时 */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scx-scrollbar-thumb-hover-bg);
+}
+
+/* 设置默认图标的颜色 */
+.scx-icon {
+    fill: var(--scx-text-color);
+}
