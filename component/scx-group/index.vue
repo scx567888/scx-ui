@@ -20,6 +20,9 @@
                             <button class="placeholder-button" type="button">X</button>
                         </slot>
                     </div>
+                    <slot name="itemOperation" :index="i" :item="item">
+
+                    </slot>
                 </div>
             </div>
         </transition-group>
