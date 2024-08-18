@@ -5,6 +5,7 @@
             <div v-for="(item,i) in list" :key="item" class="scx-group-item">
                 <slot :index="i" :item="item"></slot>
                 <div class="scx-group-item-operation">
+                    <slot name="itemOperation" :index="i" :item="item"></slot>
                     <div v-if="showMoveUp(i)" class="scx-group-item-move-up-button" @click="groupItemMoveUp(i)">
                         <slot name="moveUpButton">
                             <button class="placeholder-button" type="button">↑</button>
