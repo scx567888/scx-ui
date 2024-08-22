@@ -1,5 +1,6 @@
 const SCX_LOADING_HTML = `
     <style>
+
         body {
             margin: 0;
             padding: 0;
@@ -59,8 +60,7 @@ const SCX_LOADING_HTML = `
     <div class="lw0">
         <div class="llw1">
             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="717,0 195,552 636,552 307,1024 829,472 388,472"
-                         fill="url(#myGradient)"/>
+                <polygon fill="url(#myGradient)" points="717,0 195,552 636,552 307,1024 829,472 388,472"/>
                 <defs>
                     <linearGradient id="myGradient" gradientTransform="rotate(90)">
                         <stop offset="0%" stop-color="#489349"/>
