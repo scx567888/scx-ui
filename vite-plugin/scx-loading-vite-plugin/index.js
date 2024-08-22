@@ -1,6 +1,5 @@
 const SCX_LOADING_HTML = `
     <style>
-
         body {
             margin: 0;
             padding: 0;
@@ -55,7 +54,6 @@ const SCX_LOADING_HTML = `
                 transform: rotate(360deg)
             }
         }
-
     </style>
     <div class="lw0">
         <div class="llw1">
@@ -83,6 +81,7 @@ function scxLoadingPlugin(loadingHtml = SCX_LOADING_HTML) {
     return {
 
         transformIndexHtml(html) {
+            console.log("ScxLoading 处理完成 !!!");
             return html.replace(`<div id="app">`, `<div id="app">` + loadingHtml);
         },
 
