@@ -9,7 +9,7 @@ class GroupBy extends QueryLike {
         super();
         this.#clauses = [];
     }
-    
+
     set(clauses) {
         this.#clauses = clauses;
         return this;
