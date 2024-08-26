@@ -70,9 +70,9 @@ class WhereSerializer {
     }
 
     serializeAll(objs) {
-        let arr = [];
+        const arr = [];
         for (let i = 0; i < objs.length; i = i + 1) {
-            arr.push(this.serialize(objs[i]));
+            arr[i] = this.serialize(objs[i]);
         }
         return arr;
     }
