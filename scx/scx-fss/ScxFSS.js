@@ -1,7 +1,8 @@
 import {joinURL, percentage} from "../../util/index.js";
 import {JsonVOError} from "../scx-req.js";
 import {inject} from "vue";
-import {formatFileSize, getChunkAndHash} from "./ScxFSSHelper.js";
+import {formatFileSize, getChunkAndHash} from "./FSSHelper.js";
+import {FSSObject} from "./FSSObject.js";
 
 const UPLOAD_URL = "api/fss/upload";
 const LIST_INFO_URL = "api/fss/list-info";

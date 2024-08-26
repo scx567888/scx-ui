@@ -1,4 +1,3 @@
-
 class JoinImageURLOptions {
 
     /**
@@ -40,4 +39,4 @@ class JoinImageURLOptions {
 
 export {
     JoinImageURLOptions,
-}
+};
