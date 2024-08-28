@@ -1,40 +1,41 @@
-import {QueryLike} from "./QueryLike.js";
+import {isBlank} from "../../../util/index.js";
 import {QueryImpl} from "./QueryImpl.js";
 
-class OrderBy extends QueryLike {
+class OrderBy {
 
-    #clauses;
+    #name;
+    #orderByType;
+    #info;
 
-    constructor() {
-        super();
-        this.#clauses = [];
+    constructor(name, orderByType, info) {
+        if (isBlank(name)) {
+            throw new Error("OrderBy 参数错误 : 名称 不能为空 !!!");
+        }
+        if (orderByType == null) {
+            throw new Error("OrderBy 参数错误 : orderByType 不能为空 !!!");
+        }
+        this.#name = name.trim();
+        this.#orderByType = orderByType;
+        this.#info = info;
     }
 
-    set(orderByClauses) {
-        this.#clauses = orderByClauses;
-        return this;
+
+    name() {
+        return this.#name;
     }
 
-    add(orderByClauses) {
-        this.#clauses = this.#clauses.concat(orderByClauses);
-        return this;
+    orderByType() {
+        return this.#orderByType;
     }
 
-    clauses() {
-        return this.#clauses;
-    }
-
-    clear() {
-        this.#clauses = [];
-        return this;
+    info() {
+        return this.#info;
     }
 
     toQuery() {
-        return new QueryImpl(this);
+        return new QueryImpl().orderBy(this);
     }
-
+    
 }
 
-export {
-    OrderBy
-}
+export {OrderBy};
