@@ -1,5 +1,4 @@
 import {WhereClause} from "./query/WhereClause.js";
-import {WhereBody} from "./query/WhereBody.js";
 import {
     BETWEEN,
     EQUAL,
@@ -19,39 +18,39 @@ import {
     NOT_LIKE,
     NOT_LIKE_REGEX,
 } from "./query/WhereType.js";
-import {LimitInfo} from "./query/LimitInfo.js";
-import {OrderBy} from "./query/OrderBy.js";
 import {GroupBy} from "./query/GroupBy.js";
 import {Where} from "./query/Where.js";
 import {QueryImpl} from "./query/QueryImpl.js";
-import {WhereBodySet} from "./query/WhereBodySet.js";
+import {WhereSet} from "./query/WhereSet.js";
 import {AND} from "./query/AND.js";
 import {OR} from "./query/OR.js";
 import {_AND, _OR} from "./query/LogicType.js";
-import {OrderByBody} from "./query/OrderByBody.js";
+import {OrderBy} from "./query/OrderBy.js";
+import {OrderBySet} from "./query/OrderBySet.js";
+import {ASC, DESC} from "./query/OrderByType.js";
 
 function query(oldQuery) {
     return new QueryImpl(oldQuery);
 }
 
 function where(whereClauses) {
-    return new Where().set(whereClauses);
+    return new QueryImpl().where(whereClauses);
 }
 
 function groupBy(groupByClauses) {
-    return new GroupBy().set(groupByClauses);
+    return new QueryImpl().groupBy(groupByClauses);
 }
 
 function orderBy(orderByClauses) {
-    return new OrderBy().set(orderByClauses);
+    return new QueryImpl().orderBy(orderByClauses);
 }
 
 function offset(limitOffset) {
-    return new LimitInfo().offset(limitOffset);
+    return new QueryImpl().offset(limitOffset);
 }
 
 function limit(numberOfRows) {
-    return new LimitInfo().limit(numberOfRows);
+    return new QueryImpl().limit(numberOfRows);
 }
 
 function and(clauses) {
@@ -63,43 +62,43 @@ function or(clauses) {
 }
 
 function andSet() {
-    return new WhereBodySet(_AND);
+    return new WhereSet(_AND);
 }
 
 function orSet() {
-    return new WhereBodySet(_OR);
+    return new WhereSet(_OR);
 }
 
 function asc(name, options) {
-    return new OrderByBody(name, ASC, options);
+    return new OrderBy(name, ASC, options);
 }
 
 function desc(name, options) {
-    return new OrderByBody(name, DESC, options);
+    return new OrderBy(name, DESC, options);
 }
 
 function orderBySet() {
-    return new OrderByBodySet();
+    return new OrderBySet();
 }
 
 function isNull(fieldName, options) {
-    return new WhereBody(fieldName, IS_NULL, null, null, options);
+    return new Where(fieldName, IS_NULL, null, null, options);
 }
 
 function isNotNull(fieldName, options) {
-    return new WhereBody(fieldName, IS_NOT_NULL, null, null, options);
+    return new Where(fieldName, IS_NOT_NULL, null, null, options);
 }
 
 function eq(fieldName, value, options) {
-    return new WhereBody(fieldName, EQUAL, value, null, options);
+    return new Where(fieldName, EQUAL, value, null, options);
 }
 
 function ne(fieldName, value, options) {
-    return new WhereBody(fieldName, NOT_EQUAL, value, null, options);
+    return new Where(fieldName, NOT_EQUAL, value, null, options);
 }
 
 function gt(fieldName, value, options) {
-    return new WhereBody(fieldName, GREATER_THAN, value, null, options);
+    return new Where(fieldName, GREATER_THAN, value, null, options);
 }
 
 /**
@@ -111,7 +110,7 @@ function gt(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function ge(fieldName, value, options) {
-    return new WhereBody(fieldName, GREATER_THAN_OR_EQUAL, value, null, options);
+    return new Where(fieldName, GREATER_THAN_OR_EQUAL, value, null, options);
 }
 
 /**
@@ -123,7 +122,7 @@ function ge(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function lt(fieldName, value, options) {
-    return new WhereBody(fieldName, LESS_THAN, value, null, options);
+    return new Where(fieldName, LESS_THAN, value, null, options);
 }
 
 /**
@@ -135,7 +134,7 @@ function lt(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function le(fieldName, value, options) {
-    return new WhereBody(fieldName, LESS_THAN_OR_EQUAL, value, null, options);
+    return new Where(fieldName, LESS_THAN_OR_EQUAL, value, null, options);
 }
 
 /**
@@ -148,7 +147,7 @@ function le(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function between(fieldName, value1, value2, options) {
-    return new WhereBody(fieldName, BETWEEN, value1, value2, options);
+    return new Where(fieldName, BETWEEN, value1, value2, options);
 }
 
 /**
@@ -161,7 +160,7 @@ function between(fieldName, value1, value2, options) {
  * @return this 方便链式调用
  */
 function notBetween(fieldName, value1, value2, options) {
-    return new WhereBody(fieldName, NOT_BETWEEN, value1, value2, options);
+    return new Where(fieldName, NOT_BETWEEN, value1, value2, options);
 }
 
 /**
@@ -173,7 +172,7 @@ function notBetween(fieldName, value1, value2, options) {
  * @return this 方便链式调用
  */
 function likeRegex(fieldName, value, options) {
-    return new WhereBody(fieldName, LIKE_REGEX, value, null, options);
+    return new Where(fieldName, LIKE_REGEX, value, null, options);
 }
 
 /**
@@ -185,7 +184,7 @@ function likeRegex(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function notLikeRegex(fieldName, value, options) {
-    return new WhereBody(fieldName, NOT_LIKE_REGEX, value, null, options);
+    return new Where(fieldName, NOT_LIKE_REGEX, value, null, options);
 }
 
 /**
@@ -197,7 +196,7 @@ function notLikeRegex(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function like(fieldName, value, options) {
-    return new WhereBody(fieldName, LIKE, value, null, options);
+    return new Where(fieldName, LIKE, value, null, options);
 }
 
 /**
@@ -209,7 +208,7 @@ function like(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function notLike(fieldName, value, options) {
-    return new WhereBody(fieldName, NOT_LIKE, value, null, options);
+    return new Where(fieldName, NOT_LIKE, value, null, options);
 }
 
 /**
@@ -221,7 +220,7 @@ function notLike(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function jsonContains(fieldName, value, options) {
-    return new WhereBody(fieldName, JSON_CONTAINS, value, null, options);
+    return new Where(fieldName, JSON_CONTAINS, value, null, options);
 }
 
 /**
@@ -233,7 +232,7 @@ function jsonContains(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function in_(fieldName, value, options) {
-    return new WhereBody(fieldName, IN, value, null, options);
+    return new Where(fieldName, IN, value, null, options);
 }
 
 /**
@@ -245,7 +244,7 @@ function in_(fieldName, value, options) {
  * @return this 方便链式调用
  */
 function notIn(fieldName, value, options) {
-    return new WhereBody(fieldName, NOT_IN, value, null, options);
+    return new Where(fieldName, NOT_IN, value, null, options);
 }
 
 function whereClause(whereClause, params) {
