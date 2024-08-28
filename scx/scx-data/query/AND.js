@@ -4,11 +4,11 @@ import {QueryImpl} from "./QueryImpl.js";
 
 class AND extends Logic {
 
-    _clauses;
+    #clauses;
 
     constructor(clauses) {
         super();
-        this._clauses = clauses;
+        this.#clauses = clauses;
     }
 
     logicType() {
@@ -16,7 +16,7 @@ class AND extends Logic {
     }
 
     clauses() {
-        return this._clauses;
+        return this.#clauses;
     }
 
     toQuery() {
