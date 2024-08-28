@@ -6,15 +6,15 @@ class Query {
 
     orderBy(orderByClauses){}
 
+    offset( limitOffset){}
+
+    limit(numberOfRows){}
+
     addWhere(whereClauses){}
 
     addGroupBy(groupByClauses){}
 
     addOrderBy(orderByClauses){}
-
-    offset( limitOffset){}
-
-    limit(numberOfRows){}
 
     getWhere(){}
 
@@ -25,8 +25,6 @@ class Query {
     getOffset(){}
 
     getLimit(){}
-
-    getLimitInfo(){}
 
     clearWhere(){}
 
