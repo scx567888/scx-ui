@@ -1,36 +1,29 @@
-import {QueryLike} from "./QueryLike.js";
+import {isBlank} from "../../../util/index.js";
 import {QueryImpl} from "./QueryImpl.js";
 
-class GroupBy extends QueryLike {
+class GroupBy {
 
-    #clauses;
+    #name;
+    #info;
 
-    constructor() {
-        super();
-        this.#clauses = [];
+    constructor(name, info) {
+        if (isBlank(name)) {
+            throw new Error("GroupBy 参数错误 : 名称 不能为空 !!!");
+        }
+        this.#name = name.trim();
+        this.#info = info;
     }
 
-    set(clauses) {
-        this.#clauses = clauses;
-        return this;
+    name() {
+        return this.#name;
     }
 
-    add(groupByClauses) {
-        this.#clauses = this.#clauses.concat(groupByClauses);
-        return this;
-    }
-
-    clauses() {
-        return this.#clauses;
-    }
-
-    clear() {
-        this.#clauses = [];
-        return this;
+    info() {
+        return this.#info;
     }
 
     toQuery() {
-        return new QueryImpl(this);
+        return new QueryImpl().groupBy(this);
     }
 
 }
