@@ -2,7 +2,7 @@ import {QueryLike} from "./QueryLike.js";
 import {QueryImpl} from "./QueryImpl.js";
 
 class WhereClause extends QueryLike {
-    
+
     #whereClause;
     #params;
 
@@ -19,7 +19,7 @@ class WhereClause extends QueryLike {
      * @return WhereClause
      */
     concat(other) {
-        return new WhereClause(this.#whereClause.concat( other.#whereClause), this.#params.concat( other.params));
+        return new WhereClause(this.#whereClause.concat(other.#whereClause), this.#params.concat(other.params));
     }
 
     isEmpty() {
@@ -33,12 +33,13 @@ class WhereClause extends QueryLike {
     params() {
         return this.#params;
     }
-    
+
     toQuery() {
         return new QueryImpl().where([this]);
     }
 
 }
+
 export {
     WhereClause,
-}
+};

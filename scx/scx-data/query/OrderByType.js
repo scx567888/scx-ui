@@ -1,16 +1,16 @@
 class OrderByType {
 
-    #value
+    #value;
 
 
     constructor(value) {
         this.#value = value;
     }
-    
-    value(){
-        return this.#value
+
+    value() {
+        return this.#value;
     }
-    
+
 }
 
 const ASC = new OrderByType("ASC");

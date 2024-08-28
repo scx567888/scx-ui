@@ -41,7 +41,7 @@ class OrderBySet {
     toQuery() {
         return new QueryImpl().orderBy(this);
     }
-    
+
 }
 
-export {OrderBySet}
+export {OrderBySet};

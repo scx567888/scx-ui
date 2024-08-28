@@ -1,30 +1,16 @@
 import {Query} from "./Query.js";
-import {Where} from "./Where.js";
-import {GroupBy} from "./GroupBy.js";
-import {OrderBy} from "./OrderBy.js";
-import {LimitInfo} from "./LimitInfo.js";
 
 class QueryImpl extends Query {
 
-    /**
-     * 自定义WHERE 添加
-     */
     #where;
 
-    /**
-     * 自定义分组 SQL 添加
-     */
     #groupBy;
 
-    /**
-     * 排序的字段
-     */
     #orderBy;
 
-    /**
-     * 分页参数
-     */
-    #limitInfo;
+    #offset;
+
+    #limit;
 
 
     /**
@@ -32,55 +18,54 @@ class QueryImpl extends Query {
      */
     constructor(old) {
         super();
-        this.#where = new Where();
-        this.#groupBy = new GroupBy();
-        this.#orderBy = new OrderBy();
-        this.#limitInfo = new LimitInfo();
+        this.#where = [];
+        this.#groupBy = [];
+        this.#orderBy = [];
+        this.#offset = null;
+        this.#limit = null;
     }
 
 
     where(whereClauses) {
-        this.#where.set(whereClauses);
+        this.#where.push(whereClauses);
         return this;
     }
 
     groupBy(groupByClauses) {
-        this.#groupBy.set(groupByClauses);
+        this.#groupBy.push(groupByClauses);
         return this;
     }
 
 
     orderBy(orderByClauses) {
-        this.#orderBy.set(orderByClauses);
-        return this;
-    }
-
-
-    addWhere(whereClauses) {
-        this.#where.add(whereClauses);
-        return this;
-    }
-
-
-    addGroupBy(groupByClauses) {
-        this.#groupBy.add(groupByClauses);
-        return this;
-    }
-
-
-    addOrderBy(orderByClauses) {
-        this.#orderBy.add(orderByClauses);
+        this.#orderBy.push(orderByClauses);
         return this;
     }
 
 
     offset(limitOffset) {
-        this.#limitInfo.offset(limitOffset);
+        this.#offset = limitOffset;
         return this;
     }
 
     limit(numberOfRows) {
-        this.#limitInfo.limit(numberOfRows);
+        this.#limit = numberOfRows;
+        return this;
+    }
+
+    addWhere(whereClauses) {
+        this.#where.push(whereClauses);
+        return this;
+    }
+
+    addGroupBy(groupByClauses) {
+        this.#groupBy.push(groupByClauses);
+        return this;
+    }
+
+
+    addOrderBy(orderByClauses) {
+        this.#orderBy.push(orderByClauses);
         return this;
     }
 
@@ -101,25 +86,18 @@ class QueryImpl extends Query {
 
 
     getOffset() {
-        return this.#limitInfo.getOffset();
+        return this.#offset;
     }
 
 
     getLimit() {
-        return this.#limitInfo.getLimit();
+        return this.#limit;
     }
-
-
-    getLimitInfo() {
-        return this.#limitInfo;
-    }
-
 
     clearWhere() {
         this.#where.clear();
         return this;
     }
-
 
     clearGroupBy() {
         this.#groupBy.clear();
@@ -134,13 +112,13 @@ class QueryImpl extends Query {
 
 
     clearOffset() {
-        this.#limitInfo.clearOffset();
+        this.#offset = null;
         return this;
     }
 
 
     clearLimit() {
-        this.#limitInfo.clearLimit();
+        this.#limit = null;
         return this;
     }
 

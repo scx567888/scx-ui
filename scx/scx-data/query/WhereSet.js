@@ -1,4 +1,4 @@
-import {WhereBody} from "./WhereBody.js";
+import {Where} from "./Where.js";
 import {QueryLike} from "./QueryLike.js";
 import {
     BETWEEN,
@@ -21,7 +21,7 @@ import {
 } from "./WhereType.js";
 import {QueryImpl} from "./QueryImpl.js";
 
-class WhereBodySet extends QueryLike {
+class WhereSet extends QueryLike {
 
     /**
      * 存储查询条件 key 为 fieldName ,采用 map 而不是 list 是为了保证重复添加的会直接覆盖
@@ -125,7 +125,7 @@ class WhereBodySet extends QueryLike {
 
     _add(name, whereType, value1, value2, needParamSize, options) {
         //创建 option 信息
-        const whereBody = new WhereBody(name, whereType, value1, value2, null);
+        const whereBody = new Where(name, whereType, value1, value2, null);
         this.#whereBodyList.push(whereBody);
         return this;
     }
@@ -155,5 +155,5 @@ class WhereBodySet extends QueryLike {
 }
 
 export {
-    WhereBodySet
-}
+    WhereSet,
+};

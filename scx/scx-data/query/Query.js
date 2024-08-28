@@ -1,43 +1,61 @@
 class Query {
-    
-    where(whereClauses){}
 
-    groupBy(groupByClauses){}
+    where(whereClauses) {
+    }
 
-    orderBy(orderByClauses){}
+    groupBy(groupByClauses) {
+    }
 
-    offset( limitOffset){}
+    orderBy(orderByClauses) {
+    }
 
-    limit(numberOfRows){}
+    offset(limitOffset) {
+    }
 
-    addWhere(whereClauses){}
+    limit(numberOfRows) {
+    }
 
-    addGroupBy(groupByClauses){}
+    addWhere(whereClauses) {
+    }
 
-    addOrderBy(orderByClauses){}
+    addGroupBy(groupByClauses) {
+    }
 
-    getWhere(){}
+    addOrderBy(orderByClauses) {
+    }
 
-    getGroupBy(){}
+    getWhere() {
+    }
 
-    getOrderBy(){}
+    getGroupBy() {
+    }
 
-    getOffset(){}
+    getOrderBy() {
+    }
 
-    getLimit(){}
+    getOffset() {
+    }
 
-    clearWhere(){}
+    getLimit() {
+    }
 
-    clearGroupBy(){}
+    clearWhere() {
+    }
 
-    clearOrderBy(){}
+    clearGroupBy() {
+    }
 
-    clearOffset(){}
+    clearOrderBy() {
+    }
 
-    clearLimit(){}
-    
+    clearOffset() {
+    }
+
+    clearLimit() {
+    }
+
 }
 
 export {
-    Query
-}
+    Query,
+};

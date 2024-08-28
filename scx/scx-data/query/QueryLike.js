@@ -24,6 +24,17 @@ class QueryLike {
         return this;
     }
 
+    offset(limitOffset) {
+        this.query().offset(limitOffset);
+        return this;
+    }
+
+    limit(numberOfRows) {
+        this.query().limit(numberOfRows);
+        return this;
+    }
+
+
     addWhere(whereClauses) {
         this.query().addWhere(whereClauses);
         return this;
@@ -36,16 +47,6 @@ class QueryLike {
 
     addOrderBy(orderByClauses) {
         this.query().addOrderBy(orderByClauses);
-        return this;
-    }
-
-    offset(limitOffset) {
-        this.query().offset(limitOffset);
-        return this;
-    }
-
-    limit(numberOfRows) {
-        this.query().limit(numberOfRows);
         return this;
     }
 
@@ -67,10 +68,6 @@ class QueryLike {
 
     getLimit() {
         return this.query().getLimit();
-    }
-
-    getLimitInfo() {
-        return this.query().getLimitInfo();
     }
 
     clearWhere() {
@@ -98,10 +95,10 @@ class QueryLike {
         return this;
     }
 
-    toQuery(){
-        
+    toQuery() {
+
     }
 
 }
 
-export {QueryLike}
+export {QueryLike};
