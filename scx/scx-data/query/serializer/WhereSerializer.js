@@ -2,40 +2,41 @@ import {Where} from "../Where.js";
 import {isArray} from "../../../../util/index.js";
 import {Query} from "../Query.js";
 import {WhereClause} from "../WhereClause.js";
-import {WhereBody} from "../WhereBody.js";
 import {Logic} from "../Logic.js";
 
 class WhereSerializer {
 
     serialize(obj) {
-        if (obj instanceof Where) {
-            return this.serializeWhere(obj);
-        }
-        if (obj instanceof Logic) {
-            return this.serializeLogic(obj);
+        if (obj instanceof String) {
+            return this.serializeString(obj);
         }
         if (obj instanceof WhereClause) {
             return this.serializeWhereClause(obj);
         }
-        if (obj instanceof WhereBody) {
-            return this.serializeWhereBody(obj);
+        if (obj instanceof Logic) {
+            return this.serializeLogic(obj);
         }
-        if (obj instanceof String) {
-            return this.serializeString(obj);
+        if (obj instanceof Where) {
+            return this.serializeWhere(obj);
+        }
+        if (obj instanceof Query) {
+            return this.serializeQuery(obj.getWhere());
         }
         if (isArray(obj)) {
             return this.serializeAll(obj);
         }
-        if (obj instanceof Query) {
-            return this.serializeWhere(obj.getWhere());
-        }
         return obj;
     }
 
-    serializeWhere(where) {
+    serializeString(str) {
+        return str;
+    }
+
+    serializeWhereClause(w) {
         return {
-            "@type": "Where",
-            "clauses": this.serialize(where.clauses()),
+            "@type": "WhereClause",
+            "whereClause": w.whereClause(),
+            "params": w.params(),
         };
     }
 
@@ -47,17 +48,9 @@ class WhereSerializer {
         };
     }
 
-    serializeWhereClause(w) {
+    serializeWhere(w) {
         return {
-            "@type": "WhereClause",
-            "whereClause": w.whereClause(),
-            "params": w.params(),
-        };
-    }
-
-    serializeWhereBody(w) {
-        return {
-            "@type": "WhereBody",
+            "@type": "Where",
             "name": w.name(),
             "whereType": w.whereType().value(),
             "value1": w.value1(),
@@ -65,9 +58,10 @@ class WhereSerializer {
         };
     }
 
-    serializeString(str) {
-        return str;
+    serializeQuery(w) {
+        return this.serializeAll(w.getWhere());
     }
+
 
     serializeAll(objs) {
         const arr = [];
