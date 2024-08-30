@@ -24,8 +24,6 @@ import {AND, OR} from "./query/LogicType.js";
 import {OrderBy} from "./query/OrderBy.js";
 import {ASC, DESC} from "./query/OrderByType.js";
 import {Logic} from "./query/Logic.js";
-import {IncludedFieldFilter} from "./field_filter/IncludedFieldFilter.js";
-import {ExcludedFieldFilter} from "./field_filter/ExcludedFieldFilter.js";
 
 function query(oldQuery) {
     return new QueryImpl(oldQuery);
@@ -142,14 +140,6 @@ function whereClause(whereClause, params) {
 }
 
 
-function ofIncluded(fieldNames) {
-    return new IncludedFieldFilter().addIncluded(fieldNames);
-}
-
-function ofExcluded(fieldNames) {
-    return new ExcludedFieldFilter().addExcluded(fieldNames);
-}
-
 export {
     query,
     where,
@@ -179,6 +169,4 @@ export {
     notBetween,
     jsonContains,
     whereClause,
-    ofIncluded,
-    ofExcluded
 };
