@@ -1,57 +1,18 @@
+import {QUERY_SERIALIZER} from "./scx-data/query/serializer/QuerySerializer.js";
+import {FIELD_FILTER_SERIALIZER} from "./scx-data/field_filter/serializer/FieldFilterSerializer.js";
+
+
 class CRUDListParam {
 
     /**
-     *   @type {CRUDPagination}
+     * @type {Query}
      */
-    pagination;
+    query;
 
-    /**
-     * @type {CRUDOrderByBody[]}
-     */
-    orderByBodyList;
+    fieldFilter;
 
-    /**
-     * @type {CRUDWhereBody[]}
-     */
-    whereBodyList;
-
-    /**
-     * @type CRUDSelectFilterBody
-     */
-    selectFilterBody;
-
-    /**
-     * @type {Object}
-     */
     extParams;
 
-}
-
-class CRUDPagination {
-    currentPage;
-    pageSize;
-}
-
-class CRUDOrderByBody {
-    fieldName;
-    sortType;
-}
-
-class CRUDWhereBody {
-    fieldName;
-    whereType;
-    value1;
-    value2;
-}
-
-class CRUDSelectFilterBody {
-
-    filterMode;
-
-    /**
-     * @type {String[]}
-     */
-    fieldNames;
 }
 
 class CRUDUpdateParam {
@@ -131,7 +92,15 @@ class ScxCrud {
      * @return {Promise<ListResult>}
      */
     list(crudListParam) {
-        return new Promise((resolve, reject) => this.req.post(this.listApi, crudListParam).then(data => resolve(data)).catch(e => reject(e)));
+        const o = {};
+        if (crudListParam.query) {
+            o.query = QUERY_SERIALIZER.serializeQuery(crudListParam.query);
+        }
+        if (crudListParam.fieldFilter) {
+            o.fieldFilter = FIELD_FILTER_SERIALIZER.serializeFieldFilter(crudListParam.fieldFilter);
+        }
+        o.extParams = crudListParam.extParams;
+        return new Promise((resolve, reject) => this.req.post(this.listApi, o).then(data => resolve(data)).catch(e => reject(e)));
     };
 
     /**
@@ -196,10 +165,6 @@ class ScxCrud {
 export {
     ScxCrud,
     CRUDListParam,
-    CRUDPagination,
-    CRUDOrderByBody,
-    CRUDWhereBody,
-    CRUDSelectFilterBody,
     CRUDUpdateParam,
     ListResult,
     BatchDeleteResult,
