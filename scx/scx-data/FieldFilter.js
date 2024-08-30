@@ -1,6 +1,3 @@
-import {ExcludedFieldFilter} from "./ExcludedFieldFilter.js";
-import {IncludedFieldFilter} from "./IncludedFieldFilter.js";
-
 class FieldFilter {
 
     addIncluded(fieldNames) {
@@ -41,16 +38,6 @@ class FieldFilter {
 
 }
 
-function ofIncluded(fieldNames) {
-    return new IncludedFieldFilter().addIncluded(fieldNames);
-}
-
-function ofExcluded(fieldNames) {
-    return new ExcludedFieldFilter().addExcluded(fieldNames);
-}
-
 export {
-    ofIncluded,
-    ofExcluded,
     FieldFilter,
 };

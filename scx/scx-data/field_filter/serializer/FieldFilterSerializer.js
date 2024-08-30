@@ -23,5 +23,6 @@ class FieldFilterSerializer {
 const FIELD_FILTER_SERIALIZER = new FieldFilterSerializer();
 
 export {
+    FIELD_FILTER_SERIALIZER,
     FieldFilterSerializer,
 };
