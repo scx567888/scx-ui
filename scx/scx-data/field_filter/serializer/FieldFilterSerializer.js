@@ -17,7 +17,7 @@ class FieldFilterSerializer {
             "ignoreNullValue": fieldFilter.getIgnoreNullValue(),
         };
     }
-    
+
 }
 
 const FIELD_FILTER_SERIALIZER = new FieldFilterSerializer();

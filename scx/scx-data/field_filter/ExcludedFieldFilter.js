@@ -1,8 +1,7 @@
-import {FieldFilter} from "./FieldFilter.js";
-import {AbstractFieldFilter} from "./AbstractFieldFilter.js";
-import {EXCLUDED, INCLUDED} from "./FilterMode.js";
+import {EXCLUDED} from "./FilterMode.js";
+import {FieldFilter} from "../FieldFilter.js";
 
-class ExcludedFieldFilter extends AbstractFieldFilter{
+class ExcludedFieldFilter extends FieldFilter {
 
     #fieldNames;
     #ignoreNullValue;
@@ -62,10 +61,10 @@ class ExcludedFieldFilter extends AbstractFieldFilter{
         }
         return this;
     }
-    
-    
+
+
 }
 
 export {
-    ExcludedFieldFilter
-}
+    ExcludedFieldFilter,
+};

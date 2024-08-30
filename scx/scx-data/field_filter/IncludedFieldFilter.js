@@ -1,7 +1,7 @@
-import {AbstractFieldFilter} from "./AbstractFieldFilter.js";
 import {INCLUDED} from "./FilterMode.js";
+import {FieldFilter} from "../FieldFilter.js";
 
-class IncludedFieldFilter extends AbstractFieldFilter {
+class IncludedFieldFilter extends FieldFilter {
 
     #fieldNames;
     #ignoreNullValue;

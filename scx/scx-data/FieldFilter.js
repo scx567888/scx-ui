@@ -34,7 +34,7 @@ class FieldFilter {
     getIgnoreNullValue() {
 
     }
-    
+
     clear() {
 
     }

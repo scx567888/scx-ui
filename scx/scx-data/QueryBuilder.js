@@ -90,8 +90,6 @@ function ge(fieldName, value, options) {
     return new Where(fieldName, GREATER_THAN_OR_EQUAL, value, null, options);
 }
 
-
-
 function isNull(fieldName, options) {
     return new Where(fieldName, IS_NULL, null, null, options);
 }
