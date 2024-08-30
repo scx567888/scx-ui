@@ -1,16 +1,18 @@
 import {isBlank} from "../../../util/index.js";
 import {QueryImpl} from "./QueryImpl.js";
+import {QueryLike} from "./QueryLike.js";
 
-class GroupBy {
+class GroupBy extends QueryLike {
 
     #name;
     #info;
 
     constructor(name, info) {
+        super();
         if (isBlank(name)) {
             throw new Error("GroupBy 参数错误 : 名称 不能为空 !!!");
         }
-        this.#name = name.trim();
+        this.#name = name;
         this.#info = info;
     }
 
