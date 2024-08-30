@@ -1,6 +1,6 @@
 import {Where} from "../Where.js";
 import {isArray} from "../../../../util/index.js";
-import {Query} from "../Query.js";
+import {Query} from "../../Query.js";
 import {WhereClause} from "../WhereClause.js";
 import {Logic} from "../Logic.js";
 

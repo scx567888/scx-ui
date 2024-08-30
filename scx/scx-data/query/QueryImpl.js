@@ -1,4 +1,4 @@
-import {Query} from "./Query.js";
+import {Query} from "../Query.js";
 
 class QueryImpl extends Query {
 

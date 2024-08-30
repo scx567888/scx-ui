@@ -26,7 +26,7 @@ class Where extends QueryLike {
         if (whereType.paramSize() !== validParamSize) {
             throw new Error(whereType);
         }
-        this.#name = name.trim();
+        this.#name = name;
         this.#whereType = whereType;
         this.#value1 = value1;
         this.#value2 = value2;

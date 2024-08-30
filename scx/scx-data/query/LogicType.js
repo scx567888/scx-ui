@@ -12,10 +12,11 @@ class LogicType {
 
 }
 
-const _OR = new LogicType("OR");
-const _AND = new LogicType("AND");
+const OR = new LogicType("OR");
+const AND = new LogicType("AND");
 
 export {
-    _OR,
-    _AND,
+    OR,
+    AND,
+    LogicType
 };
