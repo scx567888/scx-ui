@@ -11,5 +11,5 @@ function ofExcluded(fieldNames) {
 
 export {
     ofIncluded,
-    ofExcluded
-}
+    ofExcluded,
+};
