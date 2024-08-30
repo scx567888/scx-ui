@@ -20,12 +20,6 @@ class Where extends QueryLike {
         if (whereType == null) {
             throw new Error("Where 参数错误 : whereType 不能为空 !!!");
         }
-        //校验参数 并获取有效的参数数量(不为空的) 每检测到一个有效的(不为空的) 便加 1
-        let validParamSize = Where.getValidParamSize(value1, value2);
-        //类型所需的参数数量和所传的合法参数数量必须一致
-        if (whereType.paramSize() !== validParamSize) {
-            throw new Error(whereType);
-        }
         this.#name = name;
         this.#whereType = whereType;
         this.#value1 = value1;
