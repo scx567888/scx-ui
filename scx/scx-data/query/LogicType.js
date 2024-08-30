@@ -18,5 +18,5 @@ const AND = new LogicType("AND");
 export {
     OR,
     AND,
-    LogicType
+    LogicType,
 };
