@@ -1,5 +1,5 @@
 import {EXCLUDED} from "./FilterMode.js";
-import {FieldFilter} from "../FieldFilter.js";
+import {FieldFilter} from "./FieldFilter.js";
 
 class ExcludedFieldFilter extends FieldFilter {
 

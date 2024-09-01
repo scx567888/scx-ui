@@ -1,5 +1,5 @@
-import {IncludedFieldFilter} from "./field_filter/IncludedFieldFilter.js";
-import {ExcludedFieldFilter} from "./field_filter/ExcludedFieldFilter.js";
+import {IncludedFieldFilter} from "./IncludedFieldFilter.js";
+import {ExcludedFieldFilter} from "./ExcludedFieldFilter.js";
 
 function ofIncluded(fieldNames) {
     return new IncludedFieldFilter().addIncluded(fieldNames);
