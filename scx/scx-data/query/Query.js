@@ -24,6 +24,15 @@ class Query {
     addOrderBy(orderByClauses) {
     }
 
+    removeWhereIf(filter) {
+    }
+
+    removeGroupByIf(filter) {
+    }
+
+    removeOrderByIf(filter) {
+    }
+
     getWhere() {
     }
 
