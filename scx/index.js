@@ -1,4 +1,4 @@
-export * from "./scx-data/QueryBuilder.js";
+export * from "./scx-data/query/QueryBuilder.js";
 export * from "./scx-data/FieldFilterBuilder.js";
 export * from "./scx-fss/ScxFSS.js";
 export * from "./scx-crud.js";

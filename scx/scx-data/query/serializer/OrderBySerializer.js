@@ -1,4 +1,4 @@
-import {Query} from "../../Query.js";
+import {Query} from "../Query.js";
 import {isArray} from "../../../../util/index.js";
 import {OrderBy} from "../OrderBy.js";
 

@@ -1,4 +1,4 @@
-import {WhereClause} from "./query/WhereClause.js";
+import {WhereClause} from "./WhereClause.js";
 import {
     BETWEEN,
     EQUAL,
@@ -17,13 +17,13 @@ import {
     NOT_IN,
     NOT_LIKE,
     NOT_LIKE_REGEX,
-} from "./query/WhereType.js";
-import {Where} from "./query/Where.js";
-import {QueryImpl} from "./query/QueryImpl.js";
-import {AND, OR} from "./query/LogicType.js";
-import {OrderBy} from "./query/OrderBy.js";
-import {ASC, DESC} from "./query/OrderByType.js";
-import {Logic} from "./query/Logic.js";
+} from "./WhereType.js";
+import {Where} from "./Where.js";
+import {QueryImpl} from "./QueryImpl.js";
+import {AND, OR} from "./LogicType.js";
+import {OrderBy} from "./OrderBy.js";
+import {ASC, DESC} from "./OrderByType.js";
+import {Logic} from "./Logic.js";
 
 function query(oldQuery) {
     return new QueryImpl(oldQuery);
