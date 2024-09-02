@@ -1,39 +1,36 @@
 class FieldFilter {
 
-    addIncluded(fieldNames) {
-
+    addIncluded(...fieldNames) {
+        return this;
     }
 
-    addExcluded(fieldNames) {
-
+    addExcluded(...fieldNames) {
+        return this;
     }
 
-    removeIncluded(fieldNames) {
-
+    removeIncluded(...fieldNames) {
+        return this;
     }
 
-    removeExcluded(fieldNames) {
-
+    removeExcluded(...fieldNames) {
+        return this;
     }
 
     ignoreNullValue(ignoreNullValue) {
-
+        return this;
     }
 
     getFilterMode() {
-
     }
 
     getFieldNames() {
-
     }
 
     getIgnoreNullValue() {
-
     }
 
     clear() {
-
+        return this;
     }
 
 }
