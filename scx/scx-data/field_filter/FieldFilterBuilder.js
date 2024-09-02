@@ -2,7 +2,7 @@ import {IncludedFieldFilter} from "./IncludedFieldFilter.js";
 import {ExcludedFieldFilter} from "./ExcludedFieldFilter.js";
 
 /**
- * 
+ *
  * @param fieldNames
  * @return {FieldFilter}
  */
@@ -11,7 +11,7 @@ function ofIncluded(...fieldNames) {
 }
 
 /**
- * 
+ *
  * @param fieldNames
  * @return {FieldFilter}
  */
