@@ -28,7 +28,7 @@ class OrderBySerializer {
         return {
             "@type": "OrderBy",
             "name": w.name(),
-            "orderByType": w.orderByType().value(),
+            "orderByType": w.orderByType(),
             "info": w.info(),
         };
     }
