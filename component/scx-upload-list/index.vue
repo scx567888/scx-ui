@@ -41,7 +41,7 @@ import "./index.css";
 import {computed, reactive, ref, watch} from "vue";
 import {arrayEquals, percentage} from "../../util/index.js";
 import {ScxFSSHelper, UploadInfo} from "../scx-upload/helper.js";
-import {useScxFSS} from "../../scx/index.js";
+import {useScxFSS} from "../../scx/scx-fss/index.js";
 import ScxGroup from "../scx-group/index.vue";
 import ScxProgress from "../scx-progress/index.vue";
 
