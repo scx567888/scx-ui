@@ -92,15 +92,7 @@ class ScxCrud {
      * @return {Promise<ListResult>}
      */
     list(crudListParam) {
-        const o = {};
-        if (crudListParam.query) {
-            o.query = QUERY_SERIALIZER.serializeQuery(crudListParam.query);
-        }
-        if (crudListParam.fieldFilter) {
-            o.fieldFilter = FIELD_FILTER_SERIALIZER.serializeFieldFilter(crudListParam.fieldFilter);
-        }
-        o.extParams = crudListParam.extParams;
-        return new Promise((resolve, reject) => this.req.post(this.listApi, o).then(data => resolve(data)).catch(e => reject(e)));
+        return new Promise((resolve, reject) => this.req.post(this.listApi, serializeCRUDListParam(crudListParam)).then(data => resolve(data)).catch(e => reject(e)));
     };
 
     /**
@@ -162,6 +154,18 @@ class ScxCrud {
 
 }
 
+function serializeCRUDListParam(crudListParam) {
+    const o = {};
+    if (crudListParam.query) {
+        o.query = QUERY_SERIALIZER.serializeQuery(crudListParam.query);
+    }
+    if (crudListParam.fieldFilter) {
+        o.fieldFilter = FIELD_FILTER_SERIALIZER.serializeFieldFilter(crudListParam.fieldFilter);
+    }
+    o.extParams = crudListParam.extParams;
+    return o;
+}
+
 export {
     ScxCrud,
     CRUDListParam,
@@ -169,4 +173,5 @@ export {
     ListResult,
     BatchDeleteResult,
     CheckUniqueResult,
+    serializeCRUDListParam,
 };
