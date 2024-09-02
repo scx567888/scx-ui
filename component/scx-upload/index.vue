@@ -70,7 +70,7 @@ import "./index.css";
 import {computed, reactive, ref, watch} from "vue";
 import {percentage} from "../../util/index.js";
 import {ScxFSSHelper, UploadInfo} from "./helper.js";
-import {useScxFSS} from "../../scx/index.js";
+import {useScxFSS} from "../../scx/scx-fss/index.js";
 import ScxProgress from "../scx-progress/index.vue";
 import ScxIcon from "../scx-icon/index.vue";
 

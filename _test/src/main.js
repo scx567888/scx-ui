@@ -1,7 +1,8 @@
 import {createApp} from "vue";
 import App from "./App.vue";
 import {Router} from "./router";
-import {ScxComponent, ScxFSS, ScxReq} from "../../index.js";
+import {ScxComponent, ScxReq} from "../../index.js";
+import {ScxFSS} from "../../scx/scx-fss/index.js";
 import "../../style/default.css";
 import "../../style/dark.css";
 import "scx-icon/register";
