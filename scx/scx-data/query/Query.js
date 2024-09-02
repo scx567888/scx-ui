@@ -81,6 +81,4 @@ class Query {
 
 }
 
-export {
-    Query,
-};
+export {Query};
