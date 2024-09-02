@@ -1,36 +1,47 @@
 class Query {
 
-    where(whereClauses) {
+    where(...whereClauses) {
+        return this;
     }
 
-    groupBy(groupByClauses) {
+    groupBy(...groupByClauses) {
+        return this;
     }
 
-    orderBy(orderByClauses) {
+    orderBy(...orderByClauses) {
+        return this;
     }
 
     offset(limitOffset) {
+        return this;
     }
 
     limit(numberOfRows) {
+        return this;
     }
 
-    addWhere(whereClauses) {
+    addWhere(...whereClauses) {
+        return this;
     }
 
-    addGroupBy(groupByClauses) {
+    addGroupBy(...groupByClauses) {
+        return this;
     }
 
-    addOrderBy(orderByClauses) {
+    addOrderBy(...orderByClauses) {
+        return this;
     }
 
     removeWhereIf(filter) {
+        return this;
     }
 
     removeGroupByIf(filter) {
+        return this;
     }
 
     removeOrderByIf(filter) {
+        return this;
     }
 
     getWhere() {
@@ -49,18 +60,23 @@ class Query {
     }
 
     clearWhere() {
+        return this;
     }
 
     clearGroupBy() {
+        return this;
     }
 
     clearOrderBy() {
+        return this;
     }
 
     clearOffset() {
+        return this;
     }
 
     clearLimit() {
+        return this;
     }
 
 }
