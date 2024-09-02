@@ -38,7 +38,7 @@ class IncludedFieldFilter extends FieldFilter {
     }
 
     getFieldNames() {
-        return this.#fieldNames;
+        return Array.from(this.#fieldNames);
     }
 
     getIgnoreNullValue() {
