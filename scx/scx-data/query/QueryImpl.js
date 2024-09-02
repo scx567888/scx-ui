@@ -23,20 +23,20 @@ class QueryImpl extends Query {
 
 
     where(...whereClauses) {
-        this.clearWhere()
+        this.clearWhere();
         this.addWhere(...whereClauses);
         return this;
     }
 
     groupBy(...groupByClauses) {
-        this.clearGroupBy()
-        this.addGroupBy(...groupByClauses)
+        this.clearGroupBy();
+        this.addGroupBy(...groupByClauses);
         return this;
     }
 
 
     orderBy(...orderByClauses) {
-        this.clearOrderBy()
+        this.clearOrderBy();
         this.addOrderBy(...orderByClauses);
         return this;
     }
@@ -106,17 +106,17 @@ class QueryImpl extends Query {
     }
 
     clearWhere() {
-        this.#where=[];
+        this.#where = [];
         return this;
     }
 
     clearGroupBy() {
-        this.#groupBy=[];
+        this.#groupBy = [];
         return this;
     }
 
     clearOrderBy() {
-        this.#orderBy=[];
+        this.#orderBy = [];
         return this;
     }
 

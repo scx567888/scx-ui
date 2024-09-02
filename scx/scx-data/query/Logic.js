@@ -42,7 +42,7 @@ class Logic extends QueryLike {
 
     add(...logicCauses) {
         for (let logicCause of logicCauses) {
-            this.#clauses.push(logicCause);    
+            this.#clauses.push(logicCause);
         }
         return this;
     }

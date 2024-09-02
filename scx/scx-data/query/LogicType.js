@@ -1,7 +1,7 @@
-const OR = "OR"
-const AND = "AND"
+const OR = "OR";
+const AND = "AND";
 
 export {
     OR,
-    AND
+    AND,
 };
