@@ -35,11 +35,9 @@ class WhereClause extends QueryLike {
     }
 
     toQuery() {
-        return new QueryImpl().where([this]);
+        return new QueryImpl().where(this);
     }
 
 }
 
-export {
-    WhereClause,
-};
+export {WhereClause};
