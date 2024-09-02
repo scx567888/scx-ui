@@ -40,85 +40,84 @@ class Logic extends QueryLike {
         return this.#clauses;
     }
 
-    add(logicCauses) {
-        return this.#clauses.push(logicCauses);
+    add(...logicCauses) {
+        for (let logicCause of logicCauses) {
+            this.#clauses.push(logicCause);    
+        }
+        return this;
     }
 
-    addWhere(name, whereType, value1, value2, options) {
-        return this.add(new Where(name, whereType, value1, options, options));
+    eq(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, EQUAL, value, null, ...options));
     }
 
-    eq(fieldName, value, options) {
-        return this.addWhere(fieldName, EQUAL, value, null, options);
+    ne(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, NOT_EQUAL, value, null, ...options));
     }
 
-    ne(fieldName, value, options) {
-        return this.addWhere(fieldName, NOT_EQUAL, value, null, options);
+    lt(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, LESS_THAN, value, null, ...options));
     }
 
-    lt(fieldName, value, options) {
-        return this.addWhere(fieldName, LESS_THAN, value, null, options);
+    le(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, LESS_THAN_OR_EQUAL, value, null, ...options));
     }
 
-    le(fieldName, value, options) {
-        return this.addWhere(fieldName, LESS_THAN_OR_EQUAL, value, null, options);
+    gt(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, GREATER_THAN, value, null, ...options));
     }
 
-    gt(fieldName, value, options) {
-        return this.addWhere(fieldName, GREATER_THAN, value, null, options);
-    }
-
-    ge(fieldName, value, options) {
-        return this.addWhere(fieldName, GREATER_THAN_OR_EQUAL, value, null, options);
+    ge(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, GREATER_THAN_OR_EQUAL, value, null, ...options));
     }
 
 
-    isNull(fieldName, options) {
-        return this.addWhere(fieldName, IS_NULL, null, null, options);
+    isNull(fieldName, ...options) {
+        return this.add(new Where(fieldName, IS_NULL, null, null, ...options));
     }
 
-    isNotNull(fieldName, options) {
-        return this.addWhere(fieldName, IS_NOT_NULL, null, null, options);
+    isNotNull(fieldName, ...options) {
+        return this.add(new Where(fieldName, IS_NOT_NULL, null, null, ...options));
     }
 
-    like(fieldName, value, options) {
-        return this.addWhere(fieldName, LIKE, value, null, options);
+    like(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, LIKE, value, null, ...options));
     }
 
-    notLike(fieldName, value, options) {
-        return this.addWhere(fieldName, NOT_LIKE, value, null, options);
+    notLike(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, NOT_LIKE, value, null, ...options));
     }
 
-    likeRegex(fieldName, value, options) {
-        return this.addWhere(fieldName, LIKE_REGEX, value, null, options);
+    likeRegex(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, LIKE_REGEX, value, null, ...options));
     }
 
-    notLikeRegex(fieldName, value, options) {
-        return this.addWhere(fieldName, NOT_LIKE_REGEX, value, null, options);
+    notLikeRegex(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, NOT_LIKE_REGEX, value, null, ...options));
     }
 
-    in(fieldName, value, options) {
-        return this.addWhere(fieldName, IN, value, null, options);
+    in(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, IN, value, null, ...options));
     }
 
-    notIn(fieldName, value, options) {
-        return this.addWhere(fieldName, NOT_IN, value, null, options);
+    notIn(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, NOT_IN, value, null, ...options));
     }
 
-    between(fieldName, value1, value2, options) {
-        return this.addWhere(fieldName, BETWEEN, value1, value2, options);
+    between(fieldName, value1, value2, ...options) {
+        return this.add(new Where(fieldName, BETWEEN, value1, value2, ...options));
     }
 
-    notBetween(fieldName, value1, value2, options) {
-        return this.addWhere(fieldName, NOT_BETWEEN, value1, value2, options);
+    notBetween(fieldName, value1, value2, ...options) {
+        return this.add(new Where(fieldName, NOT_BETWEEN, value1, value2, ...options));
     }
 
-    jsonContains(fieldName, value, options) {
-        return this.addWhere(fieldName, JSON_CONTAINS, value, null, options);
+    jsonContains(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, JSON_CONTAINS, value, null, ...options));
     }
 
     toQuery() {
-        return new QueryImpl().where([this]);
+        return new QueryImpl().where(this);
     }
 
 }

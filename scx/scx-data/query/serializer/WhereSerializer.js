@@ -52,9 +52,10 @@ class WhereSerializer {
         return {
             "@type": "Where",
             "name": w.name(),
-            "whereType": w.whereType().value(),
+            "whereType": w.whereType(),
             "value1": w.value1(),
             "value2": w.value2(),
+            "info": w.info(),
         };
     }
 
