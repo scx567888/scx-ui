@@ -1,5 +1,5 @@
 import {EXCLUDED} from "./FilterMode.js";
-import {FieldFilter} from "../FieldFilter.js";
+import {FieldFilter} from "./FieldFilter.js";
 
 class ExcludedFieldFilter extends FieldFilter {
 
@@ -12,20 +12,20 @@ class ExcludedFieldFilter extends FieldFilter {
         this.#ignoreNullValue = true;
     }
 
-    addIncluded(fieldNames) {
-        return this._removeFieldNames(fieldNames);
+    addIncluded(...fieldNames) {
+        return this._removeFieldNames(...fieldNames);
     }
 
-    addExcluded(fieldNames) {
-        return this._addFieldNames(fieldNames);
+    addExcluded(...fieldNames) {
+        return this._addFieldNames(...fieldNames);
     }
 
-    removeIncluded(fieldNames) {
-        return this._removeFieldNames(fieldNames);
+    removeIncluded(...fieldNames) {
+        return this._removeFieldNames(...fieldNames);
     }
 
-    removeExcluded(fieldNames) {
-        return this._addFieldNames(fieldNames);
+    removeExcluded(...fieldNames) {
+        return this._addFieldNames(...fieldNames);
     }
 
     ignoreNullValue(ignoreNullValue) {
@@ -38,7 +38,7 @@ class ExcludedFieldFilter extends FieldFilter {
     }
 
     getFieldNames() {
-        return this.#fieldNames.toArray();
+        return Array.from(this.#fieldNames);
     }
 
     getIgnoreNullValue() {
@@ -50,21 +50,20 @@ class ExcludedFieldFilter extends FieldFilter {
         return this;
     }
 
-    _addFieldNames(fieldNames) {
-        this.#fieldNames.add(fieldNames);
-        return this;
-    }
-
-    _removeFieldNames(fieldNames) {
+    _addFieldNames(...fieldNames) {
         for (let fieldName of fieldNames) {
-            this.#fieldNames.remove(fieldName);
+            this.#fieldNames.add(fieldName);
         }
         return this;
     }
 
+    _removeFieldNames(...fieldNames) {
+        for (let fieldName of fieldNames) {
+            this.#fieldNames.delete(fieldName);
+        }
+        return this;
+    }
 
 }
 
-export {
-    ExcludedFieldFilter,
-};
+export {ExcludedFieldFilter};

@@ -1,4 +1,6 @@
-class QueryLike {
+import {Query} from "./Query.js";
+
+class QueryLike extends Query {
 
     #query;
 
@@ -9,18 +11,18 @@ class QueryLike {
         return this.#query;
     }
 
-    where(whereClauses) {
-        this.query().where(whereClauses);
+    where(...whereClauses) {
+        this.query().where(...whereClauses);
         return this;
     }
 
-    groupBy(groupByClauses) {
-        this.query().groupBy(groupByClauses);
+    groupBy(...groupByClauses) {
+        this.query().groupBy(...groupByClauses);
         return this;
     }
 
-    orderBy(orderByClauses) {
-        this.query().orderBy(orderByClauses);
+    orderBy(...orderByClauses) {
+        this.query().orderBy(...orderByClauses);
         return this;
     }
 
@@ -34,19 +36,33 @@ class QueryLike {
         return this;
     }
 
-
-    addWhere(whereClauses) {
-        this.query().addWhere(whereClauses);
+    addWhere(...whereClauses) {
+        this.query().addWhere(...whereClauses);
         return this;
     }
 
-    addGroupBy(groupByClauses) {
-        this.query().addGroupBy(groupByClauses);
+    addGroupBy(...groupByClauses) {
+        this.query().addGroupBy(...groupByClauses);
         return this;
     }
 
-    addOrderBy(orderByClauses) {
-        this.query().addOrderBy(orderByClauses);
+    addOrderBy(...orderByClauses) {
+        this.query().addOrderBy(...orderByClauses);
+        return this;
+    }
+
+    removeWhereIf(filter) {
+        this.query().removeWhereIf(filter);
+        return this;
+    }
+
+    removeGroupByIf(filter) {
+        this.query().removeGroupByIf(filter);
+        return this;
+    }
+
+    removeOrderByIf(filter) {
+        this.query().removeOrderByIf(filter);
         return this;
     }
 
@@ -96,7 +112,6 @@ class QueryLike {
     }
 
     toQuery() {
-
     }
 
 }

@@ -1,6 +1,6 @@
 import {Where} from "../Where.js";
 import {isArray} from "../../../../util/index.js";
-import {Query} from "../../Query.js";
+import {Query} from "../Query.js";
 import {WhereClause} from "../WhereClause.js";
 import {Logic} from "../Logic.js";
 
@@ -52,9 +52,10 @@ class WhereSerializer {
         return {
             "@type": "Where",
             "name": w.name(),
-            "whereType": w.whereType().value(),
+            "whereType": w.whereType(),
             "value1": w.value1(),
             "value2": w.value2(),
+            "info": w.info(),
         };
     }
 

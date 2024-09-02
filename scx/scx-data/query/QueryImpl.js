@@ -1,15 +1,11 @@
-import {Query} from "../Query.js";
+import {Query} from "./Query.js";
 
 class QueryImpl extends Query {
 
     #where;
-
     #groupBy;
-
     #orderBy;
-
     #offset;
-
     #limit;
 
 
@@ -26,19 +22,22 @@ class QueryImpl extends Query {
     }
 
 
-    where(whereClauses) {
-        this.#where.push(whereClauses);
+    where(...whereClauses) {
+        this.clearWhere();
+        this.addWhere(...whereClauses);
         return this;
     }
 
-    groupBy(groupByClauses) {
-        this.#groupBy.push(groupByClauses);
+    groupBy(...groupByClauses) {
+        this.clearGroupBy();
+        this.addGroupBy(...groupByClauses);
         return this;
     }
 
 
-    orderBy(orderByClauses) {
-        this.#orderBy.push(orderByClauses);
+    orderBy(...orderByClauses) {
+        this.clearOrderBy();
+        this.addOrderBy(...orderByClauses);
         return this;
     }
 
@@ -53,69 +52,78 @@ class QueryImpl extends Query {
         return this;
     }
 
-    addWhere(whereClauses) {
-        this.#where.push(whereClauses);
+    addWhere(...whereClauses) {
+        for (let whereClause of whereClauses) {
+            this.#where.push(whereClause);
+        }
         return this;
     }
 
-    addGroupBy(groupByClauses) {
-        this.#groupBy.push(groupByClauses);
+    addGroupBy(...groupByClauses) {
+        for (let groupByClause of groupByClauses) {
+            this.#groupBy.push(groupByClause);
+        }
         return this;
     }
 
-
-    addOrderBy(orderByClauses) {
-        this.#orderBy.push(orderByClauses);
+    addOrderBy(...orderByClauses) {
+        for (let orderByClause of orderByClauses) {
+            this.#orderBy.push(orderByClause);
+        }
         return this;
     }
 
+    removeWhereIf(filter) {
+        return this;
+    }
+
+    removeGroupByIf(filter) {
+        return this;
+    }
+
+    removeOrderByIf(filter) {
+        return this;
+    }
 
     getWhere() {
         return this.#where;
     }
 
-
     getGroupBy() {
         return this.#groupBy;
     }
-
 
     getOrderBy() {
         return this.#orderBy;
     }
 
-
     getOffset() {
         return this.#offset;
     }
-
 
     getLimit() {
         return this.#limit;
     }
 
     clearWhere() {
-        this.#where.clear();
+        this.#where = [];
         return this;
     }
 
     clearGroupBy() {
-        this.#groupBy.clear();
+        this.#groupBy = [];
         return this;
     }
-
 
     clearOrderBy() {
-        this.#orderBy.clear();
+        this.#orderBy = [];
         return this;
     }
-
 
     clearOffset() {
         this.#offset = null;
         return this;
     }
-
 
     clearLimit() {
         this.#limit = null;

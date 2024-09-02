@@ -1,4 +1,4 @@
-import {FieldFilter} from "../../FieldFilter.js";
+import {FieldFilter} from "../FieldFilter.js";
 
 class FieldFilterSerializer {
 

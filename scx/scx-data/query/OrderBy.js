@@ -1,5 +1,6 @@
 import {isBlank} from "../../../util/index.js";
 import {QueryImpl} from "./QueryImpl.js";
+import {ofInfo} from "./QueryOption.js";
 
 class OrderBy {
 
@@ -7,7 +8,7 @@ class OrderBy {
     #orderByType;
     #info;
 
-    constructor(name, orderByType, info) {
+    constructor(name, orderByType, ...options) {
         if (isBlank(name)) {
             throw new Error("OrderBy 参数错误 : 名称 不能为空 !!!");
         }
@@ -16,7 +17,7 @@ class OrderBy {
         }
         this.#name = name;
         this.#orderByType = orderByType;
-        this.#info = info;
+        this.#info = ofInfo(...options);
     }
 
 
