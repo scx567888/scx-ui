@@ -1,31 +1,43 @@
-import {INCLUDED} from "./FilterMode.js";
+import {EXCLUDED, INCLUDED} from "./FilterMode.js";
 import {FieldFilter} from "./FieldFilter.js";
 
-class IncludedFieldFilter extends FieldFilter {
+class FieldFilterImpl extends FieldFilter {
 
+    #filterMode;
     #fieldNames;
     #ignoreNullValue;
 
-    constructor() {
+    constructor(filterMode) {
         super();
+        this.#filterMode = filterMode;
         this.#fieldNames = new Set();
         this.#ignoreNullValue = true;
     }
 
     addIncluded(...fieldNames) {
-        return this._addFieldNames(...fieldNames);
+        if (this.#filterMode === INCLUDED) {
+            this.addFieldNames(...fieldNames);
+        } else if (this.#filterMode === EXCLUDED) {
+            this.removeFieldNames(...fieldNames);
+        }
+        return this;
     }
 
     addExcluded(...fieldNames) {
-        return this._removeFieldNames(...fieldNames);
+        if (this.#filterMode === EXCLUDED) {
+            this.addFieldNames(...fieldNames);
+        } else if (this.#filterMode === INCLUDED) {
+            this.removeFieldNames(...fieldNames);
+        }
+        return this;
     }
 
     removeIncluded(...fieldNames) {
-        return this._addFieldNames(...fieldNames);
+        return this.addExcluded(...fieldNames);
     }
 
     removeExcluded(...fieldNames) {
-        return this._removeFieldNames(...fieldNames);
+        return this.addIncluded(...fieldNames);
     }
 
     ignoreNullValue(ignoreNullValue) {
@@ -34,7 +46,7 @@ class IncludedFieldFilter extends FieldFilter {
     }
 
     getFilterMode() {
-        return INCLUDED;
+        return this.#filterMode;
     }
 
     getFieldNames() {
@@ -50,14 +62,14 @@ class IncludedFieldFilter extends FieldFilter {
         return this;
     }
 
-    _addFieldNames(...fieldNames) {
+    addFieldNames(...fieldNames) {
         for (let fieldName of fieldNames) {
             this.#fieldNames.add(fieldName);
         }
         return this;
     }
 
-    _removeFieldNames(...fieldNames) {
+    removeFieldNames(...fieldNames) {
         for (let fieldName of fieldNames) {
             this.#fieldNames.delete(fieldName);
         }
@@ -66,4 +78,4 @@ class IncludedFieldFilter extends FieldFilter {
 
 }
 
-export {IncludedFieldFilter};
+export {FieldFilterImpl};
