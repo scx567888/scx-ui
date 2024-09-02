@@ -16,7 +16,7 @@ const USE_ORIGINAL_NAME = new QueryOption("USE_ORIGINAL_NAME");
 const USE_JSON_EXTRACT = new QueryOption("USE_JSON_EXTRACT");
 const USE_ORIGINAL_VALUE = new QueryOption("USE_ORIGINAL_VALUE");
 
-function ofInfo(queryOptions) {
+function ofInfo(...queryOptions) {
     let replace = false;
     let skipIfNull = false;
     let skipIfEmptyList = false;
