@@ -21,23 +21,22 @@ class QueryImpl extends Query {
         this.#limit = null;
     }
 
-
     where(...whereClauses) {
         this.clearWhere();
-        this.addWhere(...whereClauses);
+        this.#addWhere(...whereClauses);
         return this;
     }
 
     groupBy(...groupByClauses) {
         this.clearGroupBy();
-        this.addGroupBy(...groupByClauses);
+        this.#addGroupBy(...groupByClauses);
         return this;
     }
 
 
     orderBy(...orderByClauses) {
         this.clearOrderBy();
-        this.addOrderBy(...orderByClauses);
+        this.#addOrderBy(...orderByClauses);
         return this;
     }
 
@@ -49,39 +48,6 @@ class QueryImpl extends Query {
 
     limit(numberOfRows) {
         this.#limit = numberOfRows;
-        return this;
-    }
-
-    addWhere(...whereClauses) {
-        for (let whereClause of whereClauses) {
-            this.#where.push(whereClause);
-        }
-        return this;
-    }
-
-    addGroupBy(...groupByClauses) {
-        for (let groupByClause of groupByClauses) {
-            this.#groupBy.push(groupByClause);
-        }
-        return this;
-    }
-
-    addOrderBy(...orderByClauses) {
-        for (let orderByClause of orderByClauses) {
-            this.#orderBy.push(orderByClause);
-        }
-        return this;
-    }
-
-    removeWhereIf(filter) {
-        return this;
-    }
-
-    removeGroupByIf(filter) {
-        return this;
-    }
-
-    removeOrderByIf(filter) {
         return this;
     }
 
@@ -127,6 +93,48 @@ class QueryImpl extends Query {
 
     clearLimit() {
         this.#limit = null;
+        return this;
+    }
+
+    #addWhere(...whereClauses) {
+        for (let whereClause of whereClauses) {
+            if (whereClause == null) {
+                continue;
+            }
+            if (Array.isArray(whereClause)) {
+                this.#addWhere(...whereClause);
+                continue;
+            }
+            this.#where.push(whereClause);
+        }
+        return this;
+    }
+
+    #addGroupBy(...groupByClauses) {
+        for (let groupByClause of groupByClauses) {
+            if (groupByClause == null) {
+                continue;
+            }
+            if (Array.isArray(groupByClause)) {
+                this.#addGroupBy(...groupByClause);
+                continue;
+            }
+            this.#groupBy.push(groupByClause);
+        }
+        return this;
+    }
+
+    #addOrderBy(...orderByClauses) {
+        for (let orderByClause of orderByClauses) {
+            if (orderByClause == null) {
+                continue;
+            }
+            if (Array.isArray(orderByClause)) {
+                this.#addOrderBy(...orderByClause);
+                continue;
+            }
+            this.#orderBy.push(orderByClause);
+        }
         return this;
     }
 

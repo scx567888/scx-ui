@@ -36,36 +36,6 @@ class QueryLike extends Query {
         return this;
     }
 
-    addWhere(...whereClauses) {
-        this.query().addWhere(...whereClauses);
-        return this;
-    }
-
-    addGroupBy(...groupByClauses) {
-        this.query().addGroupBy(...groupByClauses);
-        return this;
-    }
-
-    addOrderBy(...orderByClauses) {
-        this.query().addOrderBy(...orderByClauses);
-        return this;
-    }
-
-    removeWhereIf(filter) {
-        this.query().removeWhereIf(filter);
-        return this;
-    }
-
-    removeGroupByIf(filter) {
-        this.query().removeGroupByIf(filter);
-        return this;
-    }
-
-    removeOrderByIf(filter) {
-        this.query().removeOrderByIf(filter);
-        return this;
-    }
-
     getWhere() {
         return this.query().getWhere();
     }
