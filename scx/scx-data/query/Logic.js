@@ -42,8 +42,20 @@ class Logic extends QueryLike {
 
     add(...logicCauses) {
         for (let logicCause of logicCauses) {
+            if (logicCause == null) {
+                continue;
+            }
+            if (Array.isArray(logicCause)) {
+                this.add(...logicCause);
+                continue;
+            }
             this.#clauses.push(logicCause);
         }
+        return this;
+    }
+    
+    clear() {
+        this.#clauses = [];
         return this;
     }
 
