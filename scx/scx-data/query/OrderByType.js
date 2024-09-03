@@ -1,24 +1,8 @@
-class OrderByType {
+const ASC = "ASC";
 
-    #value;
-
-
-    constructor(value) {
-        this.#value = value;
-    }
-
-    value() {
-        return this.#value;
-    }
-
-}
-
-const ASC = new OrderByType("ASC");
-
-const DESC = new OrderByType("DESC");
+const DESC = "DESC";
 
 export {
     ASC,
     DESC,
-    OrderByType,
 };
