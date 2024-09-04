@@ -84,6 +84,9 @@ const NOT_BETWEEN = "NOT_BETWEEN";
 const JSON_CONTAINS = "JSON_CONTAINS";
 
 
+const JSON_OVERLAPS = "JSON_OVERLAPS";
+
+
 export {
     IS_NULL,
     IS_NOT_NULL,
@@ -102,4 +105,5 @@ export {
     BETWEEN,
     NOT_BETWEEN,
     JSON_CONTAINS,
+    JSON_OVERLAPS,
 };

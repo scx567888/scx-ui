@@ -8,6 +8,7 @@ import {
     IS_NOT_NULL,
     IS_NULL,
     JSON_CONTAINS,
+    JSON_OVERLAPS,
     LESS_THAN,
     LESS_THAN_OR_EQUAL,
     LIKE,
@@ -134,6 +135,9 @@ function jsonContains(fieldName, value, ...options) {
     return new Where(fieldName, JSON_CONTAINS, value, null, ...options);
 }
 
+function jsonOverlaps(fieldName, value, ...options) {
+    return new Where(fieldName, JSON_OVERLAPS, value, null, ...options);
+}
 
 function whereClause(whereClause, params) {
     return new WhereClause(whereClause, params);

@@ -8,6 +8,7 @@ import {
     IS_NOT_NULL,
     IS_NULL,
     JSON_CONTAINS,
+    JSON_OVERLAPS,
     LESS_THAN,
     LESS_THAN_OR_EQUAL,
     LIKE,
@@ -53,7 +54,7 @@ class Logic extends QueryLike {
         }
         return this;
     }
-    
+
     clear() {
         this.#clauses = [];
         return this;
@@ -126,6 +127,10 @@ class Logic extends QueryLike {
 
     jsonContains(fieldName, value, ...options) {
         return this.add(new Where(fieldName, JSON_CONTAINS, value, null, ...options));
+    }
+
+    jsonOverlaps(fieldName, value, ...options) {
+        return this.add(new Where(fieldName, JSON_OVERLAPS, value, null, ...options));
     }
 
     toQuery() {
