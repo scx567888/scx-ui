@@ -74,6 +74,7 @@ class ScxCrud {
     deleteApi;
     batchDeleteApi;
     checkUniqueApi;
+    countApi;
 
     constructor(req, baseCrudApi) {
         this.req = req;
@@ -84,6 +85,7 @@ class ScxCrud {
         this.deleteApi = baseCrudApi + "/";
         this.batchDeleteApi = baseCrudApi + "/batch-delete";
         this.checkUniqueApi = baseCrudApi + "/check-unique/";
+        this.countApi = baseCrudApi + "/count";
     }
 
     /**
@@ -151,6 +153,15 @@ class ScxCrud {
         const v = {value, id};
         return new Promise((resolve, reject) => this.req.post(this.checkUniqueApi + fieldName, v).then(data => resolve(data)).catch(e => reject(e)));
     }
+
+    /**
+     * count
+     * @param crudListParam {CRUDListParam}
+     * @return {Promise<Number>}
+     */
+    count(crudListParam) {
+        return new Promise((resolve, reject) => this.req.post(this.countApi, serializeCRUDListParam(crudListParam)).then(data => resolve(data)).catch(e => reject(e)));
+    };
 
 }
 
