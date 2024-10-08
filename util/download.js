@@ -5,7 +5,7 @@ function getFileNameFromContentDisposition(str) {
     if (!str) {
         return null;
     }
-    const s = str.split(";");
+    const s = str.split(/;\s*/);
     //优先使用 filename* 请查看 : https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition
     let fileNameElement = s.filter(c => c.startsWith("filename*="))[0];
     if (!fileNameElement) {
