@@ -126,20 +126,11 @@ class ScxCrud {
 
     /**
      * delete
-     * @param id {Number}
+     * @param crudListParam {CRUDListParam}
      * @return {Promise<Object>}
      */
-    delete(id) {
-        return new Promise((resolve, reject) => this.req.delete(this.deleteApi + id).then(data => resolve(data)).catch(e => reject(e)));
-    }
-
-    /**
-     * batchDelete
-     * @param deleteIDs {Number[]}
-     * @return {Promise<BatchDeleteResult>}
-     */
-    batchDelete(deleteIDs) {
-        return new Promise((resolve, reject) => this.req.delete(this.batchDeleteApi, {deleteIDs}).then(data => resolve(data)).catch(e => reject(e)));
+    delete(crudListParam) {
+        return new Promise((resolve, reject) => this.req.delete(this.deleteApi, serializeCRUDListParam(crudListParam)).then(data => resolve(data)).catch(e => reject(e)));
     }
 
     /**
