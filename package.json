@@ -1,6 +1,6 @@
 {
   "name": "scx-ui",
-  "version": "2.0.11",
+  "version": "2.1.0",
   "description": "Some front end UI kits for SCX",
   "license": "MIT",
   "author": "scx567888",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.0",
     "clipboard": "^2.0.0",
-    "vite": "^5.0.0",
+    "vite": "^6.0.0",
     "vue-router": "^4.0.0"
   }
 }

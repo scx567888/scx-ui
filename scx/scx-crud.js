@@ -127,7 +127,7 @@ class ScxCrud {
     /**
      * delete
      * @param crudListParam {CRUDListParam}
-     * @return {Promise<Object>}
+     * @return {Promise<Number>}
      */
     delete(crudListParam) {
         return new Promise((resolve, reject) => this.req.delete(this.deleteApi, serializeCRUDListParam(crudListParam)).then(data => resolve(data)).catch(e => reject(e)));
